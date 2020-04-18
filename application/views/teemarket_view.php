@@ -33,129 +33,14 @@
 
 	<!-- Main CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/style.min.css">
+
+	<!-- Custom CSS File -->
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
+
 </head>
 <body>
 <div class="page-wrapper">
-	<header class="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="header-right">
-					<div class="header-dropdown dropdown-expanded">
-						<a href="#">Links</a>
-						<div class="header-menu">
-							<ul>
-								<li><a href="blog.html">TRACK ORDER</a></li>
-								<li><a href="#" class="login-link">LOG IN</a></li>
-							</ul>
-						</div><!-- End .header-menu -->
-					</div><!-- End .header-dropown -->
-				</div><!-- End .header-right -->
-			</div><!-- End .container -->
-		</div><!-- End .header-top -->
-
-		<div class="header-middle sticky-header">
-			<div class="container">
-				<div class="header-left">
-					<div class="header-dropdowns" style="padding-right: 10px">
-						<div class="header-dropdown">
-							<a href="#">SHOP BY</a>
-							<div class="header-menu">
-								<ul>
-									<li><a href="#">ALL</a></li>
-									<li><a href="#">BIRTHDAY</a></li>
-								</ul>
-							</div><!-- End .header-menu -->
-						</div><!-- End .header-dropown -->
-
-					</div><!-- End .header-dropdowns -->
-					<button class="mobile-menu-toggler" type="button">
-						<i class="icon-menu"></i>
-					</button>
-					<div class="header-search">
-						<a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-						<div class="header-search-wrapper">
-							<form action="#" method="get">
-								<input type="search" class="form-control" name="q" id="q" placeholder="Search..." required>
-								<button class="btn" type="submit"><i class="icon-search"></i></button>
-							</form>
-						</div><!-- End .header-search-wrapper -->
-					</div><!-- End .header-search -->
-				</div><!-- End .header-left -->
-
-				<div class="header-center">
-					<a href="index-2.html" class="logo">
-						<img src="<?= base_url()?>assets/images/teemarket.png" alt="Porto Logo">
-					</a>
-				</div><!-- End .headeer-center -->
-
-				<div class="header-right">
-					<div class="dropdown cart-dropdown">
-						<a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-							<span class="cart-count">2</span><span>Items on bag</span>
-						</a>
-
-						<div class="dropdown-menu" >
-							<div class="dropdownmenu-wrapper">
-								<div class="dropdown-cart-products">
-									<div class="product">
-										<div class="product-details">
-											<h4 class="product-title">
-												<a href="product.html">Woman Ring</a>
-											</h4>
-
-											<span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $99.00
-                                            </span>
-										</div><!-- End .product-details -->
-
-										<figure class="product-image-container">
-											<a href="product.html" class="product-image">
-												<img src="<?= base_url()?>assets/images/products/cart/product-1.jpg" alt="product">
-											</a>
-											<a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
-										</figure>
-									</div><!-- End .product -->
-
-									<div class="product">
-										<div class="product-details">
-											<h4 class="product-title">
-												<a href="product.html">Woman Necklace</a>
-											</h4>
-
-											<span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $35.00
-                                            </span>
-										</div><!-- End .product-details -->
-
-										<figure class="product-image-container">
-											<a href="product.html" class="product-image">
-												<img src="<?= base_url()?>assets/images/products/cart/product-2.jpg" alt="product">
-											</a>
-											<a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
-										</figure>
-									</div><!-- End .product -->
-								</div><!-- End .cart-product -->
-
-								<div class="dropdown-cart-total">
-									<span>Total</span>
-
-									<span class="cart-total-price">$134.00</span>
-								</div><!-- End .dropdown-cart-total -->
-
-								<div class="dropdown-cart-action">
-									<a href="cart.html" class="btn">View Cart</a>
-									<a href="checkout-shipping.html" class="btn">Checkout</a>
-								</div><!-- End .dropdown-cart-total -->
-							</div><!-- End .dropdownmenu-wrapper -->
-						</div><!-- End .dropdown-menu -->
-					</div><!-- End .dropdown -->
-				</div><!-- End .header-right -->
-			</div><!-- End .container -->
-		</div><!-- End .header-middle -->
-
-	</header><!-- End .header -->
+	<?php include("homeheader_view.php") ?>
 
 	<main class="main">
 		<div class="container">
@@ -173,7 +58,7 @@
 					<div class="home-slide">
 						<div class="slide-bg owl-lazy"  data-src="<?= base_url()?>assets/images/slider/slide2.jpg"></div><!-- End .slide-bg -->
 						<div class="home-slide-content">
-							<h3>Elegent Collections</h3>
+							<h3>New Collections</h3>
 							<h1>For Him & Her</h1>
 							<a href="category.html" class="btn btn-secondary">Shop Now</a>
 						</div><!-- End .home-slide-content -->
@@ -476,21 +361,7 @@
 									<a href="product.html" class="product-image">
 										<img src="<?= base_url()?>assets/images/products/home/product-1.jpg" alt="product">
 									</a>
-									<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
 								</figure>
-								<div class="product-details product-details-overlay action-inner">
-									<h2 class="product-title">
-										<a href="product.html">Men’s Black & Gray Jacket</a>
-									</h2>
-									<div class="product-action">
-										<a href="#" class="paction add-wishlist" title="Add to Wishlist">
-											<span>Add to Wishlist</span>
-										</a>
-									</div><!-- End .product-action -->
-									<div class="price-box">
-										<span class="product-price">$40.00</span>
-									</div><!-- End .price-box -->
-								</div><!-- End .product-details -->
 							</div><!-- End .product -->
 						</div><!-- End .col-lg-5 -->
 
@@ -504,7 +375,7 @@
 													<a href="product.html" class="product-image">
 														<img src="<?= base_url()?>assets/images/products/home/product-2.jpg" alt="product">
 													</a>
-													<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
+
 												</figure>
 											</div><!-- End .product -->
 										</div><!-- End .col-6 -->
@@ -515,7 +386,7 @@
 													<a href="product.html" class="product-image">
 														<img src="<?= base_url()?>assets/images/products/home/product-3.jpg" alt="product">
 													</a>
-													<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
+
 												</figure>
 											</div><!-- End .product -->
 										</div><!-- End .col-6 -->
@@ -530,7 +401,7 @@
 													<a href="product.html" class="product-image">
 														<img src="<?= base_url()?>assets/images/products/home/product-4.jpg" alt="product">
 													</a>
-													<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
+
 												</figure>
 											</div><!-- End .product -->
 										</div><!-- End .col-6 -->
@@ -541,7 +412,7 @@
 													<a href="product.html" class="product-image">
 														<img src="<?= base_url()?>assets/images/products/home/product-5.jpg" alt="product">
 													</a>
-													<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
+
 												</figure>
 											</div><!-- End .product -->
 										</div><!-- End .col-6 -->
@@ -556,7 +427,7 @@
 													<a href="product.html" class="product-image">
 														<img src="<?= base_url()?>assets/images/products/home/product-6.jpg" alt="product">
 													</a>
-													<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
+
 												</figure>
 											</div><!-- End .product -->
 										</div><!-- End .col-6 -->
@@ -567,7 +438,7 @@
 													<a href="product.html" class="product-image">
 														<img src="<?= base_url()?>assets/images/products/home/product-7.jpg" alt="product">
 													</a>
-													<a href="ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
+
 												</figure>
 											</div><!-- End .product -->
 										</div><!-- End .col-6 -->
@@ -606,121 +477,7 @@
 		</div><!-- End .container -->
 	</main><!-- End .main -->
 
-	<footer class="footer">
-		<div class="container">
-			<div class="footer-top">
-				<div class="row">
-					<div class="col-md-9 col-lg-9">
-						<div class="widget widget-newsletter">
-							<div class="row">
-								<div class="col-lg-6">
-									<h4 class="widget-title">Subscribe newsletter</h4>
-									<p>Get all the latest information on Events,Sales and Offers. Sign up for newsletter today</p>
-								</div><!-- End .col-lg-6 -->
-
-								<div class="col-lg-6">
-									<form action="#">
-										<input type="email" class="form-control" placeholder="Email address" required>
-
-										<input type="submit" class="btn" value="Subscribe">
-									</form>
-								</div><!-- End .col-lg-6 -->
-							</div><!-- End .row -->
-						</div><!-- End .widget -->
-					</div><!-- End .col-xl-8 -->
-
-					<div class="col-md-3 col-lg-3 widget-social">
-						<div class="social-icons">
-							<a href="#" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
-							<a href="#" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
-							<a href="#" class="social-icon" target="_blank"><i class="icon-linkedin"></i></a>
-						</div><!-- End .social-icons -->
-					</div><!-- End .col-xl-4 -->
-				</div><!-- End .row -->
-			</div><!-- End .footer-top -->
-		</div><!-- End .container -->
-
-		<div class="footer-middle">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3">
-						<div class="widget">
-							<h4 class="widget-title">Contact Us</h4>
-							<ul class="contact-info">
-								<li>
-									<span class="contact-info-label">Address:</span>123 Street Name, City, England
-								</li>
-								<li>
-									<span class="contact-info-label">Phone:</span>Toll Free <a href="tel:">(123) 456-7890</a>
-								</li>
-								<li>
-									<span class="contact-info-label">Email:</span> <a href="mailto:mail@example.com">mail@example.com</a>
-								</li>
-								<li>
-									<span class="contact-info-label">Working Days/Hours:</span>
-									Mon - Sun / 9:00AM - 8:00PM
-								</li>
-							</ul>
-						</div><!-- End .widget -->
-					</div><!-- End .col-lg-3 -->
-
-					<div class="col-lg-9">
-						<div class="row">
-							<div class="col-md-5">
-								<div class="widget">
-									<h4 class="widget-title">My Account</h4>
-
-									<div class="row">
-										<div class="col-sm-6 col-md-5">
-											<ul class="links">
-												<li><a href="about.html">About Us</a></li>
-												<li><a href="contact.html">Contact Us</a></li>
-												<li><a href="my-account.html">My Account</a></li>
-											</ul>
-										</div><!-- End .col-sm-6 -->
-										<div class="col-sm-6 col-md-5">
-											<ul class="links">
-												<li><a href="#">Orders History</a></li>
-												<li><a href="#">Advanced Search</a></li>
-												<li><a href="#" class="login-link">Login</a></li>
-											</ul>
-										</div><!-- End .col-sm-6 -->
-									</div><!-- End .row -->
-								</div><!-- End .widget -->
-							</div><!-- End .col-md-5 -->
-
-							<div class="col-md-7">
-								<div class="widget">
-									<h4 class="widget-title">Main Features</h4>
-
-									<div class="row">
-										<div class="col-sm-6">
-											<ul class="links">
-												<li><a href="#">Super Fast Magento Theme</a></li>
-												<li><a href="#">1st Fully working Ajax Theme</a></li>
-												<li><a href="#">20 Unique Homepage Layouts</a></li>
-											</ul>
-										</div><!-- End .col-sm-6 -->
-										<div class="col-sm-6">
-											<ul class="links">
-												<li><a href="#">Powerful Admin Panel</a></li>
-												<li><a href="#">Mobile & Retina Optimized</a></li>
-											</ul>
-										</div><!-- End .col-sm-6 -->
-									</div><!-- End .row -->
-								</div><!-- End .widget -->
-							</div><!-- End .col-md-7 -->
-						</div><!-- End .row -->
-
-						<div class="footer-bottom">
-							<p class="footer-copyright">Porto eCommerce. &copy;  2018.  All Rights Reserved</p>
-							<img src="<?= base_url()?>assets/images/payments.png" alt="payment methods" class="footer-payments">
-						</div><!-- End .footer-bottom -->
-					</div><!-- End .col-lg-9 -->
-				</div><!-- End .row -->
-			</div><!-- End .container -->
-		</div><!-- End .footer-middle -->
-	</footer><!-- End .footer -->
+	<?php include("homefooter_view.php") ?>
 </div><!-- End .page-wrapper -->
 
 <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
