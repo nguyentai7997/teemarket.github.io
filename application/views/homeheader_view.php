@@ -7,7 +7,7 @@
 					<div class="header-menu">
 						<ul>
 							<li><a href="blog.html">TRACK ORDER</a></li>
-							<li><a href="#" class="login-link">LOG IN</a></li>
+							<li><a href="<?= base_url()?>login">SIGN IN</a></li>
 						</ul>
 					</div><!-- End .header-menu -->
 				</div><!-- End .header-dropown -->
@@ -15,7 +15,7 @@
 		</div><!-- End .container -->
 	</div><!-- End .header-top -->
 
-	<div class="header-middle sticky-header">
+	<div class="header-middle sticky-header" style="border-bottom: 1px solid #eee;">
 		<div class="container">
 			<div class="header-left">
 				<div class="header-dropdowns" style="padding-right: 10px">
@@ -45,7 +45,7 @@
 			</div><!-- End .header-left -->
 
 			<div class="header-center">
-				<a href="index-2.html" class="logo">
+				<a href="<?= base_url()?>" class="logo">
 					<img src="<?= base_url()?>assets/images/teemarket.png" alt="Porto Logo">
 				</a>
 			</div><!-- End .headeer-center -->
@@ -116,5 +116,4 @@
 			</div><!-- End .header-right -->
 		</div><!-- End .container -->
 	</div><!-- End .header-middle -->
-
 </header><!-- End .header -->
