@@ -12,12 +12,13 @@
 	<title>teemarket - Campaigns</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
-	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/icon_teemarket.ico">
+	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/icon.ico">
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/custom.css">
 
 	<!-- Skin tools (demo site only) -->
 	<link rel="stylesheet" href="<?= base_url()?>global/css/skintools.minfd53.css?v4.0.1">
@@ -66,7 +67,7 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<nav class="site-navbar navbar navbar-default navbar-inverse navbar-fixed-top navbar-mega"
+<nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega"
 	 role="navigation">
 
 	<div class="navbar-header">
@@ -80,8 +81,7 @@
 			<i class="icon md-more" aria-hidden="true"></i>
 		</button>
 		<div class="navbar-brand navbar-brand-center">
-			<img class="navbar-brand-logo" src="<?= base_url()?>assets1/images/logotee.png" title="teemarket">
-			<span class="navbar-brand-text hidden-xs-down"> teemarket</span>
+			<img class="navbar-brand-logo" src="<?= base_url()?>assets1/images/teemarket.png" title="teemarket">
 		</div>
 		<button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
 				data-toggle="collapse">

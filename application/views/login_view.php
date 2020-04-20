@@ -14,7 +14,7 @@
 	<meta name="author" content="SW-THEMES">
 
 	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="<?= base_url()?>assets/images/icons/icon_teemarket.ico">
+	<link rel="icon" type="image/x-icon" href="<?= base_url()?>assets/images/icons/icon.ico">
 
 	<script type="text/javascript">
 		WebFontConfig = {
@@ -48,7 +48,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<h2 class="title" style="text-align: center">Sign In</h2>
-					<p style="text-align: center">Don't have an account? <a href="">Sign Up</a></p>
+					<p style="text-align: center">Don't have an account? <a href="" style="color: #fd8d1d">Sign Up</a></p>
 					<form action="#">
 						<div class="form-group required-field">
 							<input type="text" class="form-control" id="email" name="email" required placeholder="Email">
@@ -62,7 +62,7 @@
 							<button type="submit" class="btn btn-primary">Sign In</button>
 						</div><!-- End .form-footer -->
 					</form>
-					<p style="text-align: center"><a href="">Forgot Password?</a></p>
+					<p style="text-align: center"><a href="" style="color: #fd8d1d">Forgot Password?</a></p>
 				</div><!-- End .col-md-12 -->
 				<div class="col-md-4"></div>
 			</div><!-- End .row -->

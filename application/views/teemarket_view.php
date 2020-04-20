@@ -14,7 +14,7 @@
 	<meta name="author" content="SW-THEMES">
 
 	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="<?= base_url()?>assets/images/icons/icon_teemarket.ico">
+	<link rel="icon" type="image/x-icon" href="<?= base_url()?>assets/images/icons/icon.ico">
 
 	<script type="text/javascript">
 		WebFontConfig = {
