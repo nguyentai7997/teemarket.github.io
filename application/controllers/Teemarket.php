@@ -18,6 +18,26 @@ class Teemarket extends CI_Controller {
 		$this->load->view('teemarket_view');
 	}
 
+	public function trackorder()
+	{
+		$this->load->view('track-order_view');
+	}
+
+	public function login()
+	{
+		$this->load->view('login_view');
+	}
+
+	public function register()
+	{
+		$this->load->view('register_view');
+	}
+
+	public function forgotpassword()
+	{
+		$this->load->view('forgot-password_view');
+	}
+
 //	public function adidas()
 //	{
 //		$res = $this->Mporto->getAdidasByOffset(8,0);

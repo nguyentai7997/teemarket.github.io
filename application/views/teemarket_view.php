@@ -40,7 +40,7 @@
 </head>
 <body>
 <div class="page-wrapper">
-	<?php include("homeheader_view.php") ?>
+	<?php include("home-header_view.php") ?>
 
 	<main class="main">
 		<div class="container">
@@ -477,7 +477,7 @@
 		</div><!-- End .container -->
 	</main><!-- End .main -->
 
-	<?php include("homefooter_view.php") ?>
+	<?php include("home-footer_view.php") ?>
 </div><!-- End .page-wrapper -->
 
 <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->

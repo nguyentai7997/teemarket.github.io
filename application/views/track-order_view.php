@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>teemarket - Sign In</title>
+	<title>teemarket - Track Order</title>
 
 	<meta name="keywords" content="HTML5 Template" />
 	<meta name="description" content="teemarket">
@@ -47,22 +47,17 @@
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<h2 class="title" style="text-align: center">Sign In</h2>
-					<p style="text-align: center">Don't have an account? <a href="<?= base_url()?>register" style="color: #fd8d1d">Sign Up</a></p>
+					<h2 class="title" style="text-align: center">Track Your Order</h2>
+					<p style="text-align: center">Need the status of your shipment or proof of delivery? Enter your tracking number or reference number below.</p>
 					<form action="#">
 						<div class="form-group required-field">
-							<input type="text" class="form-control" id="email" name="email" required placeholder="Email">
-						</div><!-- End .form-group -->
-
-						<div class="form-group required-field">
-							<input type="email" class="form-control" id="password" name="password" required placeholder="Password">
+							<input type="text" class="form-control" id="orderid" name="orderid" required placeholder="Order ID">
 						</div><!-- End .form-group -->
 
 						<div class="form-footer">
-							<button type="submit" class="btn btn-primary">Sign In</button>
+							<button type="submit" class="btn btn-primary">Track Order</button>
 						</div><!-- End .form-footer -->
 					</form>
-					<p style="text-align: center"><a href="<?= base_url()?>forgot-password" style="color: #fd8d1d">Forgot Password?</a></p>
 				</div><!-- End .col-md-12 -->
 				<div class="col-md-4"></div>
 			</div><!-- End .row -->

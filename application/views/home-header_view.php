@@ -6,7 +6,7 @@
 					<a href="#">Links</a>
 					<div class="header-menu">
 						<ul>
-							<li><a href="blog.html">TRACK ORDER</a></li>
+							<li><a href="<?= base_url()?>track-order">TRACK ORDER</a></li>
 							<li><a href="<?= base_url()?>login">SIGN IN</a></li>
 						</ul>
 					</div><!-- End .header-menu -->

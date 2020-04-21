@@ -53,4 +53,7 @@ $route['default_controller'] = 'teemarket';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
+$route['track-order'] = 'teemarket/trackorder';
+$route['login'] = 'teemarket/login';
+$route['register'] = 'teemarket/register';
+$route['forgot-password'] = 'teemarket/forgotpassword';
