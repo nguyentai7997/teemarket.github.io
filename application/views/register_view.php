@@ -14,7 +14,7 @@
 	<meta name="author" content="SW-THEMES">
 
 	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="<?= base_url()?>assets/images/icons/icon.ico">
+	<link rel="icon" type="image/x-icon" href="<?= base_url()?>assets/images/icons/favicon-teemarket.ico">
 
 	<script type="text/javascript">
 		WebFontConfig = {
@@ -48,7 +48,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<h2 class="title" style="text-align: center">Sign Up</h2>
-					<p style="text-align: center">Already have an account? <a href="<?= base_url()?>login" style="color: #fd8d1d">Sign In</a></p>
+					<p style="text-align: center">Already have an account? <a href="<?= base_url()?>login" style="color: #fb8c00">Sign In</a></p>
 					<form action="#">
 						<div class="form-group required-field">
 							<input type="text" class="form-control" id="fullname" name="fullname" required placeholder="Full Name">

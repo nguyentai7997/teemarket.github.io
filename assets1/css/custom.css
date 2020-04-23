@@ -1,3 +1,4 @@
-.site-navbar{background-color:white}
-.site-navbar .navbar-header .navbar-brand-logo{height:44px}
-.navbar-brand{height:auto;padding: 0 0 0 11px}
+.navbar-brand-text{margin-left:0}
+.navbar-toggler{padding: 0}
+.nav-link:focus, .nav-link:hover{background-color:unset}
+.navbar-mega .dropdown-menu{right: -16px}

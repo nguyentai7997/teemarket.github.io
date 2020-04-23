@@ -12,17 +12,17 @@
 	<title>teemarket - Campaigns</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
-	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/icon.ico">
+	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/favicon-teemarket.ico">
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/custom.css">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/custom.css?">
 
 	<!-- Skin tools (demo site only) -->
 	<link rel="stylesheet" href="<?= base_url()?>global/css/skintools.minfd53.css?v4.0.1">
-	<script src="<?= base_url()?>assets1/js/Plugin/skintools.minfd53.js?v4.0.1"></script>
+<!--	<script src="--><?//= base_url()?><!--assets1/js/Plugin/skintools.minfd53.js?v4.0.1"></script>-->
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -68,7 +68,7 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega"
+<nav class="site-navbar navbar navbar-default navbar-inverse navbar-fixed-top navbar-mega bg-orange-600"
 	 role="navigation">
 
 	<div class="navbar-header">
@@ -77,17 +77,26 @@
 			<span class="sr-only">Toggle navigation</span>
 			<span class="hamburger-bar"></span>
 		</button>
-		<button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse" data-toggle="collapse">
-			<i class="icon md-more" aria-hidden="true"></i>
+		<button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
+				data-toggle="collapse">
+<!--			<i class="icon md-more" aria-hidden="true"></i>-->
+			<a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
+			   data-animation="scale-up" role="button">
+				<span class="avatar avatar-online">
+					<img src="<?= base_url()?>global/portraits/5.jpg" alt="...">
+					<i></i>
+				</span>
+			</a>
+			<div class="dropdown-menu" role="menu">
+				<a class="dropdown-item"> Fullname <br> Email</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
+			</div>
 		</button>
 		<div class="navbar-brand navbar-brand-center">
-			<img class="navbar-brand-logo" src="<?= base_url()?>assets1/images/teemarket.png" title="teemarket">
+			<img class="navbar-brand-logo" src="<?= base_url()?>assets1/images/logoteemarket.png" title="teemarket">
+			<span class="navbar-brand-text hidden-xs-down"> teemarket</span>
 		</div>
-		<button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
-				data-toggle="collapse">
-			<span class="sr-only">Toggle Search</span>
-			<i class="icon md-search" aria-hidden="true"></i>
-		</button>
 	</div>
 
 	<div class="navbar-container container-fluid">
@@ -96,7 +105,7 @@
 			<!-- Navbar Toolbar -->
 			<ul class="nav navbar-toolbar">
 				<li class="nav-item hidden-float" id="toggleMenubar">
-					<a class="nav-link" data-toggle="menubar" href="#" role="button">
+					<a class="nav-link" data-toggle="menubar" role="button">
 						<i class="icon hamburger hamburger-arrow-left">
 							<span class="sr-only">Toggle menubar</span>
 							<span class="hamburger-bar"></span>
@@ -109,32 +118,15 @@
 			<!-- Navbar Toolbar Right -->
 			<ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
 				<li class="nav-item dropdown">
-					<div class="dropdown-menu" role="menu">
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-							<span class="flag-icon flag-icon-gb"></span> English</a>
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-							<span class="flag-icon flag-icon-fr"></span> French</a>
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-							<span class="flag-icon flag-icon-cn"></span> Chinese</a>
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-							<span class="flag-icon flag-icon-de"></span> German</a>
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem">
-							<span class="flag-icon flag-icon-nl"></span> Dutch
-						</a>
-					</div>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
+					<a class="nav-link navbar-avatar" data-toggle="dropdown" aria-expanded="false"
 					   data-animation="scale-up" role="button">
-              <span class="avatar avatar-online">
-                <img src="<?= base_url()?>global/portraits/5.jpg" alt="...">
-                <i></i>
-              </span>
+					  	<span class="avatar avatar-online">
+							<img src="<?= base_url()?>global/portraits/5.jpg" alt="...">
+							<i></i>
+					  	</span>
 					</a>
 					<div class="dropdown-menu" role="menu">
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-account" aria-hidden="true"></i> Profile</a>
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-card" aria-hidden="true"></i> Billing</a>
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-settings" aria-hidden="true"></i> Settings</a>
+						<a class="dropdown-item"> Fullname <br> Email</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
 					</div>
@@ -160,7 +152,7 @@
 		<!-- End Site Navbar Seach -->
 	</div>
 </nav>
-<div class="site-menubar site-menubar-light">
+<div class="site-menubar site-menubar-light site-menubar-dark">
 	<div class="site-menubar-body">
 		<div>
 			<div>
@@ -1674,5 +1666,4 @@
 </body>
 
 
-<!-- Mirrored from getbootstrapadmin.com/remark/material/iconbar/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 15:32:39 GMT -->
 </html>
