@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from portotheme.com/html/porto_ecommerce/demo_3/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 02:56:45 GMT -->
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -607,5 +606,4 @@
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
 </body>
 
-<!-- Mirrored from portotheme.com/html/porto_ecommerce/demo_3/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 18 Apr 2020 02:57:16 GMT -->
 </html>
