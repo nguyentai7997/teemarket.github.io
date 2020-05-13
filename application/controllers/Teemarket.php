@@ -5,8 +5,8 @@ class Teemarket extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-//		$this->load->library('session');
-//		$this->load->model('Mporto');
+		$this->load->library('session');
+		$this->load->model('Mteemarket');
 	}
 
 	public function index()
@@ -18,7 +18,7 @@ class Teemarket extends CI_Controller {
 		$this->load->view('teemarket_view');
 	}
 
-	public function trackorder()
+	public function trackOrder()
 	{
 		$this->load->view('track-order_view');
 	}
@@ -33,7 +33,7 @@ class Teemarket extends CI_Controller {
 		$this->load->view('register_view');
 	}
 
-	public function forgotpassword()
+	public function forgotPassword()
 	{
 		$this->load->view('forgot-password_view');
 	}
@@ -133,55 +133,74 @@ class Teemarket extends CI_Controller {
 //			echo json_encode($result);
 //		}
 //	}
-//
-//	public function checkSignup()
-//	{
-//		$email=$this->input->post('email');
-//		$username=$this->input->post('username');
-//		$password=$this->input->post('password');
-//
-//		$res=$this->Mporto->checkDataSignup($email);
-//
-//		if(!$res){
-//			$add=$this->Mporto->insertUser($email,$username,$password);
-//			if($add){
-//				$result=[
-//					'status' => true,
-//					'kq'     =>'success'
-//				];
-//				$this->session->set_userdata('thongBao','success');
-//
-//				$_status=$this->Mporto->checkDataLogin($username,$password);
-//				$user_info = array(
-//					'id_user'       => $_status[0]['id_user'],
-//					'username' => $username,
-//					'password' => $password
-//				);
-//				$this->session->set_userdata('user',$user_info);
-//
-//				echo json_encode($result);
-//			}
-//			else {
-//				echo 'tạo thất bại';
-//			}
-//		}
-//		else{
-//			$result=[
-//				'status' => true,
-//				'kq'     =>'fail'
-//			];
-//			echo json_encode($result);
-//		}
-//	}
-//
-//	public function logOut()
-//	{
-//		// Xóa session name
-//		unset($_SESSION['user']);
-//		unset($_SESSION['product']);
-//		redirect($_SERVER['HTTP_REFERER']);
-//	}
-//
+
+	public function checkPublicName()
+	{
+		$publicname = $this->input->post('publicname');
+		$res = $this->Mteemarket->getDataByPublicName($publicname);
+		if(!$res) {
+			$status = 0;
+			echo $status;
+		} else {
+			$status = 1;
+			echo $status;
+		}
+
+	}
+
+	public function checkEmail()
+	{
+		$email = $this->input->post('email');
+		$res = $this->Mteemarket->getDataByEmail($email);
+		if(!$res) {
+			$status = 0;
+			echo $status;
+		} else {
+			$status = 1;
+			echo $status;
+		}
+	}
+
+	public function insertSeller()
+	{
+		$fullname = $this->input->post('fullname');
+		$publicname=$this->input->post('publicname');
+		$email=$this->input->post('email');
+		$password=$this->input->post('password');
+
+		$add=$this->Mteemarket->insertSeller($fullname,$publicname,$email,$password);
+		if($add){
+			$status = 0;
+			echo $status;
+			$seller_info = array(
+				'fullname' 	=> $fullname,
+				'email' 	=> $email
+			);
+			$this->session->set_userdata('user',$seller_info);
+		} else{
+			$status = 1;
+			echo $status;
+		}
+
+	}
+
+	public function campaigns()
+	{
+		if(empty($_SESSION['user'])){
+			redirect('http://localhost:8012/teemarket/login');
+		} else {
+			$this->load->view('campaigns_view');
+		}
+
+	}
+
+	public function logout()
+	{
+		// Xóa session name
+		unset($_SESSION['user']);
+		redirect('http://localhost:8012/teemarket/');
+	}
+
 //	public function viewProductDetail($id)
 //	{
 //		$kq = $this->Mporto->getDataById($id);

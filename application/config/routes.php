@@ -53,7 +53,13 @@ $route['default_controller'] = 'teemarket';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['track-order'] = 'teemarket/trackorder';
+$route['track_order'] = 'teemarket/trackOrder';
 $route['login'] = 'teemarket/login';
+$route['forgot_password'] = 'teemarket/forgotPassword';
 $route['register'] = 'teemarket/register';
-$route['forgot-password'] = 'teemarket/forgotpassword';
+$route['check_public_name'] = 'teemarket/checkPublicName';
+$route['check_email'] = 'teemarket/checkEmail';
+$route['insert_seller'] = 'teemarket/insertSeller';
+
+$route['seller/campaigns'] = 'teemarket/campaigns';
+$route['logout'] = 'teemarket/logout';

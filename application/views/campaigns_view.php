@@ -82,9 +82,9 @@
 				</span>
 			</a>
 			<div class="dropdown-menu" role="menu">
-				<a class="dropdown-item"> Fullname <br> Email</a>
+				<a class="dropdown-item"> <?php echo $_SESSION['user']['fullname']; ?> <br> <?php echo $_SESSION['user']['email']; ?> </a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
+				<a class="dropdown-item logout" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
 			</div>
 		</button>
 		<div class="navbar-brand navbar-brand-center">
@@ -120,9 +120,9 @@
 					  	</span>
 					</a>
 					<div class="dropdown-menu" role="menu">
-						<a class="dropdown-item"> Fullname <br> Email</a>
+						<a class="dropdown-item"> <?php echo $_SESSION['user']['fullname']; ?> <br> <?php echo $_SESSION['user']['email']; ?> </a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
+						<a class="dropdown-item logout" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
 					</div>
 				</li>
 			</ul>
@@ -764,6 +764,12 @@
 
 	ga('create', 'UA-65522665-1', 'auto');
 	ga('send', 'pageview');
+</script>
+
+<script>
+	$('.logout').click(function(event) {
+		window.location.href = 'http://localhost:8012/teemarket/logout';
+	});
 </script>
 </body>
 

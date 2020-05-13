@@ -9,7 +9,7 @@ class Campaigns extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('campaigns_view');
+//		$this->load->view('campaigns_view');
 	}
 
 }

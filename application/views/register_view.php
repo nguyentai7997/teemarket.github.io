@@ -33,6 +33,9 @@
 	<!-- Main CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/style.min.css">
 
+	<!-- Thu vien thong bao -->
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/toastr.min.css">
+
 	<!-- Custom CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
 
@@ -48,29 +51,42 @@
 				<div class="col-md-4">
 					<h2 class="title" style="text-align: center">Sign Up</h2>
 					<p style="text-align: center">Already have an account? <a href="<?= base_url()?>login" style="color: #fb8c00">Sign In</a></p>
-					<form action="#">
+					<form action="">
 						<div class="form-group required-field">
-							<input type="text" class="form-control" id="fullname" name="fullname" required placeholder="Full Name">
+							<input type="text" class="form-control" id="fullname" placeholder="Full Name">
+							<div class="error fn-required">The full name field is required.</div>
 						</div><!-- End .form-group -->
 
 						<div class="form-group required-field">
-							<input type="email" class="form-control" id="publicname" name="publicname" required placeholder="Public Name">
+							<input type="text" class="form-control" id="publicname" placeholder="Public Name">
+							<div class="error pn-required">The public name field is required.</div>
+							<div class="error pn-error">Public name is already taken.</div>
+							<div class="error pn-invalid">The public name field must be a valid public name.</div>
+							<div>Your unique URL: </div>
+							<div>https://teemarket.com/<span class="public-name">public-name</span>/campaign-name </div>
+						</div><!-- End .form-group -->
+
+						<div class="form-group required-field email">
+							<input type="email" class="form-control" id="email" placeholder="Email">
+							<div class="error email-required">The email field is required.</div>
+							<div class="error email-error">Email is already registered</div>
+							<div class="error email-invalid">The email field must be a valid email.</div>
 						</div><!-- End .form-group -->
 
 						<div class="form-group required-field">
-							<input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+							<input type="password" class="form-control" id="password" placeholder="Password">
+							<div class="error password-required">The password field is required.</div>
+							<div class="error password-error">The password field must contain at least one number and at least one alphabetic character.</div>
 						</div><!-- End .form-group -->
 
 						<div class="form-group required-field">
-							<input type="password" class="form-control" id="password" name="password" required placeholder="Password">
-						</div><!-- End .form-group -->
-
-						<div class="form-group required-field">
-							<input type="cfpassword" class="form-control" id="cfpassword" name="cfpassword" required placeholder="Confirm Password">
+							<input type="password" class="form-control" id="cfpassword" placeholder="Confirm Password">
+							<div class="error cfpassword-required">The confirm password field is required.</div>
+							<div class="error cfpassword-error">The confirm password confirmation does not match.</div>
 						</div><!-- End .form-group -->
 
 						<div class="form-footer">
-							<button type="submit" class="btn btn-primary">Sign Up</button>
+							<button type="button" class="btn btn-primary signup">Sign Up</button>
 						</div><!-- End .form-footer -->
 					</form>
 				</div><!-- End .col-md-12 -->
@@ -207,6 +223,9 @@
 
 <!-- Main JS File -->
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
+<script src="<?= base_url()?>assets/js/toastr.min.js"></script>
+<script src="<?= base_url()?>assets/js/plus.js"></script>
+
 </body>
 
 </html>
