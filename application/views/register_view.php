@@ -67,9 +67,9 @@
 						</div><!-- End .form-group -->
 
 						<div class="form-group required-field email">
-							<input type="email" class="form-control" id="email" placeholder="Email">
+							<input type="text" class="form-control" id="email" placeholder="Email">
 							<div class="error email-required">The email field is required.</div>
-							<div class="error email-error">Email is already registered</div>
+							<div class="error email-error">Email is already registered.</div>
 							<div class="error email-invalid">The email field must be a valid email.</div>
 						</div><!-- End .form-group -->
 
