@@ -76,7 +76,7 @@
 						<div class="form-group required-field">
 							<input type="password" class="form-control" id="password" placeholder="Password">
 							<div class="error password-required">The password field is required.</div>
-							<div class="error password-error">The password field must contain at least one number and at least one alphabetic character.</div>
+							<div class="error password-error">The password field must contain 8 characters including at least one number and at least one alphabetic character.</div>
 						</div><!-- End .form-group -->
 
 						<div class="form-group required-field">

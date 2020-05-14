@@ -28,9 +28,9 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
-	function checkDataLogin($publicname, $password)
+	function checkDataSignIn($email, $password)
 	{
-		$query = $this->db->query("SELECT * FROM seller WHERE publicname = '$publicname' and password = '$password' ")->result_array();
+		$query = $this->db->query("SELECT * FROM seller WHERE email = '$email' and password = '$password' ")->result_array();
 		return $query;
 	}
 }

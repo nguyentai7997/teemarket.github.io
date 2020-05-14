@@ -28,9 +28,95 @@ class Teemarket extends CI_Controller {
 		$this->load->view('login_view');
 	}
 
+	public function checkSignIn(){
+		$emailSignIn = $this->input->post('emailSignIn');
+		$passwordSignIn=$this->input->post('passwordSignIn');
+
+		$data=$this->Mteemarket->checkDataSignIn($emailSignIn,$passwordSignIn);
+
+		if($data){
+			$status = 0;
+			echo $status;
+			$seller_info = array(
+				'fullname' 	=> $data[0]['fullname'],
+				'email' 	=> $data[0]['email']
+			);
+			$this->session->set_userdata('user',$seller_info);
+		} else{
+			$status = 1;
+			echo $status;
+		}
+	}
+
 	public function register()
 	{
 		$this->load->view('register_view');
+	}
+
+	public function checkPublicName()
+	{
+		$publicname = $this->input->post('publicname');
+		$res = $this->Mteemarket->getDataByPublicName($publicname);
+		if(!$res) {
+			$status = 0;
+			echo $status;
+		} else {
+			$status = 1;
+			echo $status;
+		}
+
+	}
+
+	public function checkEmail()
+	{
+		$email = $this->input->post('email');
+		$res = $this->Mteemarket->getDataByEmail($email);
+		if(!$res) {
+			$status = 0;
+			echo $status;
+		} else {
+			$status = 1;
+			echo $status;
+		}
+	}
+
+	public function insertSeller()
+	{
+		$fullname = $this->input->post('fullname');
+		$publicname=$this->input->post('publicname');
+		$email=$this->input->post('email');
+		$password=$this->input->post('password');
+
+		$add=$this->Mteemarket->insertSeller($fullname,$publicname,$email,$password);
+		if($add){
+			$status = 0;
+			echo $status;
+			$seller_info = array(
+				'fullname' 	=> $fullname,
+				'email' 	=> $email
+			);
+			$this->session->set_userdata('user',$seller_info);
+		} else{
+			$status = 1;
+			echo $status;
+		}
+	}
+
+	public function campaigns()
+	{
+		if(empty($_SESSION['user'])){
+			redirect('http://localhost:8012/teemarket/login');
+		} else {
+			$this->load->view('campaigns_view');
+		}
+
+	}
+
+	public function logout()
+	{
+		// Xóa session name
+		unset($_SESSION['user']);
+		redirect('http://localhost:8012/teemarket/');
 	}
 
 	public function forgotPassword()
@@ -134,72 +220,7 @@ class Teemarket extends CI_Controller {
 //		}
 //	}
 
-	public function checkPublicName()
-	{
-		$publicname = $this->input->post('publicname');
-		$res = $this->Mteemarket->getDataByPublicName($publicname);
-		if(!$res) {
-			$status = 0;
-			echo $status;
-		} else {
-			$status = 1;
-			echo $status;
-		}
 
-	}
-
-	public function checkEmail()
-	{
-		$email = $this->input->post('email');
-		$res = $this->Mteemarket->getDataByEmail($email);
-		if(!$res) {
-			$status = 0;
-			echo $status;
-		} else {
-			$status = 1;
-			echo $status;
-		}
-	}
-
-	public function insertSeller()
-	{
-		$fullname = $this->input->post('fullname');
-		$publicname=$this->input->post('publicname');
-		$email=$this->input->post('email');
-		$password=$this->input->post('password');
-
-		$add=$this->Mteemarket->insertSeller($fullname,$publicname,$email,$password);
-		if($add){
-			$status = 0;
-			echo $status;
-			$seller_info = array(
-				'fullname' 	=> $fullname,
-				'email' 	=> $email
-			);
-			$this->session->set_userdata('user',$seller_info);
-		} else{
-			$status = 1;
-			echo $status;
-		}
-
-	}
-
-	public function campaigns()
-	{
-		if(empty($_SESSION['user'])){
-			redirect('http://localhost:8012/teemarket/login');
-		} else {
-			$this->load->view('campaigns_view');
-		}
-
-	}
-
-	public function logout()
-	{
-		// Xóa session name
-		unset($_SESSION['user']);
-		redirect('http://localhost:8012/teemarket/');
-	}
 
 //	public function viewProductDetail($id)
 //	{

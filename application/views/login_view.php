@@ -33,6 +33,9 @@
 	<!-- Main CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/style.min.css">
 
+	<!-- Thu vien thong bao -->
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/toastr.min.css">
+
 	<!-- Custom CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
 
@@ -48,17 +51,21 @@
 				<div class="col-md-4">
 					<h2 class="title" style="text-align: center">Sign In</h2>
 					<p style="text-align: center">Don't have an account? <a href="<?= base_url()?>register" style="color: #fb8c00">Sign Up</a></p>
-					<form action="#">
+					<form action="">
 						<div class="form-group required-field">
-							<input type="text" class="form-control" id="email" name="email" required placeholder="Email">
+							<input type="text" class="form-control" id="emailSignIn" placeholder="Email">
+							<div class="error email-required">The email field is required.</div>
+							<div class="error email-invalid">The email field must be a valid email.</div>
 						</div><!-- End .form-group -->
 
 						<div class="form-group required-field">
-							<input type="email" class="form-control" id="password" name="password" required placeholder="Password">
+							<input type="password" class="form-control" id="passwordSignIn" placeholder="Password">
+							<div class="error password-required">The password field is required.</div>
+							<div class="error password-error">The password field must be at least 8 characters.</div>
 						</div><!-- End .form-group -->
 
 						<div class="form-footer">
-							<button type="submit" class="btn btn-primary">Sign In</button>
+							<button type="button" class="btn btn-primary signin">Sign In</button>
 						</div><!-- End .form-footer -->
 					</form>
 					<p style="text-align: center"><a href="<?= base_url()?>forgot_password" style="color: #fb8c00">Forgot Password?</a></p>
@@ -196,6 +203,8 @@
 
 <!-- Main JS File -->
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
+<script src="<?= base_url()?>assets/js/toastr.min.js"></script>
+<script src="<?= base_url()?>assets/js/plus.js"></script>
 </body>
 
 </html>

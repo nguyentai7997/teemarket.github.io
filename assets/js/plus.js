@@ -217,7 +217,6 @@ $('.signup').click(function(event) {
 	}
 
 	if (regEmail.exec(email)){
-		$('.email-invalid').css('display', 'none');
 		$.ajax({
 			url: 'http://localhost:8012/teemarket/check_email',
 			type: 'post',
@@ -262,6 +261,89 @@ $('.signup').click(function(event) {
 				window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
 			} else {
 				console.log("Add error");
+			}
+		},error:function(res){
+			console.log("Ajax call error");
+		}
+	})
+});
+
+//Check Email Sign Up
+$("#emailSignIn").change(function(event){
+	var emailSignIn  = $('#emailSignIn').val();
+	var regEmailSignIn1 = /\S/
+	var regEmailSignIn2 = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (!regEmailSignIn1.exec(emailSignIn)) {//TH Email chi toan khoang trang
+		$('.email-required').css('display', 'block');
+		$('.email-invalid').css('display', 'none');
+	} else {
+		if (regEmailSignIn2.exec(emailSignIn)){
+			$('.email-required').css('display', 'none');
+			$('.email-invalid').css('display', 'none');
+		} else {
+			$('.email-required').css('display', 'none');
+			$('.email-invalid').css('display', 'block');
+		}
+	}
+});
+
+// Check Password SignUp
+$("#passwordSignIn").change(function (event) {
+	var passwordSignIn = $('#passwordSignIn').val();
+	var regPasswordSignIn = /\S/;
+	if (!regPasswordSignIn.exec(passwordSignIn)){ //TH Password chi toan khoang trang
+		$('.password-required').css('display','block');
+		$('.password-error').css('display','none');
+	} else{
+		if (passwordSignIn.length < 8){
+			$('.password-required').css('display', 'none');
+			$('.password-error').css('display','block');
+		} else {
+				$('.password-required').css('display','none');
+				$('.password-error').css('display','none');
+		}
+	}
+});
+
+//Click button Sign In
+$('.signin').click(function(event) {
+	var emailSignIn  = $('#emailSignIn').val();
+	var passwordSignIn  = $('#passwordSignIn').val();
+
+	var regEmailSignIn = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var regExp = /\S/;
+
+	if (!regExp.exec(emailSignIn)){
+		$('.email-required').css('display','block');
+	}
+	if (!regExp.exec(passwordSignIn)){
+		$('.password-required').css('display','block');
+	}
+
+	if (!regExp.exec(emailSignIn) || !regExp.exec(passwordSignIn)){
+		return;
+	}
+
+	if (!regEmailSignIn.exec(emailSignIn)){
+		return;
+	}
+
+	if (passwordSignIn.length < 8){
+		return;
+	}
+
+	$.ajax({
+		url: 'http://localhost:8012/teemarket/check_sign_in',
+		type: 'post',
+		data: {
+			emailSignIn		: emailSignIn,
+			passwordSignIn	: passwordSignIn
+		},success:function(res) {
+			if(res == 0) {
+				window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
+			} else {
+				toastr.error('Incorrect login information, please try again.');
+				toastr.error('Invalid credentials provided.');
 			}
 		},error:function(res){
 			console.log("Ajax call error");

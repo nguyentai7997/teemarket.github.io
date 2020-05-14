@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['track_order'] = 'teemarket/trackOrder';
 $route['login'] = 'teemarket/login';
+$route['check_sign_in'] = 'teemarket/checkSignIn';
 $route['forgot_password'] = 'teemarket/forgotPassword';
 $route['register'] = 'teemarket/register';
 $route['check_public_name'] = 'teemarket/checkPublicName';
