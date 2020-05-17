@@ -29,17 +29,19 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
 
 	<!-- Plugins For This Page -->
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/chartist/chartist.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/jvectormap/jquery-jvectormap.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/c3/c3.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/bootstrap-table/bootstrap-table.minfd53.css?v4.0.1">
 
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/structure/pagination.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/tables/basic.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/fonts/brand-icons/brand-icons.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/fonts/font-awesome/font-awesome.minfd53.css">
+	<link rel="stylesheet" href="<?= base_url()?>global/fonts/web-icons/web-icons.minfd53.css">
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
 
 
@@ -129,21 +131,6 @@
 			<!-- End Navbar Toolbar Right -->
 		</div>
 		<!-- End Navbar Collapse -->
-
-		<!-- Site Navbar Seach -->
-		<div class="collapse navbar-search-overlap" id="site-navbar-search">
-			<form role="search">
-				<div class="form-group">
-					<div class="input-search">
-						<i class="input-search-icon md-search" aria-hidden="true"></i>
-						<input type="text" class="form-control" name="site-search" placeholder="Search...">
-						<button type="button" class="input-search-close icon md-close" data-target="#site-navbar-search"
-								data-toggle="collapse" aria-label="Close"></button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<!-- End Site Navbar Seach -->
 	</div>
 </nav>
 <div class="site-menubar site-menubar-light site-menubar-dark">
@@ -152,33 +139,33 @@
 			<div>
 				<ul class="site-menu" data-plugin="menu">
 					<li class="site-menu-item active">
-						<a href="<?= base_url()?>campaigns">
+						<a href="campaigns">
 							<i class="site-menu-icon ion-md-shirt" aria-hidden="true"></i>
 							<span class="site-menu-title">CAMPAIGNS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="<?= base_url()?>create">
+						<a href="create">
 							<i class="site-menu-icon ion-ios-create" aria-hidden="true"></i>
 							<span class="site-menu-title">CREATE</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="index.html">
+						<a href="orders">
 							<i class="site-menu-icon ion-md-cart" aria-hidden="true"></i>
 							<span class="site-menu-title">ORDERS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="index.html">
-							<i class="site-menu-icon ion-md-cash" aria-hidden="true"></i>
-							<span class="site-menu-title">PAYOUTS</span>
+						<a href="payment">
+							<i class="site-menu-icon fa-money" aria-hidden="true"></i>
+							<span class="site-menu-title">PAYMENT</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="index.html">
-							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
-							<span class="site-menu-title">SETTINGS</span>
+						<a href="account">
+							<i class="site-menu-icon fa-user" aria-hidden="true"></i>
+							<span class="site-menu-title">ACCOUNT</span>
 						</a>
 					</li>
 				</ul>
@@ -187,492 +174,171 @@
 	</div>
 </div>
 
-
 <!-- Page -->
 <div class="page">
 	<div class="page-content container-fluid">
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-xl-3 col-md-6">
+			<div class="col-xl-2 col-md-3 col-sm-2"></div>
+				<div class="col-xl-8 col-md-6 col-sm-8">
+				<!-- Pagination With Gap -->
+					<div class="mt-20 mb-50">
+
+							<ul class="pagination pagination-gap justify-content-center">
+								<li class="active page-item today"><a class="page-link" href="javascript:void(0)">Today <span class="sr-only">(current)</span></a></li>
+								<li class="page-item yesterday"><a class="page-link" href="javascript:void(0)">Yesterday</a></li>
+								<li class="page-item days7"><a class="page-link" href="javascript:void(0)">Last 7 Days</a></li>
+								<li class="page-item days30"><a class="page-link" href="javascript:void(0)">Last 30 Days</a></li>
+								<li class="page-item alltime"><a class="page-link" href="javascript:void(0)">All time</a></li>
+								<li class="page-item customday"><a class="page-link" href="javascript:void(0)">Custom</a></li>
+							</ul>
+						
+					</div>
+				<!-- End Example Pagination With Gap -->
+				</div>
+			<div class="col-xl-2 col-md-3 col-sm-2"></div>
+		</div>
+		<div class="row" data-plugin="matchHeight" data-by-row="true">
+			<div class="col-xl-4 col-md-6">
 				<!-- Widget Linearea One-->
 				<div class="card card-shadow" id="widgetLineareaOne">
-					<div class="card-block p-20 pt-10">
-						<div class="clearfix">
-							<div class="grey-800 float-left py-10">
-								<i class="icon md-account grey-600 font-size-24 vertical-align-bottom mr-5"></i>                  User
+					<div class="card-block bg-green-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon fa-money font-size-40"></i>
 							</div>
-							<span class="float-right grey-700 font-size-30">1,253</span>
+							<div class="font-size-20 font-weight-600">PROFIT</div>
+							<div class="font-size-20">$0.00</div>
+							<div class="mt-10 text-white">
+								<div class="font-size-14">AVAILABLE PAYOUT:</div>
+								<div class="font-size-14">$0.00</div>
+							</div>
 						</div>
-						<div class="mb-20 grey-500">
-							<i class="icon md-long-arrow-up green-500 font-size-16"></i> 15%
-							From this yesterday
-						</div>
-						<div class="ct-chart h-50"></div>
+
 					</div>
 				</div>
 				<!-- End Widget Linearea One -->
 			</div>
-			<div class="col-xl-3 col-md-6">
-				<!-- Widget Linearea Two -->
+
+			<div class="col-xl-4 col-md-6">
+				<!-- Widget Linearea Two-->
 				<div class="card card-shadow" id="widgetLineareaTwo">
-					<div class="card-block p-20 pt-10">
-						<div class="clearfix">
-							<div class="grey-800 float-left py-10">
-								<i class="icon md-flash grey-600 font-size-24 vertical-align-bottom mr-5"></i>                  VISITS
+					<div class="card-block bg-cyan-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon ion-md-cart font-size-40"></i>
 							</div>
-							<span class="float-right grey-700 font-size-30">2,425</span>
+							<div class="font-size-20 font-weight-600">ORDERS/UNIT</div>
+							<div class="font-size-20">0/0</div>
 						</div>
-						<div class="mb-20 grey-500">
-							<i class="icon md-long-arrow-up green-500 font-size-16"></i> 34.2%
-							From this week
-						</div>
-						<div class="ct-chart h-50"></div>
 					</div>
 				</div>
 				<!-- End Widget Linearea Two -->
 			</div>
-			<div class="col-xl-3 col-md-6">
-				<!-- Widget Linearea Three -->
-				<div class="card card-shadow" id="widgetLineareaThree">
-					<div class="card-block p-20 pt-10">
-						<div class="clearfix">
-							<div class="grey-800 float-left py-10">
-								<i class="icon md-chart grey-600 font-size-24 vertical-align-bottom mr-5"></i>                  Total Clicks
+
+			<div class="col-xl-4 col-md-6">
+				<!-- Widget Linearea Three-->
+				<div class="card card-shadow" id="widgetLineareaOne">
+					<div class="card-block bg-orange-600 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon ion-md-shirt font-size-40"></i>
 							</div>
-							<span class="float-right grey-700 font-size-30">1,864</span>
+							<div class="font-size-20 font-weight-600">CAMPAIGNS</div>
+							<div class="font-size-20">0</div>
 						</div>
-						<div class="mb-20 grey-500">
-							<i class="icon md-long-arrow-down red-500 font-size-16"></i> 15%
-							From this yesterday
-						</div>
-						<div class="ct-chart h-50"></div>
 					</div>
 				</div>
 				<!-- End Widget Linearea Three -->
 			</div>
-			<div class="col-xl-3 col-md-6">
-				<!-- Widget Linearea Four -->
-				<div class="card card-shadow" id="widgetLineareaFour">
-					<div class="card-block p-20 pt-10">
-						<div class="clearfix">
-							<div class="grey-800 float-left py-10">
-								<i class="icon md-view-list grey-600 font-size-24 vertical-align-bottom mr-5"></i>                  Items
-							</div>
-							<span class="float-right grey-700 font-size-30">845</span>
-						</div>
-						<div class="mb-20 grey-500">
-							<i class="icon md-long-arrow-up green-500 font-size-16"></i> 18.4%
-							From this yesterday
-						</div>
-						<div class="ct-chart h-50"></div>
+
+			<div class="col-lg-12">
+				<!-- Example C3 Timeseries -->
+				<div class="example-wrap m-md-0">
+					<h4 class="example-title">Timeseries</h4>
+					<p>Simple line chart with timeseries data. </p>
+					<div class="example example-responsive pb-15">
+						<div id="exampleC3TimeSeries"></div>
 					</div>
 				</div>
-				<!-- End Widget Linearea Four -->
+				<!-- End Example C3 Timeseries -->
 			</div>
 
-			<div class="col-xxl-7 col-lg-7">
-				<!-- Widget Jvmap -->
-				<div class="card card-shadow">
-					<div class="card-block p-0">
-						<div id="widgetJvmap" class="h-450"></div>
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="sort_label">Sort Campaigns By</div>
+							<select class="form-control">
+								<option>Newest to Oldest</option>
+								<option>Oldest to Newest</option>
+								<option>Top Selling</option>
+								<option>Least Selling</option>
+								<option>Sort A to Z</option>
+								<option>Sort Z to A</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<!-- End Widget Jvmap -->
-			</div>
 
-			<div class="col-xxl-5 col-lg-5">
-				<!-- Widget Current Chart -->
-				<div class="card card-shadow" id="widgetCurrentChart">
-					<div class="p-30 white bg-green-500">
-						<div class="font-size-20 mb-20">The current chart</div>
-						<div class="ct-chart h-200">
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="sort_label">Filter By Status</div>
+							<select class="form-control">
+								<option>All</option>
+								<option>Active</option>
+								<option>Starred</option>
+								<option>Ended</option>
+							</select>
 						</div>
 					</div>
-					<div class="bg-white p-30 font-size-14">
-						<div class="counter counter-lg text-left">
-							<div class="counter-label mb-5">Approve rate are above average</div>
-							<div class="counter-number-group">
-								<span class="counter-number">12,673</span>
-								<span class="counter-number-related text-uppercase font-size-14">pcs</span>
-							</div>
-						</div>
-						<button type="button" class="btn-raised btn btn-info btn-floating">
-							<i class="icon md-plus" aria-hidden="true"></i>
-						</button>
-					</div>
-				</div>
-				<!-- End Widget Current Chart -->
-			</div>
 
-			<div class="col-xl-4 col-lg-6">
-				<!-- Widget User list -->
-				<div class="card" id="widgetUserList">
-					<div class="card-header cover overlay">
-						<img class="cover-image h-200" src="<?= base_url()?>assets1/examples/images/dashboard-header.jpg"
-							 alt="..." />
-						<div class="overlay-panel vertical-align overlay-background">
-							<div class="vertical-align-middle">
-								<a class="avatar avatar-100 float-left mr-20" href="javascript:void(0)">
-									<img src="<?= base_url()?>global/portraits/5.jpg" alt="">
-								</a>
-								<div class="float-left">
-									<div class="font-size-20">Robin Ahrens</div>
-									<p class="mb-20 text-nowrap">
-										<span class="text-break"><a href="https://getbootstrapadmin.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48985878c8d8081978d838aa48389858d88">[email&#160;protected]</a></span>
-									</p>
-									<div class="text-nowrap font-size-18">
-										<a href="#" class="white mr-10">
-											<i class="icon bd-twitter"></i>
-										</a>
-										<a href="#" class="white mr-10">
-											<i class="icon bd-facebook"></i>
-										</a>
-										<a href="#" class="white">
-											<i class="icon bd-dribbble"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card-block py-0">
-						<ul class="list-group list-group-full list-group-dividered mb-0">
-							<li class="list-group-item">
-								<div class="media">
-									<div class="pr-20">
-										<a class="avatar avatar-lg" href="javascript:void(0)">
-											<img class="img-responsive" src="<?= base_url()?>global/portraits/1.jpg"
-												 alt="...">
-										</a>
-									</div>
-									<div class="media-body">
-										<h5 class="mt-0 mb-5">Herman Beck</h5>
-										<small>San Francisco</small>
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="media">
-									<div class="pr-20">
-										<a class="avatar avatar-lg" href="javascript:void(0)">
-											<img class="img-responsive" src="<?= base_url()?>global/portraits/2.jpg"
-												 alt="...">
-										</a>
-									</div>
-									<div class="media-body">
-										<h5 class="mt-0 mb-5">Mary Adams</h5>
-										<small>Salt Lake City, Utah</small>
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="media">
-									<div class="pr-20">
-										<a class="avatar avatar-lg" href="javascript:void(0)">
-											<img class="img-responsive" src="<?= base_url()?>global/portraits/3.jpg"
-												 alt="...">
-										</a>
-									</div>
-									<div class="media-body">
-										<h5 class="mt-0 mb-5">Caleb Richards</h5>
-										<small>Basking Ridge, NJ</small>
-									</div>
-								</div>
-							</li>
-						</ul>
-						<button type="button" class="btn-raised btn btn-danger btn-floating">
-							<i class="icon md-plus" aria-hidden="true"></i>
-						</button>
-					</div>
-				</div>
-				<!-- End Widget User list -->
-			</div>
-
-			<div class="col-xl-4 col-lg-6">
-				<!-- Widget Chat -->
-				<div class="card card-shadow" id="chat">
-					<div class="card-header bg-white px-0">
-						<a class="float-left" href="javascript:void(0)">
-							<i class="icon md-chevron-left" aria-hidden="true"></i>
-						</a>
-						<div class="text-right">
-							Conversation with
-							<span class="hidden-xs-down">June Lane</span>
-							<a class="avatar ml-10" data-toggle="tooltip" href="#" data-placement="right" title="June Lane">
-								<img src="<?= base_url()?>global/portraits/4.jpg" alt="...">
-							</a>
-						</div>
-					</div>
-					<div class="card-block">
-						<div class="chats">
-							<div class="chat chat-left">
-								<div class="chat-avatar">
-									<a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title="">
-										<img src="<?= base_url()?>global/portraits/5.jpg" alt="Edward Fletcher">
-									</a>
-								</div>
-								<div class="chat-body">
-									<div class="chat-content" data-toggle="tooltip" title="11:37:08 am">
-										<p>Good morning, sir.</p>
-										<p>What can I do for you?</p>
-									</div>
-								</div>
-							</div>
-							<div class="chat">
-								<div class="chat-avatar">
-									<a class="avatar" data-toggle="tooltip" href="#" data-placement="right" title="">
-										<img src="<?= base_url()?>global/portraits/4.jpg" alt="June Lane">
-									</a>
-								</div>
-								<div class="chat-body">
-									<div class="chat-content" data-toggle="tooltip" title="11:39:57 am">
-										<p>Well, I am just looking around.</p>
-									</div>
-								</div>
-							</div>
-							<div class="chat chat-left">
-								<div class="chat-avatar">
-									<a class="avatar" data-toggle="tooltip" href="#" data-placement="left" title="">
-										<img src="<?= base_url()?>global/portraits/5.jpg" alt="Edward Fletcher">
-									</a>
-								</div>
-								<div class="chat-body">
-									<div class="chat-content" data-toggle="tooltip" title="11:40:10 am">
-										<p>If necessary, please ask me.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card-footer bg-white">
-						<form>
-							<div class="input-group form-material">
-                  <span class="input-group-btn">
-                    <a href="javascript: void(0)" class="btn btn-pure btn-default icon md-camera"></a>
-                  </span>
-								<input class="form-control" type="text" placeholder="Type message here ...">
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
 								<span class="input-group-btn">
-                    <button class="btn btn-pure btn-default icon md-mail-send" type="button"></button>
-                  </span>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- End Widget Chat -->
-			</div>
-
-			<div class="col-xl-4 col-lg-6">
-				<!-- Widget Info -->
-				<div class="card card-shadow">
-					<div class="card-header cover overlay">
-						<div class="cover-background h-200" style="background-image: url('<?= base_url()?>global/photos/focus-4-960x480.jpg')"></div>
-					</div>
-					<div class="card-block px-30 py-20" style="height:calc(100% - 250px);">
-						<div class="mb-10" style="margin-top: -70px;">
-							<a class="avatar avatar-100 bg-white img-bordered" href="javascript:void(0)">
-								<img src="<?= base_url()?>global/portraits/2.jpg" alt="">
-							</a>
-						</div>
-						<div class="mb-20">
-							<div class="font-size-20">Caleb Richards</div>
-							<div class="font-size-14 grey-500">
-								<span>2 hours ago</span> |
-								<span>Comments 20</span>
+						  			<button type="submit" class="btn" style="background-color: #fb8c00"><i class="icon md-search" aria-hidden="true"></i></button>
+								</span>
 							</div>
 						</div>
-						<p>
-							Lorem ipsum dolLorem ip sum dolor sit amet, consectetur adipiscing elit. Integer
-							nec odio. Praesent libero.or sit amet, consectetur adipiscing elit.
-							Integer nec odio. Praesent libero.
-						</p>
 					</div>
 				</div>
-				<!-- End Widget Info -->
-			</div>
+				<!-- Example Bordered Table -->
 
-			<div class="col-xxl-5 col-lg-6">
-				<!-- Panel Projects -->
-				<div class="panel" id="projects">
-					<div class="panel-heading">
-						<h3 class="panel-title">Projects</h3>
-					</div>
 					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-							<tr>
-								<td>Projects</td>
-								<td>Completed</td>
-								<td>Date</td>
-								<td>Actions</td>
-							</tr>
-							</thead>
+						<table class="table table-bordered bg-white">
 							<tbody>
 							<tr>
-								<td>The sun climbing plan</td>
 								<td>
-									<span data-plugin="peityPie" data-skin="red">7/10</span>
+									Name
 								</td>
-								<td>Jan 1, 2017</td>
-								<td>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Edit">
-										<i class="icon md-wrench" aria-hidden="true"></i>
-									</button>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Delete">
-										<i class="icon md-close" aria-hidden="true"></i>
-									</button>
+								<td class="text-center" width="12%">
+									<div class="data_profit">$0.00</div>
+									<div>Profit</div>
 								</td>
-							</tr>
-							<tr>
-								<td>Lunar probe project</td>
-								<td>
-									<span data-plugin="peityPie" data-skin="blue">3/10</span>
+								<td class="text-center" width="12%">
+									<div class="data_orfers">0</div>
+									<div>Orders</div>
 								</td>
-								<td>Feb 12, 2017</td>
-								<td>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Edit">
-										<i class="icon md-wrench" aria-hidden="true"></i>
-									</button>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Delete">
-										<i class="icon md-close" aria-hidden="true"></i>
-									</button>
+								<td class="text-center" width="12%">
+									<div class="data_units">0</div>
+									<div>Units</div>
 								</td>
-							</tr>
-							<tr>
-								<td>Dream successful plan</td>
-								<td>
-									<span data-plugin="peityPie" data-skin="green">9/10</span>
+								<td class="text-center" width="12%">
+									<div class="data_time">17</div>
+									<div>Time</div>
 								</td>
-								<td>Apr 9, 2017</td>
-								<td>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Edit">
-										<i class="icon md-wrench" aria-hidden="true"></i>
+								<td class="text-nowrap text-center" width="12%">
+									<button type="button" class="btn btn-sm btn-icon btn-flat">
+										<i class="icon wb-more-horizontal" aria-hidden="true"></i>
 									</button>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Delete">
-										<i class="icon md-close" aria-hidden="true"></i>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>Office automatization</td>
-								<td>
-									<span data-plugin="peityPie" data-skin="orange">5/10</span>
-								</td>
-								<td>May 15, 2017</td>
-								<td>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Edit">
-										<i class="icon md-wrench" aria-hidden="true"></i>
-									</button>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Delete">
-										<i class="icon md-close" aria-hidden="true"></i>
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td>Open strategy</td>
-								<td>
-									<span data-plugin="peityPie" data-skin="brown">2/10</span>
-								</td>
-								<td>Jun 2, 2017</td>
-								<td>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Edit">
-										<i class="icon md-wrench" aria-hidden="true"></i>
-									</button>
-									<button type="button" class="btn btn-sm btn-icon btn-pure btn-default"
-											data-toggle="tooltip" data-original-title="Delete">
-										<i class="icon md-close" aria-hidden="true"></i>
-									</button>
+									<div>Option</div>
 								</td>
 							</tr>
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<!-- End Panel Projects -->
-			</div>
 
-			<div class="col-xxl-7 col-lg-6">
-				<!-- Panel Projects Status -->
-				<div class="panel" id="projects-status">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							Projects Status
-							<span class="badge badge-pill badge-info">5</span>
-						</h3>
-					</div>
-					<div class="table-responsive">
-						<table class="table table-striped">
-							<thead>
-							<tr>
-								<td>ID</td>
-								<td>Project</td>
-								<td>Status</td>
-								<td class="text-left">Progress</td>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>619</td>
-								<td>The sun climbing plan</td>
-								<td>
-									<span class="badge badge-primary">Developing</span>
-								</td>
-								<td>
-									<span data-plugin="peityLine">5,3,2,-1,-3,-2,2,3,5,2</span>
-								</td>
-							</tr>
-							<tr>
-								<td>620</td>
-								<td>Lunar probe project</td>
-								<td>
-									<span class="badge badge-warning">Design</span>
-								</td>
-								<td>
-									<span data-plugin="peityLine">1,-1,0,2,3,1,-1,1,4,2</span>
-								</td>
-							</tr>
-							<tr>
-								<td>621</td>
-								<td>Dream successful plan</td>
-								<td>
-									<span class="badge badge-info">Testing</span>
-								</td>
-								<td>
-									<span data-plugin="peityLine">2,3,-1,-3,-1,0,2,4,5,3</span>
-								</td>
-							</tr>
-							<tr>
-								<td>622</td>
-								<td>Office automatization</td>
-								<td>
-									<span class="badge badge-danger">Canceled</span>
-								</td>
-								<td>
-									<span data-plugin="peityLine">1,-2,0,2,4,5,3,2,4,2</span>
-								</td>
-							</tr>
-							<tr>
-								<td>623</td>
-								<td>Open strategy</td>
-								<td>
-									<span class="badge badge-default">Reply waiting</span>
-								</td>
-								<td>
-									<span data-plugin="peityLine">4,2,-1,-3,-2,1,3,5,2,4</span>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<!-- End Panel Projects Stats -->
+				<!-- End Example Bordered Table -->
 			</div>
 
 		</div>
@@ -689,7 +355,7 @@
 	</div>
 </footer>
 <!-- Core  -->
-<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
+<script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/jquery/jquery.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/popper-js/umd/popper.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/bootstrap/bootstrap.minfd53.js?v4.0.1"></script>
@@ -707,12 +373,9 @@
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
 
 <!-- Plugins For This Page -->
-<script src="<?= base_url()?>global/vendor/chartist/chartist.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/jvectormap/jquery-jvectormap.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/jvectormap/maps/jquery-jvectormap-world-mill-enfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/matchheight/jquery.matchHeight-minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/peity/jquery.peity.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/aspaginator/jquery-asPaginator.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/c3/c3.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/d3/d3.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -738,33 +401,33 @@
 <script src="<?= base_url()?>global/js/Plugin/asscrollable.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
-
-<script src="<?= base_url()?>global/js/Plugin/matchheight.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/js/Plugin/jvectormap.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/js/Plugin/peity.minfd53.js?v4.0.1"></script>
-
+<script src="<?= base_url()?>global/js/Plugin/aspaginator.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>assets1/examples/js/dashboard/v1.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>assets1/examples/js/charts/c3.minfd53.js?v4.0.1"></script>
+<!--<script src="--><?//= base_url()?><!--assets1/examples/js/tables/bootstrap.minfd53.js?v4.0.1"></script>-->
 
+<!--nguyentai's js-->
+<script src="<?= base_url()?>assets1/js/plus.js"></script>
 
 <!-- Google Analytics -->
-<script>
-	(function(i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function() {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o),
-			m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', '../../../../www.google-analytics.com/analytics.js',
-		'ga');
-
-	ga('create', 'UA-65522665-1', 'auto');
-	ga('send', 'pageview');
-</script>
+<!--<script>-->
+<!--	(function(i, s, o, g, r, a, m) {-->
+<!--		i['GoogleAnalyticsObject'] = r;-->
+<!--		i[r] = i[r] || function() {-->
+<!--			(i[r].q = i[r].q || []).push(arguments)-->
+<!--		}, i[r].l = 1 * new Date();-->
+<!--		a = s.createElement(o),-->
+<!--			m = s.getElementsByTagName(o)[0];-->
+<!--		a.async = 1;-->
+<!--		a.src = g;-->
+<!--		m.parentNode.insertBefore(a, m)-->
+<!--	})(window, document, 'script', '../../../../www.google-analytics.com/analytics.js',-->
+<!--		'ga');-->
+<!---->
+<!--	ga('create', 'UA-65522665-1', 'auto');-->
+<!--	ga('send', 'pageview');-->
+<!--</script>-->
 
 <script>
 	$('.logout').click(function(event) {

@@ -1,4 +1,17 @@
 .navbar-brand-text{margin-left:0}
 .navbar-toggler{padding: 0}
 .nav-link:focus, .nav-link:hover{background-color:unset}
-.navbar-mega .dropdown-menu{right: -16px}
+.page-item{
+	white-space: nowrap;
+}
+.sort_label{
+	position: absolute;
+	color: #fb8c00;
+	margin-left: 16px;
+}
+select.form-control{
+	padding-top: 17px;
+}
+.form-control{
+	height: 43px!important;
+}
