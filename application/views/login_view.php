@@ -42,7 +42,7 @@
 </head>
 <body>
 <div class="page-wrapper">
-	<?php include("home-header_view.php") ?>
+	<?php include("home_header_view.php") ?>
 
 	<main class="main" style="background-color: #f2f2f2;padding-bottom: 8rem;padding-top: 8rem">
 		<div class="container">
@@ -75,7 +75,7 @@
 		</div><!-- End .container -->
 	</main><!-- End .main -->
 
-	<?php include("home-footer_view.php") ?>
+	<?php include("home_footer_view.php") ?>
 </div><!-- End .page-wrapper -->
 
 <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->

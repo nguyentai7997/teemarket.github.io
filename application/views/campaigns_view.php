@@ -19,6 +19,10 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/custom.css?">
 
+	<!-- Skin tools (demo site only) -->
+	<link rel="stylesheet" href="<?= base_url()?>global/css/skintools.minfd53.css?v4.0.1">
+	<script src="<?= base_url()?>assets1/js/Plugin/skintools.minfd53.js?v4.0.1"></script>
+
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/asscrollable/asScrollable.minfd53.css?v4.0.1">
@@ -65,74 +69,8 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<nav class="site-navbar navbar navbar-default navbar-inverse navbar-fixed-top navbar-mega bg-orange-600"
-	 role="navigation">
+<?php include("seller_header_view.php") ?>
 
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-				data-toggle="menubar">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="hamburger-bar"></span>
-		</button>
-		<button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
-				data-toggle="collapse">
-			<a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
-			   data-animation="scale-up" role="button">
-				<span class="avatar avatar-online">
-					<img src="<?= base_url()?>global/portraits/avatar.jpg" alt="...">
-					<i></i>
-				</span>
-			</a>
-			<div class="dropdown-menu" role="menu">
-				<a class="dropdown-item"> <?php echo $_SESSION['user']['fullname']; ?> <br> <?php echo $_SESSION['user']['email']; ?> </a>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item logout" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
-			</div>
-		</button>
-		<div class="navbar-brand navbar-brand-center">
-			<img class="navbar-brand-logo" src="<?= base_url()?>assets1/images/logoteemarket.png" title="teemarket">
-			<span class="navbar-brand-text hidden-xs-down"> teemarket</span>
-		</div>
-	</div>
-
-	<div class="navbar-container container-fluid">
-		<!-- Navbar Collapse -->
-		<div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
-			<!-- Navbar Toolbar -->
-			<ul class="nav navbar-toolbar">
-				<li class="nav-item hidden-float" id="toggleMenubar">
-					<a class="nav-link" data-toggle="menubar" role="button">
-						<i class="icon hamburger hamburger-arrow-left">
-							<span class="sr-only">Toggle menubar</span>
-							<span class="hamburger-bar"></span>
-						</i>
-					</a>
-				</li>
-			</ul>
-			<!-- End Navbar Toolbar -->
-
-			<!-- Navbar Toolbar Right -->
-			<ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
-				<li class="nav-item dropdown">
-					<a class="nav-link navbar-avatar" data-toggle="dropdown" aria-expanded="false"
-					   data-animation="scale-up" role="button">
-					  	<span class="avatar avatar-online">
-							<img src="<?= base_url()?>global/portraits/avatar.jpg" alt="...">
-							<i></i>
-					  	</span>
-					</a>
-					<div class="dropdown-menu" role="menu">
-						<a class="dropdown-item"> <?php echo $_SESSION['user']['fullname']; ?> <br> <?php echo $_SESSION['user']['email']; ?> </a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item logout" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
-					</div>
-				</li>
-			</ul>
-			<!-- End Navbar Toolbar Right -->
-		</div>
-		<!-- End Navbar Collapse -->
-	</div>
-</nav>
 <div class="site-menubar site-menubar-light site-menubar-dark">
 	<div class="site-menubar-body">
 		<div>
@@ -302,8 +240,8 @@
 						</div>
 					</div>
 				</div>
-				<!-- Example Bordered Table -->
 
+				<!-- Example Bordered Table -->
 					<div class="table-responsive">
 						<table class="table table-bordered bg-white">
 							<tbody>
@@ -324,8 +262,8 @@
 									<div>Units</div>
 								</td>
 								<td class="text-center" width="12%">
-									<div class="data_time">17</div>
-									<div>Time</div>
+									<div class="data_time">7</div>
+									<div>Days Left</div>
 								</td>
 								<td class="text-nowrap text-center" width="12%">
 									<button type="button" class="btn btn-sm btn-icon btn-flat">
@@ -337,8 +275,8 @@
 							</tbody>
 						</table>
 					</div>
-
 				<!-- End Example Bordered Table -->
+
 			</div>
 
 		</div>
@@ -346,16 +284,11 @@
 </div>
 <!-- End Page -->
 
+<?php include("seller_footer_view.php") ?>
 
-<!-- Footer -->
-<footer class="site-footer">
-	<div class="site-footer-legal">© 2020 <span style="color: #212121">tee</span><span style="color:#fb8c00;">market</span></div>
-	<div class="site-footer-right">
-		Crafted with <i class="red-600 icon md-favorite"></i> by Creation Studio
-	</div>
-</footer>
 <!-- Core  -->
-<script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
+<script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/jquery/jquery.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/popper-js/umd/popper.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/bootstrap/bootstrap.minfd53.js?v4.0.1"></script>
@@ -401,11 +334,11 @@
 <script src="<?= base_url()?>global/js/Plugin/asscrollable.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
+
 <script src="<?= base_url()?>global/js/Plugin/aspaginator.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>assets1/examples/js/dashboard/v1.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>assets1/examples/js/charts/c3.minfd53.js?v4.0.1"></script>
-<!--<script src="--><?//= base_url()?><!--assets1/examples/js/tables/bootstrap.minfd53.js?v4.0.1"></script>-->
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/plus.js"></script>

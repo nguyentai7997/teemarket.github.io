@@ -1,3 +1,4 @@
+//Click time campaigns
 $('.today').click(function(event) {
 	$(".today").addClass("active");
 	$(".yesterday").removeClass("active");
@@ -6,7 +7,6 @@ $('.today').click(function(event) {
 	$(".alltime").removeClass("active");
 	$(".customday").removeClass("active");
 });
-
 $('.yesterday').click(function(event) {
 	$(".today").removeClass("active");
 	$(".yesterday").addClass("active");
@@ -15,7 +15,6 @@ $('.yesterday').click(function(event) {
 	$(".alltime").removeClass("active");
 	$(".customday").removeClass("active");
 });
-
 $('.days7').click(function(event) {
 	$(".today").removeClass("active");
 	$(".yesterday").removeClass("active");
@@ -24,7 +23,6 @@ $('.days7').click(function(event) {
 	$(".alltime").removeClass("active");
 	$(".customday").removeClass("active");
 });
-
 $('.days30').click(function(event) {
 	$(".today").removeClass("active");
 	$(".yesterday").removeClass("active");
@@ -33,7 +31,6 @@ $('.days30').click(function(event) {
 	$(".alltime").removeClass("active");
 	$(".customday").removeClass("active");
 });
-
 $('.alltime').click(function(event) {
 	$(".today").removeClass("active");
 	$(".yesterday").removeClass("active");
@@ -42,7 +39,6 @@ $('.alltime').click(function(event) {
 	$(".alltime").addClass("active");
 	$(".customday").removeClass("active");
 });
-
 $('.customday').click(function(event) {
 	$(".today").removeClass("active");
 	$(".yesterday").removeClass("active");

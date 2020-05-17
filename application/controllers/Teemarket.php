@@ -20,7 +20,7 @@ class Teemarket extends CI_Controller {
 
 	public function trackOrder()
 	{
-		$this->load->view('track-order_view');
+		$this->load->view('track_order_view');
 	}
 
 	public function login()
@@ -109,7 +109,11 @@ class Teemarket extends CI_Controller {
 		} else {
 			$this->load->view('campaigns_view');
 		}
+	}
 
+	public function orders()
+	{
+		$this->load->view('orders_view');
 	}
 
 	public function logout()
@@ -121,7 +125,7 @@ class Teemarket extends CI_Controller {
 
 	public function forgotPassword()
 	{
-		$this->load->view('forgot-password_view');
+		$this->load->view('forgot_password_view');
 	}
 
 //	public function adidas()

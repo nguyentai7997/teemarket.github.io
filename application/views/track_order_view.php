@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>teemarket - Forgot Password</title>
+	<title>teemarket - Track Order</title>
 
 	<meta name="keywords" content="HTML5 Template" />
 	<meta name="description" content="teemarket">
@@ -39,22 +39,22 @@
 </head>
 <body>
 <div class="page-wrapper">
-	<?php include("home-header_view.php") ?>
+	<?php include("home_header_view.php") ?>
 
 	<main class="main" style="background-color: #f2f2f2;padding-bottom: 8rem;padding-top: 8rem">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<h2 class="title" style="text-align: center">Reset Password</h2>
-					<p style="text-align: center">Enter your sign in email below</p>
+					<h2 class="title" style="text-align: center">Track Your Order</h2>
+					<p style="text-align: center">Need the status of your shipment or proof of delivery? Enter your tracking number or reference number below.</p>
 					<form action="#">
 						<div class="form-group required-field">
-							<input type="text" class="form-control" id="email" name="email" required placeholder="Email">
+							<input type="text" class="form-control" id="orderid" name="orderid" required placeholder="Order ID">
 						</div><!-- End .form-group -->
 
 						<div class="form-footer">
-							<button type="submit" class="btn btn-primary">Request Reset</button>
+							<button type="submit" class="btn btn-primary">Track Order</button>
 						</div><!-- End .form-footer -->
 					</form>
 				</div><!-- End .col-md-12 -->
@@ -63,7 +63,7 @@
 		</div><!-- End .container -->
 	</main><!-- End .main -->
 
-	<?php include("home-footer_view.php") ?>
+	<?php include("home_footer_view.php") ?>
 </div><!-- End .page-wrapper -->
 
 <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
