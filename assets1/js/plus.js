@@ -1,3 +1,8 @@
+//Log Out
+$('.logout').click(function(event) {
+	window.location.href = 'http://localhost:8012/teemarket/logout';
+});
+
 //Click time campaigns
 $('.today').click(function(event) {
 	$(".today").addClass("active");

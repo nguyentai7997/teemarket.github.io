@@ -19,10 +19,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/custom.css?">
 
-	<!-- Skin tools (demo site only) -->
-	<link rel="stylesheet" href="<?= base_url()?>global/css/skintools.minfd53.css?v4.0.1">
-	<script src="<?= base_url()?>assets1/js/Plugin/skintools.minfd53.js?v4.0.1"></script>
-
 	<!-- Plugins For This Page -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.minfd53.css?v4.0.1">
@@ -580,11 +576,6 @@
 <!--	ga('send', 'pageview');-->
 <!--</script>-->
 
-<script>
-	$('.logout').click(function(event) {
-		window.location.href = 'http://localhost:8012/teemarket/logout';
-	});
-</script>
 </body>
 
 </html>

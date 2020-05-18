@@ -116,6 +116,16 @@ class Teemarket extends CI_Controller {
 		$this->load->view('orders_view');
 	}
 
+	public function payment()
+	{
+		$this->load->view('payment_view');
+	}
+
+	public function account()
+	{
+		$this->load->view('account_view');
+	}
+
 	public function logout()
 	{
 		// Xóa session name
