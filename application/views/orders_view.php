@@ -36,9 +36,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/font-awesome/font-awesome.minfd53.css">
-	<link rel="stylesheet" href="<?= base_url()?>global/fonts/web-icons/web-icons.minfd53.css">
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
-
 
 	<!--[if lt IE 9]>
 	<script src="<?= base_url()?>global/vendor/html5shiv/html5shiv.min.js?v4.0.1"></script>
@@ -68,33 +66,33 @@
 			<div>
 				<ul class="site-menu" data-plugin="menu">
 					<li class="site-menu-item">
-						<a href="campaigns">
-							<i class="site-menu-icon ion-md-shirt" aria-hidden="true"></i>
+						<a class="campaigns">
+							<i class="site-menu-icon ion-ios-shirt" aria-hidden="true"></i>
 							<span class="site-menu-title">CAMPAIGNS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="create">
-							<i class="site-menu-icon ion-ios-create" aria-hidden="true"></i>
+						<a class="create">
+							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
 							<span class="site-menu-title">CREATE</span>
 						</a>
 					</li>
 					<li class="site-menu-item active">
-						<a href="orders">
-							<i class="site-menu-icon ion-md-cart" aria-hidden="true"></i>
+						<a class="orders">
+							<i class="site-menu-icon fa-shopping-cart" aria-hidden="true"></i>
 							<span class="site-menu-title">ORDERS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="payment">
+						<a class="payouts">
 							<i class="site-menu-icon fa-money" aria-hidden="true"></i>
-							<span class="site-menu-title">PAYMENT</span>
+							<span class="site-menu-title">PAYOUTS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="account">
-							<i class="site-menu-icon fa-user" aria-hidden="true"></i>
-							<span class="site-menu-title">ACCOUNT</span>
+						<a class="settings">
+							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
+							<span class="site-menu-title">SETTINGS</span>
 						</a>
 					</li>
 				</ul>
@@ -102,6 +100,7 @@
 		</div>
 	</div>
 </div>
+
 
 <!-- Page -->
 <div class="page">

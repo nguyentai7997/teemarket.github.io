@@ -111,9 +111,19 @@ class Teemarket extends CI_Controller {
 		}
 	}
 
+	public function create()
+	{
+		$this->load->view('create_view');
+	}
+
 	public function orders()
 	{
 		$this->load->view('orders_view');
+	}
+
+	public function account()
+	{
+		$this->load->view('account_view');
 	}
 
 	public function payment()
@@ -121,9 +131,9 @@ class Teemarket extends CI_Controller {
 		$this->load->view('payment_view');
 	}
 
-	public function account()
+	public function payouts()
 	{
-		$this->load->view('account_view');
+		$this->load->view('payouts_view');
 	}
 
 	public function logout()

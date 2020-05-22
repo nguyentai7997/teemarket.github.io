@@ -63,7 +63,9 @@ $route['check_email'] = 'teemarket/checkEmail';
 $route['insert_seller'] = 'teemarket/insertSeller';
 
 $route['seller/campaigns'] = 'teemarket/campaigns';
+$route['seller/create'] = 'teemarket/create';
 $route['seller/orders'] = 'teemarket/orders';
-$route['seller/payment'] = 'teemarket/payment';
-$route['seller/account'] = 'teemarket/account';
+$route['seller/settings/account'] = 'teemarket/account';
+$route['seller/settings/payment'] = 'teemarket/payment';
+$route['seller/settings/payouts'] = 'teemarket/payouts';
 $route['logout'] = 'teemarket/logout';

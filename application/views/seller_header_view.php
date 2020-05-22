@@ -55,7 +55,7 @@
 					<div class="dropdown-menu" role="menu">
 						<a class="dropdown-item"> <?php echo $_SESSION['user']['fullname']; ?> <br> <?php echo $_SESSION['user']['email']; ?> </a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item logout" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
+						<a class="dropdown-item logout" role="menuitem"><i class="icon fa-power-off" aria-hidden="true"></i> Logout</a>
 					</div>
 				</li>
 			</ul>

@@ -8,7 +8,7 @@
 	<meta name="description" content="bootstrap material admin template">
 	<meta name="author" content="">
 
-	<title>teemarket - Payment</title>
+	<title>teemarket - Create</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
 	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/favicon-teemarket.ico">
@@ -27,10 +27,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/slidepanel/slidePanel.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
-
-	<!-- Plugins For This Page -->
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/jquery-wizard/jquery-wizard.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/formvalidation/formValidation.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -53,7 +49,7 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition">
+<body class="animsition dashboard">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -71,7 +67,7 @@
 							<span class="site-menu-title">CAMPAIGNS</span>
 						</a>
 					</li>
-					<li class="site-menu-item">
+					<li class="site-menu-item active">
 						<a class="create">
 							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
 							<span class="site-menu-title">CREATE</span>
@@ -89,7 +85,7 @@
 							<span class="site-menu-title">PAYOUTS</span>
 						</a>
 					</li>
-					<li class="site-menu-item active">
+					<li class="site-menu-item">
 						<a class="settings">
 							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
 							<span class="site-menu-title">SETTINGS</span>
@@ -101,92 +97,84 @@
 	</div>
 </div>
 
-
 <!-- Page -->
 <div class="page">
 	<div class="page-content container-fluid">
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-xl-2 col-md-3 col-sm-2"></div>
-			<div class="col-xl-8 col-md-6 col-sm-8">
-				<!-- Pagination With Gap -->
-				<div class="mt-20 mb-50">
-					<ul class="pagination pagination-gap justify-content-center">
-						<li class="page-item settings_account"><a class="page-link" href="account">Account</a></li>
-						<li class="active page-item settings_payment"><a class="page-link" href="payment">Payment</a></li>
-						<li class="page-item settings_payouts"><a class="page-link" href="payouts">Payouts</a></li>
-					</ul>
-
-				</div>
-				<!-- End Example Pagination With Gap -->
-			</div>
-			<div class="col-xl-2 col-md-3 col-sm-2"></div>
-		</div>
-		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-lg-1"></div>
-			<div class="col-lg-10">
-				<div class="panel-body container-fluid bg-white">
-					<!-- Example Basic Form Without Label -->
-					<div class="example-wrap">
-						<h3 class="example-title">Payment Settings</h3>
-						<div class="example">
-							<!-- Example Wizard Accordion -->
-							<div class="mb-30">
-								<div class="panel-group" id="exampleWizardAccordion" aria-multiselectable="true"
-									 role="tablist">
-									<div class="panel border">
-										<div class="panel-heading" id="exampleHeading1" role="tab">
-											<a class="panel-title font-size-20" data-toggle="collapse" href="#exampleCollapse1" data-parent="#exampleWizardAccordion"
-											   aria-expanded="false" aria-controls="exampleCollapse1">
-												<i class="icon fab fa-paypal"></i>Paypal
-											</a>
-										</div>
-										<div class="panel-collapse collapse" id="exampleCollapse1" aria-labelledby="exampleHeading1"
-											 role="tabpanel">
-											<div class="panel-body">
-												<form class="mt-25">
-													<div class="form-group">
-														<div class="input-group input-group-icon">
-															<span class="input-group-addon">
-															  <span class="icon md-email" aria-hidden="true"></span>
-															</span>
-															<input type="text" class="form-control" placeholder="Email">
-														</div>
-													</div>
-													<div class="form-group float-right">
-														<button type="button" class="btn btn-primary">
-															<i class="icon fa-save"></i>Save
-														</button>
-													</div>
-												</form>
-											</div>
+			<div class="col-lg-12">
+				<div class="panel-body container-fluid bg-white border">
+				<!-- Example Default -->
+				<div class="example-wrap">
+					<div class="example">
+						<div class="pearls row">
+							<div class="pearl current col-4">
+								<div class="pearl-icon"><i class="icon ion-ios-shirt" aria-hidden="true"></i></div>
+								<span class="pearl-title">Design</span>
+							</div>
+							<div class="pearl col-4">
+								<div class="pearl-icon"><i class="icon fa-tags" aria-hidden="true"></i></div>
+								<span class="pearl-title">Pricing & Products</span>
+							</div>
+							<div class="pearl col-4">
+								<div class="pearl-icon"><i class="icon fa-rocket" aria-hidden="true"></i></div>
+								<span class="pearl-title">Launch</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<div class="box-upload mt-40">
+									<h4>Upload Image</h4>
+									<input type="file" id="file-input">
+								</div>
+							</div>
+							<div class="col-6">
+								<div id="view-front" class="labView m-auto">
+									<div class="product-design designer-style-front">
+										<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
+									</div>
+									<div class="design-area design-area-front" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
+										<div class="image_design" style="width: 216px; height: 373px">
+											<div class="result"></div>
 										</div>
 									</div>
-									<div class="panel border">
-										<div class="panel-heading" id="exampleHeading2" role="tab">
-											<a class="panel-title font-size-20" data-toggle="collapse" href="#exampleCollapse2"
-											   data-parent="#exampleWizardAccordion" aria-expanded="false" aria-controls="exampleCollapse2">
-												<img class="icon" src="<?= base_url()?>assets1/images/icon_payoneer.png" alt="Payoneer">Payoneer
-											</a>
+								</div>
+							</div>
+							<div class="col-3">
+								<div class="dg-box profile-usermenu">
+									<div class="product-info">
+										<div class="form-group product-fields custom-form-group product-color-container">
+											<label for="fields">Choose Product Color</label>
 										</div>
-										<div class="panel-collapse collapse" id="exampleCollapse2" aria-labelledby="exampleHeading2"
-											 role="tabpanel">
-											<div class="panel-body">
-												<form class="mt-25">
-													<div class="form-group">
-														<div class="input-group input-group-icon">
-															<span class="input-group-addon">
-															  <span class="icon md-email" aria-hidden="true"></span>
-															</span>
-															<input type="text" class="form-control" placeholder="Email">
-														</div>
+										<div class="list-colors product-color-list" id="product-list-colors">
+											<span class="bg-colors white active" style="background-color: rgb(252, 252, 252);"></span>
+											<span class="bg-colors sand" style="background-color: rgb(255, 233, 186);"></span>
+											<span class="bg-colors light-pink" style="background-color: rgb(255, 178, 196);"></span>
+											<span class="bg-colors ash-grey" style="background-color: rgb(214, 215, 217);"></span>
+											<span class="bg-colors light-blue" style="background-color: rgb(140, 180, 232);"></span>
+											<span class="bg-colors daisy" style="background-color: rgb(243, 254, 43);"></span>
+											<span class="bg-colors gold" style="background-color: rgb(255, 181, 2);"></span>
+											<span class="bg-colors tennessee-orange" style="background-color: rgb(255, 132, 0);"></span>
+											<span class="bg-colors red" style="background-color: rgb(243, 0, 0);"></span>
+											<span class="bg-colors sapphire" style="background-color: rgb(0, 97, 179);"></span>
+											<span class="bg-colors electric-green" style="background-color: rgb(0, 172, 49);"></span>
+											<span class="bg-colors black" style="background-color: rgb(11, 11, 11);"></span>
+										</div>
+										<div class="product-prices text-center">
+											<div id="product-price">
+												<h3 class="product-price-title">
+													Base Cost
+												</h3>
+												<div class="clearfix">
+													<div class="product-price-list">
+														<span id="product-price-sale" class="text-success font-lg bold">
+															<span class="price-sale-number">$5.00</span>
+														</span>
 													</div>
-													<div class="form-group float-right">
-														<button type="button" class="btn btn-primary">
-															<i class="icon fa-save"></i>Save
-														</button>
-													</div>
-												</form>
+												</div>
 											</div>
+											<button type="button" class="btn btn-md" style="background-color: #fb8c00; color: white">
+												<i class="fa fa-arrow-right"></i> Next
+											</button>
 										</div>
 									</div>
 								</div>
@@ -194,10 +182,10 @@
 						</div>
 					</div>
 				</div>
-				<!-- End Example Wizard Accordion -->
+				</div>
+				<!-- End Example Default -->
 			</div>
 		</div>
-
 	</div>
 </div>
 <!-- End Page -->
@@ -205,6 +193,7 @@
 <?php include("seller_footer_view.php") ?>
 
 <!-- Core  -->
+<script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/jquery/jquery.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/popper-js/umd/popper.minfd53.js?v4.0.1"></script>
@@ -223,10 +212,18 @@
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
 
 <!-- Plugins For This Page -->
-<script src="<?= base_url()?>global/vendor/formvalidation/formValidation.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/formvalidation/framework/bootstrap.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/matchheight/jquery.matchHeight-minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/jquery-wizard/jquery-wizard.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/jquery-ui/jquery-ui.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-tmpl/tmpl.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-canvas-to-blob/canvas-to-blob.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-load-image/load-image.all.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileuploadfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-processfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-imagefd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-audiofd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-videofd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-validatefd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-uifd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/dropify/dropify.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -253,10 +250,7 @@
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
-<script src="<?= base_url()?>global/js/Plugin/jquery-wizard.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/js/Plugin/matchheight.minfd53.js?v4.0.1"></script>
-
-<script src="<?= base_url()?>assets1/examples/js/forms/wizard.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/plus.js"></script>

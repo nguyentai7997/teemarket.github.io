@@ -8,7 +8,7 @@
 	<meta name="description" content="bootstrap material admin template">
 	<meta name="author" content="">
 
-	<title>teemarket - Payment</title>
+	<title>teemarket - Payouts</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
 	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/favicon-teemarket.ico">
@@ -29,14 +29,20 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
 
 	<!-- Plugins For This Page -->
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/jquery-wizard/jquery-wizard.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/formvalidation/formValidation.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/c3/c3.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/bootstrap-table/bootstrap-table.minfd53.css?v4.0.1">
+
+	<!-- Page -->
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/structure/pagination.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/tables/basic.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/font-awesome/font-awesome.minfd53.css">
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
+
 
 	<!--[if lt IE 9]>
 	<script src="<?= base_url()?>global/vendor/html5shiv/html5shiv.min.js?v4.0.1"></script>
@@ -53,7 +59,7 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition">
+<body class="animsition dashboard">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -83,13 +89,13 @@
 							<span class="site-menu-title">ORDERS</span>
 						</a>
 					</li>
-					<li class="site-menu-item">
+					<li class="site-menu-item active">
 						<a class="payouts">
 							<i class="site-menu-icon fa-money" aria-hidden="true"></i>
 							<span class="site-menu-title">PAYOUTS</span>
 						</a>
 					</li>
-					<li class="site-menu-item active">
+					<li class="site-menu-item">
 						<a class="settings">
 							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
 							<span class="site-menu-title">SETTINGS</span>
@@ -101,7 +107,6 @@
 	</div>
 </div>
 
-
 <!-- Page -->
 <div class="page">
 	<div class="page-content container-fluid">
@@ -112,8 +117,8 @@
 				<div class="mt-20 mb-50">
 					<ul class="pagination pagination-gap justify-content-center">
 						<li class="page-item settings_account"><a class="page-link" href="account">Account</a></li>
-						<li class="active page-item settings_payment"><a class="page-link" href="payment">Payment</a></li>
-						<li class="page-item settings_payouts"><a class="page-link" href="payouts">Payouts</a></li>
+						<li class="page-item settings_payment"><a class="page-link" href="payment">Payment</a></li>
+						<li class="active page-item settings_payouts"><a class="page-link" href="payouts">Payouts</a></li>
 					</ul>
 
 				</div>
@@ -122,82 +127,161 @@
 			<div class="col-xl-2 col-md-3 col-sm-2"></div>
 		</div>
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-lg-1"></div>
-			<div class="col-lg-10">
-				<div class="panel-body container-fluid bg-white">
-					<!-- Example Basic Form Without Label -->
-					<div class="example-wrap">
-						<h3 class="example-title">Payment Settings</h3>
-						<div class="example">
-							<!-- Example Wizard Accordion -->
-							<div class="mb-30">
-								<div class="panel-group" id="exampleWizardAccordion" aria-multiselectable="true"
-									 role="tablist">
-									<div class="panel border">
-										<div class="panel-heading" id="exampleHeading1" role="tab">
-											<a class="panel-title font-size-20" data-toggle="collapse" href="#exampleCollapse1" data-parent="#exampleWizardAccordion"
-											   aria-expanded="false" aria-controls="exampleCollapse1">
-												<i class="icon fab fa-paypal"></i>Paypal
-											</a>
-										</div>
-										<div class="panel-collapse collapse" id="exampleCollapse1" aria-labelledby="exampleHeading1"
-											 role="tabpanel">
-											<div class="panel-body">
-												<form class="mt-25">
-													<div class="form-group">
-														<div class="input-group input-group-icon">
-															<span class="input-group-addon">
-															  <span class="icon md-email" aria-hidden="true"></span>
-															</span>
-															<input type="text" class="form-control" placeholder="Email">
-														</div>
-													</div>
-													<div class="form-group float-right">
-														<button type="button" class="btn btn-primary">
-															<i class="icon fa-save"></i>Save
-														</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="panel border">
-										<div class="panel-heading" id="exampleHeading2" role="tab">
-											<a class="panel-title font-size-20" data-toggle="collapse" href="#exampleCollapse2"
-											   data-parent="#exampleWizardAccordion" aria-expanded="false" aria-controls="exampleCollapse2">
-												<img class="icon" src="<?= base_url()?>assets1/images/icon_payoneer.png" alt="Payoneer">Payoneer
-											</a>
-										</div>
-										<div class="panel-collapse collapse" id="exampleCollapse2" aria-labelledby="exampleHeading2"
-											 role="tabpanel">
-											<div class="panel-body">
-												<form class="mt-25">
-													<div class="form-group">
-														<div class="input-group input-group-icon">
-															<span class="input-group-addon">
-															  <span class="icon md-email" aria-hidden="true"></span>
-															</span>
-															<input type="text" class="form-control" placeholder="Email">
-														</div>
-													</div>
-													<div class="form-group float-right">
-														<button type="button" class="btn btn-primary">
-															<i class="icon fa-save"></i>Save
-														</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
+			<div class="col-xl-3 col-md-6">
+				<!-- Widget Linearea One-->
+				<div class="card card-shadow" id="widgetLineareaOne">
+					<div class="card-block bg-purple-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon ion-ios-radio-outline font-size-30"></i>
+							</div>
+							<div class="font-size-20 font-weight-600">Payouts Live</div>
+							<div class="font-size-20">$0.00</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- End Widget Linearea One -->
+			</div>
+
+			<div class="col-xl-3 col-md-6">
+				<!-- Widget Linearea Two-->
+				<div class="card card-shadow" id="widgetLineareaTwo">
+					<div class="card-block bg-cyan-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon fa-check-circle font-size-30"></i>
+							</div>
+							<div class="font-size-20 font-weight-600">Payouts Available</div>
+							<div class="font-size-20">$0.00</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Widget Linearea Two -->
+			</div>
+
+			<div class="col-xl-3 col-md-6">
+				<!-- Widget Linearea Three-->
+				<div class="card card-shadow" id="widgetLineareaOne">
+					<div class="card-block bg-orange-600 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon md-confirmation-number font-size-30"></i>
+							</div>
+							<div class="font-size-20 font-weight-600">Payouts Deductions</div>
+							<div class="font-size-20">$0.00</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Widget Linearea Three -->
+			</div>
+
+			<div class="col-xl-3 col-md-6">
+				<!-- Widget Linearea Four-->
+				<div class="card card-shadow" id="widgetLineareaOne">
+					<div class="card-block bg-green-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon md-money-box font-size-30"></i>
+							</div>
+							<div class="font-size-20 font-weight-600">Total Paid</div>
+							<div class="font-size-20">$0.00</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Widget Linearea Four -->
+			</div>
+
+			<div class="col-lg-12">
+				<!-- Example C3 Timeseries -->
+				<div class="example-wrap m-md-0">
+					<h4 class="example-title">Timeseries</h4>
+					<p>Simple line chart with timeseries data. </p>
+					<div class="example example-responsive pb-15">
+						<div id="exampleC3TimeSeries"></div>
+					</div>
+				</div>
+				<!-- End Example C3 Timeseries -->
+			</div>
+
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="sort_label">Sort Campaigns By</div>
+							<select class="form-control">
+								<option>Newest to Oldest</option>
+								<option>Oldest to Newest</option>
+								<option>Top Selling</option>
+								<option>Least Selling</option>
+								<option>Sort A to Z</option>
+								<option>Sort Z to A</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="sort_label">Filter By Status</div>
+							<select class="form-control">
+								<option>All</option>
+								<option>Active</option>
+								<option>Starred</option>
+								<option>Ended</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
+								<span class="input-group-btn">
+						  			<button type="submit" class="btn" style="background-color: #fb8c00"><i class="icon md-search" aria-hidden="true"></i></button>
+								</span>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- End Example Wizard Accordion -->
-			</div>
-		</div>
 
+				<!-- Example Bordered Table -->
+				<div class="table-responsive">
+					<table class="table table-bordered bg-white">
+						<tbody>
+						<tr>
+							<td>
+								Name
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_profit">$0.00</div>
+								<div>Profit</div>
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_orfers">0</div>
+								<div>Orders</div>
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_units">0</div>
+								<div>Units</div>
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_time">7</div>
+								<div>Days Left</div>
+							</td>
+							<td class="text-nowrap text-center" width="12%">
+								<button type="button" class="btn btn-sm btn-icon btn-flat">
+									<i class="icon wb-more-horizontal" aria-hidden="true"></i>
+								</button>
+								<div>Option</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- End Example Bordered Table -->
+			</div>
+
+		</div>
 	</div>
 </div>
 <!-- End Page -->
@@ -205,6 +289,7 @@
 <?php include("seller_footer_view.php") ?>
 
 <!-- Core  -->
+<script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/jquery/jquery.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/popper-js/umd/popper.minfd53.js?v4.0.1"></script>
@@ -223,10 +308,9 @@
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
 
 <!-- Plugins For This Page -->
-<script src="<?= base_url()?>global/vendor/formvalidation/formValidation.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/formvalidation/framework/bootstrap.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/matchheight/jquery.matchHeight-minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/jquery-wizard/jquery-wizard.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/aspaginator/jquery-asPaginator.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/c3/c3.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/d3/d3.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -253,10 +337,11 @@
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
-<script src="<?= base_url()?>global/js/Plugin/jquery-wizard.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/js/Plugin/matchheight.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/js/Plugin/aspaginator.minfd53.js?v4.0.1"></script>
 
-<script src="<?= base_url()?>assets1/examples/js/forms/wizard.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>assets1/examples/js/dashboard/v1.minfd53.js?v4.0.1"></script>
+<!--Co the thay assets1 khac de do loi function chatist-->
+<script src="<?= base_url()?>assets1/examples/js/charts/c3.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/plus.js"></script>

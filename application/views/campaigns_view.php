@@ -41,9 +41,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/font-awesome/font-awesome.minfd53.css">
-	<link rel="stylesheet" href="<?= base_url()?>global/fonts/web-icons/web-icons.minfd53.css">
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
-
 
 	<!--[if lt IE 9]>
 	<script src="<?= base_url()?>global/vendor/html5shiv/html5shiv.min.js?v4.0.1"></script>
@@ -73,33 +71,33 @@
 			<div>
 				<ul class="site-menu" data-plugin="menu">
 					<li class="site-menu-item active">
-						<a href="campaigns">
-							<i class="site-menu-icon ion-md-shirt" aria-hidden="true"></i>
+						<a class="campaigns">
+							<i class="site-menu-icon ion-ios-shirt" aria-hidden="true"></i>
 							<span class="site-menu-title">CAMPAIGNS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="create">
-							<i class="site-menu-icon ion-ios-create" aria-hidden="true"></i>
+						<a class="create">
+							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
 							<span class="site-menu-title">CREATE</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="orders">
-							<i class="site-menu-icon ion-md-cart" aria-hidden="true"></i>
+						<a class="orders">
+							<i class="site-menu-icon fa-shopping-cart" aria-hidden="true"></i>
 							<span class="site-menu-title">ORDERS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="payment">
+						<a class="payouts">
 							<i class="site-menu-icon fa-money" aria-hidden="true"></i>
-							<span class="site-menu-title">PAYMENT</span>
+							<span class="site-menu-title">PAYOUTS</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a href="account">
-							<i class="site-menu-icon fa-user" aria-hidden="true"></i>
-							<span class="site-menu-title">ACCOUNT</span>
+						<a class="settings">
+							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
+							<span class="site-menu-title">SETTINGS</span>
 						</a>
 					</li>
 				</ul>
@@ -116,14 +114,13 @@
 				<div class="col-xl-8 col-md-6 col-sm-8">
 				<!-- Pagination With Gap -->
 					<div class="mt-20 mb-50">
-
 							<ul class="pagination pagination-gap justify-content-center">
-								<li class="active page-item today"><a class="page-link" href="javascript:void(0)">Today <span class="sr-only">(current)</span></a></li>
-								<li class="page-item yesterday"><a class="page-link" href="javascript:void(0)">Yesterday</a></li>
-								<li class="page-item days7"><a class="page-link" href="javascript:void(0)">Last 7 Days</a></li>
-								<li class="page-item days30"><a class="page-link" href="javascript:void(0)">Last 30 Days</a></li>
-								<li class="page-item alltime"><a class="page-link" href="javascript:void(0)">All time</a></li>
-								<li class="page-item customday"><a class="page-link" href="javascript:void(0)">Custom</a></li>
+								<li class="active page-item today"><a class="page-link">Today<span class="sr-only">(current)</span></a></li>
+								<li class="page-item yesterday"><a class="page-link">Yesterday</a></li>
+								<li class="page-item days7"><a class="page-link">Last 7 Days</a></li>
+								<li class="page-item days30"><a class="page-link">Last 30 Days</a></li>
+								<li class="page-item alltime"><a class="page-link">All time</a></li>
+								<li class="page-item customday"><a class="page-link">Custom</a></li>
 							</ul>
 						
 					</div>
@@ -159,7 +156,7 @@
 					<div class="card-block bg-cyan-500 p-20 pt-10">
 						<div class="clearfix text-white">
 							<div class="float-right">
-								<i class="icon ion-md-cart font-size-40"></i>
+								<i class="icon fa-shopping-cart font-size-40"></i>
 							</div>
 							<div class="font-size-20 font-weight-600">ORDERS/UNIT</div>
 							<div class="font-size-20">0/0</div>
@@ -175,7 +172,7 @@
 					<div class="card-block bg-orange-600 p-20 pt-10">
 						<div class="clearfix text-white">
 							<div class="float-right">
-								<i class="icon ion-md-shirt font-size-40"></i>
+								<i class="icon ion-ios-shirt font-size-40"></i>
 							</div>
 							<div class="font-size-20 font-weight-600">CAMPAIGNS</div>
 							<div class="font-size-20">0</div>
@@ -230,7 +227,7 @@
 							<div class="input-group">
 								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
 								<span class="input-group-btn">
-						  			<button type="submit" class="btn" style="background-color: #fb8c00"><i class="icon md-search" aria-hidden="true"></i></button>
+						  			<button type="submit" class="btn" style="background-color: #fb8c00"><i class="icon fa-search" aria-hidden="true"></i></button>
 								</span>
 							</div>
 						</div>
@@ -263,7 +260,7 @@
 								</td>
 								<td class="text-nowrap text-center" width="12%">
 									<button type="button" class="btn btn-sm btn-icon btn-flat">
-										<i class="icon wb-more-horizontal" aria-hidden="true"></i>
+										<i class="icon fa-ellipsis-h" aria-hidden="true"></i>
 									</button>
 									<div>Option</div>
 								</td>
