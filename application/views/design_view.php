@@ -8,7 +8,7 @@
 	<meta name="description" content="bootstrap material admin template">
 	<meta name="author" content="">
 
-	<title>teemarket - Create</title>
+	<title>teemarket - Setup New Campaign</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
 	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/favicon-teemarket.ico">
@@ -17,7 +17,8 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/custom.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/design.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -27,6 +28,12 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/slidepanel/slidePanel.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
+
+	<!-- Plugins For This Page -->
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/toastr/toastr.minfd53.css?v4.0.1">
+
+	<!-- Page -->
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/advanced/toastr.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -68,7 +75,7 @@
 						</a>
 					</li>
 					<li class="site-menu-item active">
-						<a class="create">
+						<a class="create-campaign">
 							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
 							<span class="site-menu-title">CREATE</span>
 						</a>
@@ -125,6 +132,11 @@
 								<div class="box-upload mt-40">
 									<h4>Upload Image</h4>
 									<input type="file" id="file-input">
+									<div class="example">
+										<?php if(!empty($_SESSION['product']['src_image'])){ ?>
+											<button class="remove_image" style="cursor: pointer"><i class="icon ion-ios-trash"></i></button> Image
+										<?php } ?>
+									</div>
 								</div>
 							</div>
 							<div class="col-6">
@@ -134,7 +146,11 @@
 									</div>
 									<div class="design-area design-area-front" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
 										<div class="image_design" style="width: 216px; height: 373px">
-											<div class="result"></div>
+											<div class="result">
+												<?php if(!empty($_SESSION['product']['src_image'])){ ?>
+													<img id="image" src="<?php echo $_SESSION['product']['src_image']?>">
+												<?php } ?>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -172,7 +188,7 @@
 													</div>
 												</div>
 											</div>
-											<button type="button" class="btn btn-md" style="background-color: #fb8c00; color: white">
+											<button type="button" class="btn btn-md next_step" style="background-color: #fb8c00; color: white">
 												<i class="fa fa-arrow-right"></i> Next
 											</button>
 										</div>
@@ -212,18 +228,7 @@
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
 
 <!-- Plugins For This Page -->
-<script src="<?= base_url()?>global/vendor/jquery-ui/jquery-ui.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-tmpl/tmpl.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-canvas-to-blob/canvas-to-blob.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-load-image/load-image.all.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileuploadfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-processfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-imagefd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-audiofd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-videofd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-validatefd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/blueimp-file-upload/jquery.fileupload-uifd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/dropify/dropify.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/toastr/toastr.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -250,10 +255,13 @@
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
+<script src="<?= base_url()?>global/js/Plugin/toastr.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
-<script src="<?= base_url()?>assets1/js/plus.js"></script>
+<script src="<?= base_url()?>assets1/js/all.js"></script>
+<script src="<?= base_url()?>assets1/js/create.js"></script>
+<script src="<?= base_url()?>assets1/js/design.js"></script>
 
 <!-- Google Analytics -->
 <!--<script>-->

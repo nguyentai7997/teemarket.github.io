@@ -115,16 +115,16 @@ $("#password").change(function (event) {
 		$('.password-required').css('display','none');
 		if (regPass2.exec(password)){
 			$('.password-error').css('display','none');
+			$('.cfpassword-required').css('display', 'none');
 			var cfpassword  = $('#cfpassword').val();
-			if (cfpassword == '' || cfpassword == password){
-				$('.cfpassword-required').css('display', 'none');
+			if (cfpassword == password){
 				$('.cfpassword-error').css('display', 'none');
 			} else {
-				$('.cfpassword-required').css('display', 'none');
 				$('.cfpassword-error').css('display', 'block');
 			}
 		} else {
 			$('.password-error').css('display','block');
+			$('.cfpassword-error').css('display', 'none');
 		}
 	}
 });
@@ -154,6 +154,7 @@ $("#cfpassword").change(function(event){
 
 //Click button Sign Up
 $('.signup').click(function(event) {
+	var account_type = 1;
 	var fullname = $('#fullname').val();
 	var publicname  = $('#publicname').val().toLowerCase();
 	var email  = $('#email').val();
@@ -250,6 +251,7 @@ $('.signup').click(function(event) {
 		type: 'post',
 		dataType: 'json',
 		data: {
+			account_type: account_type,
 			fullname	: fullname,
 			publicname	: publicname,
 			email		: email,
@@ -266,7 +268,7 @@ $('.signup').click(function(event) {
 	});
 });
 
-//Check Email Sign Up
+//Check Email Sign In
 $("#emailSignIn").change(function(event){
 	var emailSignIn  = $('#emailSignIn').val();
 	var regEmailSignIn1 = /\S/;
@@ -284,7 +286,7 @@ $("#emailSignIn").change(function(event){
 	}
 });
 
-// Check Password SignUp
+// Check Password Sign In
 $("#passwordSignIn").change(function (event) {
 	var passwordSignIn = $('#passwordSignIn').val();
 	var regPasswordSignIn = /\S/;

@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/custom.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -72,7 +72,7 @@
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a class="create">
+						<a class="create-campaign">
 							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
 							<span class="site-menu-title">CREATE</span>
 						</a>
@@ -259,7 +259,7 @@
 <script src="<?= base_url()?>assets1/examples/js/forms/wizard.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
-<script src="<?= base_url()?>assets1/js/plus.js"></script>
+<script src="<?= base_url()?>assets1/js/all.js"></script>
 
 <!-- Google Analytics -->
 <!--<script>-->

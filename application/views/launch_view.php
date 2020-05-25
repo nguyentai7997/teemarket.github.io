@@ -8,7 +8,7 @@
 	<meta name="description" content="bootstrap material admin template">
 	<meta name="author" content="">
 
-	<title>teemarket - Account</title>
+	<title>teemarket - Setup New Campaign</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
 	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/favicon-teemarket.ico">
@@ -17,8 +17,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -35,7 +33,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/font-awesome/font-awesome.minfd53.css">
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
 
-
 	<!--[if lt IE 9]>
 	<script src="<?= base_url()?>global/vendor/html5shiv/html5shiv.min.js?v4.0.1"></script>
 	<![endif]-->
@@ -51,7 +48,7 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition">
+<body class="animsition dashboard">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -69,7 +66,7 @@
 							<span class="site-menu-title">CAMPAIGNS</span>
 						</a>
 					</li>
-					<li class="site-menu-item">
+					<li class="site-menu-item active">
 						<a class="create-campaign">
 							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
 							<span class="site-menu-title">CREATE</span>
@@ -87,7 +84,7 @@
 							<span class="site-menu-title">PAYOUTS</span>
 						</a>
 					</li>
-					<li class="site-menu-item active">
+					<li class="site-menu-item">
 						<a class="settings">
 							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
 							<span class="site-menu-title">SETTINGS</span>
@@ -99,125 +96,117 @@
 	</div>
 </div>
 
-
 <!-- Page -->
 <div class="page">
 	<div class="page-content container-fluid">
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-xl-2 col-md-3 col-sm-2"></div>
-			<div class="col-xl-8 col-md-6 col-sm-8">
-				<!-- Pagination With Gap -->
-				<div class="mt-20 mb-50">
-					<ul class="pagination pagination-gap justify-content-center">
-						<li class="active page-item settings_account"><a class="page-link" href="account">Account</a></li>
-						<li class="page-item settings_payment"><a class="page-link" href="payment">Payment</a></li>
-						<li class="page-item settings_payouts"><a class="page-link" href="payouts">Payouts</a></li>
-					</ul>
-
-				</div>
-				<!-- End Example Pagination With Gap -->
-			</div>
-			<div class="col-xl-2 col-md-3 col-sm-2"></div>
-		</div>
-		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-md-8 col-lg-8">
-				<div class="panel-body container-fluid bg-white">
-					<!-- Example Basic Form Without Label -->
+			<div class="col-lg-12">
+				<div class="panel-body container-fluid bg-white border">
+					<!-- Example Default -->
 					<div class="example-wrap">
-						<h3 class="example-title">Information</h3>
 						<div class="example">
-							<div class="email">Email: tonixtai@gmail.com</div>
-							<form>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="fullname" placeholder="Full Name"
-										   autocomplete="off" />
+							<div class="pearls row">
+								<div class="pearl done col-4">
+									<div class="pearl-icon"><i class="icon ion-ios-shirt" aria-hidden="true"></i></div>
+									<span class="pearl-title">Design</span>
 								</div>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="publicname" placeholder="Public Name"
-										   autocomplete="off" />
+								<div class="pearl done col-4">
+									<div class="pearl-icon"><i class="icon fa-tags" aria-hidden="true"></i></div>
+									<span class="pearl-title">Pricing & Products</span>
 								</div>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="address" placeholder="Address"
-										   autocomplete="off" />
+								<div class="pearl current col-4">
+									<div class="pearl-icon"><i class="icon fa-rocket" aria-hidden="true"></i></div>
+									<span class="pearl-title">Launch</span>
 								</div>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="ci_to" placeholder="City / Town"
-										   autocomplete="off" />
-								</div>
-								<div class="row">
-									<div class="form-group form-material col-md-8">
-										<input type="text" class="form-control" name="st_pr_re" placeholder="State / Province / Region"
-											   autocomplete="off" />
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<div class="panel-body container-fluid bg-white">
+										<!-- Example Basic Form Without Label -->
+										<div class="example-wrap">
+											<div class="example">
+												<form action="#">
+													<div class="form-group required-field">
+														<label style="color: #fb8c00">Title</label>
+														<input type="text" class="form-control title" required maxlength="80">
+														<div class="text">Summarize your campaign in 80 characters or less</div>
+													</div><!-- End .form-group -->
+
+													<div class="form-group required-field">
+														<label style="color: #fb8c00">Description</label>
+														<textarea class="border description" rows="7" style="width: 100%"></textarea>
+														<div class="text">Let your buyers know why they should buy your tee in 300 characters or less. You can also include info on the design or designer!</div>
+													</div><!-- End .form-group -->
+
+													<div class="form-group required-field">
+														<label style="color: #fb8c00">URL</label>
+														<div class="input-group">
+															<span class="input-group-addon">http://localhost:8012/teemarket/<?php echo $_SESSION['user']['publicname']; ?></span>
+															<input type="text" class="form-control url">
+														</div>
+														<div class="text">This is where you will send buyers to view your campaign.</div>
+													</div>
+
+													<div class="form-group required-field">
+														<label style="color: #fb8c00">Categorize Your Campaign</label>
+														<div class="select-custom">
+															<select class="form-control" title='Choose one of the following...' name="categorize">
+																<option value="" selected>Choose one of the following...</option>
+																<optgroup label="Hobbies">
+																	<option value="fishing">Fishing</option>
+																	<option value="fitness">Fitness</option>
+																	<option value="hunting">Hunting</option>
+																	<option value="music">Music</option>
+																</optgroup>
+																<optgroup label="Sport">
+																	<option value="football">Football</option>
+																	<option value="basketball">Basketball</option>
+																</optgroup>
+															</select>
+														</div><!-- End .select-custom -->
+													</div><!-- End .form-group -->
+
+													<div class="form-group required-field">
+														<label style="color: #fb8c00">Campaign Length</label>
+														<div class="input-daterange" data-plugin="datepicker">
+															<div class="row">
+																<div class="col-8">
+																	<div class="input-group">
+																		<span class="input-group-addon">End Date</span>
+																		<input type="date" class="form-control end" name="end"/>
+																	</div>
+																</div>
+																<div class="col-4">
+																	<div class="input-group">
+																		<span class="input-group-addon">Total Days</span>
+																		<input disabled class="form-control total-days text-center" name="length" value="7 Days"/>
+																	</div>
+																</div>
+
+															</div>
+														</div>
+													</div><!-- End .form-group -->
+													<div class="buttonstep float-right mt-20">
+														<button type="button" class="btn btn-md back_step">
+															<i class="fa fa-arrow-left"></i> Back
+														</button>
+														<button type="button" class="btn btn-md next_step" style="background-color: #fb8c00; color: white">
+															Launch <i class="fa fa-arrow-right"></i>
+														</button>
+													</div>
+												</form>
+											</div>
+										</div>
+										<!-- End Example Basic Form Without Label -->
 									</div>
-									<div class="form-group form-material col-md-4">
-										<input type="text" class="form-control" name="zipcode" placeholder="ZIP / Postal Code"
-											   autocomplete="off" />
-									</div>
 								</div>
-								<div class="row">
-									<div class="form-group col-md-6">
-										<div class="sort_label">Country</div>
-										<select class="form-control">
-											<option disabled selected>Country</option>
-											<option>Newest to Oldest</option>
-											<option>Oldest to Newest</option>
-											<option>Top Selling</option>
-											<option>Least Selling</option>
-											<option>Sort A to Z</option>
-											<option>Sort Z to A</option>
-										</select>
-									</div>
-									<div class="form-group form-material col-md-6">
-										<input type="text" class="form-control" name="phone" placeholder="Phone Number"
-											   autocomplete="off" />
-									</div>
-								</div>
-								<div class="form-group">
-									<button type="button" class="btn btn-primary">
-										<i class="icon fa-save"></i>
-										Save
-									</button>
-								</div>
-							</form>
+							</div>
 						</div>
 					</div>
-					<!-- End Example Basic Form Without Label -->
 				</div>
-			</div>
-			<div class="col-md-4 col-lg-4">
-				<div class="panel-body container-fluid bg-white">
-					<!-- Example Basic Form Without Label -->
-					<div class="example-wrap">
-						<h3 class="example-title">Password</h3>
-						<div class="example">
-							<form>
-								<div class="form-group form-material">
-									<input type="password" class="form-control" id="current-pass" placeholder="Current Password" autocomplete="off" />
-									<div class="error current-pass-required">The password field is required.</div>
-								</div>
-								<div class="form-group form-material">
-									<input type="password" class="form-control" id="new-pass" placeholder="New Password" autocomplete="off" />
-									<div class="error new-pass-required">The new password field is required.</div>
-									<div class="error new-pass-error">The password field must contain 8 characters including at least one number and at least one alphabetic character.</div>
-								</div>
-								<div class="form-group form-material">
-									<input type="password" class="form-control" id="cf-pass" placeholder="Confirm New Password" autocomplete="off" />
-									<div class="error cf-pass-required">The password field is required.</div>
-									<div class="error cf-pass-error">The password confirmation does not match.</div>
-								</div>
-								<div class="form-group">
-									<button type="button" class="btn btn-primary change-password">
-										<i class="icon fa-save"></i>Change Password
-									</button>
-								</div>
-							</form>
-						</div>
-					</div>
-					<!-- End Example Basic Form Without Label -->
-				</div>
+				<!-- End Example Default -->
 			</div>
 		</div>
-
 	</div>
 </div>
 <!-- End Page -->
@@ -225,6 +214,7 @@
 <?php include("seller_footer_view.php") ?>
 
 <!-- Core  -->
+<script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/jquery/jquery.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/popper-js/umd/popper.minfd53.js?v4.0.1"></script>
@@ -241,6 +231,9 @@
 <script src="<?= base_url()?>global/vendor/intro-js/intro.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/screenfull/screenfull.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
+
+<!-- Plugins For This Page -->
+<script src="<?= base_url()?>global/vendor/jquery-placeholder/jquery.placeholder.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -268,10 +261,13 @@
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/js/Plugin/jquery-placeholder.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/js/Plugin/input-group-file.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-<script src="<?= base_url()?>assets1/js/account.js"></script>
+<script src="<?= base_url()?>assets1/js/create.js"></script>
+<script src="<?= base_url()?>assets1/js/launch.js"></script>
 
 <!-- Google Analytics -->
 <!--<script>-->

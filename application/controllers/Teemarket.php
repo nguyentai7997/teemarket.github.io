@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Teemarket extends CI_Controller {
+class Teemarket extends CI_Controller
+{
 
 	public function __construct()
 	{
@@ -28,21 +29,23 @@ class Teemarket extends CI_Controller {
 		$this->load->view('login_view');
 	}
 
-	public function checkSignIn(){
+	public function checkSignIn()
+	{
 		$emailSignIn = $this->input->post('emailSignIn');
-		$passwordSignIn=$this->input->post('passwordSignIn');
+		$passwordSignIn = $this->input->post('passwordSignIn');
 
-		$data=$this->Mteemarket->checkDataSignIn($emailSignIn,$passwordSignIn);
+		$data = $this->Mteemarket->checkDataSignIn($emailSignIn, $passwordSignIn);
 
-		if($data){
+		if ($data) {
 			$status = 0;
 			echo $status;
 			$seller_info = array(
-				'fullname' 	=> $data[0]['fullname'],
-				'email' 	=> $data[0]['email']
+				'publicname' => $data[0]['publicname'],
+				'fullname' => $data[0]['fullname'],
+				'email' => $data[0]['email']
 			);
-			$this->session->set_userdata('user',$seller_info);
-		} else{
+			$this->session->set_userdata('user', $seller_info);
+		} else {
 			$status = 1;
 			echo $status;
 		}
@@ -57,7 +60,7 @@ class Teemarket extends CI_Controller {
 	{
 		$publicname = $this->input->post('publicname');
 		$res = $this->Mteemarket->getDataByPublicName($publicname);
-		if(!$res) {
+		if (!$res) {
 			$status = 0;
 			echo $status;
 		} else {
@@ -71,7 +74,7 @@ class Teemarket extends CI_Controller {
 	{
 		$email = $this->input->post('email');
 		$res = $this->Mteemarket->getDataByEmail($email);
-		if(!$res) {
+		if (!$res) {
 			$status = 0;
 			echo $status;
 		} else {
@@ -82,21 +85,23 @@ class Teemarket extends CI_Controller {
 
 	public function insertSeller()
 	{
+		$account_type = $this->input->post('account_type');
 		$fullname = $this->input->post('fullname');
-		$publicname=$this->input->post('publicname');
-		$email=$this->input->post('email');
-		$password=$this->input->post('password');
+		$publicname = $this->input->post('publicname');
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
 
-		$add=$this->Mteemarket->insertSeller($fullname,$publicname,$email,$password);
-		if($add){
+		$add = $this->Mteemarket->insertSeller($account_type,$fullname, $publicname, $email, $password);
+		if ($add) {
 			$status = 0;
 			echo $status;
 			$seller_info = array(
-				'fullname' 	=> $fullname,
-				'email' 	=> $email
+				'publicname' => $publicname,
+				'fullname' => $fullname,
+				'email' => $email
 			);
-			$this->session->set_userdata('user',$seller_info);
-		} else{
+			$this->session->set_userdata('user', $seller_info);
+		} else {
 			$status = 1;
 			echo $status;
 		}
@@ -104,16 +109,54 @@ class Teemarket extends CI_Controller {
 
 	public function campaigns()
 	{
-		if(empty($_SESSION['user'])){
+		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
 		} else {
 			$this->load->view('campaigns_view');
 		}
 	}
 
-	public function create()
+	public function design()
 	{
-		$this->load->view('create_view');
+		$this->load->view('design_view');
+	}
+
+	public function getDesign(){
+		$src_image = $this->input->post('src_image');
+		$color_design = $this->input->post('color_design');
+
+		$colors= array();
+		array_push($colors, $color_design);
+
+		$_SESSION['product']['src_image'] = $src_image;
+		$_SESSION['product']['color'] = $colors;
+		$_SESSION['product']['colorProduct'] = $this->input->post('colorProduct');
+	}
+	public function getProduct(){
+		$_SESSION['product']['colorProduct'] = $this->input->post('colorProduct');
+        $_SESSION['product']['priceProduct'] = $this->input->post('price');
+	}
+	public function getLaunch(){
+		$_SESSION['product']['title'] = $this->input->post('title');
+		$_SESSION['product']['description'] = $this->input->post('description');
+		$_SESSION['product']['url'] = $this->input->post('url');
+		$_SESSION['product']['categorize'] = $this->input->post('categorize');
+		$_SESSION['product']['end'] = $this->input->post('end');
+		$_SESSION['product']['total_days'] = $this->input->post('total_days');
+	}
+
+	public function removeDesign(){
+		unset($_SESSION['product']['src_image']);
+	}
+
+	public function product()
+	{
+		$this->load->view('product_view');
+	}
+
+	public function launch()
+	{
+		$this->load->view('launch_view');
 	}
 
 	public function orders()
@@ -124,6 +167,28 @@ class Teemarket extends CI_Controller {
 	public function account()
 	{
 		$this->load->view('account_view');
+	}
+
+	public function changePassword()
+	{
+		$current_pass = $this->input->post('current_pass');
+		$new_pass = $this->input->post('new_pass');
+		$cf_new_pass = $this->input->post('cf_new_pass');
+
+		$edit = $this->Mteemarket->editAccount($current_pass,$new_pass, $cf_new_pass);
+		if ($edit) {
+			$status = 0;
+			echo $status;
+			$seller_info = array(
+				'publicname' => $publicname,
+				'fullname' => $fullname,
+				'email' => $email
+			);
+			$this->session->set_userdata('user', $seller_info);
+		} else {
+			$status = 1;
+			echo $status;
+		}
 	}
 
 	public function payment()

@@ -1,74 +1,3 @@
-$('.campaigns').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
-});
-$('.create').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/create';
-});
-$('.orders').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/orders';
-});
-$('.payouts').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/settings/payouts';
-});
-$('.settings').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/settings/account';
-});
-
-//Log Out
-$('.logout').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/logout';
-});
-
-//Click time campaigns
-$('.today').click(function(event) {
-	$(".today").addClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.yesterday').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").addClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.days7').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").addClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.days30').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").addClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.alltime').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").addClass("active");
-	$(".customday").removeClass("active");
-});
-$('.customday').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").addClass("active");
-});
-
 // vars
 let result = document.querySelector('.result'),
 	img_result = document.querySelector('.img-result'),
@@ -97,14 +26,29 @@ upload.addEventListener('change', (e) => {
 				// append new image
 				result.appendChild(img);
 				// show save btn and options
-				// save.classList.remove('hide');
-				// options.classList.remove('hide');
+				save.classList.remove('hide');
+				options.classList.remove('hide');
 				// init cropper
-				// cropper = new Cropper(img);
+				cropper = new Cropper(img);
 			}
 		};
 		reader.readAsDataURL(e.target.files[0]);
 	}
+});
+
+//Click button remove image
+$('.remove_image').click(function (event) {
+	$.ajax({
+		url: 'http://localhost:8012/teemarket/seller/create/remove_design',
+		type: 'post',
+		success:function(res){
+			console.log("Remove success")
+			window.location.href = 'http://localhost:8012/teemarket/seller/create/design';
+		},
+		error:function(res){
+			console.log("Ajax call error.");
+		}
+	});
 });
 
 // save on click
@@ -294,90 +238,32 @@ $('.black').click(function(event) {
 	$(".black").addClass("active");
 });
 
-//Hover and mouseout color
-$('.white').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(252, 252, 252)");
-});
-$('.white').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.sand').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(255, 233, 186)");
-});
-$('.sand').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.light-pink').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(255, 178, 196)");
-});
-$('.light-pink').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.ash-grey').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(214, 215, 217)");
-});
-$('.ash-grey').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+$('.next_step').click(function(event) {
+	var src_image= $('#image').attr('src');
+    var color_design = $('.bg-colors.active').css('background-color');
+	// var image =  document.getElementById("result").innerHTML;
+	// console.log(image);
+	if ($("#image").length){
+		$.ajax({
+			url: 'http://localhost:8012/teemarket/seller/create/get_design',
+			type: 'post',
+			data: {
+				src_image : src_image,
+				color_design : color_design
+			},
+			success:function(res){
+				window.location.href = 'http://localhost:8012/teemarket/seller/create/product';
+			},
+			error:function(res){
+				console.log("Ajax call error.");
+			}
+		});
+	} else {
+		toastr.error("Unfortunately, you can't sell a blank item. You need to add text or art before you can continue.");
+	}
 });
 
-$('.light-blue').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(140, 180, 232)");
-});
-$('.light-blue').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
 
-$('.daisy').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(243, 254, 43)");
-});
-$('.daisy').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.gold').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(255, 181, 2)");
-});
-$('.gold').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.tennessee-orange').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(255, 132, 0)");
-});
-$('.tennessee-orange').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.red').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(243, 0, 0)");
-});
-$('.red').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.sapphire').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(0, 97, 179)");
-});
-$('.sapphire').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.electric-green').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(0, 172, 49)");
-});
-$('.electric-green').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
-
-$('.black').hover(function(event) {
-	$(".designer-style-front").css("background-color","rgb(11, 11, 11)");
-});
-$('.black').mouseout(function(event) {
-	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
-});
 
 
 
