@@ -51,6 +51,48 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("SELECT * FROM color")->result_array();
 		return $query;
 	}
+
+	function getDataByIdSellerAndUrl($id,$url)
+	{
+		$query = $this->db->query("SELECT id FROM campaign WHERE id_seller = '$id' and url = '$url'")->result_array();
+		return $query;
+	}
+
+	function getDataCategorize()
+	{
+		$query = $this->db->query("SELECT * FROM categorize")->result_array();
+		return $query;
+	}
+
+	function getDataSubCategorize()
+	{
+		$query = $this->db->query("SELECT * FROM sub_categorize")->result_array();
+		return $query;
+	}
+
+	function insertCampaign($id,$src_image,$price,$title,$description,$url, $categorize)
+	{
+		$query = $this->db->query("INSERT INTO campaign (id_seller,design,price,title,description,url,id_sub_categorize,status) VALUES ('$id','$src_image','$price','$title','$description','$url','$categorize','active')");
+		return $query;
+	}
+
+	function getIdCampByIdSellerAndUrl($id,$url)
+	{
+		$query = $this->db->query("SELECT id FROM campaign WHERE id_seller = '$id' and url = '$url'")->result_array();
+		return $query;
+	}
+
+	function getIdColorByColorCode($code)
+	{
+		$query = $this->db->query("SELECT id FROM color WHERE color_code = '$code'")->result_array();
+		return $query;
+	}
+
+	function insertCampColors($id_campaign,$id_color)
+	{
+		$query = $this->db->query("INSERT INTO campaign_colors (id_campaign,id_color) VALUES ('$id_campaign','$id_color')");
+		return $query;
+	}
 }
 
 /* End of file test.php */

@@ -96,6 +96,7 @@ class Teemarket extends CI_Controller
 			$status = 0;
 			echo $status;
 			$seller_info = array(
+				//thieu id de co gi con doi mat khau duoc
 				'publicname' => $publicname,
 				'fullname' => $fullname,
 				'email' => $email
@@ -119,11 +120,6 @@ class Teemarket extends CI_Controller
 	public function design()
 	{
 		$data_color = $this->Mteemarket->getDataColor();
-//		var_dump($data_color);
-//		echo "<pre>";
-//		print_r($data_color);
-//		echo "</pre>";
-//		die();
 		$this->load->view('design_view',['colors' => $data_color]);
 	}
 
@@ -136,7 +132,6 @@ class Teemarket extends CI_Controller
 
 		$_SESSION['product']['src_image'] = $src_image;
 		$_SESSION['product']['color'] = $colors;
-		$_SESSION['product']['colorProduct'] = $this->input->post('colorProduct');
 	}
 
 	public function removeDesign(){
@@ -145,27 +140,72 @@ class Teemarket extends CI_Controller
 
 	public function product()
 	{
-		$data_color = $this->Mteemarket->getDataColor();
-		$this->load->view('product_view',['colors' => $data_color]);
+		if (empty($_SESSION['product']['src_image']) || empty($_SESSION['product']['color'])) {
+			redirect('http://localhost:8012/teemarket/seller/create/design');
+		} else {
+			$data_color = $this->Mteemarket->getDataColor();
+			$this->load->view('product_view',['colors' => $data_color]);
+		}
 	}
 
 	public function getProduct(){
-		$_SESSION['product']['colorProduct'] = $this->input->post('colorProduct');
-		$_SESSION['product']['priceProduct'] = $this->input->post('price');
+		$_SESSION['product']['resultColors'] = $this->input->post('resultColors');
+		$_SESSION['product']['price'] = $this->input->post('price');
 	}
 
 	public function launch()
 	{
-		$this->load->view('launch_view');
+		if (empty($_SESSION['product']['resultColors']) || empty($_SESSION['product']['price'])) {
+			redirect('http://localhost:8012/teemarket/seller/create/design');
+		} else {
+			$dataCategorize = $this->Mteemarket->getDataCategorize();
+			$dataSubCategorize = $this->Mteemarket->getDataSubCategorize();
+			$this->load->view('launch_view',['categorize' => $dataCategorize,'subcategorize' => $dataSubCategorize]);
+		}
+	}
+
+	public function checkUrl(){
+		$url = $this->input->post('url');
+		$dataUrl = $this->Mteemarket->getDataByIdSellerAndUrl($_SESSION['user']['id'],$url);
+		if (!$dataUrl) {
+			$status = 0;
+			echo $status;
+		} else {
+			$status = 1;
+			echo $status;
+		}
 	}
 
 	public function getLaunch(){
+		$arrayIdColor = array();
+		for ($i = 0; $i < count($_SESSION['product']['resultColors']); $i++){
+			$dataIdColor = $this->Mteemarket->getIdColorByColorCode($_SESSION['product']['resultColors'][$i]);
+			array_push($arrayIdColor,$dataIdColor);
+		}
 		$_SESSION['product']['title'] = $this->input->post('title');
 		$_SESSION['product']['description'] = $this->input->post('description');
 		$_SESSION['product']['url'] = $this->input->post('url');
 		$_SESSION['product']['categorize'] = $this->input->post('categorize');
-		$_SESSION['product']['end'] = $this->input->post('end');
-		$_SESSION['product']['total_days'] = $this->input->post('total_days');
+
+		$addCamp = $this->Mteemarket->insertCampaign($_SESSION['user']['id'],$_SESSION['product']['src_image'],$_SESSION['product']['price'],$_SESSION['product']['title'],$_SESSION['product']['description'],$_SESSION['product']['url'],$_SESSION['product']['categorize']);
+		if ($addCamp) {
+			$dataIdCamp = $this->Mteemarket->getIdCampByIdSellerAndUrl($_SESSION['user']['id'],$_SESSION['product']['url']);
+			if ($dataIdCamp) {
+				//Insert Campaign Colors
+				for ($i = 0; $i < count($arrayIdColor); $i++){
+					$addCampColors = $this->Mteemarket->insertCampColors($dataIdCamp[0]['id'],$arrayIdColor[$i][0]['id']);
+				}
+				unset($_SESSION['product']);
+				$status = 0;
+				echo $status;
+			} else {
+				$status = 1;
+				echo $status;
+			}
+		} else {
+			$status = 2;
+			echo $status;
+		}
 	}
 
 	public function orders()

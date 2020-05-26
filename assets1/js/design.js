@@ -37,7 +37,7 @@ upload.addEventListener('change', (e) => {
 });
 
 //Click button remove image
-$('.remove_image').click(function (event) {
+$('.remove-image').click(function (event) {
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/create/remove_design',
 		type: 'post',
@@ -50,7 +50,7 @@ $('.remove_image').click(function (event) {
 	});
 });
 
-$('.next_step').click(function(event) {
+$('.next-step').click(function(event) {
 	var src_image= $('#image').attr('src');
 	var color_design = $('.bg-colors.active').css('background-color');
 	if ($("#image").length){

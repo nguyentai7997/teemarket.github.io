@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/launch.css">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -26,6 +27,9 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/slidepanel/slidePanel.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
+
+	<!-- Plugins For This Page -->
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/toastr/toastr.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -127,70 +131,52 @@
 											<div class="example">
 												<form action="#">
 													<div class="form-group required-field">
-														<label style="color: #fb8c00">Title</label>
+														<label style="color: #424242">Title</label>
 														<input type="text" class="form-control title" required maxlength="80">
 														<div class="text">Summarize your campaign in 80 characters or less</div>
+														<div class="error title-required">The title field is required.</div>
 													</div><!-- End .form-group -->
 
 													<div class="form-group required-field">
-														<label style="color: #fb8c00">Description</label>
-														<textarea class="border description" rows="7" style="width: 100%"></textarea>
+														<label style="color: #424242">Description</label>
+														<textarea class="border description" rows="7" style="width: 100%" maxlength="300"></textarea>
 														<div class="text">Let your buyers know why they should buy your tee in 300 characters or less. You can also include info on the design or designer!</div>
+														<div class="error description-required">The description field is required.</div>
 													</div><!-- End .form-group -->
 
 													<div class="form-group required-field">
-														<label style="color: #fb8c00">URL</label>
+														<label style="color: #424242">URL</label>
 														<div class="input-group">
-															<span class="input-group-addon">http://localhost:8012/teemarket/<?php echo $_SESSION['user']['publicname']; ?></span>
-															<input type="text" class="form-control url">
+															<span class="input-group-addon">http://localhost:8012/teemarket/<?php echo $_SESSION['user']['publicname']; ?>/</span>
+															<input type="text" class="form-control url" maxlength="100" style="text-transform: lowercase">
 														</div>
 														<div class="text">This is where you will send buyers to view your campaign.</div>
+														<div class="error url-invalid">Invalid characters in the URL. The length of the URL should be between 4-100 characters. Words may be separated by "-"</div>
+														<div class="error url-error">URL is already taken.</div>
 													</div>
 
 													<div class="form-group required-field">
-														<label style="color: #fb8c00">Categorize Your Campaign</label>
+														<label style="color: #424242">Categorize Your Campaign</label>
 														<div class="select-custom">
 															<select class="form-control" title='Choose one of the following...' name="categorize">
-																<option value="" selected>Choose one of the following...</option>
-																<optgroup label="Hobbies">
-																	<option value="fishing">Fishing</option>
-																	<option value="fitness">Fitness</option>
-																	<option value="hunting">Hunting</option>
-																	<option value="music">Music</option>
+																<option value="0" selected>Please Choose...</option>
+																<?php foreach ($categorize as $key => $value1) { ?>
+																<optgroup class="text-uppercase" label="<?php echo $value1['categorize']; ?>">
+																	<?php foreach ($subcategorize as $key => $value2) {
+																		if ($value2['id_categorize'] == $value1['id']) {?>
+																	<option value="<?php echo $value2['id']; ?>"><?php echo strtoupper($value2['sub_categorize']); ?></option>
+																	<?php }
+																	} ?>
 																</optgroup>
-																<optgroup label="Sport">
-																	<option value="football">Football</option>
-																	<option value="basketball">Basketball</option>
-																</optgroup>
+																<?php } ?>
 															</select>
 														</div><!-- End .select-custom -->
 													</div><!-- End .form-group -->
-
-													<div class="form-group required-field">
-														<label style="color: #fb8c00">Campaign Length</label>
-														<div class="input-daterange" data-plugin="datepicker">
-															<div class="row">
-																<div class="col-8">
-																	<div class="input-group">
-																		<span class="input-group-addon">End Date</span>
-																		<input type="date" class="form-control end" name="end"/>
-																	</div>
-																</div>
-																<div class="col-4">
-																	<div class="input-group">
-																		<span class="input-group-addon">Total Days</span>
-																		<input disabled class="form-control total-days text-center" name="length" value="7 Days"/>
-																	</div>
-																</div>
-
-															</div>
-														</div>
-													</div><!-- End .form-group -->
 													<div class="buttonstep float-right mt-20">
-														<button type="button" class="btn btn-md back_step">
+														<button type="button" class="btn btn-md back-step">
 															<i class="fa fa-arrow-left"></i> Back
 														</button>
-														<button type="button" class="btn btn-md next_step" style="background-color: #fb8c00; color: white">
+														<button type="button" class="btn btn-md next-step" style="background-color: #fb8c00; color: white">
 															Launch <i class="fa fa-arrow-right"></i>
 														</button>
 													</div>
@@ -234,6 +220,7 @@
 
 <!-- Plugins For This Page -->
 <script src="<?= base_url()?>global/vendor/jquery-placeholder/jquery.placeholder.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/toastr/toastr.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -263,6 +250,8 @@
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/jquery-placeholder.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/input-group-file.minfd53.js?v4.0.1"></script>
+
+<script src="<?= base_url()?>global/js/Plugin/toastr.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>

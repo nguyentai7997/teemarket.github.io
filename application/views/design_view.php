@@ -135,7 +135,7 @@
 									<input type="file" id="file-input">
 									<div class="example">
 										<?php if(!empty($_SESSION['product']['src_image'])){ ?>
-											<button class="remove_image" style="cursor: pointer"><i class="icon ion-ios-trash"></i></button> Image
+											<button class="remove-image" style="cursor: pointer"><i class="icon ion-ios-trash"></i></button> Image
 										<?php } ?>
 									</div>
 								</div>
@@ -165,10 +165,10 @@
 										<div class="list-colors product-color-list" id="product-list-colors">
 											<?php foreach ($colors as $key => $value) { ?>
 											<span class="bg-colors <?php echo $value['color'] ?> <?php if (isset($_SESSION['product'])) {
-												if($_SESSION['product']['color'][0] == "rgb"."(".$value['red'].", ".$value['green'].", ".$value['blue'].")") {echo 'active';}
+												if($_SESSION['product']['color'][0] == $value['color_code']) {echo 'active';}
 											} else {
-												if($value['red'] == 252 && $value['green'] == 252 && $value['blue'] == 252) {echo 'active';}
-											} ?>"  style="background-color: rgb(<?php echo $value['red']; ?>,<?php echo $value['green'] ?>,<?php echo $value['blue'] ?>);"></span>
+												if($value['color_code'] == "rgb(252, 252, 252)") {echo 'active';}
+											} ?>"  style="background-color: <?php echo $value['color_code'] ?>;"></span>
 											<?php } ?>
 										</div>
 										<div class="product-prices text-center">
@@ -184,7 +184,7 @@
 													</div>
 												</div>
 											</div>
-											<button type="button" class="btn btn-md next_step" style="background-color: #fb8c00; color: white">
+											<button type="button" class="btn btn-md next-step" style="background-color: #fb8c00; color: white">
 												<i class="fa fa-arrow-right"></i> Next
 											</button>
 										</div>

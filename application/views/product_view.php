@@ -152,7 +152,10 @@
 															<div class="col-12">
 																<div class="list-colors product-color-list" id="product-color-list">
 																	<?php foreach ($colors as $key => $value) { ?>
-																		<span class="bg-colors <?php echo $value['color'] ?> <?php if($_SESSION['product']['color'][0] == "rgb"."(".$value['red'].", ".$value['green'].", ".$value['blue'].")") {echo 'active selected-color';} ?>" style="background-color: rgb(<?php echo $value['red']; ?>,<?php echo $value['green'] ?>,<?php echo $value['blue'] ?>);"></span>
+																		<span class="bg-colors <?php echo $value['color'] ?> <?php if($_SESSION['product']['color'][0] == $value['color_code']) {echo 'active selected-color ';}
+																		if (isset($_SESSION['product']['resultColors'])){for ( $i = 0; $i < count($_SESSION['product']['resultColors']); $i++) {
+																			if($_SESSION['product']['resultColors'][$i] == $value['color_code'] && $_SESSION['product']['resultColors'][$i] != $_SESSION['product']['color'][0]){echo 'active';}
+																		}}?>" style="background-color: <?php echo $value['color_code'] ?>;"></span>
 																	<?php } ?>
 																</div>
 															</div>
@@ -187,10 +190,10 @@
 															<span class="small ">You can sell each product for any price you like. The actual profit then depends on the number of sales. We've prefilled the recommended prices for you, but feel free to change them at your will!</span>
 														</div>
 														<div class="buttonstep float-right mt-20">
-															<button type="button" class="btn btn-md back_step">
+															<button type="button" class="btn btn-md back-step">
 																<i class="fa fa-arrow-left"></i> Back
 															</button>
-															<button type="button" class="btn btn-md next_step" style="background-color: #fb8c00; color: white">
+															<button type="button" class="btn btn-md next-step" style="background-color: #fb8c00; color: white">
 																Next <i class="fa fa-arrow-right"></i>
 															</button>
 														</div>
