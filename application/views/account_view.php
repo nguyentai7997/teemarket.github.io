@@ -29,6 +29,13 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
 
+	<!-- Plugins For This Page -->
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/toastr/toastr.minfd53.css?v4.0.1">
+
+	<!-- Page -->
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/uikit/modals.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/advanced/toastr.minfd53.css?v4.0.1">
+
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
@@ -51,7 +58,7 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition">
+<body class="animsition site-menubar-unfold">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -217,11 +224,27 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 <!-- End Page -->
-
+<!-- Modal -->
+<div class="modal fade modal-success" id="exampleModalSuccess" aria-hidden="true"
+	 aria-labelledby="exampleModalSuccess" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Succes</h4>
+			</div>
+			<div class="modal-body">
+				<p>You have successfully changed your password</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
 <?php include("seller_footer_view.php") ?>
 
 <!-- Core  -->
@@ -241,6 +264,9 @@
 <script src="<?= base_url()?>global/vendor/intro-js/intro.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/screenfull/screenfull.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
+
+<!-- Plugins For This Page -->
+<script src="<?= base_url()?>global/vendor/toastr/toastr.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -267,6 +293,7 @@
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
+<script src="<?= base_url()?>global/js/Plugin/toastr.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->

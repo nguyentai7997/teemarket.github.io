@@ -34,15 +34,16 @@ class Teemarket extends CI_Controller
 		$emailSignIn = $this->input->post('emailSignIn');
 		$passwordSignIn = $this->input->post('passwordSignIn');
 
-		$data = $this->Mteemarket->checkDataSignIn($emailSignIn, $passwordSignIn);
+		$data = $this->Mteemarket->getDataSignIn($emailSignIn, $passwordSignIn);
 
 		if ($data) {
 			$status = 0;
 			echo $status;
 			$seller_info = array(
+				'id' => $data[0]['id'],
 				'publicname' => $data[0]['publicname'],
 				'fullname' => $data[0]['fullname'],
-				'email' => $data[0]['email']
+				'email' => $data[0]['email'],
 			);
 			$this->session->set_userdata('user', $seller_info);
 		} else {
@@ -67,7 +68,6 @@ class Teemarket extends CI_Controller
 			$status = 1;
 			echo $status;
 		}
-
 	}
 
 	public function checkEmail()
@@ -171,22 +171,23 @@ class Teemarket extends CI_Controller
 
 	public function changePassword()
 	{
+		$id = $_SESSION['user']['id'];
 		$current_pass = $this->input->post('current_pass');
 		$new_pass = $this->input->post('new_pass');
-		$cf_new_pass = $this->input->post('cf_new_pass');
 
-		$edit = $this->Mteemarket->editAccount($current_pass,$new_pass, $cf_new_pass);
-		if ($edit) {
-			$status = 0;
-			echo $status;
-			$seller_info = array(
-				'publicname' => $publicname,
-				'fullname' => $fullname,
-				'email' => $email
-			);
-			$this->session->set_userdata('user', $seller_info);
+		$data = $this->Mteemarket->getPassByIdAccount($id);
+
+		if ($current_pass == $data[0]['password']){
+			$update = $this->Mteemarket->updatePassword($id, $new_pass);
+			if ($update) {
+				$status = 0;
+				echo $status;
+			} else {
+				$status = 1;
+				echo $status;
+			}
 		} else {
-			$status = 1;
+			$status = 2;
 			echo $status;
 		}
 	}

@@ -111,13 +111,17 @@ $("#password").change(function (event) {
 	if (!regPass1.exec(password)){
 		$('.password-required').css('display','block');
 		$('.password-error').css('display','none');
+		if (password == ""){
+			$('.cfpassword-required').css('display', 'none');
+			$('.cfpassword-error').css('display', 'none');
+		}
 	} else{
 		$('.password-required').css('display','none');
 		if (regPass2.exec(password)){
 			$('.password-error').css('display','none');
 			$('.cfpassword-required').css('display', 'none');
 			var cfpassword  = $('#cfpassword').val();
-			if (cfpassword == password){
+			if (cfpassword == "" || cfpassword == password){
 				$('.cfpassword-error').css('display', 'none');
 			} else {
 				$('.cfpassword-error').css('display', 'block');
@@ -133,21 +137,16 @@ $("#password").change(function (event) {
 $("#cfpassword").change(function(event){
 	var password = $('#password').val();
 	var cfpassword  = $('#cfpassword').val();
-	if (password == ''){
+	if (password == '' || password == cfpassword){
 		$('.cfpassword-required').css('display', 'none');
 		$('.cfpassword-error').css('display', 'none');
 	} else {
-		if(cfpassword == password) {
-			$('.cfpassword-required').css('display', 'none');
+		if(cfpassword == '') {
+			$('.cfpassword-required').css('display', 'block');
 			$('.cfpassword-error').css('display', 'none');
 		} else {
-			if(cfpassword == '') {
-				$('.cfpassword-required').css('display', 'block');
-				$('.cfpassword-error').css('display', 'none');
-			} else {
-				$('.cfpassword-required').css('display', 'none');
-				$('.cfpassword-error').css('display', 'block');
-			}
+			$('.cfpassword-required').css('display', 'none');
+			$('.cfpassword-error').css('display', 'block');
 		}
 	}
 });
