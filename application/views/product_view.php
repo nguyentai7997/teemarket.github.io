@@ -151,18 +151,9 @@
 															</div>
 															<div class="col-12">
 																<div class="list-colors product-color-list" id="product-color-list">
-																	<span class="bg-colors white <?php if($_SESSION['product']['color'][0] == "rgb(252, 252, 252)"){ echo 'active'; } else{} ?>"  style="background-color: rgb(252, 252, 252); pointer-events: none;"></span>
-																	<span class="bg-colors sand <?php if($_SESSION['product']['color'][0] == "rgb(255, 233, 186)"){ echo 'active'; } else{} ?>" style="background-color: rgb(255, 233, 186);"></span>
-																	<span class="bg-colors light-pink <?php if($_SESSION['product']['color'][0] == "rgb(255, 178, 196)"){ echo 'active'; } else{} ?>" style="background-color: rgb(255, 178, 196);"></span>
-																	<span class="bg-colors ash-grey <?php if($_SESSION['product']['color'][0] == "rgb(214, 215, 217)"){ echo 'active'; } else{} ?>" style="background-color: rgb(214, 215, 217);"></span>
-																	<span class="bg-colors light-blue <?php if($_SESSION['product']['color'][0] == "rgb(140, 180, 232)"){ echo 'active'; } else{} ?>" style="background-color: rgb(140, 180, 232);"></span>
-																	<span class="bg-colors daisy <?php if($_SESSION['product']['color'][0] == "rgb(243, 254, 43)"){ echo 'active'; } else{} ?>" style="background-color: rgb(243, 254, 43);"></span>
-																	<span class="bg-colors gold <?php if($_SESSION['product']['color'][0] == "rgb(255, 181, 2)"){ echo 'active'; } else{} ?>" style="background-color: rgb(255, 181, 2);"></span>
-																	<span class="bg-colors tennessee-orange <?php if($_SESSION['product']['color'][0] == "rgb(255, 132, 0)"){ echo 'active'; } else{} ?>" style="background-color: rgb(255, 132, 0);"></span>
-																	<span class="bg-colors red <?php if($_SESSION['product']['color'][0] == "rgb(243, 0, 0)"){ echo 'active'; } else{} ?>" style="background-color: rgb(243, 0, 0);"></span>
-																	<span class="bg-colors sapphire <?php if($_SESSION['product']['color'][0] == "rgb(0, 97, 179)"){ echo 'active'; } else{} ?>" style="background-color: rgb(0, 97, 179);"></span>
-																	<span class="bg-colors electric-green <?php if($_SESSION['product']['color'][0] == "rgb(0, 172, 49)"){ echo 'active'; } else{} ?>" style="background-color: rgb(0, 172, 49);"></span>
-																	<span class="bg-colors black <?php if($_SESSION['product']['color'][0] == "rgb(11, 11, 11)"){ echo 'active'; } else{} ?>" style="background-color: rgb(11, 11, 11);"></span>
+																	<?php foreach ($colors as $key => $value) { ?>
+																		<span class="bg-colors <?php echo $value['color'] ?> <?php if($_SESSION['product']['color'][0] == "rgb"."(".$value['red'].", ".$value['green'].", ".$value['blue'].")") {echo 'active selected-color';} ?>" style="background-color: rgb(<?php echo $value['red']; ?>,<?php echo $value['green'] ?>,<?php echo $value['blue'] ?>);"></span>
+																	<?php } ?>
 																</div>
 															</div>
 														</div>
@@ -270,7 +261,6 @@
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-<script src="<?= base_url()?>assets1/js/create.js"></script>
 <script src="<?= base_url()?>assets1/js/product.js"></script>
 
 <!-- Google Analytics -->

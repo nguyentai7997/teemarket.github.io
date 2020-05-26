@@ -266,7 +266,6 @@
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-<script src="<?= base_url()?>assets1/js/create.js"></script>
 <script src="<?= base_url()?>assets1/js/launch.js"></script>
 
 <!-- Google Analytics -->

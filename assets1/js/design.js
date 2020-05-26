@@ -42,7 +42,6 @@ $('.remove_image').click(function (event) {
 		url: 'http://localhost:8012/teemarket/seller/create/remove_design',
 		type: 'post',
 		success:function(res){
-			console.log("Remove success")
 			window.location.href = 'http://localhost:8012/teemarket/seller/create/design';
 		},
 		error:function(res){
@@ -51,22 +50,37 @@ $('.remove_image').click(function (event) {
 	});
 });
 
-// save on click
-// save.addEventListener('click',(e)=>{
-// 	e.preventDefault();
-// 	// get result to data uri
-// 	let imgSrc = cropper.getCroppedCanvas({
-// 		width: img_w.value // input value
-// 	}).toDataURL();
-// 	// remove hide class of img
-// 	cropped.classList.remove('hide');
-// 	img_result.classList.remove('hide');
-// 	// show image cropped
-// 	cropped.src = imgSrc;
-// 	dwn.classList.remove('hide');
-// 	dwn.download = 'imagename.png';
-// 	dwn.setAttribute('href',imgSrc);
-// });
+$('.next_step').click(function(event) {
+	var src_image= $('#image').attr('src');
+	var color_design = $('.bg-colors.active').css('background-color');
+	if ($("#image").length){
+		$.ajax({
+			url: 'http://localhost:8012/teemarket/seller/create/get_design',
+			type: 'post',
+			data: {
+				src_image : src_image,
+				color_design : color_design
+			},
+			success:function(res){
+				window.location.href = 'http://localhost:8012/teemarket/seller/create/product';
+			},
+			error:function(res){
+				console.log("Ajax call error.");
+			}
+		});
+	} else {
+		$(".animsition").addClass("modal-open");
+		$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+		$(".modal-danger").addClass("show");
+		$(".modal-danger").css("display","block");
+		$(".close-modal").click(function (event) {
+			$(".modal-danger").removeClass("show");
+			$(".modal-danger").css("display","none");
+			$(".modal-backdrop").remove();
+			$(".animsition").removeClass("modal-open");
+		});
+	}
+});
 
 //Choose color
 $('.white').click(function(event) {
@@ -238,30 +252,129 @@ $('.black').click(function(event) {
 	$(".black").addClass("active");
 });
 
-$('.next_step').click(function(event) {
-	var src_image= $('#image').attr('src');
-    var color_design = $('.bg-colors.active').css('background-color');
-	// var image =  document.getElementById("result").innerHTML;
-	// console.log(image);
-	if ($("#image").length){
-		$.ajax({
-			url: 'http://localhost:8012/teemarket/seller/create/get_design',
-			type: 'post',
-			data: {
-				src_image : src_image,
-				color_design : color_design
-			},
-			success:function(res){
-				window.location.href = 'http://localhost:8012/teemarket/seller/create/product';
-			},
-			error:function(res){
-				console.log("Ajax call error.");
-			}
-		});
-	} else {
-		toastr.error("Unfortunately, you can't sell a blank item. You need to add text or art before you can continue.");
-	}
+if($(".white").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(252, 252, 252)");
+}
+if($(".sand").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(255, 233, 186)");
+}
+if($(".light-pink").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(255, 178, 196)");
+}
+if($(".ash-grey").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(214, 215, 217)");
+}
+if($(".light-blue").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(140, 180, 232)");
+}
+if($(".daisy").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(243, 254, 43)");
+}
+if($(".gold").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(255, 181, 2)");
+}
+if($(".tennessee-orange").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(255, 132, 0)");
+}
+if($(".red").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(243, 0, 0)");
+}
+if($(".sapphire").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(0, 97, 179)");
+}
+if($(".electric-green").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(0, 172, 49)");
+}
+if($(".black").hasClass("active")){
+	$(".designer-style-front").css("background-color","rgb(11, 11, 11)");
+}
+
+//Hover and mouseout color
+$('.white').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(252, 252, 252)");
 });
+$('.white').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.sand').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(255, 233, 186)");
+});
+$('.sand').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.light-pink').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(255, 178, 196)");
+});
+$('.light-pink').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.ash-grey').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(214, 215, 217)");
+});
+$('.ash-grey').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.light-blue').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(140, 180, 232)");
+});
+$('.light-blue').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.daisy').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(243, 254, 43)");
+});
+$('.daisy').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.gold').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(255, 181, 2)");
+});
+$('.gold').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.tennessee-orange').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(255, 132, 0)");
+});
+$('.tennessee-orange').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.red').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(243, 0, 0)");
+});
+$('.red').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.sapphire').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(0, 97, 179)");
+});
+$('.sapphire').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.electric-green').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(0, 172, 49)");
+});
+$('.electric-green').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+$('.black').hover(function(event) {
+	$(".designer-style-front").css("background-color","rgb(11, 11, 11)");
+});
+$('.black').mouseout(function(event) {
+	$(".designer-style-front").css("background-color",$(".bg-colors.active").css("background-color"));
+});
+
+
 
 
 

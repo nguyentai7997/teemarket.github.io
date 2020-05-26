@@ -45,6 +45,12 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("UPDATE account SET password = '$new_pass' WHERE id = '$id'");
 		return $query;
 	}
+
+	function getDataColor()
+	{
+		$query = $this->db->query("SELECT * FROM color")->result_array();
+		return $query;
+	}
 }
 
 /* End of file test.php */

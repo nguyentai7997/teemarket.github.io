@@ -101,7 +101,7 @@ $('.change-password').click(function(event) {
 				$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 				$(".modal-success").addClass("show");
 				$(".modal-success").css("display","block");
-				$(".close").click(function (event) {
+				$(".close-modal").click(function (event) {
 					$(".modal-success").removeClass("show");
 					$(".modal-success").css("display","none");
 					$(".modal-backdrop").remove();

@@ -34,6 +34,7 @@
 
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/advanced/toastr.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/uikit/modals.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -162,18 +163,13 @@
 											<label for="fields">Choose Product Color</label>
 										</div>
 										<div class="list-colors product-color-list" id="product-list-colors">
-											<span class="bg-colors white active" style="background-color: rgb(252, 252, 252);"></span>
-											<span class="bg-colors sand" style="background-color: rgb(255, 233, 186);"></span>
-											<span class="bg-colors light-pink" style="background-color: rgb(255, 178, 196);"></span>
-											<span class="bg-colors ash-grey" style="background-color: rgb(214, 215, 217);"></span>
-											<span class="bg-colors light-blue" style="background-color: rgb(140, 180, 232);"></span>
-											<span class="bg-colors daisy" style="background-color: rgb(243, 254, 43);"></span>
-											<span class="bg-colors gold" style="background-color: rgb(255, 181, 2);"></span>
-											<span class="bg-colors tennessee-orange" style="background-color: rgb(255, 132, 0);"></span>
-											<span class="bg-colors red" style="background-color: rgb(243, 0, 0);"></span>
-											<span class="bg-colors sapphire" style="background-color: rgb(0, 97, 179);"></span>
-											<span class="bg-colors electric-green" style="background-color: rgb(0, 172, 49);"></span>
-											<span class="bg-colors black" style="background-color: rgb(11, 11, 11);"></span>
+											<?php foreach ($colors as $key => $value) { ?>
+											<span class="bg-colors <?php echo $value['color'] ?> <?php if (isset($_SESSION['product'])) {
+												if($_SESSION['product']['color'][0] == "rgb"."(".$value['red'].", ".$value['green'].", ".$value['blue'].")") {echo 'active';}
+											} else {
+												if($value['red'] == 252 && $value['green'] == 252 && $value['blue'] == 252) {echo 'active';}
+											} ?>"  style="background-color: rgb(<?php echo $value['red']; ?>,<?php echo $value['green'] ?>,<?php echo $value['blue'] ?>);"></span>
+											<?php } ?>
 										</div>
 										<div class="product-prices text-center">
 											<div id="product-price">
@@ -205,6 +201,25 @@
 	</div>
 </div>
 <!-- End Page -->
+
+<!-- Modal -->
+<div class="modal fade modal-danger" id="exampleModalDanger" aria-hidden="true"
+	 aria-labelledby="exampleModalDanger" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Error</h4>
+			</div>
+			<div class="modal-body">
+				<p>Unfortunately, you can't sell a blank item. You need to add text or art before you can continue.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
 
 <?php include("seller_footer_view.php") ?>
 
@@ -260,7 +275,6 @@
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-<script src="<?= base_url()?>assets1/js/create.js"></script>
 <script src="<?= base_url()?>assets1/js/design.js"></script>
 
 <!-- Google Analytics -->

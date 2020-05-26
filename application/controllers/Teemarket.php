@@ -118,7 +118,13 @@ class Teemarket extends CI_Controller
 
 	public function design()
 	{
-		$this->load->view('design_view');
+		$data_color = $this->Mteemarket->getDataColor();
+//		var_dump($data_color);
+//		echo "<pre>";
+//		print_r($data_color);
+//		echo "</pre>";
+//		die();
+		$this->load->view('design_view',['colors' => $data_color]);
 	}
 
 	public function getDesign(){
@@ -132,10 +138,27 @@ class Teemarket extends CI_Controller
 		$_SESSION['product']['color'] = $colors;
 		$_SESSION['product']['colorProduct'] = $this->input->post('colorProduct');
 	}
+
+	public function removeDesign(){
+		unset($_SESSION['product']);
+	}
+
+	public function product()
+	{
+		$data_color = $this->Mteemarket->getDataColor();
+		$this->load->view('product_view',['colors' => $data_color]);
+	}
+
 	public function getProduct(){
 		$_SESSION['product']['colorProduct'] = $this->input->post('colorProduct');
-        $_SESSION['product']['priceProduct'] = $this->input->post('price');
+		$_SESSION['product']['priceProduct'] = $this->input->post('price');
 	}
+
+	public function launch()
+	{
+		$this->load->view('launch_view');
+	}
+
 	public function getLaunch(){
 		$_SESSION['product']['title'] = $this->input->post('title');
 		$_SESSION['product']['description'] = $this->input->post('description');
@@ -143,20 +166,6 @@ class Teemarket extends CI_Controller
 		$_SESSION['product']['categorize'] = $this->input->post('categorize');
 		$_SESSION['product']['end'] = $this->input->post('end');
 		$_SESSION['product']['total_days'] = $this->input->post('total_days');
-	}
-
-	public function removeDesign(){
-		unset($_SESSION['product']['src_image']);
-	}
-
-	public function product()
-	{
-		$this->load->view('product_view');
-	}
-
-	public function launch()
-	{
-		$this->load->view('launch_view');
 	}
 
 	public function orders()
@@ -206,6 +215,7 @@ class Teemarket extends CI_Controller
 	{
 		// Xóa session name
 		unset($_SESSION['user']);
+		unset($_SESSION['product']);
 		redirect('http://localhost:8012/teemarket/');
 	}
 
