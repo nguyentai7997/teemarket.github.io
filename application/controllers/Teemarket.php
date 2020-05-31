@@ -12,12 +12,33 @@ class Teemarket extends CI_Controller
 
 	public function index()
 	{
-//		$res = $this->Mporto->getDataAdidas();
-//		$res_1 = $this->Mporto->getDataNike();
-//		$res_2 = $this->Mporto->getProductTypeAdidas();
-//		$res_3 = $this->Mporto->getProductTypeNike();
-		$this->load->view('teemarket_view');
+		$dataCampaign = $this->Mteemarket->getDataCampaign();
+		$dataCategory = $this->Mteemarket->getDataCategorize();
+        $allData  = array();
+
+        for ($i = 0; $i< count($dataCampaign); $i++ ){
+			$publicname = $this->Mteemarket->getPublicnameByIdCamp($dataCampaign[$i]['id']);
+			$dataColor = $this->Mteemarket->getDataColorByIdCampaign($dataCampaign[$i]['id']);
+			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'color_code' => $dataColor[0]['color_code'], 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $publicname[0]['publicname']];
+            array_push($allData, $data);
+		}
+		$this->load->view('teemarket_view',['categorize' => $dataCategory,'allData'=>$allData]);
 	}
+
+	public function viewProduct($publicname,$url)
+	{
+        $data = $this->Mteemarket->getDataByPublicnameAndUrl($publicname, $url);
+        $idcolorByIdCamp = $this->Mteemarket->getDataColorsByIdCam($data[0]['id']);
+
+        $colors = array();
+        for ( $i=0; $i<count($idcolorByIdCamp); $i++ ){
+        	$dataColor = $this->Mteemarket->getDataColors($idcolorByIdCamp[$i]['id_color']);
+        	array_push($colors, $dataColor);
+		}
+
+		$this->load->view('sanpham_view', ['colors' => $colors, 'dataCamp'=> $data]);
+	}
+
 
 	public function trackOrder()
 	{
@@ -177,10 +198,13 @@ class Teemarket extends CI_Controller
 	}
 
 	public function getLaunch(){
-		$arrayIdColor = array();
+		$dataIdColorDesign = $this->Mteemarket->getIdColorByColorCode($_SESSION['product']['color'][0]);
+		$arrayIdColor = array($dataIdColorDesign);
 		for ($i = 0; $i < count($_SESSION['product']['resultColors']); $i++){
-			$dataIdColor = $this->Mteemarket->getIdColorByColorCode($_SESSION['product']['resultColors'][$i]);
-			array_push($arrayIdColor,$dataIdColor);
+			if($_SESSION['product']['resultColors'][$i] != $_SESSION['product']['color'][0]){
+				$dataIdColor = $this->Mteemarket->getIdColorByColorCode($_SESSION['product']['resultColors'][$i]);
+				array_push($arrayIdColor,$dataIdColor);
+			}
 		}
 		$_SESSION['product']['title'] = $this->input->post('title');
 		$_SESSION['product']['description'] = $this->input->post('description');

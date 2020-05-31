@@ -93,6 +93,42 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("INSERT INTO campaign_colors (id_campaign,id_color) VALUES ('$id_campaign','$id_color')");
 		return $query;
 	}
+
+	function getDataCampaign()
+	{
+		$dataCamps = $this->db->query("SELECT * FROM campaign")->result_array();
+		return $dataCamps;
+
+	}
+	function getDataColorByIdCampaign($idCamp)
+	{
+		$idColor = $this->db->query("SELECT id_color FROM campaign_colors  WHERE id_campaign = '$idCamp' ")->result_array();
+		$id_color = $idColor[0]["id_color"];
+		$colorByIdColor = $this->db->query("SELECT * FROM color WHERE id = '$id_color'")->result_array();
+		return $colorByIdColor;
+	}
+
+	function getDataColorsByIdCam($idCamp){
+		$idColors = $this->db->query("SELECT id_color FROM campaign_colors  WHERE id_campaign = '$idCamp' ")->result_array();
+		return $idColors;
+	}
+	function getDataColors ($id){
+		$colors = $this->db->query("SELECT * FROM color WHERE id = '$id' ")->result_array();
+		return $colors;
+	}
+	function getPublicnameByIdCamp($idCamp){
+		$publicname = $this->db->query("SELECT publicname FROM campaign where id='$idCamp'")->result_array();
+		//$id_seller = $dataCamps[0]['id_seller'];
+		//$publicName = $this->db->query("SELECT publicname FROM account where id='$id_seller'")->result_array();
+		return $publicname ;
+	}
+	function getDataByPublicnameAndUrl($publicname, $url){
+		$data = $this->db->query("SELECT * FROM campaign where publicname ='$publicname' and url='$url'" )->result_array();
+		return $data;
+	}
+
+
+
 }
 
 /* End of file test.php */

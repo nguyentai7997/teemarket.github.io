@@ -142,7 +142,7 @@
 							</div>
 							<div class="col-6">
 								<div id="view-front" class="labView m-auto">
-									<div class="product-design designer-style-front">
+									<div class="product-design designer-style-front " style="background-color: rgb(252, 252, 252);">
 										<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
 									</div>
 									<div class="design-area design-area-front" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">

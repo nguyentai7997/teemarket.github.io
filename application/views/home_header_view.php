@@ -23,8 +23,11 @@
 						<a href="#">SHOP BY</a>
 						<div class="header-menu">
 							<ul>
-								<li><a href="#">ALL</a></li>
-								<li><a href="#">BIRTHDAY</a></li>
+								<li><a href="">All</a></li>
+								<?php foreach ($categorize as $key => $value) { ?>
+									<li><a href="<?php echo $value['categorize'] ?>"><?php  echo $value['categorize']  ?></a></li>
+								<?php } ?>
+
 							</ul>
 						</div><!-- End .header-menu -->
 					</div><!-- End .header-dropown -->

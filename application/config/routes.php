@@ -78,3 +78,5 @@ $route['seller/settings/change_password'] = 'teemarket/changePassword';
 $route['seller/settings/payment'] = 'teemarket/payment';
 $route['seller/settings/payouts'] = 'teemarket/payouts';
 $route['logout'] = 'teemarket/logout';
+
+$route['(:any)/(:any)'] = 'teemarket/viewProduct/$1/$2';
