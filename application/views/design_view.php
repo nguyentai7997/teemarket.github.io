@@ -146,7 +146,7 @@
 										<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
 									</div>
 									<div class="design-area design-area-front" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
-										<div class="image_design" style="width: 216px; height: 373px">
+										<div class="image_design" style="width: 216px; height: 302px">
 											<div class="result">
 												<?php if(!empty($_SESSION['product']['src_image'])){ ?>
 													<img id="image" src="<?php echo $_SESSION['product']['src_image']?>">

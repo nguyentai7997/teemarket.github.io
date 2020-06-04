@@ -37,7 +37,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/toastr.min.css">
 
 	<!-- Custom CSS File -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/teemarket.css">
 
 </head>
 <body>
@@ -68,7 +68,6 @@
 							<button type="button" class="btn btn-primary signin">Sign In</button>
 						</div><!-- End .form-footer -->
 					</form>
-					<p style="text-align: center"><a href="<?= base_url()?>forgot_password" style="color: #fb8c00">Forgot Password?</a></p>
 				</div><!-- End .col-md-12 -->
 				<div class="col-md-4"></div>
 			</div><!-- End .row -->
@@ -204,7 +203,7 @@
 <!-- Main JS File -->
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
 <script src="<?= base_url()?>assets/js/toastr.min.js"></script>
-<script src="<?= base_url()?>assets/js/plus.js"></script>
+<script src="<?= base_url()?>assets/js/teemarket.js"></script>
 </body>
 
 </html>

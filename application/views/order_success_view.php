@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>teemarket - Sign Up</title>
+	<title>Checkout - teemarket</title>
 
 	<meta name="keywords" content="HTML5 Template" />
 	<meta name="description" content="teemarket">
@@ -38,61 +38,22 @@
 
 	<!-- Custom CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/teemarket.css">
+	<link rel="stylesheet" href="<?= base_url()?>assets/vendor/fontawesome-free/css/all.min.css">
 
 </head>
 <body>
 <div class="page-wrapper">
 	<?php include("home_header_view.php") ?>
 
-	<main class="main" style="background-color: #f2f2f2;padding-bottom: 8rem;padding-top: 8rem">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<h2 class="title" style="text-align: center">Sign Up</h2>
-					<p style="text-align: center">Already have an account? <a href="<?= base_url()?>login" style="color: #fb8c00">Sign In</a></p>
-					<form action="">
-						<div class="form-group required-field">
-							<input type="text" class="form-control" id="fullname" placeholder="Full Name">
-							<div class="error fn-required">The full name field is required.</div>
-						</div><!-- End .form-group -->
-
-						<div class="form-group required-field">
-							<input type="text" class="form-control" id="publicname" placeholder="Public Name">
-							<div class="error pn-required">The public name field is required.</div>
-							<div class="error pn-error">Public name is already taken.</div>
-							<div class="error pn-invalid">The public name field must be a valid public name.</div>
-							<div>Your unique URL: </div>
-							<div>https://teemarket.com/<span class="public-name">public-name</span>/campaign-name </div>
-						</div><!-- End .form-group -->
-
-						<div class="form-group required-field email">
-							<input type="text" class="form-control" id="email" placeholder="Email">
-							<div class="error email-required">The email field is required.</div>
-							<div class="error email-error">Email is already registered.</div>
-							<div class="error email-invalid">The email field must be a valid email.</div>
-						</div><!-- End .form-group -->
-
-						<div class="form-group required-field">
-							<input type="password" class="form-control" id="password" placeholder="Password">
-							<div class="error password-required">The password field is required.</div>
-							<div class="error password-error">The password field must contain 8 characters including at least one number and at least one alphabetic character.</div>
-						</div><!-- End .form-group -->
-
-						<div class="form-group required-field">
-							<input type="password" class="form-control" id="cfpassword" placeholder="Confirm Password">
-							<div class="error cfpassword-required">The confirm password field is required.</div>
-							<div class="error cfpassword-error">The confirm password confirmation does not match.</div>
-						</div><!-- End .form-group -->
-
-						<div class="form-footer">
-							<button type="button" class="btn btn-primary signup">Sign Up</button>
-						</div><!-- End .form-footer -->
-					</form>
-				</div><!-- End .col-md-12 -->
-				<div class="col-md-4"></div>
-			</div><!-- End .row -->
+	<main class="main">
+		<div class="mt-6"></div><!-- margin -->
+		<div class="container text-center">
+			<h1>Order Success !</h1>
+			<p>Thank you for your order! Your order will arrive 7-21 days after the end of the campaign!</p>
+			<a href="<?= base_url() ?>" class="btn btn-outline-secondary">Continue Shopping</a>
 		</div><!-- End .container -->
+
+		<div class="mb-6"></div><!-- margin -->
 	</main><!-- End .main -->
 
 	<?php include("home_footer_view.php") ?>
@@ -105,7 +66,7 @@
 		<span class="mobile-menu-close"><i class="icon-cancel"></i></span>
 		<nav class="mobile-nav">
 			<ul class="mobile-menu">
-				<li class="active"><a href="index-2.html">Home</a></li>
+				<li><a href="index-2.html">Home</a></li>
 				<li>
 					<a href="category.html">Categories</a>
 					<ul>
@@ -225,7 +186,6 @@
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
 <script src="<?= base_url()?>assets/js/toastr.min.js"></script>
 <script src="<?= base_url()?>assets/js/teemarket.js"></script>
-
 </body>
 
 </html>

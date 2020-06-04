@@ -30,7 +30,7 @@ class Mteemarket extends CI_Model {
 
 	function getDataSignIn($email, $password)
 	{
-		$query = $this->db->query("SELECT * FROM account WHERE email = '$email' and password = '$password' and id_account_type = '1'")->result_array();
+		$query = $this->db->query("SELECT * FROM account WHERE email = '$email' and password = '$password' and account_type = 'seller'")->result_array();
 		return $query;
 	}
 
@@ -82,9 +82,9 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
-	function getIdColorByColorCode($code)
+	function getIdColorByColorCode($color_code)
 	{
-		$query = $this->db->query("SELECT id FROM color WHERE color_code = '$code'")->result_array();
+		$query = $this->db->query("SELECT id FROM color WHERE color_code = '$color_code'")->result_array();
 		return $query;
 	}
 
@@ -96,39 +96,57 @@ class Mteemarket extends CI_Model {
 
 	function getDataCampaign()
 	{
-		$dataCamps = $this->db->query("SELECT * FROM campaign")->result_array();
-		return $dataCamps;
+		$query = $this->db->query("SELECT * FROM campaign")->result_array();
+		return $query;
 
 	}
-	function getDataColorByIdCampaign($idCamp)
+	function getDataFirstColorByIdCampaign($idCampaign)
 	{
-		$idColor = $this->db->query("SELECT id_color FROM campaign_colors  WHERE id_campaign = '$idCamp' ")->result_array();
-		$id_color = $idColor[0]["id_color"];
-		$colorByIdColor = $this->db->query("SELECT * FROM color WHERE id = '$id_color'")->result_array();
-		return $colorByIdColor;
+		$allIdColor = $this->db->query("SELECT id_color FROM campaign_colors  WHERE id_campaign = '$idCampaign' ")->result_array();
+		$idFirstColor = $allIdColor[0]["id_color"];
+		$dataFirstColor = $this->db->query("SELECT * FROM color WHERE id = '$idFirstColor'")->result_array();
+		return $dataFirstColor;
 	}
 
-	function getDataColorsByIdCam($idCamp){
-		$idColors = $this->db->query("SELECT id_color FROM campaign_colors  WHERE id_campaign = '$idCamp' ")->result_array();
-		return $idColors;
+	function getDataIdColorsByIdCam($idCampaign){
+		$query = $this->db->query("SELECT id_color FROM campaign_colors  WHERE id_campaign = '$idCampaign' ")->result_array();
+		return $query;
 	}
-	function getDataColors ($id){
-		$colors = $this->db->query("SELECT * FROM color WHERE id = '$id' ")->result_array();
-		return $colors;
+	function getDataColorByIdColor($id){
+		$query = $this->db->query("SELECT * FROM color WHERE id = '$id' ")->result_array();
+		return $query;
 	}
-	function getPublicnameByIdCamp($idCamp){
-		$publicname = $this->db->query("SELECT publicname FROM campaign where id='$idCamp'")->result_array();
-		//$id_seller = $dataCamps[0]['id_seller'];
-		//$publicName = $this->db->query("SELECT publicname FROM account where id='$id_seller'")->result_array();
-		return $publicname ;
+	function getPublicnameByIdCamp($idCampaign){
+		$query = $this->db->query("SELECT publicname FROM campaign,account WHERE campaign.id_seller = account.id AND campaign.id = '$idCampaign'")->result_array();
+		return $query;
 	}
 	function getDataByPublicnameAndUrl($publicname, $url){
-		$data = $this->db->query("SELECT * FROM campaign where publicname ='$publicname' and url='$url'" )->result_array();
+		$dataIdSeller = $this->db->query("SELECT id FROM account where publicname ='$publicname'")->result_array();
+		$idSeller = $dataIdSeller[0]['id'];
+		$data = $this->db->query("SELECT * FROM campaign where id_seller ='$idSeller' and url='$url'")->result_array();
 		return $data;
 	}
 
+	function getDataProductById($id){
+		$query = $this->db->query("SELECT * FROM campaign where id ='$id'")->result_array();
+		return $query;
+	}
 
-
+	function getDataColorByColorCode($color_code){
+		$query = $this->db->query("SELECT * FROM color where color_code ='$color_code'")->result_array();
+		return $query;
+	}
+	function insertInfoCustomer($email,$fullname,$address,$country,$state,$city,$zip)
+	{
+		$insertInfoCustomer = $this->db->query("INSERT INTO info_customer ( `email`, `fullname`, `address`, `country`, `state`, `city`, `zip`, `datetime`, `status`) VALUES ('$email','$fullname','$address','$country','$state','$city','$zip',CURRENT_TIMESTAMP,'pending')");
+		$idCustomer = $this->db->query("SELECT LAST_INSERT_ID()")->result_array();
+		return $idCustomer;
+	}
+	function insertOrder($id_customer,$id_campaign,$size,$id_color,$quantity)
+	{
+		$query = $this->db->query("INSERT INTO orders ( `id_customer`, `id_campaign`, `size`, `id_color`, `quantity`) VALUES ('$id_customer','$id_campaign','$size','$id_color', '$quantity')");
+		return $query;
+	}
 }
 
 /* End of file test.php */

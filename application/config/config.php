@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8012/teemarket/';
+$config['base_url'] = 'http://localhost:8012/teemarket';
 
 /*
 |--------------------------------------------------------------------------
@@ -423,6 +423,7 @@ $config['standardize_newlines'] = FALSE;
 /*
 |--------------------------------------------------------------------------
 | Global XSS Filtering
+
 |--------------------------------------------------------------------------
 |
 | Determines whether the XSS filter is always active when GET, POST or

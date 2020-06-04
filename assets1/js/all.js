@@ -1,17 +1,17 @@
 $('.campaigns').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
+	window.location.href = 'http://localhost:8012/teemarket/campaigns';
 });
 $('.create-campaign').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/create/design';
+	window.location.href = 'http://localhost:8012/teemarket/design';
 });
 $('.orders').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/orders';
+	window.location.href = 'http://localhost:8012/teemarket/orders';
 });
 $('.payouts').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/settings/payouts';
+	window.location.href = 'http://localhost:8012/teemarket/payouts';
 });
 $('.settings').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/settings/account';
+	window.location.href = 'http://localhost:8012/teemarket/account';
 });
 //Log Out
 $('.logout').click(function(event) {

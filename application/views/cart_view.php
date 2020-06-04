@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>teemarket - Forgot Password</title>
+	<title>Cart - teemarket</title>
 
 	<meta name="keywords" content="HTML5 Template" />
 	<meta name="description" content="teemarket">
@@ -33,34 +33,128 @@
 	<!-- Main CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/style.min.css">
 
+	<!-- Thu vien thong bao -->
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/toastr.min.css">
+
 	<!-- Custom CSS File -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/custom.css">
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/teemarket.css">
+	<link rel="stylesheet" href="<?= base_url()?>assets/vendor/fontawesome-free/css/all.min.css">
 
 </head>
 <body>
 <div class="page-wrapper">
 	<?php include("home_header_view.php") ?>
 
-	<main class="main" style="background-color: #f2f2f2;padding-bottom: 8rem;padding-top: 8rem">
+	<main class="main">
+		<div class="mt-6"></div><!-- margin -->
 		<div class="container">
-			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<h2 class="title" style="text-align: center">Reset Password</h2>
-					<p style="text-align: center">Enter your sign in email below</p>
-					<form action="#">
-						<div class="form-group required-field">
-							<input type="text" class="form-control" id="email" name="email" required placeholder="Email">
-						</div><!-- End .form-group -->
+			<div class="text-center">
+				<ul class="checkout-progress-bar">
+					<li class="active">
+						<span>Shopping Cart</span>
+					</li>
+					<li>
+						<span>Review &amp; Payments</span>
+					</li>
+				</ul>
+			</div>
 
-						<div class="form-footer">
-							<button type="submit" class="btn btn-primary">Request Reset</button>
-						</div><!-- End .form-footer -->
-					</form>
-				</div><!-- End .col-md-12 -->
-				<div class="col-md-4"></div>
+			<div class="row">
+				<?php if (empty($_SESSION['product'])){ ?>
+					<div class="text-center" style="width: 100%">
+						<h1>MY SHOPPING CART IS EMPTY !</h1>'
+						<a href="<?= base_url() ?>" class="btn btn-outline-secondary">Continue Shopping</a>
+					</div><!-- End .float-left -->
+				<?php } else{?>
+				<div class="col-lg-12">
+					<h2>My Shopping Cart (<?php echo count($_SESSION['product'])?> items)</h2>
+				</div>
+				<div class="col-lg-8">
+					<div class="cart-table-container">
+						<table class="table table-cart">
+							<thead>
+							<tr>
+								<th class="product-col">Product</th>
+								<th class="qty-col">Quantity</th>
+								<th class="qty-size">Size</th>
+								<th class="price-col">Price</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php $total = 0;
+							foreach ($_SESSION['product'] as $key => $value) { ?>
+							<tr class="product-row">
+								<td class="product-col">
+									<figure class="product-image-container" style="border: none">
+										<a>
+											<div id="view-front" class="labView m-auto">
+												<div class="product-design" style="background-color: <?php echo $value['color_code'];?>">
+													<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
+												</div>
+												<div class="design-area" style="height: 127px; width: 74px; left: 53px; top: 39px; z-index: 1; overflow: hidden;">
+													<div class="product-image" style="height: 127px; width: 74px;">
+														<div class="result" style="top: 15px;">
+															<img id="image" src="<?php echo $value['design'];?>">
+														</div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</figure>
+									<div>
+										<h3>Unisex Cotton Tee - <?php echo ucfirst($value['color'])?></h3>
+										<h4 class="product-title" style="color: #fb8c00;font-weight: 400"><?php echo $value['title']?></h4>
+									</div>
+								</td>
+								<td>
+									<input class="vertical-quantity form-control" type="text" value="<?php echo $value['quantity']?>">
+								</td>
+								<td><?php echo $value['size']?></td>
+								<td><span style="font-size: 19px">$</span><span class="product-price"><?php echo $value['price']?></span></td>
+							</tr>
+							<tr class="product-action-row">
+								<td colspan="4" class="clearfix">
+									<div class="float-right">
+										<a href="<?= base_url().'remove_product'.'/'.$value['id'].'/'.$value['id_color'].'/'.$value['size']?>" title="Remove product">
+											<i class="fas fa-trash remove-product"></i>
+											<span class="sr-only">Remove</span><span class="sr-only">Remove</span>
+										</a>
+									</div><!-- End .float-right -->
+								</td>
+							</tr>
+								<?php $total += $value['quantity'] * $value['price'];
+							}?>
+							</tbody>
+						</table>
+					</div><!-- End .cart-table-container -->
+
+				</div><!-- End .col-lg-8 -->
+
+				<div class="col-lg-4">
+					<div class="cart-summary">
+						<h3>Summary</h3>
+
+						<table class="table table-totals">
+							<tfoot>
+							<tr>
+								<td>Subtotal (<?php echo count($_SESSION['product'])?> items)</td>
+								<td><span>$</span><span class="total"><?php echo $total;?></span></td>
+							</tr>
+							</tfoot>
+							<p>Shipping and tax will be calculated on checkout.
+							</p>
+						</table>
+
+						<div class="checkout-methods">
+							<a href="<?= base_url()?>checkout" class="btn btn-block btn-sm btn-primary">Go to Checkout <i class="fas fa-arrow-right"></i></a>
+						</div><!-- End .checkout-methods -->
+					</div><!-- End .cart-summary -->
+				</div><!-- End .col-lg-4 -->
+				<?php }?>
 			</div><!-- End .row -->
 		</div><!-- End .container -->
+
+		<div class="mb-6"></div><!-- margin -->
 	</main><!-- End .main -->
 
 	<?php include("home_footer_view.php") ?>
@@ -73,7 +167,7 @@
 		<span class="mobile-menu-close"><i class="icon-cancel"></i></span>
 		<nav class="mobile-nav">
 			<ul class="mobile-menu">
-				<li class="active"><a href="index-2.html">Home</a></li>
+				<li><a href="index-2.html">Home</a></li>
 				<li>
 					<a href="category.html">Categories</a>
 					<ul>
@@ -191,6 +285,8 @@
 
 <!-- Main JS File -->
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
+<script src="<?= base_url()?>assets/js/toastr.min.js"></script>
+<script src="<?= base_url()?>assets/js/teemarket.js"></script>
 </body>
 
 </html>
