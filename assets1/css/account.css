@@ -1,1 +1,14 @@
 .error{color: #f23f01;display: none}
+.pagination-gap .page-link{border-radius: 21px; background-color: white}
+.pagination-gap .page-item:first-child .page-link, .pagination-gap .page-item:last-child .page-link{border-radius: 21px;}
+.pagination-gap .page-link:focus, .pagination-gap .page-link:hover{
+	background-color: #3f51b5;
+	border-color: #3f51b5;
+	color: white
+}
+.page-link{padding: .375rem 1rem;line-height: 1.25;}
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}

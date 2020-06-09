@@ -17,7 +17,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css?">
 
 	<!-- Plugins -->
@@ -129,7 +128,7 @@
 					<div class="example-wrap">
 						<h3 class="example-title">Information</h3>
 						<div class="example">
-							<div class="email">Email: tonixtai@gmail.com</div>
+							<div class="email" style="margin-bottom: 34px;">Email: tonixtai@gmail.com</div>
 							<form>
 								<div class="form-group form-material">
 									<input type="text" class="form-control" name="fullname" placeholder="Full Name"
@@ -143,34 +142,43 @@
 									<input type="text" class="form-control" name="address" placeholder="Address"
 										   autocomplete="off" />
 								</div>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="ci_to" placeholder="City / Town"
-										   autocomplete="off" />
-								</div>
-								<div class="row">
-									<div class="form-group form-material col-md-8">
-										<input type="text" class="form-control" name="st_pr_re" placeholder="State / Province / Region"
-											   autocomplete="off" />
+								<div class="form-group">
+									<div class="row">
+										<div class="col-4">
+											<label>Country</label>
+											<div class="select-custom">
+												<select name="country" class="countries form-control" id="countryId">
+													<option value="">Select Country</option>
+												</select>
+											</div><!-- End .select-custom -->
+											<div class="error country-required">The country field is required.</div>
+										</div>
+										<div class="col-4">
+											<label>State / Province</label>
+											<div class="select-custom">
+												<select name="state" class="states form-control" id="stateId">
+													<option value="">Select State</option>
+												</select>
+											</div><!-- End .select-custom -->
+											<div class="error state-required">The state / province / region field is required.</div>
+										</div>
+										<div class="col-4">
+											<label>City / Town</label>
+											<div class="select-custom">
+												<select name="city" class="cities form-control" id="cityId">
+													<option value="">Select City</option>
+												</select>
+											</div><!-- End .select-custom -->
+											<div class="error city-required">The city / town field is required.</div>
+										</div>
 									</div>
+								</div><!-- End .form-group -->
+								<div class="row">
 									<div class="form-group form-material col-md-4">
 										<input type="text" class="form-control" name="zipcode" placeholder="ZIP / Postal Code"
 											   autocomplete="off" />
 									</div>
-								</div>
-								<div class="row">
-									<div class="form-group col-md-6">
-										<div class="sort_label">Country</div>
-										<select class="form-control">
-											<option disabled selected>Country</option>
-											<option>Newest to Oldest</option>
-											<option>Oldest to Newest</option>
-											<option>Top Selling</option>
-											<option>Least Selling</option>
-											<option>Sort A to Z</option>
-											<option>Sort Z to A</option>
-										</select>
-									</div>
-									<div class="form-group form-material col-md-6">
+									<div class="form-group form-material col-md-8">
 										<input type="text" class="form-control" name="phone" placeholder="Phone Number"
 											   autocomplete="off" />
 									</div>
@@ -289,7 +297,9 @@
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
-
+<!-- Country, State, City Dropdowms List -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//geodata.solutions/includes/countrystatecity.js"></script>
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
 <script src="<?= base_url()?>assets1/js/account.js"></script>

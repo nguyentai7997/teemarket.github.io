@@ -566,8 +566,17 @@ $('.complete-order').click(function (event) {
 			idColorString	: idColorString,
 			quantityString	: quantityString
 		},success:function() {
-			window.location.href = 'http://localhost:8012/teemarket/order_success';
-			console.log("Insert success.");
+			$(".animsition").addClass("modal-open");
+			$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+			$(".modal-primary").addClass("show");
+			$(".modal-primary").css("display","block");
+			$(".close-modal").click(function (event) {
+				$(".modal-primary").removeClass("show");
+				$(".modal-primary").css("display","none");
+				$(".modal-backdrop").remove();
+				$(".animsition").removeClass("modal-open");
+				window.location.href = 'http://localhost:8012/teemarket';
+			});
 		},error:function(){
 			console.log("Ajax call error.");
 		}

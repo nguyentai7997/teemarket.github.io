@@ -76,6 +76,7 @@ $route['payment'] = 'teemarket/payment';
 $route['payouts'] = 'teemarket/payouts';
 $route['logout'] = 'teemarket/logout';
 
+$route['marketplace'] = 'teemarket/marketplace';
 $route['(:any)/(:any)'] = 'teemarket/view_product/$1/$2';
 $route['add_to_cart'] = 'teemarket/add_to_cart';
 $route['cart'] = 'teemarket/cart';
@@ -83,5 +84,4 @@ $route['update_cart'] = 'teemarket/update_cart';
 $route['remove_product/(:num)/(:num)/(:any)'] = 'teemarket/remove_product/$1/$2/$3';
 $route['checkout'] = 'teemarket/checkout';
 $route['insert_order'] = 'teemarket/insert_order';
-$route['order_success'] = 'teemarket/order_success';
 $route['(:any)'] = 'teemarket/error';

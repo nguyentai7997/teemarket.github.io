@@ -156,18 +156,12 @@
 													</div>
 
 													<div class="form-group required-field">
-														<label style="color: #424242">Categorize Your Campaign</label>
+														<label style="color: #424242">Category Your Campaign</label>
 														<div class="select-custom">
-															<select class="form-control" title='Choose one of the following...' name="categorize">
+															<select class="form-control" title='Choose one of the following...' name="category">
 																<option value="0" selected>Please Choose...</option>
-																<?php foreach ($categorize as $key => $value1) { ?>
-																<optgroup class="text-uppercase" label="<?php echo $value1['categorize']; ?>">
-																	<?php foreach ($subcategorize as $key => $value2) {
-																		if ($value2['id_categorize'] == $value1['id']) {?>
-																	<option value="<?php echo $value2['id']; ?>"><?php echo strtoupper($value2['sub_categorize']); ?></option>
-																	<?php }
-																	} ?>
-																</optgroup>
+																<?php foreach ($category as $key => $value) { ?>
+																<option value="<?php echo $value['id']; ?>"><?php echo strtoupper($value['category']); ?></option>
 																<?php } ?>
 															</select>
 														</div><!-- End .select-custom -->

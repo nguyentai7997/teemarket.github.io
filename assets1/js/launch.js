@@ -31,7 +31,7 @@ $(".url").change(function (event) {
 		$('.url-invalid').css('display','none');
 
 		$.ajax({
-			url: 'http://localhost:8012/teemarket/seller/create/launch/check_url',
+			url: 'http://localhost:8012/teemarket/check_url',
 			type: 'post',
 			data: {
 				url : url
@@ -52,14 +52,14 @@ $(".url").change(function (event) {
 });
 
 $('.back-step').click(function (event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/create/product';
+	window.location.href = 'http://localhost:8012/teemarket/product';
 });
 
 $('.next-step').click(function (event) {
 	var title = $('.title').val();
    	var description = $('.description').val();
    	var url = $('.url').val().toLowerCase();
-   	var categorize= $('select[name=categorize] option').filter(':selected').val();
+   	var category= $('select[name=category] option').filter(':selected').val();
 	var regExp = /\S/;
 	var regURL = /^[a-z0-9--]{4,100}$/;
 
@@ -81,7 +81,7 @@ $('.next-step').click(function (event) {
 
 	if (regURL.exec(url)){
 		$.ajax({
-			url: 'http://localhost:8012/teemarket/seller/create/launch/check_url',
+			url: 'http://localhost:8012/teemarket/check_url',
 			type: 'post',
 			data: {
 				url : url
@@ -89,19 +89,19 @@ $('.next-step').click(function (event) {
 			success:function(res){
 				if(res == 0){
 					$.ajax({
-						url: 'http://localhost:8012/teemarket/seller/create/get_launch',
+						url: 'http://localhost:8012/teemarket/get_launch',
 						type: 'post',
 						data: {
 							title : title,
 							description : description,
 							url : url,
-							categorize : categorize,
+							category : category,
 						},
 						success:function(res){
-							// window.location.href = 'http://localhost:8012/teemarket/seller/campaigns/details/id=123';
+							// window.location.href = 'http://localhost:8012/teemarket/campaigns_details/id=123';
 						},
 						error:function(res){
-							console.log("Ajax call error.");
+							console.log("Ajax call error 1.");
 						}
 					});
 				}
@@ -111,7 +111,7 @@ $('.next-step').click(function (event) {
 				}
 			},
 			error:function(res){
-				console.log('Ajax call error.');
+				console.log('Ajax call error 2.');
 				return;
 			}
 		});

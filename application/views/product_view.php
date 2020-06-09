@@ -136,8 +136,8 @@
 															<div class="design-area design-area-front" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
 																<div class="image_design" style="width: 216px; height: 373px">
 																	<div class="result">
-																		<?php if(!empty($_SESSION['product']['src_image'])){ ?>
-																			<img id="image" src="<?php echo $_SESSION['product']['src_image'] ?>">
+																		<?php if(!empty($_SESSION['campaign']['src_image'])){ ?>
+																			<img id="image" src="<?php echo $_SESSION['campaign']['src_image'] ?>">
 																		<?php } ?>
 																	</div>
 																</div>
@@ -152,9 +152,9 @@
 															<div class="col-12">
 																<div class="list-colors product-color-list" id="product-color-list">
 																	<?php foreach ($colors as $key => $value) { ?>
-																		<span class="bg-colors <?php echo $value['color'] ?> <?php if($_SESSION['product']['color'][0] == $value['color_code']) {echo 'active selected-color ';}
-																		if (isset($_SESSION['product']['resultColors'])){for ( $i = 0; $i < count($_SESSION['product']['resultColors']); $i++) {
-																			if($_SESSION['product']['resultColors'][$i] == $value['color_code'] && $_SESSION['product']['resultColors'][$i] != $_SESSION['product']['color'][0]){echo 'active';}
+																		<span class="bg-colors <?php echo $value['color'] ?> <?php if($_SESSION['campaign']['color'][0] == $value['color_code']) {echo 'active selected-color ';}
+																		if (isset($_SESSION['campaign']['resultColors'])){for ( $i = 0; $i < count($_SESSION['campaign']['resultColors']); $i++) {
+																			if($_SESSION['campaign']['resultColors'][$i] == $value['color_code'] && $_SESSION['campaign']['resultColors'][$i] != $_SESSION['campaign']['color'][0]){echo 'active';}
 																		}}?>" style="background-color: <?php echo $value['color_code'] ?>;"></span>
 																	<?php } ?>
 																</div>

@@ -58,21 +58,15 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
-	function getDataCategorize()
+	function getDataCategory()
 	{
-		$query = $this->db->query("SELECT * FROM categorize")->result_array();
+		$query = $this->db->query("SELECT * FROM category")->result_array();
 		return $query;
 	}
 
-	function getDataSubCategorize()
+	function insertCampaign($id,$src_image,$price,$title,$description,$url,$category)
 	{
-		$query = $this->db->query("SELECT * FROM sub_categorize")->result_array();
-		return $query;
-	}
-
-	function insertCampaign($id,$src_image,$price,$title,$description,$url, $categorize)
-	{
-		$query = $this->db->query("INSERT INTO campaign (id_seller,design,price,title,description,url,id_sub_categorize,status) VALUES ('$id','$src_image','$price','$title','$description','$url','$categorize','active')");
+		$query = $this->db->query("INSERT INTO campaign (id_seller,design,price,title,description,url,id_category,status) VALUES ('$id','$src_image','$price','$title','$description','$url','$category','active')");
 		return $query;
 	}
 

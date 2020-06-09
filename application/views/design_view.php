@@ -31,10 +31,17 @@
 
 	<!-- Plugins For This Page -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/toastr/toastr.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/nprogress/nprogress.minfd53.css?v4.0.1">
+
+	<!-- Page -->
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/advanced/animation.minfd53.css?v4.0.1">
 
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/advanced/toastr.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/uikit/modals.minfd53.css?v4.0.1">
+
+	<!--Cloudinary-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -132,9 +139,9 @@
 							<div class="col-3">
 								<div class="box-upload mt-40">
 									<h4>Upload Image</h4>
-									<input type="file" id="file-input">
+									<input id="file-upload" type="file">
 									<div class="example">
-										<?php if(!empty($_SESSION['product']['src_image'])){ ?>
+										<?php if(!empty($_SESSION['campaign']['src_image'])){ ?>
 											<button class="remove-image" style="cursor: pointer"><i class="icon ion-ios-trash"></i></button> Image
 										<?php } ?>
 									</div>
@@ -145,11 +152,12 @@
 									<div class="product-design designer-style-front " style="background-color: rgb(252, 252, 252);">
 										<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
 									</div>
-									<div class="design-area design-area-front" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
-										<div class="image_design" style="width: 216px; height: 302px">
+									<div class="design-area design-area-front" style="height: 368px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
+										<div class="image_design" style="width: 216px; height: 366px">
 											<div class="result">
-												<?php if(!empty($_SESSION['product']['src_image'])){ ?>
-													<img id="image" src="<?php echo $_SESSION['product']['src_image']?>">
+												<img src="" id="img-preview"/>
+												<?php if(!empty($_SESSION['campaign']['src_image'])){ ?>
+													<img id="img-preview" src="<?php echo $_SESSION['campaign']['src_image']?>">
 												<?php } ?>
 											</div>
 										</div>
@@ -164,8 +172,8 @@
 										</div>
 										<div class="list-colors product-color-list" id="product-list-colors">
 											<?php foreach ($colors as $key => $value) { ?>
-											<span class="bg-colors <?php echo $value['color'] ?> <?php if (isset($_SESSION['product'])) {
-												if($_SESSION['product']['color'][0] == $value['color_code']) {echo 'active';}
+											<span class="bg-colors <?php echo $value['color'] ?> <?php if (isset($_SESSION['campaign'])) {
+												if($_SESSION['campaign']['color'][0] == $value['color_code']) {echo 'active';}
 											} else {
 												if($value['color_code'] == "rgb(252, 252, 252)") {echo 'active';}
 											} ?>"  style="background-color: <?php echo $value['color_code'] ?>;"></span>
@@ -179,7 +187,7 @@
 												<div class="clearfix">
 													<div class="product-price-list">
 														<span id="product-price-sale" class="text-success font-lg bold">
-															<span class="price-sale-number">$5.00</span>
+															<span class="price-sale-number">$7.50</span>
 														</span>
 													</div>
 												</div>
@@ -199,22 +207,61 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 <!-- End Page -->
 
-<!-- Modal -->
-<div class="modal fade modal-danger" id="exampleModalDanger" aria-hidden="true"
-	 aria-labelledby="exampleModalDanger" role="dialog" tabindex="-1">
+<!--Modal Loading-->
+<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
+	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
+		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
+		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Invalid Image -->
+<div class="modal fade modal-warning invalid-image" id="exampleModalWarning" aria-hidden="true"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Error</h4>
+			<div class="modal-body">
+				<p>The File that you have selected isn't an allowed file format. <br> Allowed Formats - png, jpg, eps.</p>
 			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Invalid Size Image -->
+<div class="modal fade modal-warning invalid-size" id="exampleModalWarning" aria-hidden="true"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>	Images must be over 800px for quality prints, over 1000px is best</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Not Image -->
+<div class="modal fade modal-warning not-image" id="exampleModalWarning" aria-hidden="true"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
 			<div class="modal-body">
 				<p>Unfortunately, you can't sell a blank item. You need to add text or art before you can continue.</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">OK</button>
 			</div>
 		</div>
 	</div>
@@ -272,6 +319,8 @@
 
 <script src="<?= base_url()?>global/js/Plugin/toastr.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>

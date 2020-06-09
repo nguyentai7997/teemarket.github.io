@@ -1,48 +1,141 @@
-// vars
-let result = document.querySelector('.result'),
-	img_result = document.querySelector('.img-result'),
-	img_w = document.querySelector('.img-w'),
-	img_h = document.querySelector('.img-h'),
-	options = document.querySelector('.options'),
-	save = document.querySelector('.save'),
-	cropped = document.querySelector('.cropped'),
-	dwn = document.querySelector('.download'),
-	upload = document.querySelector('#file-input'),
-	cropper = '';
+// // vars
+// let result = document.querySelector('.result'),
+// 	img_result = document.querySelector('.img-result'),
+// 	img_w = document.querySelector('.img-w'),
+// 	img_h = document.querySelector('.img-h'),
+// 	options = document.querySelector('.options'),
+// 	save = document.querySelector('.save'),
+// 	cropped = document.querySelector('.cropped'),
+// 	dwn = document.querySelector('.download'),
+// 	upload = document.querySelector('#file-input'),
+// 	cropper = '';
+//
+// // on change show image with crop options
+// upload.addEventListener('change', (e) => {
+// 	if (e.target.files.length) {
+// 		// start file reader
+// 		const reader = new FileReader();
+// 		reader.onload = (e)=> {
+// 			if(e.target.result){
+// 				// create new image
+// 				let img = document.createElement('img');
+// 				img.id = 'image';
+// 				img.src = e.target.result
+// 				// clean result before
+// 				result.innerHTML = '';
+// 				// append new image
+// 				result.appendChild(img);
+// 				// show save btn and options
+// 				save.classList.remove('hide');
+// 				options.classList.remove('hide');
+// 				// init cropper
+// 				cropper = new Cropper(img);
+// 			}
+// 		};
+// 		reader.readAsDataURL(e.target.files[0]);
+// 	}
+// });
 
-// on change show image with crop options
-upload.addEventListener('change', (e) => {
-	if (e.target.files.length) {
-		// start file reader
-		const reader = new FileReader();
-		reader.onload = (e)=> {
-			if(e.target.result){
-				// create new image
-				let img = document.createElement('img');
-				img.id = 'image';
-				img.src = e.target.result
-				// clean result before
-				result.innerHTML = '';
-				// append new image
-				result.appendChild(img);
-				// show save btn and options
-				save.classList.remove('hide');
-				options.classList.remove('hide');
-				// init cropper
-				cropper = new Cropper(img);
+//Check input up design
+$('#file-upload').change(function (event) {
+	var fi = document.getElementById('file-upload');
+	if (fi.files.length > 0) {      // FIRST CHECK IF ANY FILE IS SELECTED.
+		for (var i = 0; i <= fi.files.length - 1; i++) {
+			var fileName, fileExtension;
+
+			// FILE NAME AND EXTENSION.
+			fileName = fi.files.item(i).name;
+			fileExtension = fileName.replace(/^.*\./, '');
+
+			// CHECK IF ITS AN IMAGE FILE.
+			// TO GET THE IMAGE WIDTH AND HEIGHT, WE'LL USE fileReader().
+			if (fileExtension == 'png' || fileExtension == 'jpg' || fileExtension == 'jpeg') {
+				readImageFile(fi.files.item(i));             // GET IMAGE INFO USING fileReader().
 			}
-		};
-		reader.readAsDataURL(e.target.files[0]);
+			else {
+				// IF THE FILE IS NOT AN IMAGE.
+				$(".animsition").addClass("modal-open");
+				$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+				$(".invalid-image").addClass("show");
+				$(".invalid-image").css("display","block");
+				$(".close-modal").click(function (event) {
+					$("input[type='file']").val('');
+					$(".invalid-image").removeClass("show");
+					$(".invalid-image").css("display","none");
+					$(".modal-backdrop").remove();
+					$(".animsition").removeClass("modal-open");
+				});
+			}
+		}
 	}
-});
+})
+
+// GET THE IMAGE WIDTH AND HEIGHT USING fileReader() API.
+function readImageFile(file) {
+	var reader = new FileReader(); // CREATE AN NEW INSTANCE.
+	reader.readAsDataURL(file);
+	reader.onload = function (e) {
+		var img = new Image();
+		img.src = e.target.result;
+
+		img.onload = function () {
+			var w = this.width;
+			var h = this.height;
+
+			if (w < 800 || h < 800) { // If width and height too small
+				$(".animsition").addClass("modal-open");
+				$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+				$(".invalid-size").addClass("show");
+				$(".invalid-size").css("display","block");
+				$(".close-modal").click(function (event) {
+					$("input[type='file']").val('');
+					$(".invalid-size").removeClass("show");
+					$(".invalid-size").css("display","none");
+					$(".modal-backdrop").remove();
+					$(".animsition").removeClass("modal-open");
+				});
+			} else {
+				var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/teemarket/upload';
+				var CLOUDINARY_UPLOAD_PRESET = 'dfr3fs5c';
+
+				var imgPreview = document.getElementById('img-preview');
+				var formData = new FormData();
+				formData.append('file',file);
+				formData.append('upload_preset',CLOUDINARY_UPLOAD_PRESET);
+
+				$(".animsition").addClass("modal-open");
+				$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+				$(".modal-loading").addClass("show");
+				$(".modal-loading").css("display","block");
+
+				axios({
+					url : CLOUDINARY_URL,
+					method : 'POST',
+					headers: {
+						'CONTENT-TYPE' : 'application/x-www-form-urlencoded'
+					},
+					data : formData
+				}).then(function (res) {
+					imgPreview.src = res.data.secure_url;
+					$(".modal-loading").removeClass("show");
+					$(".modal-loading").css("display","none");
+					$(".modal-backdrop").remove();
+					$(".animsition").removeClass("modal-open");
+				}).catch(function (err) {
+					console.error(err);
+				});
+			}
+		}
+	};
+}
 
 //Click button remove image
 $('.remove-image').click(function (event) {
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/create/remove_design',
+		url: 'http://localhost:8012/teemarket/remove_design',
 		type: 'post',
 		success:function(res){
-			window.location.href = 'http://localhost:8012/teemarket/seller/create/design';
+			window.location.href = 'http://localhost:8012/teemarket/design';
 		},
 		error:function(res){
 			console.log("Ajax call error.");
@@ -51,18 +144,19 @@ $('.remove-image').click(function (event) {
 });
 
 $('.next-step').click(function(event) {
-	var src_image= $('#image').attr('src');
+	var src_image= $('#img-preview').attr('src');
 	var color_design = $('.bg-colors.active').css('background-color');
-	if ($("#image").length){
+	if (src_image != ''){
+		console.log($("#img-preview").length);
 		$.ajax({
-			url: 'http://localhost:8012/teemarket/seller/create/get_design',
+			url: 'http://localhost:8012/teemarket/get_design',
 			type: 'post',
 			data: {
 				src_image : src_image,
 				color_design : color_design
 			},
 			success:function(res){
-				window.location.href = 'http://localhost:8012/teemarket/seller/create/product';
+				window.location.href = 'http://localhost:8012/teemarket/product';
 			},
 			error:function(res){
 				console.log("Ajax call error.");
@@ -71,11 +165,11 @@ $('.next-step').click(function(event) {
 	} else {
 		$(".animsition").addClass("modal-open");
 		$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
-		$(".modal-danger").addClass("show");
-		$(".modal-danger").css("display","block");
+		$(".not-image").addClass("show");
+		$(".not-image").css("display","block");
 		$(".close-modal").click(function (event) {
-			$(".modal-danger").removeClass("show");
-			$(".modal-danger").css("display","none");
+			$(".not-image").removeClass("show");
+			$(".not-image").css("display","none");
 			$(".modal-backdrop").remove();
 			$(".animsition").removeClass("modal-open");
 		});

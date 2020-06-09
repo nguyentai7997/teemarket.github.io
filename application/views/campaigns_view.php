@@ -158,7 +158,7 @@
 							<div class="float-right">
 								<i class="icon fa-shopping-cart font-size-40"></i>
 							</div>
-							<div class="font-size-20 font-weight-600">ORDERS/UNIT</div>
+							<div class="font-size-20 font-weight-600">ORDERS/UNITS</div>
 							<div class="font-size-20">0/0</div>
 						</div>
 					</div>
@@ -185,11 +185,7 @@
 			<div class="col-lg-12">
 				<!-- Example C3 Timeseries -->
 				<div class="example-wrap m-md-0">
-					<h4 class="example-title">Timeseries</h4>
-					<p>Simple line chart with timeseries data. </p>
-					<div class="example example-responsive pb-15">
-						<div id="exampleC3TimeSeries"></div>
-					</div>
+					<div id="chart"></div>
 				</div>
 				<!-- End Example C3 Timeseries -->
 			</div>

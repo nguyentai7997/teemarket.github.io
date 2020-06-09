@@ -159,7 +159,7 @@
 					<div class="promo-content">
 						<div class="promo-content-wrapper">
 							<h3 class="promo-title"><span>Planning to sell your designs on teemarket?</span></h3>
-							<a href="#" class="btn btn-secondary">Join now</a>
+							<a href="<?= base_url() ?>login" class="btn btn-secondary">Join now</a>
 						</div><!-- End .promo-content-wrapper -->
 					</div><!-- End .promo-content -->
 				</div><!-- End .container -->

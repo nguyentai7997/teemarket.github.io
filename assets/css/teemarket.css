@@ -33,6 +33,14 @@
 .order-summary{background-color: white;}
 .product-col .product-image-container{border: none}
 .complete-order{cursor: pointer}
+.modal-dialog{top: 30%}
+.modal-footer{border-top: none;}
+.close-modal{
+	border-color: #0e0e0e;
+	background-color: #0e0e0e;
+	color: #fff;
+	box-shadow: none;
+}
 #publicname{text-transform:lowercase;}
 ::-webkit-input-placeholder {
 	text-transform: initial;

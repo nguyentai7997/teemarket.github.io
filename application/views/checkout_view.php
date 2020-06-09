@@ -33,15 +33,12 @@
 	<!-- Main CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/style.min.css">
 
-	<!-- Thu vien thong bao -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/toastr.min.css">
-
 	<!-- Custom CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/teemarket.css">
 	<link rel="stylesheet" href="<?= base_url()?>assets/vendor/fontawesome-free/css/all.min.css">
 
 </head>
-<body>
+<body class="animsition">
 <div class="page-wrapper">
 	<?php include("home_header_view.php") ?>
 
@@ -109,7 +106,7 @@
 								<tfoot>
 									<tr>
 										<td><h3>Total</h3></td>
-										<td style="color: orange;font-size: 20px;text-align: right"><span>$<?php echo $total;?></span></td>
+										<td style="color: #fb8c00;font-size: 20px;text-align: right"><span>$<?php echo $total;?></span></td>
 									</tr>
 								</tfoot>
 							</table>
@@ -215,7 +212,27 @@
 		</div><!-- End .container -->
 
 		<div class="mb-6"></div><!-- margin -->
+
 	</main><!-- End .main -->
+
+	<!-- Modal -->
+	<div class="modal fade modal-primary" id="exampleModalPrimary" aria-hidden="true"
+		 aria-labelledby="exampleModalPrimary" role="dialog" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title">Order Success</h2>
+				</div>
+				<div class="modal-body">
+					<p>Thank you for your order! Your order will arrive 7-21 days after the end of the campaign!</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default close-modal" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal -->
 
 	<?php include("home_footer_view.php") ?>
 </div><!-- End .page-wrapper -->

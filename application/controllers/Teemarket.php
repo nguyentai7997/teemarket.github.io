@@ -12,7 +12,7 @@ class Teemarket extends CI_Controller
 
 	public function index()
 	{
-		$dataCategorize = $this->Mteemarket->getDataCategorize();
+		$dataCategory = $this->Mteemarket->getDataCategory();
 		$dataCampaign = $this->Mteemarket->getDataCampaign();
         $allData  = array();
 
@@ -22,18 +22,18 @@ class Teemarket extends CI_Controller
 			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'colorCode' => $dataFirstColorOfCampaign[0]['color_code'], 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $dataPublicname[0]['publicname']];
             array_push($allData, $data);
 		}
-		$this->load->view('teemarket_view',['categorize' => $dataCategorize,'allData'=>$allData]);
+		$this->load->view('teemarket_view',['category' => $dataCategory,'allData'=>$allData]);
 	}
 
 	public function error(){
-		$dataCategorize = $this->Mteemarket->getDataCategorize();
-		$this->load->view('404_view',['categorize' => $dataCategorize]);
+		$dataCategory = $this->Mteemarket->getDataCategory();
+		$this->load->view('404_view',['category' => $dataCategory]);
 	}
 
 	public function login()
 	{
-		$dataCategorize = $this->Mteemarket->getDataCategorize();
-		$this->load->view('login_view',['categorize' => $dataCategorize]);
+		$dataCategory = $this->Mteemarket->getDataCategory();
+		$this->load->view('login_view',['category' => $dataCategory]);
 	}
 
 	public function check_sign_in()
@@ -65,8 +65,8 @@ class Teemarket extends CI_Controller
 
 	public function register()
 	{
-		$dataCategorize = $this->Mteemarket->getDataCategorize();
-		$this->load->view('register_view',['categorize' => $dataCategorize]);
+		$dataCategory = $this->Mteemarket->getDataCategory();
+		$this->load->view('register_view',['category' => $dataCategory]);
 	}
 
 	public function check_public_name()
@@ -132,10 +132,24 @@ class Teemarket extends CI_Controller
 		}
 	}
 
+	public function marketplace(){
+		$dataCategory = $this->Mteemarket->getDataCategory();
+		$dataCampaign = $this->Mteemarket->getDataCampaign();
+		$allData  = array();
+
+		for ($i = 0; $i< count($dataCampaign); $i++ ){
+			$dataPublicname = $this->Mteemarket->getPublicnameByIdCamp($dataCampaign[$i]['id']);
+			$dataFirstColorOfCampaign = $this->Mteemarket->getDataFirstColorByIdCampaign($dataCampaign[$i]['id']);
+			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'colorCode' => $dataFirstColorOfCampaign[0]['color_code'], 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $dataPublicname[0]['publicname']];
+			array_push($allData, $data);
+		}
+		$this->load->view('marketplace_view',['category' => $dataCategory,'allData'=>$allData]);
+	}
+
 	public function view_product($publicname,$url)
 	{
 		if ($this->Mteemarket->getDataByPublicnameAndUrl($publicname, $url)){
-			$dataCategorize = $this->Mteemarket->getDataCategorize();
+			$dataCategory = $this->Mteemarket->getDataCategory();
 			$dataProduct = $this->Mteemarket->getDataByPublicnameAndUrl($publicname, $url);
 			$dataIdColorsByIdCamp = $this->Mteemarket->getDataIdColorsByIdCam($dataProduct[0]['id']);
 
@@ -144,7 +158,7 @@ class Teemarket extends CI_Controller
 				$dataColor = $this->Mteemarket->getDataColorByIdColor($dataIdColorsByIdCamp[$i]['id_color']);
 				array_push($colors, $dataColor);
 			}
-			$this->load->view('product_details_view', ['categorize' => $dataCategorize,'colors' => $colors, 'dataCamp'=> $dataProduct]);
+			$this->load->view('product_details_view', ['category' => $dataCategory,'colors' => $colors, 'dataCamp'=> $dataProduct]);
 		} else{
 			redirect('http://localhost:8012/teemarket/error');
 		}
@@ -152,8 +166,8 @@ class Teemarket extends CI_Controller
 
 	public function cart()
 	{
-		$dataCategorize = $this->Mteemarket->getDataCategorize();
-		$this->load->view('cart_view',['categorize' => $dataCategorize]);
+		$dataCategory = $this->Mteemarket->getDataCategory();
+		$this->load->view('cart_view',['category' => $dataCategory]);
 	}
 
 	public function add_to_cart(){
@@ -270,8 +284,8 @@ class Teemarket extends CI_Controller
 		if (empty($_SESSION['product'])){
 			redirect('http://localhost:8012/teemarket/cart');
 		} else{
-			$dataCategorize = $this->Mteemarket->getDataCategorize();
-			$this->load->view('checkout_view',['categorize' => $dataCategorize]);
+			$dataCategory = $this->Mteemarket->getDataCategory();
+			$this->load->view('checkout_view',['category' => $dataCategory]);
 		}
 	}
 
@@ -319,11 +333,6 @@ class Teemarket extends CI_Controller
 		}
 	}
 
-	public function order_success(){
-		$dataCategorize = $this->Mteemarket->getDataCategorize();
-		$this->load->view('order_success_view',['categorize' => $dataCategorize]);
-	}
-
 	public function campaigns(){
 		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
@@ -350,21 +359,21 @@ class Teemarket extends CI_Controller
 			$colors= array();
 			array_push($colors, $color_design);
 
-			$_SESSION['product']['src_image'] = $src_image;
-			$_SESSION['product']['color'] = $colors;
+			$_SESSION['campaign']['src_image'] = $src_image;
+			$_SESSION['campaign']['color'] = $colors;
 		} else{
 			redirect('http://localhost:8012/teemarket/error');
 		}
 	}
 
 	public function remove_design(){
-		unset($_SESSION['product']);
+		unset($_SESSION['campaign']);
 		redirect('http://localhost:8012/teemarket/design');
 	}
 
 	public function product()
 	{
-		if (empty($_SESSION['product']['src_image']) || empty($_SESSION['product']['color'])) {
+		if (empty($_SESSION['campaign']['src_image']) || empty($_SESSION['campaign']['color'])) {
 			redirect('http://localhost:8012/teemarket/design');
 		} else {
 			$data_color = $this->Mteemarket->getDataColor();
@@ -374,8 +383,8 @@ class Teemarket extends CI_Controller
 
 	public function get_product(){
 		if ($this->input->post('price')){
-			$_SESSION['product']['resultColors'] = $this->input->post('resultColors');
-			$_SESSION['product']['price'] = $this->input->post('price');
+			$_SESSION['campaign']['resultColors'] = $this->input->post('resultColors');
+			$_SESSION['campaign']['price'] = $this->input->post('price');
 		} else{
 			redirect('http://localhost:8012/teemarket/error');
 		}
@@ -383,12 +392,11 @@ class Teemarket extends CI_Controller
 
 	public function launch()
 	{
-		if (empty($_SESSION['product']['resultColors']) || empty($_SESSION['product']['price'])) {
+		if (empty($_SESSION['campaign']['resultColors']) || empty($_SESSION['campaign']['price'])) {
 			redirect('http://localhost:8012/teemarket/design');
 		} else {
-			$dataCategorize = $this->Mteemarket->getDataCategorize();
-			$dataSubCategorize = $this->Mteemarket->getDataSubCategorize();
-			$this->load->view('launch_view',['categorize' => $dataCategorize,'subcategorize' => $dataSubCategorize]);
+			$dataCategory = $this->Mteemarket->getDataCategory();
+			$this->load->view('launch_view',['category' => $dataCategory]);
 		}
 	}
 
@@ -410,28 +418,33 @@ class Teemarket extends CI_Controller
 
 	public function get_launch(){
 		if ($this->input->post('url')){
-			$idColorDesign = $this->Mteemarket->getIdColorByColorCode($_SESSION['product']['color'][0]);
+			$idColorDesign = $this->Mteemarket->getIdColorByColorCode($_SESSION['campaign']['color'][0]);
 			$arrayIdColor = array($idColorDesign);
-			for ($i = 0; $i < count($_SESSION['product']['resultColors']); $i++){
-				if($_SESSION['product']['resultColors'][$i] != $_SESSION['product']['color'][0]){
-					$dataIdColor = $this->Mteemarket->getIdColorByColorCode($_SESSION['product']['resultColors'][$i]);
+			for ($i = 0; $i < count($_SESSION['campaign']['resultColors']); $i++){
+				if($_SESSION['campaign']['resultColors'][$i] != $_SESSION['campaign']['color'][0]){
+					$dataIdColor = $this->Mteemarket->getIdColorByColorCode($_SESSION['campaign']['resultColors'][$i]);
 					array_push($arrayIdColor,$dataIdColor);
 				}
 			}
-			$_SESSION['product']['title'] = $this->input->post('title');
-			$_SESSION['product']['description'] = $this->input->post('description');
-			$_SESSION['product']['url'] = $this->input->post('url');
-			$_SESSION['product']['categorize'] = $this->input->post('categorize');
+			$_SESSION['campaign']['title'] = $this->input->post('title');
+			$_SESSION['campaign']['description'] = $this->input->post('description');
+			$_SESSION['campaign']['url'] = $this->input->post('url');
+			$_SESSION['campaign']['category'] = $this->input->post('category');
 
-			$addCamp = $this->Mteemarket->insertCampaign($_SESSION['user']['id'],$_SESSION['product']['src_image'],$_SESSION['product']['price'],$_SESSION['product']['title'],$_SESSION['product']['description'],$_SESSION['product']['url'],$_SESSION['product']['categorize']);
+			$addCamp = $this->Mteemarket->insertCampaign($_SESSION['user']['id'],$_SESSION['campaign']['src_image'],$_SESSION['campaign']['price'],$_SESSION['campaign']['title'],$_SESSION['campaign']['description'],$_SESSION['campaign']['url'],$_SESSION['campaign']['category']);
+//			echo "<pre>";
+//			print_r ($addCamp);
+//			echo "</pre>";
+//			die();
+
 			if ($addCamp) {
-				$dataIdCamp = $this->Mteemarket->getIdCampByIdSellerAndUrl($_SESSION['user']['id'],$_SESSION['product']['url']);
+				$dataIdCamp = $this->Mteemarket->getIdCampByIdSellerAndUrl($_SESSION['user']['id'],$_SESSION['campaign']['url']);
 				if ($dataIdCamp) {
 					//Insert Campaign Colors
 					for ($i = 0; $i < count($arrayIdColor); $i++){
 						$addCampColors = $this->Mteemarket->insertCampColors($dataIdCamp[0]['id'],$arrayIdColor[$i][0]['id']);
 					}
-					unset($_SESSION['product']);
+					unset($_SESSION['campaign']);
 					$status = 0;
 					echo $status;
 				} else {
@@ -514,7 +527,7 @@ class Teemarket extends CI_Controller
 	{
 		// Xóa session name
 		unset($_SESSION['user']);
-		unset($_SESSION['product']);
+		unset($_SESSION['campaign']);
 		redirect('http://localhost:8012/teemarket');
 	}
 

@@ -1,5 +1,5 @@
 $('.back-step').click(function (event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/create/design';
+	window.location.href = 'http://localhost:8012/teemarket/design';
 });
 
 $('.next-step').click(function (event) {
@@ -11,14 +11,14 @@ $('.next-step').click(function (event) {
 		resultColors.push(res);
 	}
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/create/get_product',
+		url: 'http://localhost:8012/teemarket/get_product',
 		type: 'post',
 		data: {
 			resultColors : resultColors,
 			price : price
 		},
 		success:function(res){
-			window.location.href = 'http://localhost:8012/teemarket/seller/create/launch';
+			window.location.href = 'http://localhost:8012/teemarket/launch';
 		},
 		error:function(res){
 			console.log("Ajax call error.");

@@ -6,8 +6,13 @@
 					<a href="#">Links</a>
 					<div class="header-menu">
 						<ul>
+							<?php if (empty($_SESSION['user'])){?>
 							<li><a href="<?= base_url()?>register">SIGN UP</a></li>
 							<li><a href="<?= base_url()?>login">SIGN IN</a></li>
+							<?php }else{ ?>
+							<li><a href="<?= base_url()?>campaigns">DASHBOARD</a></li>
+							<li><a href="<?= base_url()?>logout">SIGN OUT</a></li>
+							<?php }?>
 						</ul>
 					</div><!-- End .header-menu -->
 				</div><!-- End .header-dropown -->
@@ -18,7 +23,6 @@
 	<div class="header-middle sticky-header" style="border-bottom: 1px solid #eee;">
 		<div class="container">
 			<div class="header-left">
-
 
 				<div class="header-search">
 					<a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
@@ -44,8 +48,8 @@
 						<div class="header-menu">
 							<ul>
 								<li><a href="">All</a></li>
-								<?php foreach ($categorize as $key => $value) { ?>
-									<li><a href="<?php echo $value['categorize'] ?>"><?php  echo $value['categorize']  ?></a></li>
+								<?php foreach ($category as $key => $value) { ?>
+									<li><a href="<?php echo $value['category'] ?>"><?php  echo $value['category']  ?></a></li>
 								<?php } ?>
 							</ul>
 						</div><!-- End .header-menu -->
