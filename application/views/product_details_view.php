@@ -58,9 +58,9 @@
 											<div class="product-design" style="background-color: <?php echo $colors[0][0]['color_code']; ?>">
 												<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
 											</div>
-											<div class="design-area" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
-												<div class="product-image" style="width: 216px; height: 302px">
-													<div class="result" style="top: 44px;">
+											<div class="design-area" style="height: 368px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
+												<div class="product-image" style="width: 216px; height: 366px">
+													<div class="result" style="top: 53px;">
 														<img id="image" src="<?php echo $dataCamp[0]['design'];?>">
 													</div>
 												</div>

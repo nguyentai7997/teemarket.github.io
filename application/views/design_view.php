@@ -35,8 +35,6 @@
 
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/advanced/animation.minfd53.css?v4.0.1">
-
-	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/advanced/toastr.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/uikit/modals.minfd53.css?v4.0.1">
 
@@ -155,9 +153,10 @@
 									<div class="design-area design-area-front" style="height: 368px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
 										<div class="image_design" style="width: 216px; height: 366px">
 											<div class="result">
+												<?php if(empty($_SESSION['campaign']['src_image'])){ ?>
 												<img src="" id="img-preview"/>
-												<?php if(!empty($_SESSION['campaign']['src_image'])){ ?>
-													<img id="img-preview" src="<?php echo $_SESSION['campaign']['src_image']?>">
+												<?php }else { ?>
+												<img id="img-preview" src="<?php echo $_SESSION['campaign']['src_image']?>">
 												<?php } ?>
 											</div>
 										</div>

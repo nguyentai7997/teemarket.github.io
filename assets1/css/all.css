@@ -22,4 +22,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
 	text-decoration: none;
 	cursor: pointer;
 }
+.modal-dialog{
+	margin: 50px auto;
+}
 

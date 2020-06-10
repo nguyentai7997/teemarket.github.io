@@ -29,6 +29,9 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
 
+	<!-- Page -->
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/uikit/modals.minfd53.css?v4.0.1">
+
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
@@ -133,8 +136,8 @@
 															<div class="product-design designer-style-front">
 																<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
 															</div>
-															<div class="design-area design-area-front" style="height: 304px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
-																<div class="image_design" style="width: 216px; height: 373px">
+															<div class="design-area design-area-front" style="height: 368px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
+																<div class="image_design" style="width: 216px; height: 366px">
 																	<div class="result">
 																		<?php if(!empty($_SESSION['campaign']['src_image'])){ ?>
 																			<img id="image" src="<?php echo $_SESSION['campaign']['src_image'] ?>">
@@ -167,7 +170,8 @@
 																<td class="col-md-6">
 																	<div class="input-group">
 																		<span class="input-group-addon selling-price-addon">$</span>
-																		<input type="text" class="form-control input-sm no-padding price" style="font-size:16px;" value="25.00">
+																		<input type="text" class="form-control input-sm no-padding price" style="font-size:16px;"
+																			   value="<?php if (empty($_SESSION['campaign']['price'])){ echo 21.99; } else{ echo number_format($_SESSION['campaign']['price'],2); } ?>">
 																	</div>
 																</td>
 															</tr>
@@ -180,8 +184,12 @@
 															</thead>
 															<tbody>
 															<tr>
-																<td class="text-center">$5.00</td>
-																<td class="text-center">$20.00</td>
+																<td class="text-center">$7.50</td>
+																<?php if (empty($_SESSION['campaign']['price'])) { ?>
+																<td class="text-center">$<span class="profit-item">14.49</span></td>
+																<?php } else { ?>
+																<td class="text-center">$<span class="profit-item"><?php echo number_format($_SESSION['campaign']['price']-7.50,2);?></span></td>
+																<?php } ?>
 															</tr>
 															</tbody>
 														</table>
@@ -213,6 +221,38 @@
 	</div>
 </div>
 <!-- End Page -->
+
+<!-- Modal low  price  -->
+<div class="modal fade modal-warning low-price" id="exampleModalWarning" aria-hidden="true"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>The selling price of a product cannot be less than the Base cost of 1 product sold.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal high price -->
+<div class="modal fade modal-warning high-price" id="exampleModalWarning" aria-hidden="true"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>The selling price for this product cannot exceed $28.00.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
 
 <?php include("seller_footer_view.php") ?>
 

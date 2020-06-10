@@ -79,9 +79,9 @@
 														<div class="product-design" style="background-color: <?php echo $value['color_code'];?>">
 															<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
 														</div>
-														<div class="design-area" style="height: 53px; width: 30px; left: 22px; top: 16px; z-index: 1; overflow: hidden;">
-															<div class="product-image" style="height: 53px; width: 30px;">
-																<div class="result">
+														<div class="design-area" style="height: 52px; width: 30.85px; left: 22px; top: 16.3px; z-index: 1; overflow: hidden;">
+															<div class="product-image" style="height: 50px; width: 28.85px;">
+																<div class="result" style="top: 7.5px">
 																	<img id="image" src="<?php echo $value['design'];?>">
 																</div>
 															</div>

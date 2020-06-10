@@ -33,17 +33,16 @@
 .design-area {
 	width: 200px;
 	height: 350px;
-	/*border: 1px dashed #666;*/
+	border: 1px dashed transparent;
 	float: left;
 	overflow: visible;
 	position: absolute;
 }
 .result{
-	position: absolute;
-	top: 44px
+	position: relative;
+	top: 53px;
 }
 img {max-width: 100%;}
-
 .dg-box{
 	width: 100%;
 	border: 1px solid #CCC;

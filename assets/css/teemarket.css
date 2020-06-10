@@ -59,17 +59,29 @@
 	position: relative;
 }
 .design-area{
+	border: 1px dashed transparent;
 	float: left;
 	overflow: visible;
 	position: absolute;
 }
 .result{
-	position: absolute;
+	position: relative;
 }
 img {max-width: 100%;}
 .fas.fa-trash{cursor: pointer}
 .fas.fa-trash:hover{color: red}
-
+.products-group{
+	background-color: white;
+	border: 1px solid #eee;
+	padding: 10px;
+}
+.products-group .product{
+	margin-top: 15px;
+}
+.products-group .product-image-container{
+	width: 270px;
+	margin: auto;
+}
 /*.dg-box{*/
 /*	width: 100%;*/
 /*	border: 1px solid #CCC;*/

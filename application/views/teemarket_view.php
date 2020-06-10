@@ -78,9 +78,9 @@
 									<div class="product-design" style="background-color: <?php echo $value['colorCode'] ?>">
 										<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
 									</div>
-									<div class="design-area" style="height: 190px; width: 110px; left: 79px; top: 58px; z-index: 1; overflow: hidden;">
-										<div class="product-image" style="height: 190px; width: 110px;">
-											<div class="result" style="top: 22px;">
+									<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
+										<div class="product-image" style="height: 185.5px; width: 109px;">
+											<div class="result" style="top: 27px;">
 												<img id="image" src="<?php echo $value['design'];?>">
 											</div>
 										</div>
@@ -109,14 +109,9 @@
 						<div class="cat-box">
 							<figure>
 								<a href="#">
-									<img src="<?= base_url()?>assets/images/banners/banner-1.jpg" alt="banner">
+									<img src="<?= base_url()?>assets/images/banners/father-day.jpg" alt="banner">
 								</a>
 							</figure>
-
-							<div class="cat-box-content">
-								<h3 class="cat-box-title"><a href="#">Sunglasses</a></h3>
-								<p>Lorem Ipsum is simply dummy<br> text of the printing and typesetting industry.<br> Lorem Ipsum has</p>
-							</div><!-- End .cat-box-content -->
 						</div><!-- End .cat-box -->
 					</div><!-- End .col-md-4 -->
 
@@ -124,14 +119,9 @@
 						<div class="cat-box">
 							<figure>
 								<a href="#">
-									<img src="<?= base_url()?>assets/images/banners/banner-2.jpg" alt="banner">
+									<img src="<?= base_url()?>assets/images/banners/summer-family.jpg" alt="banner">
 								</a>
 							</figure>
-
-							<div class="cat-box-content">
-								<h3 class="cat-box-title"><a href="#">Shoes</a></h3>
-								<p>Lorem Ipsum is simply dummy<br> text of the printing and typesetting industry.<br> Lorem Ipsum has</p>
-							</div><!-- End .cat-box-content -->
 						</div><!-- End .cat-box -->
 					</div><!-- End .col-lg-4 -->
 
@@ -139,14 +129,9 @@
 						<div class="cat-box">
 							<figure>
 								<a href="#">
-									<img src="<?= base_url()?>assets/images/banners/banner-3.jpg" alt="banner">
+									<img src="<?= base_url()?>assets/images/banners/independence-day.jpg" alt="banner">
 								</a>
 							</figure>
-
-							<div class="cat-box-content">
-								<h3 class="cat-box-title"><a href="#">Watches</a></h3>
-								<p>Lorem Ipsum is simply dummy<br> text of the printing and typesetting industry.<br> Lorem Ipsum has</p>
-							</div><!-- End .cat-box-content -->
 						</div><!-- End .cat-box -->
 					</div><!-- End .col-lg-4 -->
 				</div><!-- End .row -->
@@ -168,99 +153,109 @@
 
 		<div class="home-bottom-section">
 			<div class="container">
-				<h2 class="title mb-3">New Arrivals</h2>
+				<h2 class="title mb-3">Stay Active</h2>
 
 				<div class="products-group">
 					<div class="row">
-						<div class="col-lg-5">
-							<div class="product">
-								<figure class="product-image-container">
-									<a href="product.html" class="product-image">
-										<img src="<?= base_url()?>assets/images/products/home/product-1.jpg" alt="product">
-									</a>
-								</figure>
-							</div><!-- End .product -->
+						<div class="col-md-3">
+							<img src="<?= base_url()?>assets/images/products/home/camping.jpg" alt="product">
 						</div><!-- End .col-lg-5 -->
 
-						<div class="col-lg-7">
+						<div class="col-md-9">
 							<div class="row">
-								<div class="col-lg-4">
-									<div class="row">
-										<div class="col-6 col-lg-12">
-											<div class="product">
-												<figure class="product-image-container">
-													<a href="product.html" class="product-image">
-														<img src="<?= base_url()?>assets/images/products/home/product-2.jpg" alt="product">
-													</a>
+								<div class="col-md-4">
+									<div class="product product-default">
+										<figure class="product-image-container">
+											<a href="#">
+												<div id="view-front" class="labView m-auto">
+													<div class="product-design" style="background-color: rgb(214, 215, 217)">
+														<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
+													</div>
+													<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
+														<div class="product-image" style="height: 185.5px; width: 109px;">
+															<div class="result" style="top: 27px;">
+																<img id="image" src="https://res.cloudinary.com/teemarket/image/upload/v1591812045/rroq8pwzf9awtrx8qjyj.png">
+															</div>
+														</div>
+													</div>
+												</div>
+											</a>
+											<div class="product-details">
+												<h2 class="product-title">
+													<a href="#">Snoopy Camping 1</a>
+												</h2>
+												<div class="price-box">
+													<span class="product-price" style="color: #fb8c00;font-weight: 400">$25.99</span>
+												</div><!-- End .price-box -->
+											</div><!-- End .product-details -->
 
-												</figure>
-											</div><!-- End .product -->
-										</div><!-- End .col-6 -->
+										</figure>
+									</div><!-- End .product -->
 
-										<div class="col-6 col-lg-12">
-											<div class="product">
-												<figure class="product-image-container">
-													<a href="product.html" class="product-image">
-														<img src="<?= base_url()?>assets/images/products/home/product-3.jpg" alt="product">
-													</a>
-
-												</figure>
-											</div><!-- End .product -->
-										</div><!-- End .col-6 -->
-									</div><!-- End .row -->
 								</div><!-- End .col-lg-4 -->
 
-								<div class="col-lg-4">
-									<div class="row">
-										<div class="col-6 col-lg-12">
-											<div class="product">
-												<figure class="product-image-container">
-													<a href="product.html" class="product-image">
-														<img src="<?= base_url()?>assets/images/products/home/product-4.jpg" alt="product">
-													</a>
+								<div class="col-md-4">
+									<div class="product product-default">
+										<figure class="product-image-container">
+											<a href="#">
+												<div id="view-front" class="labView m-auto">
+													<div class="product-design" style="background-color: rgb(140, 180, 232)">
+														<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
+													</div>
+													<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
+														<div class="product-image" style="height: 185.5px; width: 109px;">
+															<div class="result" style="top: 27px;">
+																<img id="image" src="https://res.cloudinary.com/teemarket/image/upload/v1591812380/yojdp89sj17xkcevceo1.png">
+															</div>
+														</div>
+													</div>
+												</div>
+											</a>
+											<div class="product-details">
+												<h2 class="product-title">
+													<a href="#">Snoopy Camping Lets Just Go</a>
+												</h2>
+												<div class="price-box">
+													<span class="product-price" style="color: #fb8c00;font-weight: 400">$25.99</span>
+												</div><!-- End .price-box -->
+											</div><!-- End .product-details -->
 
-												</figure>
-											</div><!-- End .product -->
-										</div><!-- End .col-6 -->
+										</figure>
+									</div><!-- End .product -->
 
-										<div class="col-6 col-lg-12">
-											<div class="product">
-												<figure class="product-image-container">
-													<a href="product.html" class="product-image">
-														<img src="<?= base_url()?>assets/images/products/home/product-5.jpg" alt="product">
-													</a>
-
-												</figure>
-											</div><!-- End .product -->
-										</div><!-- End .col-6 -->
-									</div><!-- End .row -->
 								</div><!-- End .col-lg-4 -->
 
-								<div class="col-lg-4">
-									<div class="row">
-										<div class="col-6 col-lg-12">
-											<div class="product">
-												<figure class="product-image-container">
-													<a href="product.html" class="product-image">
-														<img src="<?= base_url()?>assets/images/products/home/product-6.jpg" alt="product">
-													</a>
+								<div class="col-md-4">
+									<div class="product product-default">
+										<figure class="product-image-container">
+											<a href="#">
+												<div id="view-front" class="labView m-auto">
+													<div class="product-design" style="background-color: rgb(11, 11, 11)">
+														<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
+													</div>
+													<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
+														<div class="product-image" style="height: 185.5px; width: 109px;">
+															<div class="result" style="top: 27px;">
+																<img id="image" src="https://res.cloudinary.com/teemarket/image/upload/v1591812764/v03j3pymvxrl4e9rao2e.png">
+															</div>
+														</div>
+													</div>
+												</div>
+											</a>
+											<div class="product-details">
+												<h2 class="product-title">
+													<a href="#">Snoopy Camping Crazy</a>
+												</h2>
+												<div class="price-box">
+													<span class="product-price" style="color: #fb8c00;font-weight: 400">$25.99</span>
+												</div><!-- End .price-box -->
+											</div><!-- End .product-details -->
 
-												</figure>
-											</div><!-- End .product -->
-										</div><!-- End .col-6 -->
+										</figure>
+									</div><!-- End .product -->
 
-										<div class="col-6 col-lg-12">
-											<div class="product">
-												<figure class="product-image-container">
-													<a href="product.html" class="product-image">
-														<img src="<?= base_url()?>assets/images/products/home/product-7.jpg" alt="product">
-													</a>
-
-												</figure>
-											</div><!-- End .product -->
-										</div><!-- End .col-6 -->
-									</div><!-- End .row -->
 								</div><!-- End .col-lg-4 -->
+
 							</div><!-- End .row -->
 						</div><!-- End .col-lg-7 -->
 					</div><!-- End .row -->

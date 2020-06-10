@@ -12,13 +12,10 @@
 	position: absolute;
 }
 .result{
-	position: absolute;
+	position: relative;
 	top: 53px
 }
 img {max-width: 100%;}
-.modal-dialog{
-	margin: 50px auto;
-}
 .dg-box{
 	width: 100%;
 	border: 1px solid #CCC;

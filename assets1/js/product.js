@@ -2,6 +2,58 @@ $('.back-step').click(function (event) {
 	window.location.href = 'http://localhost:8012/teemarket/design';
 });
 
+//Check input price
+$(".price").keydown(function(event){
+	if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 190 || event.keyCode == 110) {
+		// Allow normal operation
+		$(".price").keyup(function (event) {
+			//Estimate Profit
+			var price = Math.round($(".price").val() * 100) / 100
+			var estimate = price - 7.50;
+			$(".profit-item").html(estimate.toFixed(2));
+		})
+	} else {
+		// Prevent the rest
+		event.preventDefault();
+	}
+});
+
+$(".price").change(function (event) {
+	var price = Math.round($(".price").val() * 100) / 100;
+	$(".price").val(price.toFixed(2));
+	if (price < 7.50) {
+		$(".price").val('7.50');
+		$(".profit-item").html('0.00');
+
+		$(".animsition").addClass("modal-open");
+		$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+		$(".low-price").addClass("show");
+		$(".low-price").css("display","block");
+		$(".close-modal").click(function (event) {
+			$(".low-price").removeClass("show");
+			$(".low-price").css("display","none");
+			$(".modal-backdrop").remove();
+			$(".animsition").removeClass("modal-open");
+			$(".price").focus();
+		});
+	}
+	if (price > 28.00) {
+		$(".price").val('28.00');
+		$(".profit-item").html('20.50');
+		$(".animsition").addClass("modal-open");
+		$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+		$(".high-price").addClass("show");
+		$(".high-price").css("display","block");
+		$(".close-modal").click(function (event) {
+			$(".high-price").removeClass("show");
+			$(".high-price").css("display","none");
+			$(".modal-backdrop").remove();
+			$(".animsition").removeClass("modal-open");
+			$(".price").focus();
+		});
+	}
+})
+
 $('.next-step').click(function (event) {
 	var product_color_list =  document.getElementById("product-color-list").getElementsByClassName("active");
 	var price = $('.price').val();
