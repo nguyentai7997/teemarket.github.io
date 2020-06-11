@@ -222,7 +222,7 @@
 </div>
 <!-- End Page -->
 
-<!-- Modal low  price  -->
+<!-- Modal low price  -->
 <div class="modal fade modal-warning low-price" id="exampleModalWarning" aria-hidden="true"
 	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
 	<div class="modal-dialog">
@@ -245,6 +245,25 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<p>The selling price for this product cannot exceed $28.00.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal invalid price -->
+<div class="modal fade modal-warning invalid-price" id="exampleModalWarning" aria-hidden="true"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+			 	<p>The selling price for this product is invalid. <br>
+					We've prefilled the recommended prices for you, but feel free to change them at your will! <br>
+					Eg: $21.99
+				</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">OK</button>
@@ -305,25 +324,6 @@
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
 <script src="<?= base_url()?>assets1/js/product.js"></script>
-
-<!-- Google Analytics -->
-<!--<script>-->
-<!--	(function(i, s, o, g, r, a, m) {-->
-<!--		i['GoogleAnalyticsObject'] = r;-->
-<!--		i[r] = i[r] || function() {-->
-<!--			(i[r].q = i[r].q || []).push(arguments)-->
-<!--		}, i[r].l = 1 * new Date();-->
-<!--		a = s.createElement(o),-->
-<!--			m = s.getElementsByTagName(o)[0];-->
-<!--		a.async = 1;-->
-<!--		a.src = g;-->
-<!--		m.parentNode.insertBefore(a, m)-->
-<!--	})(window, document, 'script', '../../../../www.google-analytics.com/analytics.js',-->
-<!--		'ga');-->
-<!---->
-<!--	ga('create', 'UA-65522665-1', 'auto');-->
-<!--	ga('send', 'pageview');-->
-<!--</script>-->
 
 </body>
 

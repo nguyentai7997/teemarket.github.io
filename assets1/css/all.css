@@ -25,4 +25,6 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
 .modal-dialog{
 	margin: 50px auto;
 }
+.error{color: #f23f01;display: none}
+#example_filter{display: none}
 

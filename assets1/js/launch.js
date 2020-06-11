@@ -31,7 +31,7 @@ $(".url").change(function (event) {
 		$('.url-invalid').css('display','none');
 
 		$.ajax({
-			url: 'http://localhost:8012/teemarket/check_url',
+			url: 'http://localhost:8012/teemarket/seller/check_url',
 			type: 'post',
 			data: {
 				url : url
@@ -52,7 +52,7 @@ $(".url").change(function (event) {
 });
 
 $('.back-step').click(function (event) {
-	window.location.href = 'http://localhost:8012/teemarket/product';
+	window.location.href = 'http://localhost:8012/teemarket/seller/product';
 });
 
 $('.next-step').click(function (event) {
@@ -81,7 +81,7 @@ $('.next-step').click(function (event) {
 
 	if (regURL.exec(url)){
 		$.ajax({
-			url: 'http://localhost:8012/teemarket/check_url',
+			url: 'http://localhost:8012/teemarket/seller/check_url',
 			type: 'post',
 			data: {
 				url : url
@@ -89,7 +89,7 @@ $('.next-step').click(function (event) {
 			success:function(res){
 				if(res == 0){
 					$.ajax({
-						url: 'http://localhost:8012/teemarket/get_launch',
+						url: 'http://localhost:8012/teemarket/seller/get_launch',
 						type: 'post',
 						data: {
 							title : title,
@@ -98,7 +98,7 @@ $('.next-step').click(function (event) {
 							category : category,
 						},
 						success:function(res){
-							// window.location.href = 'http://localhost:8012/teemarket/campaigns_details/id=123';
+							// window.location.href = 'http://localhost:8012/teemarket/seller/campaigns_details/id=123';
 						},
 						error:function(res){
 							console.log("Ajax call error 1.");

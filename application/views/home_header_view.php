@@ -10,7 +10,7 @@
 							<li><a href="<?= base_url()?>register">SIGN UP</a></li>
 							<li><a href="<?= base_url()?>login">SIGN IN</a></li>
 							<?php }else{ ?>
-							<li><a href="<?= base_url()?>campaigns">DASHBOARD</a></li>
+							<li><a href="<?= base_url()?>seller/campaigns">DASHBOARD</a></li>
 							<li><a href="<?= base_url()?>logout">SIGN OUT</a></li>
 							<?php }?>
 						</ul>

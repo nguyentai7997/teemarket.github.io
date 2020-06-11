@@ -12,3 +12,16 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
 	text-decoration: none;
 	cursor: pointer;
 }
+.publicname{text-transform:lowercase;}
+::-webkit-input-placeholder {
+	text-transform: initial;
+}
+:-moz-placeholder {
+	text-transform: initial;
+}
+::-moz-placeholder {
+	text-transform: initial;
+}
+:-ms-input-placeholder {
+	text-transform: initial;
+}

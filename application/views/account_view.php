@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -30,6 +30,8 @@
 
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/uikit/modals.minfd53.css?v4.0.1">
+	<!-- Thu vien thong bao -->
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/toastr.min.css">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -126,68 +128,84 @@
 				<div class="panel-body container-fluid bg-white">
 					<!-- Example Basic Form Without Label -->
 					<div class="example-wrap">
-						<h3 class="example-title">Information</h3>
+						<div class="row">
+							<div class="col-md-6 col-lg-6">
+								<h3 class="example-title">INFORMATION</h3>
+							</div>
+							<div class="col-md-6 col-lg-6">
+								<div class="float-right">
+									<button type="button" class="btn btn-primary save-info">
+										<i class="icon fa-save"></i> Save
+									</button>
+								</div>
+							</div>
+						</div>
+						<hr>
 						<div class="example">
-							<div class="email" style="margin-bottom: 34px;">Email: tonixtai@gmail.com</div>
 							<form>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="fullname" placeholder="Full Name"
-										   autocomplete="off" />
+								<div class="form-group required-field">
+									<label style="color: #424242">Email</label>
+									<input type="text" class="form-control email" placeholder="Email" value="<?php echo $info[0]['email'] ?>" disabled>
+								</div><!-- End .form-group -->
+								<div class="form-group required-field">
+									<label style="color: #424242">Public Name</label>
+									<input type="text" class="form-control publicname" placeholder="Public Name" value="<?php echo $info[0]['publicname'] ?>">
+									<div class="error pn-required">The public name field is required.</div>
+									<div class="error pn-error">Public name is already taken.</div>
+									<div class="error pn-invalid">The public name field must be a valid public name.</div>
+								</div><!-- End .form-group -->
+								<div class="form-group required-field">
+									<label style="color: #424242">Full Name</label>
+									<input type="text" class="form-control fullname" placeholder="Full Name" value="<?php echo $info[0]['fullname'] ?>">
+									<div class="error fn-required">The full name field is required.</div>
 								</div>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="publicname" placeholder="Public Name"
-										   autocomplete="off" />
-								</div>
-								<div class="form-group form-material">
-									<input type="text" class="form-control" name="address" placeholder="Address"
-										   autocomplete="off" />
+								<div class="form-group required-field">
+									<label style="color: #424242">Address</label>
+									<input type="text" class="form-control address" name="address" placeholder="Address" value="<?php echo $info[0]['address'] ?>">
 								</div>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-4">
-											<label>Country</label>
+											<label style="color: #424242">Country</label>
 											<div class="select-custom">
-												<select name="country" class="countries form-control" id="countryId">
-													<option value="">Select Country</option>
+												<select name="" class="countries form-control" id="countryId">
+													<option value="<?php echo $info[0]['country'] ?>">
+														<?php if($info[0]['country'] == "") { echo "Select Country"; } else{ echo $info[0]['country']; } ?>
+													</option>
 												</select>
 											</div><!-- End .select-custom -->
-											<div class="error country-required">The country field is required.</div>
 										</div>
 										<div class="col-4">
-											<label>State / Province</label>
+											<label style="color: #424242">State / Province</label>
 											<div class="select-custom">
 												<select name="state" class="states form-control" id="stateId">
-													<option value="">Select State</option>
+													<option value="<?php echo $info[0]['state'] ?>">
+														<?php if($info[0]['state'] == "") { echo "Select State"; } else{ echo $info[0]['state']; } ?>
+													</option>
 												</select>
 											</div><!-- End .select-custom -->
-											<div class="error state-required">The state / province / region field is required.</div>
 										</div>
 										<div class="col-4">
-											<label>City / Town</label>
+											<label style="color: #424242">City / Town</label>
 											<div class="select-custom">
 												<select name="city" class="cities form-control" id="cityId">
-													<option value="">Select City</option>
+													<option value="<?php echo $info[0]['city'] ?>">
+														<?php if($info[0]['city'] == "") { echo "Select City"; } else{ echo $info[0]['city']; } ?>
+													</option>
 												</select>
 											</div><!-- End .select-custom -->
-											<div class="error city-required">The city / town field is required.</div>
 										</div>
 									</div>
 								</div><!-- End .form-group -->
 								<div class="row">
-									<div class="form-group form-material col-md-4">
-										<input type="text" class="form-control" name="zipcode" placeholder="ZIP / Postal Code"
-											   autocomplete="off" />
+									<div class="form-group required-field col-md-4">
+										<label style="color: #424242">ZIP / Postal Code</label>
+										<input type="text" class="form-control zip" placeholder="ZIP / Postal Code" value="<?php echo $info[0]['zip'] ?>">
 									</div>
-									<div class="form-group form-material col-md-8">
-										<input type="text" class="form-control" name="phone" placeholder="Phone Number"
-											   autocomplete="off" />
+									<div class="form-group required-field col-md-8">
+										<label style="color: #424242">Phone Number</label>
+										<input type="text" class="form-control phone" placeholder="Phone Number"value="<?php echo $info[0]['phone'] ?>">
 									</div>
-								</div>
-								<div class="form-group">
-									<button type="button" class="btn btn-primary">
-										<i class="icon fa-save"></i>
-										Save
-									</button>
 								</div>
 							</form>
 						</div>
@@ -199,27 +217,37 @@
 				<div class="panel-body container-fluid bg-white">
 					<!-- Example Basic Form Without Label -->
 					<div class="example-wrap">
-						<h3 class="example-title">Password</h3>
+						<div class="row">
+							<div class="col-md-6 col-lg-6">
+								<h3 class="example-title">PASSWORD</h3>
+							</div>
+							<div class="col-md-6 col-lg-6">
+								<div class="float-right">
+									<button type="button" class="btn btn-primary change-password">
+										<i class="icon fa-save"></i> Save
+									</button>
+								</div>
+							</div>
+						</div>
+						<hr>
 						<div class="example">
 							<form>
-								<div class="form-group form-material">
+								<div class="form-group required-field">
+									<label style="color: #424242">Current Password</label>
 									<input type="password" class="form-control" id="current-pass" placeholder="Current Password" autocomplete="off" />
 									<div class="error current-pass-required">The password field is required.</div>
 								</div>
-								<div class="form-group form-material">
+								<div class="form-group required-field">
+									<label style="color: #424242">New Password</label>
 									<input type="password" class="form-control" id="new-pass" placeholder="New Password" autocomplete="off" />
 									<div class="error new-pass-required">The new password field is required.</div>
 									<div class="error new-pass-error">The password field must contain 8 characters including at least one number and at least one alphabetic character.</div>
 								</div>
-								<div class="form-group form-material">
+								<div class="form-group required-field">
+									<label style="color: #424242">Confirm New Passwor</label>
 									<input type="password" class="form-control" id="cf-pass" placeholder="Confirm New Password" autocomplete="off" />
 									<div class="error cf-pass-required">The password field is required.</div>
 									<div class="error cf-pass-error">The password confirmation does not match.</div>
-								</div>
-								<div class="form-group">
-									<button type="button" class="btn btn-primary change-password">
-										<i class="icon fa-save"></i>Change Password
-									</button>
 								</div>
 							</form>
 						</div>
@@ -238,7 +266,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Succes</h4>
+				<h4 class="modal-title">Success</h4>
 			</div>
 			<div class="modal-body">
 				<p>You have successfully changed your password</p>
@@ -297,31 +325,13 @@
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>assets/js/toastr.min.js"></script>
 <!-- Country, State, City Dropdowms List -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//geodata.solutions/includes/countrystatecity.js"></script>
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
 <script src="<?= base_url()?>assets1/js/account.js"></script>
-
-<!-- Google Analytics -->
-<!--<script>-->
-<!--	(function(i, s, o, g, r, a, m) {-->
-<!--		i['GoogleAnalyticsObject'] = r;-->
-<!--		i[r] = i[r] || function() {-->
-<!--			(i[r].q = i[r].q || []).push(arguments)-->
-<!--		}, i[r].l = 1 * new Date();-->
-<!--		a = s.createElement(o),-->
-<!--			m = s.getElementsByTagName(o)[0];-->
-<!--		a.async = 1;-->
-<!--		a.src = g;-->
-<!--		m.parentNode.insertBefore(a, m)-->
-<!--	})(window, document, 'script', '../../../../www.google-analytics.com/analytics.js',-->
-<!--		'ga');-->
-<!---->
-<!--	ga('create', 'UA-65522665-1', 'auto');-->
-<!--	ga('send', 'pageview');-->
-<!--</script>-->
 
 </body>
 

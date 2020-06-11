@@ -1,22 +1,39 @@
 $('.back-step').click(function (event) {
-	window.location.href = 'http://localhost:8012/teemarket/design';
+	window.location.href = 'http://localhost:8012/teemarket/seller/design';
 });
 
+function count_dot(str){
+	var count = 0;
+	for (var position = 0; position < str.length; position++)
+	{
+		if (str.charAt(position) == ".")
+		{
+			count += 1;
+		}
+	}
+	return count;
+}
+
 //Check input price
-$(".price").keydown(function(event){
+$(".price").keydown(function(event) {
+	var regExp = /^[.]{1}$/;
 	if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 190 || event.keyCode == 110) {
 		// Allow normal operation
 		$(".price").keyup(function (event) {
-			//Estimate Profit
-			var price = Math.round($(".price").val() * 100) / 100
-			var estimate = price - 7.50;
-			$(".profit-item").html(estimate.toFixed(2));
+			if (regExp.exec($(".price").val())) {
+				$(".profit-item").html(-7.50);
+			} else if (count_dot($(".price").val()) < 2) {
+				//Estimate Profit
+				var price = Math.round($(".price").val() * 100) / 100
+				var estimate = price - 7.50;
+				$(".profit-item").html(estimate.toFixed(2));
+			}
 		})
 	} else {
 		// Prevent the rest
 		event.preventDefault();
 	}
-});
+})
 
 $(".price").change(function (event) {
 	var price = Math.round($(".price").val() * 100) / 100;
@@ -52,6 +69,21 @@ $(".price").change(function (event) {
 			$(".price").focus();
 		});
 	}
+	if (!$.isNumeric($(".price").val())) {
+		$(".price").val('21.99');
+		$(".profit-item").html('14.49');
+		$(".animsition").addClass("modal-open");
+		$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+		$(".invalid-price").addClass("show");
+		$(".invalid-price").css("display","block");
+		$(".close-modal").click(function (event) {
+			$(".invalid-price").removeClass("show");
+			$(".invalid-price").css("display","none");
+			$(".modal-backdrop").remove();
+			$(".animsition").removeClass("modal-open");
+			$(".price").focus();
+		});
+	}
 })
 
 $('.next-step').click(function (event) {
@@ -63,14 +95,14 @@ $('.next-step').click(function (event) {
 		resultColors.push(res);
 	}
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/get_product',
+		url: 'http://localhost:8012/teemarket/seller/get_product',
 		type: 'post',
 		data: {
 			resultColors : resultColors,
 			price : price
 		},
 		success:function(res){
-			window.location.href = 'http://localhost:8012/teemarket/launch';
+			window.location.href = 'http://localhost:8012/teemarket/seller/launch';
 		},
 		error:function(res){
 			console.log("Ajax call error.");

@@ -527,8 +527,6 @@
 <script src="<?= base_url()?>assets/js/toastr.min.js"></script>
 <script src="<?= base_url()?>assets/js/teemarket.js"></script>
 
-<!-- www.addthis.com share plugin -->
-<!--<script src="../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b927288a03dbde6"></script>-->
 </body>
 
 </html>

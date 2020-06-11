@@ -94,10 +94,10 @@ function readImageFile(file) {
 //Click button remove image
 $('.remove-image').click(function (event) {
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/remove_design',
+		url: 'http://localhost:8012/teemarket/seller/remove_design',
 		type: 'post',
 		success:function(res){
-			window.location.href = 'http://localhost:8012/teemarket/design';
+			window.location.href = 'http://localhost:8012/teemarket/seller/design';
 		},
 		error:function(res){
 			console.log("Ajax call error.");
@@ -111,14 +111,14 @@ $('.next-step').click(function(event) {
 	if (src_image != ''){
 		console.log($("#img-preview").length);
 		$.ajax({
-			url: 'http://localhost:8012/teemarket/get_design',
+			url: 'http://localhost:8012/teemarket/seller/get_design',
 			type: 'post',
 			data: {
 				src_image : src_image,
 				color_design : color_design
 			},
 			success:function(res){
-				window.location.href = 'http://localhost:8012/teemarket/product';
+				window.location.href = 'http://localhost:8012/teemarket/seller/product';
 			},
 			error:function(res){
 				console.log("Ajax call error.");

@@ -52,12 +52,6 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
-	function getDataByIdSellerAndUrl($id,$url)
-	{
-		$query = $this->db->query("SELECT id FROM campaign WHERE id_seller = '$id' and url = '$url'")->result_array();
-		return $query;
-	}
-
 	function getDataCategory()
 	{
 		$query = $this->db->query("SELECT * FROM category")->result_array();
@@ -132,13 +126,42 @@ class Mteemarket extends CI_Model {
 	}
 	function insertInfoCustomer($email,$fullname,$address,$country,$state,$city,$zip)
 	{
-		$insertInfoCustomer = $this->db->query("INSERT INTO info_customer ( `email`, `fullname`, `address`, `country`, `state`, `city`, `zip`, `datetime`, `status`) VALUES ('$email','$fullname','$address','$country','$state','$city','$zip',CURRENT_TIMESTAMP,'pending')");
+		$insertInfoCustomer = $this->db->query("INSERT INTO info_customer ( `email`, `fullname`, `address`, `country`, `state`, `city`, `zip`, `status`, `time`) VALUES ('$email','$fullname','$address','$country','$state','$city','$zip','pending',CURRENT_TIMESTAMP)");
 		$idCustomer = $this->db->query("SELECT LAST_INSERT_ID()")->result_array();
 		return $idCustomer;
 	}
 	function insertOrder($id_customer,$id_campaign,$size,$id_color,$quantity)
 	{
 		$query = $this->db->query("INSERT INTO orders ( `id_customer`, `id_campaign`, `size`, `id_color`, `quantity`) VALUES ('$id_customer','$id_campaign','$size','$id_color', '$quantity')");
+		return $query;
+	}
+	function getAllCampaignsOfSeller($id){
+		$query = $this->db->query("SELECT * FROM campaign where id_seller ='$id'")->result_array();
+		return $query;
+	}
+
+	function getDataPaymentByIdSeller($id){
+		$query = $this->db->query("SELECT * FROM payment_method where id_seller ='$id'")->result_array();
+		return $query;
+	}
+
+	function updatePayment($id,$paypal,$payoneer){
+		$query = $this->db->query("UPDATE payment_method SET email_paypal = '$paypal' , email_payoneer = '$payoneer'  WHERE id_seller = '$id'");
+		return $query;
+	}
+
+	function insertPayment($id,$paypal,$payoneer){
+		$query = $this->db->query("INSERT INTO payment_method ( `id_seller`, `email_paypal`, `email_payoneer`) VALUES ('$id','$paypal','$payoneer')");
+		return $query;
+	}
+
+	function getInfoSeller($id){
+		$query = $this->db->query("SELECT * FROM account where id ='$id'")->result_array();
+		return $query;
+	}
+
+	function updateInfo($id,$fullname,$publicname,$address,$countries,$states,$cities,$zip,$phone){
+		$query = $this->db->query("UPDATE account SET fullname = '$fullname' , publicname = '$publicname' , address = '$address' , country = '$countries' , state = '$states' , city = '$cities' , zip = '$zip' , phone = '$phone' WHERE id = '$id'");
 		return $query;
 	}
 }

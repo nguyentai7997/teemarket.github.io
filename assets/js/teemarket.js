@@ -68,7 +68,7 @@ $('.signin').click(function(event) {
 			passwordSignIn	: passwordSignIn
 		},success:function(res) {
 			if(res == 0) {
-				window.location.href = 'http://localhost:8012/teemarket/campaigns';
+				window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
 			} else {
 				toastr.error('Incorrect login information, please try again.');
 				toastr.error('Invalid credentials provided.');
@@ -265,7 +265,7 @@ $('.signup').click(function(event) {
 	}
 
 	if (regPN.exec(publicname)){
-		if (publicname == 'seller' || publicname == 'admin' || publicname == 'campaigns') {
+		if (publicname == 'seller' || publicname == 'admin') {
 			toastr.error('Public name is already taken.');
 			return;
 		} else {

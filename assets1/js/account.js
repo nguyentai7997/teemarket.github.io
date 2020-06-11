@@ -89,7 +89,7 @@ $('.change-password').click(function(event) {
 
 	//Check current password and update password
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/settings/change_password',
+		url: 'http://localhost:8012/teemarket/seller/change_password',
 		type: 'post',
 		// dataType: 'json',
 		data: {
@@ -106,7 +106,7 @@ $('.change-password').click(function(event) {
 					$(".modal-success").css("display","none");
 					$(".modal-backdrop").remove();
 					$(".animsition").removeClass("modal-open");
-					window.location.href = 'http://localhost:8012/teemarket/seller/settings/account';
+					window.location.href = 'http://localhost:8012/teemarket/seller/account';
 				});
 			} if (res == 2) {
 				toastr.error("Incorrect current password provided.");
@@ -116,3 +116,153 @@ $('.change-password').click(function(event) {
 		}
 	});
 });
+
+//Check Public Name
+$(".publicname").change(function(event){
+	var publicname  = $('.publicname').val().toLowerCase();
+	var regPN1 = /\S/;
+	var regPN2 = /^[a-z0-9]{3,40}$/;
+	if(!regPN1.exec(publicname)) { //Th public name chi toan khoang trang
+		$('.pn-required').css('display','block');
+		$('.pn-error').css('display','none');
+		$('.pn-invalid').css('display', 'none');
+		$('.public-name').text('public-name');
+		$('.public-name').css('color','unset');
+	} else {
+		$('.pn-required').css('display','none');
+		if (regPN2.exec(publicname)){
+			$('.pn-invalid').css('display', 'none');
+			if (publicname == 'seller' || publicname == 'admin') {
+				$('.pn-error').css('display', 'block');
+				$('.public-name').text('public-name');
+				$('.public-name').css('color','unset');
+				toastr.error('Public name is already taken.');
+			} else {
+				$.ajax({
+					url: 'http://localhost:8012/teemarket/check_public_name',
+					type: 'post',
+					data: {
+						publicname : publicname
+					},
+					success:function(res){
+						if(res == 0){
+							$('.pn-error').css('display','none');
+							$('.public-name').text(publicname);
+							$('.public-name').css('color','#fb8c00');
+						}
+						else {
+							$('.pn-error').css('display', 'block');
+							$('.public-name').text('public-name');
+							$('.public-name').css('color','unset');
+							toastr.error('Public name is already taken.');
+						}
+					},
+					error:function(res){
+						console.log('Ajax call error.');
+					}
+				});
+			}
+		} else {
+			$('.pn-error').css('display','none');
+			$('.pn-invalid').css('display', 'block');
+			$('.public-name').text('public-name');
+			$('.public-name').css('color','unset');
+			toastr.error('Invalid public name provided. Public names must be between 3 and 40 alphanumeric characters excluding special characters and spaces.');
+		}
+	}
+});
+
+//Check Full Name Input
+$('.fullname').change(function (event) {
+	var fullname = $('.fullname').val();
+	var regFN = /\S/; //Ký tự không phải khoảng trắng
+	if (!regFN.exec(fullname)){ //TH Full Name chỉ toàn khoảng trắng
+		$('.fn-required').css('display','block');
+	} else {
+		$('.fn-required').css('display','none');
+	}
+});
+
+$(".save-info").click(function (event) {
+	var publicname  = $('.publicname').val().toLowerCase();
+	var fullname = $('.fullname').val();
+	var address = $('.address').val();
+	var countries = $('.countries').val();
+	var states = $('.states').val();
+	var cities = $('.cities').val();
+	var zip = $('.zip').val();
+	var phone = $('.phone').val();
+
+	var regExp = /\S/;
+	var regPN = /^[a-z0-9]{3,40}$/;
+
+	if (!regExp.exec(publicname)){
+		$('.pn-required').css('display','block');
+	}
+	if (!regExp.exec(fullname)){
+		$('.fn-required').css('display','block');
+	}
+	if (!regExp.exec(fullname) || !regExp.exec(publicname)){
+		return;
+	}
+
+	if (regPN.exec(publicname)){
+		if (publicname == 'seller' || publicname == 'admin') {
+			toastr.error('Public name is already taken.');
+			return;
+		} else {
+			$.ajax({
+				url: 'http://localhost:8012/teemarket/check_public_name',
+				type: 'post',
+				data: {
+					publicname : publicname
+				},
+				success:function(res){
+					if(res == 0){
+					}
+					else {
+						toastr.error('Public name is already taken.');
+						return;
+					}
+				},
+				error:function(res){
+					console.log('Ajax call error.');
+					return;
+				}
+			});
+		}
+	} else {
+		toastr.error('Invalid public name provided. Public names must be between 3 and 40 alphanumeric characters excluding special characters and spaces.');
+		return;
+	}
+
+	$.ajax({
+		url: 'http://localhost:8012/teemarket/seller/update_info',
+		type: 'post',
+		dataType: 'json',
+		data: {
+			fullname	: fullname,
+			publicname	: publicname,
+			address		: address,
+			countries	: countries,
+			states		: states,
+			cities		: cities,
+			zip			: zip,
+			phone		: phone,
+		},success:function(res) {
+			if(res == 0) {
+				window.location.href = 'http://localhost:8012/teemarket/seller/account';
+			} else {
+				console.log("Insert error.");
+			}
+		},error:function(res){
+			console.log("Ajax call error.");
+		}
+	});
+})
+
+if ($("#countryId option").val() != ""){
+	console.log($("#countryId option").val());
+	$("#countryId option").innerHTML = "Viet Nam";
+}
+

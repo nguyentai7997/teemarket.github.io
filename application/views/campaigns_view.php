@@ -255,7 +255,7 @@
 									<div>Days Left</div>
 								</td>
 								<td class="text-nowrap text-center" width="12%">
-									<button type="button" class="btn btn-sm btn-icon btn-flat">
+									<button type="button" class="btn btn-sm btn-icon btn-flat option">
 										<i class="icon fa-ellipsis-h" aria-hidden="true"></i>
 									</button>
 									<div>Option</div>
@@ -331,25 +331,6 @@
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
 <script src="<?= base_url()?>assets1/js/campaigns.js"></script>
-
-<!-- Google Analytics -->
-<!--<script>-->
-<!--	(function(i, s, o, g, r, a, m) {-->
-<!--		i['GoogleAnalyticsObject'] = r;-->
-<!--		i[r] = i[r] || function() {-->
-<!--			(i[r].q = i[r].q || []).push(arguments)-->
-<!--		}, i[r].l = 1 * new Date();-->
-<!--		a = s.createElement(o),-->
-<!--			m = s.getElementsByTagName(o)[0];-->
-<!--		a.async = 1;-->
-<!--		a.src = g;-->
-<!--		m.parentNode.insertBefore(a, m)-->
-<!--	})(window, document, 'script', '../../../../www.google-analytics.com/analytics.js',-->
-<!--		'ga');-->
-<!---->
-<!--	ga('create', 'UA-65522665-1', 'auto');-->
-<!--	ga('send', 'pageview');-->
-<!--</script>-->
 
 </body>
 

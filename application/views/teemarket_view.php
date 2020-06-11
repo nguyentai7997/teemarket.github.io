@@ -158,7 +158,9 @@
 				<div class="products-group">
 					<div class="row">
 						<div class="col-md-3">
-							<img src="<?= base_url()?>assets/images/products/home/camping.jpg" alt="product">
+							<a href="#">
+								<img src="<?= base_url()?>assets/images/products/home/camping.jpg" alt="product">
+							</a>
 						</div><!-- End .col-lg-5 -->
 
 						<div class="col-md-9">
