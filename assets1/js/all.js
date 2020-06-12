@@ -20,3 +20,12 @@ $('.settings').click(function(event) {
 $('.logout').click(function(event) {
 	window.location.href = 'http://localhost:8012/teemarket/seller/logout';
 });
+
+$(document).ready(function() {
+	$('#example').DataTable( {
+		dom: 'Bfrtip',
+		buttons: [
+			'csvHtml5',
+		]
+	} );
+} );

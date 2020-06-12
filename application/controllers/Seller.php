@@ -155,7 +155,8 @@ class Seller extends CI_Controller
 		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
 		} else {
-			$this->load->view('orders_view');
+			$orders = $this->Mteemarket->getOrdersByIdSeller($_SESSION['user']['id']);
+			$this->load->view('orders_view',['orders' => $orders]);
 		}
 	}
 
@@ -263,7 +264,8 @@ class Seller extends CI_Controller
 		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
 		} else {
-			$this->load->view('payouts_view');
+			$orders = $this->Mteemarket->getOrdersByIdSeller($_SESSION['user']['id']);
+			$this->load->view('payouts_view',['orders' => $orders]);
 		}
 	}
 

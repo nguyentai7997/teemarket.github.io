@@ -107,43 +107,45 @@
 	<div class="page-content container-fluid">
 		<!-- Panel Table Tools -->
 		<div class="panel">
-
 			<header class="panel-heading panel-title">
 				<div class="row">
 					<div class="col-md-6 col-lg-6">
-						<h3 class="example-title">All (44)</h3>
+						<h3 class="example-title">All (<?php echo count($orders) ?>)</h3>
 					</div>
 				</div>
 				<hr>
 			</header>
 			<div class="panel-body">
-				<table class="table table-hover dataTable table-striped w-full" id="example">
-
+				<table class="table table-hover dataTable table-striped w-full text-center" id="example">
 					<thead>
 					<tr>
-						<th>Date</th>
-						<th>Campaign Name</th>
-						<th>Order Number</th>
-						<th>Email</th>
-						<th>Country</th>
-						<th>Items</th>
-						<th>Subtotal</th>
-						<th>Base Cost</th>
-						<th>Profit</th>
+						<th style="color: #0e0e0e">Date</th>
+						<th style="color: #0e0e0e">Campaign Name</th>
+						<th width="93px" style="color: #0e0e0e">Order Number</th>
+						<th style="color: #0e0e0e">Email</th>
+						<th style="color: #0e0e0e">Country</th>
+						<th style="color: #0e0e0e">Items</th>
+						<th style="color: #0e0e0e">Subtotal</th>
+						<th width="76px" style="color: #0e0e0e">Base Cost</th>
+						<th style="color: #0e0e0e">Profit</th>
+						<th style="color: #0e0e0e">Flags</th>
 					</tr>
 					</thead>
 					<tbody>
+					<?php foreach ($orders as $key => $value) { ?>
 					<tr>
-						<td>Kate</td>
-						<td>5516 Adolfo Rode</td>
-						<td>Littelhaven</td>
-						<td>26</td>
-						<td>2014/06/13</td>
-						<td>2</td>
-						<td>$21.99</td>
+						<td><?php echo $value['time']?></td>
+						<td style="color: #fb8c00"><?php echo $value['title']?></td>
+						<td style="color: #fb8c00"><?php echo $value['id']?></td>
+						<td><?php echo $value['email']?></td>
+						<td><?php echo $value['country']?></td>
+						<td><?php echo $value['quantity']?></td>
+						<td>$<?php echo number_format($value['quantity'] * $value['price'],2)?></td>
 						<td>$7.50</td>
-						<td>$28,98</td>
+						<td>$<?php echo number_format($value['quantity'] * $value['price'] - 7.50,2)?></td>
+						<td><?php if ($value['status'] == 'pending') {echo "_";} ?></td>
 					</tr>
+					<?php } ?>
 					</tbody>
 				</table>
 			</div>
@@ -218,13 +220,10 @@
 
 <script src="<?= base_url()?>global/js/Plugin/datatables.minfd53.js?v4.0.1"></script>
 
-
 <script src="<?= base_url()?>assets1/examples/js/tables/datatable.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>assets1/examples/js/uikit/icon.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-<script src="<?= base_url()?>assets1/js/orders.js"></script>
 
 </body>
 

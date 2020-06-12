@@ -19,23 +19,18 @@
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
 
-	<!-- Plugins -->
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/asscrollable/asScrollable.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/switchery/switchery.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/intro-js/introjs.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/slidepanel/slidePanel.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
-
 	<!-- Plugins For This Page -->
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/c3/c3.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/bootstrap-table/bootstrap-table.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.minfd53.css?v4.0.1">
 
 	<!-- Page -->
-	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/structure/pagination.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/tables/basic.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/tables/datatable.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -127,7 +122,7 @@
 			<div class="col-xl-2 col-md-3 col-sm-2"></div>
 		</div>
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-xl-3 col-md-6">
+			<div class="col-xl-4 col-md-6">
 				<!-- Widget Linearea One-->
 				<div class="card card-shadow" id="widgetLineareaOne">
 					<div class="card-block bg-purple-500 p-20 pt-10">
@@ -135,7 +130,7 @@
 							<div class="float-right">
 								<i class="icon ion-ios-radio-outline font-size-30"></i>
 							</div>
-							<div class="font-size-20 font-weight-600">Payouts Live</div>
+							<div class="font-size-20 font-weight-600">Payouts Requested</div>
 							<div class="font-size-20">$0.00</div>
 						</div>
 
@@ -144,7 +139,7 @@
 				<!-- End Widget Linearea One -->
 			</div>
 
-			<div class="col-xl-3 col-md-6">
+			<div class="col-xl-4 col-md-6">
 				<!-- Widget Linearea Two-->
 				<div class="card card-shadow" id="widgetLineareaTwo">
 					<div class="card-block bg-cyan-500 p-20 pt-10">
@@ -160,23 +155,7 @@
 				<!-- End Widget Linearea Two -->
 			</div>
 
-			<div class="col-xl-3 col-md-6">
-				<!-- Widget Linearea Three-->
-				<div class="card card-shadow" id="widgetLineareaOne">
-					<div class="card-block bg-orange-600 p-20 pt-10">
-						<div class="clearfix text-white">
-							<div class="float-right">
-								<i class="icon md-confirmation-number font-size-30"></i>
-							</div>
-							<div class="font-size-20 font-weight-600">Payouts Deductions</div>
-							<div class="font-size-20">$0.00</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Widget Linearea Three -->
-			</div>
-
-			<div class="col-xl-3 col-md-6">
+			<div class="col-xl-4 col-md-6">
 				<!-- Widget Linearea Four-->
 				<div class="card card-shadow" id="widgetLineareaOne">
 					<div class="card-block bg-green-500 p-20 pt-10">
@@ -192,96 +171,58 @@
 				<!-- End Widget Linearea Four -->
 			</div>
 
-			<div class="col-lg-12">
-				<!-- Example C3 Timeseries -->
-				<div class="example-wrap m-md-0">
-					<h4 class="example-title">Timeseries</h4>
-					<p>Simple line chart with timeseries data. </p>
-					<div class="example example-responsive pb-15">
-						<div id="exampleC3TimeSeries"></div>
-					</div>
-				</div>
-				<!-- End Example C3 Timeseries -->
-			</div>
-
-			<div class="col-lg-12">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="sort_label">Sort Campaigns By</div>
-							<select class="form-control">
-								<option>Newest to Oldest</option>
-								<option>Oldest to Newest</option>
-								<option>Top Selling</option>
-								<option>Least Selling</option>
-								<option>Sort A to Z</option>
-								<option>Sort Z to A</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="sort_label">Filter By Status</div>
-							<select class="form-control">
-								<option>All</option>
-								<option>Active</option>
-								<option>Starred</option>
-								<option>Ended</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
-								<span class="input-group-btn">
-						  			<button type="submit" class="btn" style="background-color: #fb8c00"><i class="icon md-search" aria-hidden="true"></i></button>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Example Bordered Table -->
-				<div class="table-responsive">
-					<table class="table table-bordered bg-white">
-						<tbody>
-						<tr>
-							<td>
-								Name
-							</td>
-							<td class="text-center" width="12%">
-								<div class="data_profit">$0.00</div>
-								<div>Profit</div>
-							</td>
-							<td class="text-center" width="12%">
-								<div class="data_orfers">0</div>
-								<div>Orders</div>
-							</td>
-							<td class="text-center" width="12%">
-								<div class="data_units">0</div>
-								<div>Units</div>
-							</td>
-							<td class="text-center" width="12%">
-								<div class="data_time">7</div>
-								<div>Days Left</div>
-							</td>
-							<td class="text-nowrap text-center" width="12%">
-								<button type="button" class="btn btn-sm btn-icon btn-flat">
-									<i class="icon wb-more-horizontal" aria-hidden="true"></i>
-								</button>
-								<div>Option</div>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-				<!-- End Example Bordered Table -->
-			</div>
-
 		</div>
+		<!-- Panel Table Tools -->
+		<div class="panel">
+			<header class="panel-heading panel-title">
+				<div class="row">
+					<div class="col-md-4 col-lg-4">
+						<h3 class="example-title">Campaigns Payouts (6)</h3>
+					</div>
+					<div class="col-xl-4 col-md-4 col-sm-4">
+						<div class="mt-10">
+							<ul class="pagination pagination-gap justify-content-center">
+								<li class="active page-item settings_account"><a class="page-link" href="#">Available</a></li>
+								<li class="page-item settings_payouts"><a class="page-link" href="#">Requested</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-4 col-lg-4">
+						<div class="float-right mt-10">
+							<button type="button" class="btn btn-primary change-password">
+								<i class="icon fa-save"></i> Total Payout
+							</button>
+						</div>
+					</div>
+				</div>
+				<hr>
+			</header>
+			<div class="panel-body">
+				<table class="table table-hover dataTable table-striped w-full text-center" id="example">
+					<thead>
+					<tr>
+						<th style="color: #0e0e0e">Date</th>
+						<th style="color: #0e0e0e">Campaign</th>
+						<th style="color: #0e0e0e">Amount</th>
+						<th style="color: #0e0e0e">Status</th>
+						<th style="color: #0e0e0e">CSV</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($orders as $key => $value) { ?>
+						<tr>
+							<td><?php echo ($value['time'])?></td>
+							<td><?php echo $value['title']?></td>
+							<td>$<?php echo number_format($value['quantity'] * $value['price'] - 7.50,2)?></td>
+							<td><?php echo $value['status']?></td>
+							<td>1 option</td>
+						</tr>
+					<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- End Panel Table Tools -->
 	</div>
 </div>
 <!-- End Page -->
@@ -308,9 +249,22 @@
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
 
 <!-- Plugins For This Page -->
-<script src="<?= base_url()?>global/vendor/aspaginator/jquery-asPaginator.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/c3/c3.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/d3/d3.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net/jquery.dataTablesfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-bs4/dataTables.bootstrap4fd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-fixedheader/dataTables.fixedHeader.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-fixedcolumns/dataTables.fixedColumns.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-rowgroup/dataTables.rowGroup.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-scroller/dataTables.scroller.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-responsive/dataTables.responsive.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>/global/vendor/datatables.net-responsive-bs4/responsive.bootstrap4.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/dataTables.buttons.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.html5.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.flash.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.print.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.colVis.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/asrange/jquery-asRange.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/bootbox/bootbox.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -339,9 +293,7 @@
 
 <script src="<?= base_url()?>global/js/Plugin/aspaginator.minfd53.js?v4.0.1"></script>
 
-<script src="<?= base_url()?>assets1/examples/js/dashboard/v1.minfd53.js?v4.0.1"></script>
-<!--Co the thay assets1 khac de do loi function chatist-->
-<script src="<?= base_url()?>assets1/examples/js/charts/c3.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>assets1/examples/js/tables/datatable.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>

@@ -126,13 +126,13 @@ class Mteemarket extends CI_Model {
 	}
 	function insertInfoCustomer($email,$fullname,$address,$country,$state,$city,$zip)
 	{
-		$insertInfoCustomer = $this->db->query("INSERT INTO info_customer ( `email`, `fullname`, `address`, `country`, `state`, `city`, `zip`, `status`, `time`) VALUES ('$email','$fullname','$address','$country','$state','$city','$zip','pending',CURRENT_TIMESTAMP)");
+		$insertInfoCustomer = $this->db->query("INSERT INTO info_customer ( `email`, `fullname`, `address`, `country`, `state`, `city`, `zip`, `time`) VALUES ('$email','$fullname','$address','$country','$state','$city','$zip',CURRENT_TIMESTAMP)");
 		$idCustomer = $this->db->query("SELECT LAST_INSERT_ID()")->result_array();
 		return $idCustomer;
 	}
 	function insertOrder($id_customer,$id_campaign,$size,$id_color,$quantity)
 	{
-		$query = $this->db->query("INSERT INTO orders ( `id_customer`, `id_campaign`, `size`, `id_color`, `quantity`) VALUES ('$id_customer','$id_campaign','$size','$id_color', '$quantity')");
+		$query = $this->db->query("INSERT INTO orders ( `id_customer`, `id_campaign`, `size`, `id_color`, `quantity` , `status`) VALUES ('$id_customer','$id_campaign','$size','$id_color', '$quantity', 'pending')");
 		return $query;
 	}
 	function getAllCampaignsOfSeller($id){
@@ -162,6 +162,12 @@ class Mteemarket extends CI_Model {
 
 	function updateInfo($id,$fullname,$publicname,$address,$countries,$states,$cities,$zip,$phone){
 		$query = $this->db->query("UPDATE account SET fullname = '$fullname' , publicname = '$publicname' , address = '$address' , country = '$countries' , state = '$states' , city = '$cities' , zip = '$zip' , phone = '$phone' WHERE id = '$id'");
+		return $query;
+	}
+
+	function getOrdersByIdSeller($id)
+	{
+		$query = $this->db->query("SELECT info_customer.time,campaign.title,orders.id,info_customer.email,info_customer.country,orders.quantity,campaign.price,orders.status FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND campaign.id_seller = '$id'")->result_array();
 		return $query;
 	}
 }

@@ -1,8 +1,9 @@
-$(document).ready(function() {
-	$('#example').DataTable( {
-		dom: 'Bfrtip',
-		buttons: [
-			'csvHtml5',
-		]
-	} );
-} );
+// $(document).ready(function() {
+// 	$('#example').DataTable( {
+// 		dom: 'Bfrtip',
+// 		buttons: [
+// 			'csvHtml5',
+// 		]
+// 	} );
+// } );
+

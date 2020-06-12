@@ -396,7 +396,7 @@ $('.vertical-quantity').change(function (event) {
 				for (var i = 0; i < res.kq.length; i++) {
 					total += (res.kq[i].quantity) * (res.kq[i].price);
 				}
-				toastr.success('Cart was update!');
+				toastr.success('Cart was updated!');
 				$('.total').html(total.toFixed(2));
 			}
 			else{
