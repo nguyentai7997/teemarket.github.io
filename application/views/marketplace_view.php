@@ -69,18 +69,7 @@
 							<div class="product-default inner-quickview inner-icon">
 									<figure>
 										<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
-											<div id="view-front" class="labView m-auto">
-												<div class="product-design" style="background-color: <?php echo $value['colorCode'] ?>">
-													<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
-												</div>
-												<div class="design-area" style="height: 190px; width: 110px; left: 79px; top: 58px; z-index: 1; overflow: hidden;">
-													<div class="product-image" style="height: 190px; width: 110px;">
-														<div class="result" style="top: 22px;">
-															<img id="image" src="<?php echo $value['design'];?>">
-														</div>
-													</div>
-												</div>
-											</div>
+											<img id="image" src="<?php echo $value['image_link'];?>">
 										</a>
 									</figure>
 									<div class="product-details text-center">
@@ -126,11 +115,9 @@
 
 							<div class="collapse show" id="widget-body-1">
 								<div class="widget-body">
-									<input type="radio" id="all" name="category" value="">
-									<label for="all">All</label><br>
-									<?php foreach ($categorize as $key => $value) { ?>
-									<input type="radio" id="<?php  echo $value['categorize']  ?>" name="category" value="<?php  echo $value['categorize']  ?>">
-									<label for="<?php  echo $value['categorize']  ?>"><?php  echo ucfirst($value['categorize'])?></label><br>
+									<?php foreach ($category as $key => $value) { ?>
+									<input type="radio" id="<?php  echo $value['category']  ?>" name="category" value="<?php  echo $value['category']  ?>">
+									<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
 									<?php } ?>
 								</div><!-- End .widget-body -->
 							</div><!-- End .collapse -->

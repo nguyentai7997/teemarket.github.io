@@ -18,8 +18,8 @@ class Teemarket extends CI_Controller
 
         for ($i = 0; $i< count($dataCampaign); $i++ ){
 			$dataPublicname = $this->Mteemarket->getPublicnameByIdCamp($dataCampaign[$i]['id']);
-			$dataFirstColorOfCampaign = $this->Mteemarket->getDataFirstColorByIdCampaign($dataCampaign[$i]['id']);
-			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'colorCode' => $dataFirstColorOfCampaign[0]['color_code'], 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $dataPublicname[0]['publicname']];
+			$firstImageLinkOfCampaign = $this->Mteemarket->getFirstImageLinkByIdCampaign($dataCampaign[$i]['id']);
+			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'image_link' => $firstImageLinkOfCampaign, 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $dataPublicname[0]['publicname']];
             array_push($allData, $data);
 		}
 		$this->load->view('teemarket_view',['category' => $dataCategory,'allData'=>$allData]);
@@ -137,12 +137,17 @@ class Teemarket extends CI_Controller
 		$dataCampaign = $this->Mteemarket->getDataCampaign();
 		$allData  = array();
 
-		for ($i = 0; $i< count($dataCampaign); $i++ ){
+		for ($i = 0; $i < count($dataCampaign); $i++ ){
 			$dataPublicname = $this->Mteemarket->getPublicnameByIdCamp($dataCampaign[$i]['id']);
-			$dataFirstColorOfCampaign = $this->Mteemarket->getDataFirstColorByIdCampaign($dataCampaign[$i]['id']);
-			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'colorCode' => $dataFirstColorOfCampaign[0]['color_code'], 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $dataPublicname[0]['publicname']];
+			$firstImageLinkOfCampaign = $this->Mteemarket->getFirstImageLinkByIdCampaign($dataCampaign[$i]['id']);
+			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'image_link' => $firstImageLinkOfCampaign, 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $dataPublicname[0]['publicname']];
 			array_push($allData, $data);
 		}
+//		echo "<pre>";
+//		print_r ($dataCategory);
+//		echo "</pre>";
+//		die();
+
 		$this->load->view('marketplace_view',['category' => $dataCategory,'allData'=>$allData]);
 	}
 
@@ -151,14 +156,9 @@ class Teemarket extends CI_Controller
 		if ($this->Mteemarket->getDataByPublicnameAndUrl($publicname, $url)){
 			$dataCategory = $this->Mteemarket->getDataCategory();
 			$dataProduct = $this->Mteemarket->getDataByPublicnameAndUrl($publicname, $url);
-			$dataIdColorsByIdCamp = $this->Mteemarket->getDataIdColorsByIdCam($dataProduct[0]['id']);
+			$dataCampaignColor = $this->Mteemarket->getDataColorsByIdCamp($dataProduct[0]['id']);
 
-			$colors = array();
-			for ( $i = 0; $i < count($dataIdColorsByIdCamp); $i++ ){
-				$dataColor = $this->Mteemarket->getDataColorByIdColor($dataIdColorsByIdCamp[$i]['id_color']);
-				array_push($colors, $dataColor);
-			}
-			$this->load->view('product_details_view', ['category' => $dataCategory,'colors' => $colors, 'dataCamp'=> $dataProduct]);
+			$this->load->view('product_details_view', ['category' => $dataCategory,'campaign_color' => $dataCampaignColor, 'dataCamp'=> $dataProduct]);
 		} else{
 			redirect('http://localhost:8012/teemarket/error');
 		}
@@ -173,6 +173,7 @@ class Teemarket extends CI_Controller
 	public function add_to_cart(){
 		if ($this->input->post('id')){
 			$id = $this->input->post('id');
+			$image_link = $this->input->post('image_link');
 			$color_code = $this->input->post('color_code');
 			$size = $this->input->post('size');
 			$quantity = $this->input->post('quantity');
@@ -182,10 +183,9 @@ class Teemarket extends CI_Controller
 			$new_product = array(
 				array(
 					'id'			=> $id,
-					'design'		=> $dataProduct[0]['design'],
+					'image_link'	=> $image_link,
 					'id_color'		=> $dataColor[0]['id'],
 					'color'			=> $dataColor[0]['color'],
-					'color_code' 	=> $color_code,
 					'title'			=> $dataProduct[0]['title'],
 					'price'			=> $dataProduct[0]['price'],
 					'size' 			=> $size,
@@ -198,7 +198,7 @@ class Teemarket extends CI_Controller
 					if(($cart_item['id'] == $id) && ($cart_item['$color_code'] == $color_code) && ($cart_item['size'] == $size)){
 						$product[] = array(
 							'id'			=> $cart_item['id'],
-							'design'		=> $cart_item['design'],
+							'image_link'	=> $cart_item['image_link'],
 							'id_color'		=> $cart_item['id_color'],
 							'color'			=> $cart_item['color'],
 							'color_code'	=> $cart_item['color_code'],
@@ -211,7 +211,7 @@ class Teemarket extends CI_Controller
 					} else {
 						$product[] = array(
 							'id'			=> $cart_item['id'],
-							'design'		=> $cart_item['design'],
+							'image_link'	=> $cart_item['image_link'],
 							'id_color'		=> $cart_item['id_color'],
 							'color'			=> $cart_item['color'],
 							'color_code'	=> $cart_item['color_code'],

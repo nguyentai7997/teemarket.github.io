@@ -112,6 +112,9 @@ class Seller extends CI_Controller
 
 	public function get_launch(){
 		if ($this->input->post('url')){
+			require "vendor/autoload.php";
+			require "config-cloud.php";
+
 			$firstColorDesign = $this->Mteemarket->getDataColorByColorCode($_SESSION['campaign']['color'][0]);
 			$arrayIdColor = array(
 				array(
@@ -136,14 +139,6 @@ class Seller extends CI_Controller
 				)
 
 			);
-//			echo "<pre>";
-//			print_r ($arrayIdColor);
-//			echo "</pre>";
-//			echo "<pre>";
-//			print_r ($array_str[7]);
-//			echo "</pre>";
-//			echo $image_link;
-//			die();
 
 			for ($i = 0; $i < count($_SESSION['campaign']['resultColors']); $i++){
 				if($_SESSION['campaign']['resultColors'][$i] != $_SESSION['campaign']['color'][0]){
@@ -154,26 +149,10 @@ class Seller extends CI_Controller
 				}
 			}
 
-
 			for ($i = 1; $i < count($arrayMockup); $i++){
 				$dataImageLink = array('https://res.cloudinary.com/teemarket/image/upload/c_scale,l_' . $image_id . ',w_216,y_-16/' . $arrayMockup[$i][0]['mockup']);
 				array_push($arrayImageLink,$dataImageLink);
 			}
-
-			$link_64 = array();
-			for ($i = 0; $i < count($arrayImageLink); $i++){
-			}
-
-//			echo "<pre>";
-//			print_r ($arrayIdColor);
-//			echo "</pre>";
-			echo "<pre>";
-			print_r ($link_64);
-			echo "</pre>";
-			echo "<pre>";
-			print_r ($arrayImageLink);
-			echo "</pre>";
-			die();
 
 			$_SESSION['campaign']['title'] = $this->input->post('title');
 			$_SESSION['campaign']['description'] = $this->input->post('description');
@@ -185,9 +164,15 @@ class Seller extends CI_Controller
 			if ($addCamp) {
 				$idCamp = $this->Mteemarket->getIdCampByIdSellerAndUrl($_SESSION['user']['id'],$_SESSION['campaign']['url']);
 				if ($idCamp) {
+					$secure_url = array();
+					for ($i = 0; $i < count($arrayImageLink); $i++){
+						$upLoad = \Cloudinary\Uploader::upload($arrayImageLink[$i][0]);
+						$temp_secure_url = $upLoad["secure_url"];
+						array_push($secure_url,$temp_secure_url);
+					}
 					//Insert Campaign Colors
 					for ($i = 0; $i < count($arrayIdColor); $i++){
-						$addCampColors = $this->Mteemarket->insertCampColors($idCamp[0]['id'],$arrayIdColor[$i][0]['id']);
+						$addCampColors = $this->Mteemarket->insertCampColors($idCamp[0]['id'],$arrayIdColor[$i][0]['id'],$secure_url[$i]);
 					}
 					unset($_SESSION['campaign']);
 					$status = 0;

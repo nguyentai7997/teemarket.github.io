@@ -191,6 +191,15 @@
 </div>
 <!-- End Page -->
 
+<!--Modal Loading-->
+<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
+	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
+		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
+		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
+	</div>
+</div>
+<!-- End Modal -->
+
 <?php include("seller_footer_view.php") ?>
 
 <!-- Core  -->

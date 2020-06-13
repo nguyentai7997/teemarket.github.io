@@ -50,7 +50,7 @@
 						<div class="home-slide-content slide-content-right">
 							<h3>New Summer</h3>
 							<h1>Collection</h1>
-							<a href="category.html" class="btn btn-secondary">Shop Now</a>
+							<a href="marketplace" class="btn btn-secondary">Shop Now</a>
 						</div><!-- End .home-slide-content -->
 					</div><!-- End .home-slide -->
 
@@ -59,7 +59,7 @@
 						<div class="home-slide-content">
 							<h3>New Collections</h3>
 							<h1>For Him & Her</h1>
-							<a href="category.html" class="btn btn-secondary">Shop Now</a>
+							<a href="marketplace" class="btn btn-secondary">Shop Now</a>
 						</div><!-- End .home-slide-content -->
 					</div><!-- End .home-slide -->
 				</div><!-- End .home-slider -->
@@ -74,18 +74,7 @@
 					<div class="product-default inner-quickview inner-icon">
 						<figure>
 							<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
-								<div id="view-front" class="labView m-auto">
-									<div class="product-design" style="background-color: <?php echo $value['colorCode'] ?>">
-										<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
-									</div>
-									<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
-										<div class="product-image" style="height: 185.5px; width: 109px;">
-											<div class="result" style="top: 27px;">
-												<img id="image" src="<?php echo $value['design'];?>">
-											</div>
-										</div>
-									</div>
-								</div>
+								<img id="image" src="<?php echo $value['image_link'];?>">
 							</a>
 						</figure>
 						<div class="product-details">
@@ -108,7 +97,7 @@
 					<div class="col-md-4">
 						<div class="cat-box">
 							<figure>
-								<a href="#">
+								<a href="marketplace">
 									<img src="<?= base_url()?>assets/images/banners/father-day.jpg" alt="banner">
 								</a>
 							</figure>
@@ -118,7 +107,7 @@
 					<div class="col-md-4">
 						<div class="cat-box">
 							<figure>
-								<a href="#">
+								<a href="marketplace">
 									<img src="<?= base_url()?>assets/images/banners/summer-family.jpg" alt="banner">
 								</a>
 							</figure>
@@ -169,18 +158,7 @@
 									<div class="product product-default">
 										<figure class="product-image-container">
 											<a href="#">
-												<div id="view-front" class="labView m-auto">
-													<div class="product-design" style="background-color: rgb(214, 215, 217)">
-														<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
-													</div>
-													<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
-														<div class="product-image" style="height: 185.5px; width: 109px;">
-															<div class="result" style="top: 27px;">
-																<img id="image" src="https://res.cloudinary.com/teemarket/image/upload/v1591812045/rroq8pwzf9awtrx8qjyj.png">
-															</div>
-														</div>
-													</div>
-												</div>
+												<img id="image" src="https://res.cloudinary.com/teecloud/image/upload/v1592047422/gu5hfncko1sfe1ftoktg.png">
 											</a>
 											<div class="product-details">
 												<h2 class="product-title">
@@ -190,7 +168,6 @@
 													<span class="product-price" style="color: #fb8c00;font-weight: 400">$25.99</span>
 												</div><!-- End .price-box -->
 											</div><!-- End .product-details -->
-
 										</figure>
 									</div><!-- End .product -->
 
@@ -200,18 +177,7 @@
 									<div class="product product-default">
 										<figure class="product-image-container">
 											<a href="#">
-												<div id="view-front" class="labView m-auto">
-													<div class="product-design" style="background-color: rgb(140, 180, 232)">
-														<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
-													</div>
-													<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
-														<div class="product-image" style="height: 185.5px; width: 109px;">
-															<div class="result" style="top: 27px;">
-																<img id="image" src="https://res.cloudinary.com/teemarket/image/upload/v1591812380/yojdp89sj17xkcevceo1.png">
-															</div>
-														</div>
-													</div>
-												</div>
+												<img id="image" src="https://res.cloudinary.com/teecloud/image/upload/v1592048355/lyku40e2meizecbsefto.png">
 											</a>
 											<div class="product-details">
 												<h2 class="product-title">
@@ -231,18 +197,7 @@
 									<div class="product product-default">
 										<figure class="product-image-container">
 											<a href="#">
-												<div id="view-front" class="labView m-auto">
-													<div class="product-design" style="background-color: rgb(11, 11, 11)">
-														<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
-													</div>
-													<div class="design-area" style="height: 187.5px; width: 111px; left: 79.5px; top: 58.6px; z-index: 1; overflow: hidden;">
-														<div class="product-image" style="height: 185.5px; width: 109px;">
-															<div class="result" style="top: 27px;">
-																<img id="image" src="https://res.cloudinary.com/teemarket/image/upload/v1591812764/v03j3pymvxrl4e9rao2e.png">
-															</div>
-														</div>
-													</div>
-												</div>
+												<img id="image" src="https://res.cloudinary.com/teecloud/image/upload/v1592049138/dzbtuqut6bvdudykz4tv.png">
 											</a>
 											<div class="product-details">
 												<h2 class="product-title">

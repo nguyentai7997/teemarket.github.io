@@ -88,6 +88,10 @@ $('.next-step').click(function (event) {
 			},
 			success:function(res){
 				if(res == 0){
+					$(".animsition").addClass("modal-open");
+					$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+					$(".modal-loading").addClass("show");
+					$(".modal-loading").css("display","block");
 					$.ajax({
 						url: 'http://localhost:8012/teemarket/seller/get_launch',
 						type: 'post',
@@ -98,6 +102,10 @@ $('.next-step').click(function (event) {
 							category : category,
 						},
 						success:function(res){
+							$(".modal-loading").removeClass("show");
+							$(".modal-loading").css("display","none");
+							$(".modal-backdrop").remove();
+							$(".animsition").removeClass("modal-open");
 							// window.location.href = 'http://localhost:8012/teemarket/seller/campaigns_details/id=123';
 						},
 						error:function(res){

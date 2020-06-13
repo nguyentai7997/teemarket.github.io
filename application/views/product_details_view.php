@@ -53,20 +53,12 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6">
 								<div class="product-single-gallery">
-									<div class="product-slider-container product-item">
-										<div id="view-front" class="labView m-auto">
-											<div class="product-design" style="background-color: <?php echo $colors[0][0]['color_code']; ?>">
-												<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
-											</div>
-											<div class="design-area" style="height: 368px; width: 218px; left: 156px; top: 115px; z-index: 1; overflow: hidden;">
-												<div class="product-image" style="width: 216px; height: 366px">
-													<div class="result" style="top: 53px;">
-														<img id="image" src="<?php echo $dataCamp[0]['design'];?>">
-													</div>
-												</div>
-											</div>
+									<div class="product-slider-container product-item" style="height: 630px">
+										<?php for ($i = 0; $i < count($campaign_color); $i++) { ?>
+										<div class="image <?php if ($i == 0) { echo "active";} ?>" id="<?php echo $campaign_color[$i]['color']; ?>"  style="position: absolute;">
+											<img src="<?php echo $campaign_color[$i]['image_link'];?>">
 										</div>
-										<!-- End .product-single-carousel -->
+										<?php } ?>
 									</div>
 								</div><!-- End .product-single-gallery -->
 							</div><!-- End .col-lg-6 -->
@@ -87,9 +79,9 @@
 										<div class="product-single-filter">
 											<label>Colors:</label>
 											<ul class="config-swatch-list">
-												<?php foreach ($colors as $key => $color){ echo $color[0]['color_code'];?>
-													<li class="bg-colors <?php if ($key == 0){echo "active ";} echo $color[0]['color'];?>">
-														<a style="background-color: <?php echo $color[0]['color_code']; ?>"></a>
+												<?php for ($i = 0; $i < count($campaign_color); $i++) { ?>
+													<li class="bg-colors <?php if ($i == 0){echo "active ";} echo $campaign_color[$i]['color'];?>">
+														<a style="background-color: <?php echo $campaign_color[$i]['color_code']; ?>"></a>
 													</li>
 												<?php } ?>
 											</ul>
@@ -124,7 +116,6 @@
 							</div><!-- End .col-lg-6 -->
 						</div><!-- End .row -->
 					</div><!-- End .product-single-container -->
-
 					<div class="product-single-tabs">
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="nav-item">
@@ -210,187 +201,6 @@
 				<div class="sidebar-overlay"></div>
 				<div class="sidebar-toggle"><i class="icon-sliders"></i></div>
 			</div><!-- End .row -->
-
-			<div class="featured-section pt-sm bg-white">
-				<h2 class="carousel-title">Featured Products</h2>
-				<div class="featured-products owl-carousel owl-theme owl-dots-top">
-					<div class="product-default inner-quickview inner-icon">
-						<figure>
-							<a href="product.html">
-								<img src="<?= base_url()?>assets/images/products/product-1.jpg">
-							</a>
-							<div class="label-group">
-								<div class="product-label label-cut">-20%</div>
-							</div>
-							<div class="btn-icon-group">
-								<button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-							</div>
-							<a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-						</figure>
-						<div class="product-details">
-							<div class="category-wrap">
-								<div class="category-list">
-									<a href="category.html" class="product-category">category</a>
-								</div>
-								<a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-							</div>
-							<h2 class="product-title">
-								<a href="product.html">Women Fashion-Black</a>
-							</h2>
-							<div class="ratings-container">
-								<div class="product-ratings">
-									<span class="ratings" style="width:100%"></span><!-- End .ratings -->
-									<span class="tooltiptext tooltip-top"></span>
-								</div><!-- End .product-ratings -->
-							</div><!-- End .product-container -->
-							<div class="price-box">
-								<span class="old-price">$90</span>
-								<span class="product-price">$70</span>
-							</div><!-- End .price-box -->
-						</div><!-- End .product-details -->
-					</div>
-					<div class="product-default inner-quickview inner-icon">
-						<figure>
-							<a href="product.html">
-								<img src="<?= base_url()?>assets/images/products/product-2.jpg">
-							</a>
-							<div class="label-group">
-								<div class="product-label label-cut">-20%</div>
-							</div>
-							<div class="btn-icon-group">
-								<button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-							</div>
-							<a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-						</figure>
-						<div class="product-details">
-							<div class="category-wrap">
-								<div class="category-list">
-									<a href="category.html" class="product-category">category</a>
-								</div>
-								<a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-							</div>
-							<h2 class="product-title">
-								<a href="product.html">Women Fashion-Black</a>
-							</h2>
-							<div class="ratings-container">
-								<div class="product-ratings">
-									<span class="ratings" style="width:100%"></span><!-- End .ratings -->
-									<span class="tooltiptext tooltip-top"></span>
-								</div><!-- End .product-ratings -->
-							</div><!-- End .product-container -->
-							<div class="price-box">
-								<span class="old-price">$90</span>
-								<span class="product-price">$70</span>
-							</div><!-- End .price-box -->
-						</div><!-- End .product-details -->
-					</div>
-					<div class="product-default inner-quickview inner-icon">
-						<figure>
-							<a href="product.html">
-								<img src="<?= base_url()?>assets/images/products/product-3.jpg">
-							</a>
-							<div class="label-group">
-								<div class="product-label label-cut">-20%</div>
-							</div>
-							<div class="btn-icon-group">
-								<button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-							</div>
-							<a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-						</figure>
-						<div class="product-details">
-							<div class="category-wrap">
-								<div class="category-list">
-									<a href="category.html" class="product-category">category</a>
-								</div>
-								<a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-							</div>
-							<h2 class="product-title">
-								<a href="product.html">Women Fashion-Black</a>
-							</h2>
-							<div class="ratings-container">
-								<div class="product-ratings">
-									<span class="ratings" style="width:100%"></span><!-- End .ratings -->
-									<span class="tooltiptext tooltip-top"></span>
-								</div><!-- End .product-ratings -->
-							</div><!-- End .product-container -->
-							<div class="price-box">
-								<span class="old-price">$90</span>
-								<span class="product-price">$70</span>
-							</div><!-- End .price-box -->
-						</div><!-- End .product-details -->
-					</div>
-					<div class="product-default inner-quickview inner-icon">
-						<figure>
-							<a href="product.html">
-								<img src="<?= base_url()?>assets/images/products/product-4.jpg">
-							</a>
-							<div class="label-group">
-								<div class="product-label label-cut">-20%</div>
-							</div>
-							<div class="btn-icon-group">
-								<button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-							</div>
-							<a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-						</figure>
-						<div class="product-details">
-							<div class="category-wrap">
-								<div class="category-list">
-									<a href="category.html" class="product-category">category</a>
-								</div>
-								<a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-							</div>
-							<h2 class="product-title">
-								<a href="product.html">Women Fashion-Black</a>
-							</h2>
-							<div class="ratings-container">
-								<div class="product-ratings">
-									<span class="ratings" style="width:100%"></span><!-- End .ratings -->
-									<span class="tooltiptext tooltip-top"></span>
-								</div><!-- End .product-ratings -->
-							</div><!-- End .product-container -->
-							<div class="price-box">
-								<span class="old-price">$90</span>
-								<span class="product-price">$70</span>
-							</div><!-- End .price-box -->
-						</div><!-- End .product-details -->
-					</div>
-					<div class="product-default inner-quickview inner-icon">
-						<figure>
-							<a href="product.html">
-								<img src="<?= base_url()?>assets/images/products/product-5.jpg">
-							</a>
-							<div class="label-group">
-								<div class="product-label label-cut">-20%</div>
-							</div>
-							<div class="btn-icon-group">
-								<button class="btn-icon btn-add-cart" data-toggle="modal" data-target="#addCartModal"><i class="icon-bag"></i></button>
-							</div>
-							<a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View">Quick View</a>
-						</figure>
-						<div class="product-details">
-							<div class="category-wrap">
-								<div class="category-list">
-									<a href="category.html" class="product-category">category</a>
-								</div>
-								<a href="#" class="btn-icon-wish"><i class="icon-heart"></i></a>
-							</div>
-							<h2 class="product-title">
-								<a href="product.html">Women Fashion-Black</a>
-							</h2>
-							<div class="ratings-container">
-								<div class="product-ratings">
-									<span class="ratings" style="width:100%"></span><!-- End .ratings -->
-									<span class="tooltiptext tooltip-top"></span>
-								</div><!-- End .product-ratings -->
-							</div><!-- End .product-container -->
-							<div class="price-box">
-								<span class="old-price">$90</span>
-								<span class="product-price">$70</span>
-							</div><!-- End .price-box -->
-						</div><!-- End .product-details -->
-					</div>
-				</div><!-- End .featured-proucts -->
-			</div><!-- End .featured-section -->
 
 			<div class="mb-lg-4"></div><!-- margin -->
 		</div><!-- End .container -->

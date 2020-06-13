@@ -82,6 +82,7 @@ img {max-width: 100%;}
 	width: 270px;
 	margin: auto;
 }
+.image.active{z-index: 1}
 /*.dg-box{*/
 /*	width: 100%;*/
 /*	border: 1px solid #CCC;*/

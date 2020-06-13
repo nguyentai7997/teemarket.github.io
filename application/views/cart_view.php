@@ -86,20 +86,7 @@
 							<tr class="product-row">
 								<td class="product-col">
 									<figure class="product-image-container" style="border: none">
-										<a>
-											<div id="view-front" class="labView m-auto">
-												<div class="product-design" style="background-color: <?php echo $value['color_code'];?>">
-													<img class="front-tshirt" src="<?= base_url() ?>global/portraits/mens-crew-front-new.png" alt="">
-												</div>
-												<div class="design-area" style="height: 125px; width: 74px; left: 53px; top: 39px; z-index: 1; overflow: hidden;">
-													<div class="product-image" style="height: 123px; width: 72px;">
-														<div class="result" style="top: 18px;">
-															<img id="image" src="<?php echo $value['design'];?>">
-														</div>
-													</div>
-												</div>
-											</div>
-										</a>
+										<img id="image" src="<?php echo $value['image_link'];?>">
 									</figure>
 									<div>
 										<h3>Unisex Cotton Tee - <?php echo ucfirst($value['color'])?></h3>
