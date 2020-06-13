@@ -112,14 +112,69 @@ class Seller extends CI_Controller
 
 	public function get_launch(){
 		if ($this->input->post('url')){
-			$idColorDesign = $this->Mteemarket->getIdColorByColorCode($_SESSION['campaign']['color'][0]);
-			$arrayIdColor = array($idColorDesign);
+			$firstColorDesign = $this->Mteemarket->getDataColorByColorCode($_SESSION['campaign']['color'][0]);
+			$arrayIdColor = array(
+				array(
+					array(
+						"id" => $firstColorDesign[0]['id']
+					)
+				)
+			);
+			$arrayMockup = array(
+				array(
+					array(
+						"mockup" => $firstColorDesign[0]['mockup']
+					)
+				)
+			);
+			$array_str = explode("/",$_SESSION['campaign']['src_image']);
+			$image_id= substr($array_str[7],0,-4); //design k doi
+			$image_link = 'https://res.cloudinary.com/teemarket/image/upload/c_scale,l_' . $image_id . ',w_216,y_-16/' . $arrayMockup[0][0]['mockup'];
+			$arrayImageLink = array(
+				array(
+					$image_link
+				)
+
+			);
+//			echo "<pre>";
+//			print_r ($arrayIdColor);
+//			echo "</pre>";
+//			echo "<pre>";
+//			print_r ($array_str[7]);
+//			echo "</pre>";
+//			echo $image_link;
+//			die();
+
 			for ($i = 0; $i < count($_SESSION['campaign']['resultColors']); $i++){
 				if($_SESSION['campaign']['resultColors'][$i] != $_SESSION['campaign']['color'][0]){
 					$dataIdColor = $this->Mteemarket->getIdColorByColorCode($_SESSION['campaign']['resultColors'][$i]);
+					$dataMockup = $this->Mteemarket->getMockupByColorCode($_SESSION['campaign']['resultColors'][$i]);
 					array_push($arrayIdColor,$dataIdColor);
+					array_push($arrayMockup,$dataMockup);
 				}
 			}
+
+
+			for ($i = 1; $i < count($arrayMockup); $i++){
+				$dataImageLink = array('https://res.cloudinary.com/teemarket/image/upload/c_scale,l_' . $image_id . ',w_216,y_-16/' . $arrayMockup[$i][0]['mockup']);
+				array_push($arrayImageLink,$dataImageLink);
+			}
+
+			$link_64 = array();
+			for ($i = 0; $i < count($arrayImageLink); $i++){
+			}
+
+//			echo "<pre>";
+//			print_r ($arrayIdColor);
+//			echo "</pre>";
+			echo "<pre>";
+			print_r ($link_64);
+			echo "</pre>";
+			echo "<pre>";
+			print_r ($arrayImageLink);
+			echo "</pre>";
+			die();
+
 			$_SESSION['campaign']['title'] = $this->input->post('title');
 			$_SESSION['campaign']['description'] = $this->input->post('description');
 			$_SESSION['campaign']['url'] = $this->input->post('url');

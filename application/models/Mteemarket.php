@@ -76,6 +76,12 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
+	function getMockupByColorCode($color_code)
+	{
+		$query = $this->db->query("SELECT mockup FROM color WHERE color_code = '$color_code'")->result_array();
+		return $query;
+	}
+
 	function insertCampColors($id_campaign,$id_color)
 	{
 		$query = $this->db->query("INSERT INTO campaign_colors (id_campaign,id_color) VALUES ('$id_campaign','$id_color')");
