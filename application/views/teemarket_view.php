@@ -374,6 +374,7 @@
 
 <!-- Main JS File -->
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
+<script src="<?= base_url()?>assets/js/teemarket.js"></script>
 </body>
 
 </html>

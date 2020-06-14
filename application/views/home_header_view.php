@@ -47,9 +47,8 @@
 						<a>SHOP BY</a>
 						<div class="header-menu">
 							<ul>
-								<li><a href="">All</a></li>
 								<?php foreach ($category as $key => $value) { ?>
-									<li><a href="<?php echo $value['category'] ?>"><?php  echo $value['category']  ?></a></li>
+									<li><a href="<?= base_url()?>marketplace/<?php echo $value['category'] ?>"><?php echo $value['category'] ?></a></li>
 								<?php } ?>
 							</ul>
 						</div><!-- End .header-menu -->

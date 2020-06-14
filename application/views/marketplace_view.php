@@ -64,7 +64,7 @@
 					</nav>
 
 					<div class="row row-sm">
-						<?php foreach ($allData as $key => $value) { ?>
+						<?php if (empty($allData)){echo "0 co";} else { foreach ($allData as $key => $value) { ?>
 						<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
 							<div class="product-default inner-quickview inner-icon">
 									<figure>
@@ -82,7 +82,8 @@
 									</div><!-- End .product-details -->
 								</div>
 						</div><!-- End .col-xl-3 -->
-						<?php } ?>
+						<?php }
+						} ?>
 					</div>
 
 					<nav class="toolbox toolbox-pagination">
@@ -115,10 +116,19 @@
 
 							<div class="collapse show" id="widget-body-1">
 								<div class="widget-body">
-									<?php foreach ($category as $key => $value) { ?>
-									<input type="radio" id="<?php  echo $value['category']  ?>" name="category" value="<?php  echo $value['category']  ?>">
+									<?php
+									if (empty($allData)) {
+										foreach ($category as $key => $value) { ?>
+									<input type="radio" <?php if ($name_category == $value['category']){echo "checked";}?> class="category" name="category" value="<?php  echo $value['category']  ?>">
 									<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
-									<?php } ?>
+									<?php
+										}
+									} else {
+										foreach ($category as $key => $value) { ?>
+									<input type="radio" <?php if ($allData[0]['category'] == $value['category']){echo "checked";}?> id="<?php  echo $value['id'] ?>" class="category" name="category" value="<?php  echo $value['category']  ?>">
+									<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
+									<?php }
+									} ?>
 								</div><!-- End .widget-body -->
 							</div><!-- End .collapse -->
 						</div><!-- End .widget -->
@@ -260,6 +270,7 @@
 
 <!-- Main JS File -->
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
+<script src="<?= base_url()?>assets/js/teemarket.js"></script>
 </body>
 
 </html>

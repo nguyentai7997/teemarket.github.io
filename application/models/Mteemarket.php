@@ -58,6 +58,18 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
+	function getIdCategoryByCategory($category)
+	{
+		$query = $this->db->query("SELECT id FROM category WHERE category = '$category'")->result_array();
+		return $query;
+	}
+
+	function getProductByIdCategory($id)
+	{
+		$query = $this->db->query("SELECT campaign.id,campaign.price,campaign.url,campaign.title FROM campaign,category WHERE campaign.id_category = category.id AND category.id = '$id'")->result_array();
+		return $query;
+	}
+
 	function insertCampaign($id,$src_image,$price,$title,$description,$url,$category)
 	{
 		$query = $this->db->query("INSERT INTO campaign (id_seller,design,price,title,description,url,id_category,status,time) VALUES ('$id','$src_image','$price','$title','$description','$url','$category','active',CURRENT_TIMESTAMP)");

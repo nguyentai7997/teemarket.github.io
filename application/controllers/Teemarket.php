@@ -132,23 +132,73 @@ class Teemarket extends CI_Controller
 		}
 	}
 
-	public function marketplace(){
+//	public function get_product_category(){
+//		if ($this->input->post('id')){
+//			$idCategory = $this->input->post('id');
+//
+//			$productCategory = $this->Mteemarket->getProductByIdCategory($idCategory);
+//
+//			if ($productCategory){
+//				for ($i = 0; $i < count($productCategory); $i++){
+//					$productImage = $this->Mteemarket->getFirstImageLinkByIdCampaign($productCategory[$i]['id']);
+//					array_push($productCategory[$i],$productImage);
+//				}
+//				marketplace();
+//			} else {
+//				echo "chua co san pham";
+//			}
+//
+//		} else {
+//			redirect('http://localhost:8012/teemarket/error');
+//		}
+//	}
+
+	public function marketplace($category)
+	{
 		$dataCategory = $this->Mteemarket->getDataCategory();
-		$dataCampaign = $this->Mteemarket->getDataCampaign();
-		$allData  = array();
 
-		for ($i = 0; $i < count($dataCampaign); $i++ ){
-			$dataPublicname = $this->Mteemarket->getPublicnameByIdCamp($dataCampaign[$i]['id']);
-			$firstImageLinkOfCampaign = $this->Mteemarket->getFirstImageLinkByIdCampaign($dataCampaign[$i]['id']);
-			$data = ['idCampaign' => $dataCampaign[$i]['id'], 'image_link' => $firstImageLinkOfCampaign, 'price'=> $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname'=> $dataPublicname[0]['publicname']];
-			array_push($allData, $data);
+		$flag = 0;
+		if ($category == 'all') {
+			$flag = 1;
 		}
-//		echo "<pre>";
-//		print_r ($dataCategory);
-//		echo "</pre>";
-//		die();
+		for ($i = 0; $i < count($dataCategory); $i++) {
+			if ($category == $dataCategory[$i]['category']) {
+				$flag = 1;
+			}
+		}
 
-		$this->load->view('marketplace_view',['category' => $dataCategory,'allData'=>$allData]);
+		if ($flag == 0) {
+			redirect('http://localhost:8012/teemarket/error');
+		} else {
+			if ($category == 'all') {
+				$dataCampaign = $this->Mteemarket->getDataCampaign();
+				$allData = array();
+
+				for ($i = 0; $i < count($dataCampaign); $i++) {
+					$dataPublicname = $this->Mteemarket->getPublicnameByIdCamp($dataCampaign[$i]['id']);
+					$firstImageLinkOfCampaign = $this->Mteemarket->getFirstImageLinkByIdCampaign($dataCampaign[$i]['id']);
+					$data = ['idCampaign' => $dataCampaign[$i]['id'], 'image_link' => $firstImageLinkOfCampaign, 'price' => $dataCampaign[$i]['price'], 'url' => $dataCampaign[$i]['url'], 'design' => $dataCampaign[$i]['design'], 'title' => $dataCampaign[$i]['title'], 'publicname' => $dataPublicname[0]['publicname'], 'category' => 'all'];
+					array_push($allData, $data);
+				}
+
+				$this->load->view('marketplace_view', ['category' => $dataCategory, 'allData' => $allData]);
+			} else {
+				$idCategory = $this->Mteemarket->getIdCategoryByCategory($category);
+				$productCategory = $this->Mteemarket->getProductByIdCategory($idCategory[0]['id']);
+				$allData = array();
+				if ($productCategory) {
+					for ($i = 0; $i < count($productCategory); $i++) {
+						$dataPublicname = $this->Mteemarket->getPublicnameByIdCamp($productCategory[$i]['id']);
+						$productImage = $this->Mteemarket->getFirstImageLinkByIdCampaign($productCategory[$i]['id']);
+						$data = ['idCampaign' => $productCategory[$i]['id'], 'image_link' => $productImage, 'price' => $productCategory[$i]['price'], 'url' => $productCategory[$i]['url'], 'title' => $productCategory[$i]['title'], 'publicname' => $dataPublicname[0]['publicname'], 'category' => $category];
+						array_push($allData, $data);
+					}
+					$this->load->view('marketplace_view', ['category' => $dataCategory, 'allData' => $allData]);
+				} else {
+					$this->load->view('marketplace_view', ['category' => $dataCategory,'name_category' => $category]);
+				}
+			}
+		}
 	}
 
 	public function view_product($publicname,$url)
