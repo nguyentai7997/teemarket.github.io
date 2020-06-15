@@ -198,6 +198,13 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("SELECT info_customer.time,campaign.title,orders.id,info_customer.email,info_customer.country,orders.quantity,campaign.price,orders.status FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND campaign.id_seller = '$id'")->result_array();
 		return $query;
 	}
+
+	function getDataByTime($time,$id)
+	{
+		$query = $this->db->query("SELECT campaign.price,orders.quantity FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND campaign.id_seller = '$id' AND info_customer.time LIKE '%$time%'")->result_array();
+		return $query;
+	}
+
 }
 
 /* End of file test.php */

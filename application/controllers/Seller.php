@@ -19,12 +19,60 @@ class Seller extends CI_Controller
 		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
 		} else {
-//			$id = $_SESSION['user']['id'];
-//			echo $id;
-//			die();
 			$allCampaigns = $this->Mteemarket->getAllCampaignsOfSeller($_SESSION['user']['id']);
 			$this->load->view('campaigns_view',['campaigns' => $allCampaigns]);
 		}
+	}
+
+	public function get_orders_by_time(){
+		date_default_timezone_set("Asia/Ho_Chi_Minh");
+		$date= date("Y-m-d");
+		$allData = array();
+
+		for ($i = 0; $i < 24; $i++){
+			if($i < 10){
+				$data1 = $this->Mteemarket->getDataByTime($date.' 0'.$i,$_SESSION['user']['id']);
+				array_push($allData, $data1);
+			}else{
+				$data2 = $this->Mteemarket->getDataByTime($date.' '.$i,$_SESSION['user']['id']);
+				array_push($allData, $data2);
+			}
+		}
+
+		for ($i = 0; $i < count($allData); $i++){
+			if ($allData[$i] != array()){
+				$unit = 0;
+				$profit = 0;
+				for ($k = 0; $k < count($allData[$i]); $k++) {
+					$unit += $allData[$i][$k]["quantity"];
+					$profit += ($allData[$i][$k]["quantity"]*$allData[$i][$k]["price"]);
+				}
+				array_push($allData[$i],$unit);
+				array_push($allData[$i],$profit);
+			}
+		}
+
+		echo json_encode($allData);
+	}
+
+	public function get_orders_30_days_left(){
+		date_default_timezone_set("Asia/Ho_Chi_Minh");
+		$date= date("Y-m-d");
+		$dayLeft =  date("Y-m-d",strtotime('-29 days',strtotime($date)));
+
+		$allDays = array();
+		for ($i = 0; $i < 30; $i++){
+			$day = date("Y-m-d",strtotime('+'.$i.'days',strtotime($dayLeft)));
+			array_push($allDays,$day);
+		}
+
+		$orders30Days = array();
+		for ($i = 0; $i < count($allDays); $i++){
+			$ordersByDay = $this->Mteemarket->getDataByTime($allDays[$i],$_SESSION['user']['id']);
+			array_push($orders30Days,$ordersByDay);
+		}
+
+		echo json_encode($orders30Days);
 	}
 
 	public function campaign_details(){

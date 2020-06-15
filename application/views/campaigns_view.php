@@ -28,14 +28,9 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
 
-	<!-- Plugins For This Page -->
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/c3/c3.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/bootstrap-table/bootstrap-table.minfd53.css?v4.0.1">
-
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/structure/pagination.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/tables/basic.minfd53.css?v4.0.1">
+<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets1/examples/css/charts/chartjs.minfd53.css?v4.0.1">-->
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -183,11 +178,12 @@
 			</div>
 
 			<div class="col-lg-12">
-				<!-- Example C3 Timeseries -->
-				<div class="example-wrap m-md-0">
-					<div id="chart"></div>
+				<div class="example-wrap bg-white pt-20">
+<!--					<div class="example text-center bg-white">-->
+<!--						<canvas id="myChart"></canvas>-->
+						<div id="chartdiv"></div>
+<!--					</div>-->
 				</div>
-				<!-- End Example C3 Timeseries -->
 			</div>
 
 			<div class="col-lg-12">
@@ -294,9 +290,7 @@
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
 
 <!-- Plugins For This Page -->
-<script src="<?= base_url()?>global/vendor/aspaginator/jquery-asPaginator.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/c3/c3.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/d3/d3.minfd53.js?v4.0.1"></script>
+<!--<script src="--><?//= base_url()?><!--global/vendor/chart-js/Chart.minfd53.js?v4.0.1"></script>-->
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -323,14 +317,20 @@
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
-<script src="<?= base_url()?>global/js/Plugin/aspaginator.minfd53.js?v4.0.1"></script>
-
-<script src="<?= base_url()?>assets1/examples/js/dashboard/v1.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>assets1/examples/js/charts/c3.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
+<!--<script src="--><?//= base_url()?><!--assets1/examples/js/charts/chartjs.minfd53.js?v4.0.1"></script>-->
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
 <script src="<?= base_url()?>assets1/js/campaigns.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 </body>
 

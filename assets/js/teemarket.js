@@ -585,17 +585,6 @@ $('.category').click(function (event) {
 	var category = $(this).val();
 	console.log(category);
 	window.location.href = 'http://localhost:8012/teemarket/marketplace/'+category;
-	// $.ajax({
-	// 	url: 'http://localhost:8012/teemarket/get_product_category',
-	// 	type: 'post',
-	// 	data: {
-	// 		id			: id,
-	// 	},success:function(res) {
-	// 		console.log("success");
-	// 	},error:function(){
-	// 		console.log("Ajax call error.");
-	// 	}
-	// });
 })
 
 //Choose Size

@@ -224,7 +224,16 @@
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-
+<script>
+	$(document).ready(function() {
+		$('#example').DataTable( {
+			dom: 'Bfrtip',
+			buttons: [
+				'csvHtml5',
+			]
+		} );
+	} );
+</script>
 </body>
 
 </html>

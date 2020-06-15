@@ -30,4 +30,12 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
 	top: -3px;
 	float: right;
 }
+/*#myChart{*/
+/*	height: 500px !important;*/
+/*	background-color: white;*/
+/*}*/
+#chartdiv {
+	width: 100%;
+	height: 500px;
+}
 

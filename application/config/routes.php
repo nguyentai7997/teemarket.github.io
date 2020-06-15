@@ -72,6 +72,8 @@ $route['insert_order'] = 'teemarket/insert_order';
 
 $route['seller'] = 'seller';
 $route['seller/campaigns'] = 'seller/campaigns';
+$route['seller/get_orders_by_time'] = 'seller/get_orders_by_time';
+$route['seller/get_orders_30_days_left'] = 'seller/get_orders_30_days_left';
 $route['seller/design'] = 'seller/design';
 $route['seller/get_design'] = 'seller/get_design';
 $route['seller/remove_design'] = 'seller/remove_design';
