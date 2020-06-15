@@ -24,7 +24,7 @@ class Seller extends CI_Controller
 		}
 	}
 
-	public function get_orders_by_time(){
+	public function get_orders_today(){
 		date_default_timezone_set("Asia/Ho_Chi_Minh");
 		$date= date("Y-m-d");
 		$allData = array();
@@ -52,13 +52,103 @@ class Seller extends CI_Controller
 			}
 		}
 
+		for ($i = 0; $i < 24; $i++){
+			if($i < 10){
+				$orders1 = $this->Mteemarket->getOrdersByTime($date.' 0'.$i,$_SESSION['user']['id']);
+				array_push($allData[$i], $orders1[0]);
+			}else{
+				$orders2 = $this->Mteemarket->getOrdersByTime($date.' '.$i,$_SESSION['user']['id']);
+				array_push($allData[$i], $orders2[0]);
+			}
+		}
+
+		echo json_encode($allData);
+	}
+
+	public function get_orders_yesterday(){
+		date_default_timezone_set("Asia/Ho_Chi_Minh");
+		$date= date("Y-m-d");
+		$yesterday =  date("Y-m-d",strtotime('-1 days',strtotime($date)));
+		$allData = array();
+
+		for ($i = 0; $i < 24; $i++){
+			if($i < 10){
+				$data1 = $this->Mteemarket->getDataByTime($yesterday.' 0'.$i,$_SESSION['user']['id']);
+				array_push($allData, $data1);
+			}else{
+				$data2 = $this->Mteemarket->getDataByTime($yesterday.' '.$i,$_SESSION['user']['id']);
+				array_push($allData, $data2);
+			}
+		}
+
+		for ($i = 0; $i < count($allData); $i++){
+			if ($allData[$i] != array()){
+				$unit = 0;
+				$profit = 0;
+				for ($k = 0; $k < count($allData[$i]); $k++) {
+					$unit += $allData[$i][$k]["quantity"];
+					$profit += ($allData[$i][$k]["quantity"]*$allData[$i][$k]["price"]);
+				}
+				array_push($allData[$i],$unit);
+				array_push($allData[$i],$profit);
+			}
+		}
+
+		for ($i = 0; $i < 24; $i++){
+			if($i < 10){
+				$orders1 = $this->Mteemarket->getOrdersByTime($yesterday.' 0'.$i,$_SESSION['user']['id']);
+				array_push($allData[$i], $orders1[0]);
+			}else{
+				$orders2 = $this->Mteemarket->getOrdersByTime($yesterday.' '.$i,$_SESSION['user']['id']);
+				array_push($allData[$i], $orders2[0]);
+			}
+		}
+
+		echo json_encode($allData);
+	}
+
+	public function get_orders_7_days_left(){
+		date_default_timezone_set("Asia/Ho_Chi_Minh");
+		$date= date("Y-m-d");
+		$dayLeft =  date("Y-m-d",strtotime('-7 days',strtotime($date)));
+
+		$allDays = array();
+		for ($i = 0; $i < 7; $i++){
+			$day = date("Y-m-d",strtotime('+'.$i.'days',strtotime($dayLeft)));
+			array_push($allDays,$day);
+		}
+
+		$allData = array();
+		for ($i = 0; $i < count($allDays); $i++){
+			$data = $this->Mteemarket->getDataByTime($allDays[$i],$_SESSION['user']['id']);
+			array_push($allData,$data);
+		}
+
+		for ($i = 0; $i < count($allData); $i++){
+			if ($allData[$i] != array()){
+				$unit = 0;
+				$profit = 0;
+				for ($k = 0; $k < count($allData[$i]); $k++) {
+					$unit += $allData[$i][$k]["quantity"];
+					$profit += ($allData[$i][$k]["quantity"]*$allData[$i][$k]["price"]);
+				}
+				array_push($allData[$i],$unit);
+				array_push($allData[$i],$profit);
+			}
+		}
+
+		for ($i = 0; $i < count($allDays); $i++){
+			$orders = $this->Mteemarket->getOrdersByTime($allDays[$i],$_SESSION['user']['id']);
+			array_push($allData[$i], $orders[0]);
+		}
+
 		echo json_encode($allData);
 	}
 
 	public function get_orders_30_days_left(){
 		date_default_timezone_set("Asia/Ho_Chi_Minh");
 		$date= date("Y-m-d");
-		$dayLeft =  date("Y-m-d",strtotime('-29 days',strtotime($date)));
+		$dayLeft =  date("Y-m-d",strtotime('-30 days',strtotime($date)));
 
 		$allDays = array();
 		for ($i = 0; $i < 30; $i++){
@@ -66,13 +156,82 @@ class Seller extends CI_Controller
 			array_push($allDays,$day);
 		}
 
-		$orders30Days = array();
+		$allData = array();
 		for ($i = 0; $i < count($allDays); $i++){
-			$ordersByDay = $this->Mteemarket->getDataByTime($allDays[$i],$_SESSION['user']['id']);
-			array_push($orders30Days,$ordersByDay);
+			$data = $this->Mteemarket->getDataByTime($allDays[$i],$_SESSION['user']['id']);
+			array_push($allData,$data);
 		}
 
-		echo json_encode($orders30Days);
+		for ($i = 0; $i < count($allData); $i++){
+			if ($allData[$i] != array()){
+				$unit = 0;
+				$profit = 0;
+				for ($k = 0; $k < count($allData[$i]); $k++) {
+					$unit += $allData[$i][$k]["quantity"];
+					$profit += ($allData[$i][$k]["quantity"]*$allData[$i][$k]["price"]);
+				}
+				array_push($allData[$i],$unit);
+				array_push($allData[$i],$profit);
+			}
+		}
+
+		for ($i = 0; $i < count($allDays); $i++){
+			$orders = $this->Mteemarket->getOrdersByTime($allDays[$i],$_SESSION['user']['id']);
+			array_push($allData[$i], $orders[0]);
+		}
+
+		echo json_encode($allData);
+	}
+
+	public function get_orders_all_time(){
+		date_default_timezone_set("Asia/Ho_Chi_Minh");
+		$date= date("Y-m-d");
+
+		$allIdCustomer = $this->Mteemarket->getAllIdCustomer($_SESSION['user']['id']);
+		$allTime = [];
+		for ($i = 0; $i<count($allIdCustomer); $i++){
+			$time = $this->Mteemarket->getAllDay($allIdCustomer[$i]['id']);
+			array_push($allTime,$time);
+		}
+
+		//Format date lay duoc
+		for ($i = 0; $i < count($allTime); $i++){
+			$day[$i] = date("Y-m-d",strtotime($allTime[$i][0]['time']));
+		}
+
+		$allDays = array_unique($day);
+		array_push($allDays,$date);//Push today to allDays
+		$resultDays = array_values($allDays);
+
+		$allData = array();
+		for ($i = 0; $i < count($resultDays); $i++){
+			$data = $this->Mteemarket->getDataByTime($resultDays[$i],$_SESSION['user']['id']);
+			array_push($allData,$data);
+		}
+
+		for ($i = 0; $i < count($allData); $i++){
+			if ($allData[$i] != array()){
+				$unit = 0;
+				$profit = 0;
+				for ($k = 0; $k < count($allData[$i]); $k++) {
+					$unit += $allData[$i][$k]["quantity"];
+					$profit += ($allData[$i][$k]["quantity"]*$allData[$i][$k]["price"]);
+				}
+				array_push($allData[$i],$unit);
+				array_push($allData[$i],$profit);
+			}
+		}
+
+		for ($i = 0; $i<count($resultDays); $i++){
+			array_push($allData[$i],$resultDays[$i]);
+		}
+
+		for ($i = 0; $i < count($resultDays); $i++){
+			$orders = $this->Mteemarket->getOrdersByTime($resultDays[$i],$_SESSION['user']['id']);
+			array_push($allData[$i], $orders[0]);
+		}
+
+		echo json_encode($allData);
 	}
 
 	public function campaign_details(){
