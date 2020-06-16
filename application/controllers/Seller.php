@@ -15,6 +15,14 @@ class Seller extends CI_Controller
 		redirect('http://localhost:8012/teemarket/seller/campaigns');
 	}
 
+	public function dashboard(){
+		if (empty($_SESSION['user'])) {
+			redirect('http://localhost:8012/teemarket/login');
+		} else {
+			$this->load->view('dashboard_view');
+		}
+	}
+
 	public function campaigns(){
 		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
@@ -39,6 +47,8 @@ class Seller extends CI_Controller
 			}
 		}
 
+
+
 		for ($i = 0; $i < count($allData); $i++){
 			if ($allData[$i] != array()){
 				$unit = 0;
@@ -61,6 +71,11 @@ class Seller extends CI_Controller
 				array_push($allData[$i], $orders2[0]);
 			}
 		}
+
+		$campaignActive = count($this->Mteemarket->getCampaignActive($_SESSION['user']['id']));
+		$campaignEnded = count($this->Mteemarket->getCampaignEnded($_SESSION['user']['id']));
+		array_push($allData, $campaignActive);
+		array_push($allData, $campaignEnded);
 
 		echo json_encode($allData);
 	}
@@ -104,6 +119,11 @@ class Seller extends CI_Controller
 			}
 		}
 
+		$campaignActive = count($this->Mteemarket->getCampaignActive($_SESSION['user']['id']));
+		$campaignEnded = count($this->Mteemarket->getCampaignEnded($_SESSION['user']['id']));
+		array_push($allData, $campaignActive);
+		array_push($allData, $campaignEnded);
+
 		echo json_encode($allData);
 	}
 
@@ -141,6 +161,11 @@ class Seller extends CI_Controller
 			$orders = $this->Mteemarket->getOrdersByTime($allDays[$i],$_SESSION['user']['id']);
 			array_push($allData[$i], $orders[0]);
 		}
+
+		$campaignActive = count($this->Mteemarket->getCampaignActive($_SESSION['user']['id']));
+		$campaignEnded = count($this->Mteemarket->getCampaignEnded($_SESSION['user']['id']));
+		array_push($allData, $campaignActive);
+		array_push($allData, $campaignEnded);
 
 		echo json_encode($allData);
 	}
@@ -180,6 +205,11 @@ class Seller extends CI_Controller
 			array_push($allData[$i], $orders[0]);
 		}
 
+		$campaignActive = count($this->Mteemarket->getCampaignActive($_SESSION['user']['id']));
+		$campaignEnded = count($this->Mteemarket->getCampaignEnded($_SESSION['user']['id']));
+		array_push($allData, $campaignActive);
+		array_push($allData, $campaignEnded);
+
 		echo json_encode($allData);
 	}
 
@@ -201,7 +231,7 @@ class Seller extends CI_Controller
 
 		$allDays = array_unique($day);
 		array_push($allDays,$date);//Push today to allDays
-		$resultDays = array_values($allDays);
+		$resultDays = array_values(array_unique($day));
 
 		$allData = array();
 		for ($i = 0; $i < count($resultDays); $i++){
@@ -230,6 +260,12 @@ class Seller extends CI_Controller
 			$orders = $this->Mteemarket->getOrdersByTime($resultDays[$i],$_SESSION['user']['id']);
 			array_push($allData[$i], $orders[0]);
 		}
+
+		$campaignActive = count($this->Mteemarket->getCampaignActive($_SESSION['user']['id']));
+		$campaignEnded = count($this->Mteemarket->getCampaignEnded($_SESSION['user']['id']));
+		array_push($allData, $campaignActive);
+		array_push($allData, $campaignEnded);
+
 
 		echo json_encode($allData);
 	}

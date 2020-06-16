@@ -1,3 +1,6 @@
+$('._dashboard').click(function(event) {
+	window.location.href = 'http://localhost:8012/teemarket/seller/dashboard';
+});
 $('.campaigns').click(function(event) {
 	window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
 });

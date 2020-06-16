@@ -199,6 +199,18 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
+	function getCampaignActive($id_seller)
+	{
+		$query = $this->db->query("SELECT campaign.id FROM campaign,account WHERE account.id = campaign.id_seller AND campaign.id_seller = '$id_seller' AND status = 'active'")->result_array();
+		return $query;
+	}
+
+	function getCampaignEnded($id_seller)
+	{
+		$query = $this->db->query("SELECT campaign.id FROM campaign,account WHERE account.id = campaign.id_seller AND campaign.id_seller = '$id_seller' AND status = 'ended'")->result_array();
+		return $query;
+	}
+
 	function getDataByTime($time,$id)
 	{
 		$query = $this->db->query("SELECT campaign.price,orders.quantity FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND campaign.id_seller = '$id' AND info_customer.time LIKE '%$time%'")->result_array();

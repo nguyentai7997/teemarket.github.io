@@ -71,6 +71,7 @@ $route['checkout'] = 'teemarket/checkout';
 $route['insert_order'] = 'teemarket/insert_order';
 
 $route['seller'] = 'seller';
+$route['seller/dashboard'] = 'seller/dashboard';
 $route['seller/campaigns'] = 'seller/campaigns';
 $route['seller/get_orders_today'] = 'seller/get_orders_today';
 $route['seller/get_orders_yesterday'] = 'seller/get_orders_yesterday';

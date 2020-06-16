@@ -8,7 +8,7 @@
 	<meta name="description" content="bootstrap material admin template">
 	<meta name="author" content="">
 
-	<title>teemarket - Campaign Details</title>
+	<title>teemarket - Dashboard</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
 	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/favicon-teemarket.ico">
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -29,14 +29,13 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
 
 	<!-- Page -->
-	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/uikit/modals.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/font-awesome/font-awesome.minfd53.css">
 	<link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
-
 
 	<!--[if lt IE 9]>
 	<script src="<?= base_url()?>global/vendor/html5shiv/html5shiv.min.js?v4.0.1"></script>
@@ -53,7 +52,7 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition site-menubar-unfold">
+<body class="animsition dashboard">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -65,13 +64,13 @@
 		<div>
 			<div>
 				<ul class="site-menu" data-plugin="menu">
-					<li class="site-menu-item">
+					<li class="site-menu-item active">
 						<a class="_dashboard">
 							<i class="site-menu-icon fa-dashboard" aria-hidden="true"></i>
 							<span class="site-menu-title">DASHBOARD</span>
 						</a>
 					</li>
-					<li class="site-menu-item active">
+					<li class="site-menu-item">
 						<a class="campaigns">
 							<i class="site-menu-icon ion-ios-shirt" aria-hidden="true"></i>
 							<span class="site-menu-title">CAMPAIGNS</span>
@@ -107,7 +106,6 @@
 	</div>
 </div>
 
-
 <!-- Page -->
 <div class="page">
 	<div class="page-content container-fluid">
@@ -117,108 +115,85 @@
 				<!-- Pagination With Gap -->
 				<div class="mt-20 mb-50">
 					<ul class="pagination pagination-gap justify-content-center">
-						<li class="page-item settings_payouts"><a class="page-link" href="#">Analytics</a></li>
-						<li class="active page-item settings_account"><a class="page-link" href="campaign_details">Details</a></li>
-						<li class="page-item settings_payment"><a class="page-link" href="#">Orders</a></li>
+						<li class="active page-item today"><a class="page-link">Today<span class="sr-only">(current)</span></a></li>
+						<li class="page-item yesterday"><a class="page-link">Yesterday</a></li>
+						<li class="page-item days7"><a class="page-link">Last 7 Days</a></li>
+						<li class="page-item days30"><a class="page-link">Last 30 Days</a></li>
+						<li class="page-item alltime"><a class="page-link">All time</a></li>
+						<li class="page-item customday"><a class="page-link">Custom</a></li>
 					</ul>
+
 				</div>
 				<!-- End Example Pagination With Gap -->
 			</div>
 			<div class="col-xl-2 col-md-3 col-sm-2"></div>
 		</div>
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-md-12 col-lg-12">
-				<div class="panel-body container-fluid bg-white">
-
-					<!-- Example Basic Form Without Label -->
-					<div class="example-wrap">
-						<div class="row">
-							<div class="col-md-6 col-lg-6">
-								<h3 class="example-title">Echo Title Campaign</h3>
+			<div class="col-xl-4 col-md-6">
+				<!-- Widget Linearea One-->
+				<div class="card card-shadow" id="widgetLineareaOne">
+					<div class="card-block bg-green-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon fa-money font-size-40"></i>
 							</div>
-							<div class="col-md-6 col-lg-6">
-								<div class="float-right">
-									<button type="button" class="btn btn-dark back-step">
-										<i class="fa fa-arrow-left"></i> Back
-									</button>
-									<button type="button" class="btn btn-primary save">
-										<i class="icon fa-save"></i> Save
-									</button>
-								</div>
-							</div>
+							<div class="font-size-20 font-weight-600">PROFIT</div>
+							<div class="font-size-20 profits">$0.00</div>
 						</div>
-						<hr>
-						<form>
-							<div class="row">
-								<div class="col-md-6 col-lg-6">
-									<div class="form-group required-field">
-										<label style="color: #424242">URL</label>
-										<div>
-											<a href="#" class="url" style="color: #fb8c00">Echo url</a>
-										</div>
-									</div><!-- End .form-group -->
 
-									<div class="form-group required-field">
-										<label style="color: #424242">Title</label>
-										<input type="text" class="form-control title" required maxlength="80">
-										<div class="text">Summarize your campaign in 80 characters or less</div>
-										<div class="error title-required">The title field is required.</div>
-									</div><!-- End .form-group -->
-
-									<div class="form-group required-field">
-										<label style="color: #424242">Description</label>
-										<textarea class="border description" rows="7" style="width: 100%" maxlength="300"></textarea>
-										<div class="text">Let your buyers know why they should buy your tee in 300 characters or less. You can also include info on the design or designer!</div>
-										<div class="error description-required">The description field is required.</div>
-									</div><!-- End .form-group -->
-								</div>
-
-								<div class="col-md-6 col-lg-6">
-									<div class="form-group required-field mb-35">
-										<button type="button end-early" class="btn btn-md" style="background-color: #fb8c00; color: white">
-											<i class="icon fa-calendar-times-o"></i> End Early
-										</button>
-									</div>
-
-									<div class="form-group required-field">
-										<label style="color: #424242">Category Your Campaign</label>
-										<div class="select-custom">
-											<select class="form-control" title='Choose one of the following...' name="category">
-												<option value="0" selected>Please Choose...</option>
-<!--													--><?php //foreach ($category as $key => $value) { ?>
-<!--														<option value="--><?php //echo $value['id']; ?><!--">--><?php //echo strtoupper($value['category']); ?><!--</option>-->
-<!--													--><?php //} ?>
-											</select>
-										</div><!-- End .select-custom -->
-									</div><!-- End .form-group -->
-								</div>
-							</div>
-						</form>
 					</div>
 				</div>
-					<!-- End Example Basic Form Without Label -->
+				<!-- End Widget Linearea One -->
 			</div>
-		</div>
 
+			<div class="col-xl-4 col-md-6">
+				<!-- Widget Linearea Two-->
+				<div class="card card-shadow" id="widgetLineareaTwo">
+					<div class="card-block bg-cyan-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon fa-shopping-cart font-size-40"></i>
+							</div>
+							<div class="font-size-20 font-weight-600">ORDERS/UNITS</div>
+							<div class="font-size-20 orders-units">0/0</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Widget Linearea Two -->
+			</div>
+
+			<div class="col-xl-4 col-md-6">
+				<!-- Widget Linearea Three-->
+				<div class="card card-shadow" id="widgetLineareaOne">
+					<div class="card-block bg-orange-600 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon ion-ios-shirt font-size-40"></i>
+							</div>
+							<div class="font-size-20 font-weight-600">ALL CAMPAIGNS</div>
+							<div class="font-size-20">Active/Ended : <span class="active-ended"></span></div>
+						</div>
+					</div>
+				</div>
+				<!-- End Widget Linearea Three -->
+			</div>
+
+			<div class="col-lg-12">
+				<div class="example-wrap bg-white pt-20 mt-50">
+					<div id="chartdiv"></div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 </div>
 <!-- End Page -->
 
-<!-- Modal -->
-<div class="modal fade modal-success" id="exampleModalSuccess" aria-hidden="true"
-	 aria-labelledby="exampleModalSuccess" role="dialog" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Succes</h4>
-			</div>
-			<div class="modal-body">
-				<p>You have successfully changed your password</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
-			</div>
-		</div>
+<!--Modal Loading-->
+<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
+	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
+		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
+		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
 	</div>
 </div>
 <!-- End Modal -->
@@ -226,6 +201,7 @@
 <?php include("seller_footer_view.php") ?>
 
 <!-- Core  -->
+<script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="<?= base_url()?>global/vendor/babel-external-helpers/babel-external-helpersfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/jquery/jquery.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/popper-js/umd/popper.minfd53.js?v4.0.1"></script>
@@ -272,7 +248,15 @@
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-<script src="<?= base_url()?>assets1/js/account.js"></script>
+<script src="<?= base_url()?>assets1/js/dashboard.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 </body>
 

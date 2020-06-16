@@ -30,7 +30,7 @@
 
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
-<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets1/examples/css/charts/chartjs.minfd53.css?v4.0.1">-->
+	<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets1/examples/css/charts/chartjs.minfd53.css?v4.0.1">-->
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -53,7 +53,7 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition dashboard">
+<body class="animsition">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -65,6 +65,12 @@
 		<div>
 			<div>
 				<ul class="site-menu" data-plugin="menu">
+					<li class="site-menu-item">
+						<a class="_dashboard">
+							<i class="site-menu-icon fa-dashboard" aria-hidden="true"></i>
+							<span class="site-menu-title">DASHBOARD</span>
+						</a>
+					</li>
 					<li class="site-menu-item active">
 						<a class="campaigns">
 							<i class="site-menu-icon ion-ios-shirt" aria-hidden="true"></i>
@@ -105,86 +111,6 @@
 <div class="page">
 	<div class="page-content container-fluid">
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-xl-2 col-md-3 col-sm-2"></div>
-				<div class="col-xl-8 col-md-6 col-sm-8">
-				<!-- Pagination With Gap -->
-					<div class="mt-20 mb-50">
-							<ul class="pagination pagination-gap justify-content-center">
-								<li class="active page-item today"><a class="page-link">Today<span class="sr-only">(current)</span></a></li>
-								<li class="page-item yesterday"><a class="page-link">Yesterday</a></li>
-								<li class="page-item days7"><a class="page-link">Last 7 Days</a></li>
-								<li class="page-item days30"><a class="page-link">Last 30 Days</a></li>
-								<li class="page-item alltime"><a class="page-link">All time</a></li>
-								<li class="page-item customday"><a class="page-link">Custom</a></li>
-							</ul>
-						
-					</div>
-				<!-- End Example Pagination With Gap -->
-				</div>
-			<div class="col-xl-2 col-md-3 col-sm-2"></div>
-		</div>
-		<div class="row" data-plugin="matchHeight" data-by-row="true">
-			<div class="col-xl-4 col-md-6">
-				<!-- Widget Linearea One-->
-				<div class="card card-shadow" id="widgetLineareaOne">
-					<div class="card-block bg-green-500 p-20 pt-10">
-						<div class="clearfix text-white">
-							<div class="float-right">
-								<i class="icon fa-money font-size-40"></i>
-							</div>
-							<div class="font-size-20 font-weight-600">PROFIT</div>
-							<div class="font-size-20">$0.00</div>
-							<div class="mt-10 text-white">
-								<div class="font-size-14">AVAILABLE PAYOUT:</div>
-								<div class="font-size-14">$0.00</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<!-- End Widget Linearea One -->
-			</div>
-
-			<div class="col-xl-4 col-md-6">
-				<!-- Widget Linearea Two-->
-				<div class="card card-shadow" id="widgetLineareaTwo">
-					<div class="card-block bg-cyan-500 p-20 pt-10">
-						<div class="clearfix text-white">
-							<div class="float-right">
-								<i class="icon fa-shopping-cart font-size-40"></i>
-							</div>
-							<div class="font-size-20 font-weight-600">ORDERS/UNITS</div>
-							<div class="font-size-20">0/0</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Widget Linearea Two -->
-			</div>
-
-			<div class="col-xl-4 col-md-6">
-				<!-- Widget Linearea Three-->
-				<div class="card card-shadow" id="widgetLineareaOne">
-					<div class="card-block bg-orange-600 p-20 pt-10">
-						<div class="clearfix text-white">
-							<div class="float-right">
-								<i class="icon ion-ios-shirt font-size-40"></i>
-							</div>
-							<div class="font-size-20 font-weight-600">CAMPAIGNS</div>
-							<div class="font-size-20">0</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Widget Linearea Three -->
-			</div>
-
-			<div class="col-lg-12">
-				<div class="example-wrap bg-white pt-20">
-<!--					<div class="example text-center bg-white">-->
-<!--						<canvas id="myChart"></canvas>-->
-						<div id="chartdiv"></div>
-<!--					</div>-->
-				</div>
-			</div>
 
 			<div class="col-lg-12">
 				<div class="row">
@@ -227,39 +153,39 @@
 				</div>
 
 				<!-- Example Bordered Table -->
-					<div class="table-responsive">
-						<table class="table table-bordered bg-white">
-							<tbody>
-							<tr>
-								<td>
-									Name
-								</td>
-								<td class="text-center" width="12%">
-									<div class="data_profit">$0.00</div>
-									<div>Profit</div>
-								</td>
-								<td class="text-center" width="12%">
-									<div class="data_orfers">0</div>
-									<div>Orders</div>
-								</td>
-								<td class="text-center" width="12%">
-									<div class="data_units">0</div>
-									<div>Units</div>
-								</td>
-								<td class="text-center" width="12%">
-									<div class="data_time">7</div>
-									<div>Days Left</div>
-								</td>
-								<td class="text-nowrap text-center" width="12%">
-									<button type="button" class="btn btn-sm btn-icon btn-flat option">
-										<i class="icon fa-ellipsis-h" aria-hidden="true"></i>
-									</button>
-									<div>Option</div>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
+				<div class="table-responsive">
+					<table class="table table-bordered bg-white">
+						<tbody>
+						<tr>
+							<td>
+								Name
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_profit">$0.00</div>
+								<div>Profit</div>
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_orfers">0</div>
+								<div>Orders</div>
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_units">0</div>
+								<div>Units</div>
+							</td>
+							<td class="text-center" width="12%">
+								<div class="data_time">7</div>
+								<div>Days Left</div>
+							</td>
+							<td class="text-nowrap text-center" width="12%">
+								<button type="button" class="btn btn-sm btn-icon btn-flat option">
+									<i class="icon fa-ellipsis-h" aria-hidden="true"></i>
+								</button>
+								<div>Option</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
 				<!-- End Example Bordered Table -->
 			</div>
 
@@ -289,9 +215,6 @@
 <script src="<?= base_url()?>global/vendor/screenfull/screenfull.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
 
-<!-- Plugins For This Page -->
-<!--<script src="--><?//= base_url()?><!--global/vendor/chart-js/Chart.minfd53.js?v4.0.1"></script>-->
-
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Component.minfd53.js?v4.0.1"></script>
@@ -318,7 +241,6 @@
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
-<!--<script src="--><?//= base_url()?><!--assets1/examples/js/charts/chartjs.minfd53.js?v4.0.1"></script>-->
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>

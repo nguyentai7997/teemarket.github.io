@@ -75,6 +75,12 @@
 			<div>
 				<ul class="site-menu" data-plugin="menu">
 					<li class="site-menu-item">
+						<a class="_dashboard">
+							<i class="site-menu-icon fa-dashboard" aria-hidden="true"></i>
+							<span class="site-menu-title">DASHBOARD</span>
+						</a>
+					</li>
+					<li class="site-menu-item">
 						<a class="campaigns">
 							<i class="site-menu-icon ion-ios-shirt" aria-hidden="true"></i>
 							<span class="site-menu-title">CAMPAIGNS</span>
