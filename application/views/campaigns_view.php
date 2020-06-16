@@ -28,10 +28,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
 
-	<!-- Page -->
-	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
-	<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets1/examples/css/charts/chartjs.minfd53.css?v4.0.1">-->
-
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/ionicons/ionicons.minfd53.css?v4.0.1">
@@ -145,48 +141,51 @@
 							<div class="input-group">
 								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
 								<span class="input-group-btn">
-						  			<button type="submit" class="btn" style="background-color: #fb8c00"><i class="icon fa-search" aria-hidden="true"></i></button>
+						  			<button type="submit" class="btn" style="background-color: #fff;border: 1px solid #e0e0e0;"><i class="icon fa-search" aria-hidden="true"></i></button>
 								</span>
 							</div>
 						</div>
 					</div>
 				</div>
 
+				<?php foreach ($campaigns as $key => $value) { ?>
 				<!-- Example Bordered Table -->
 				<div class="table-responsive">
 					<table class="table table-bordered bg-white">
 						<tbody>
 						<tr>
 							<td>
-								Name
+								<img src="<?php echo $value['image_link']; ?>" height="70px" alt="">
+								<a href="<?= base_url()?><?php echo $value['publicname'] . '/' . $value['url']; ?>" target="_blank" style="text-decoration: none;color: #fb8c00;"><?php echo $value['title']; ?></a>
 							</td>
-							<td class="text-center" width="12%">
-								<div class="data_profit">$0.00</div>
+							<td class="text-center pt-20" width="12%">
+								<div class="data_profit" style="color: #fb8c00">$0.00</div>
 								<div>Profit</div>
 							</td>
-							<td class="text-center" width="12%">
-								<div class="data_orfers">0</div>
+							<td class="text-center pt-20" width="12%">
+								<div class="data_orders" style="color: #fb8c00;"><?php echo ucfirst($value['orders']); ?></div>
 								<div>Orders</div>
 							</td>
-							<td class="text-center" width="12%">
-								<div class="data_units">0</div>
+							<td class="text-center pt-20" width="12%">
+								<div class="data_units" style="color: #fb8c00"><?php echo ucfirst($value['units']); ?></div>
 								<div>Units</div>
 							</td>
-							<td class="text-center" width="12%">
-								<div class="data_time">7</div>
-								<div>Days Left</div>
+							<td class="text-center pt-20" width="12%">
+								<div class="data_time" <?php if ($value['status'] == "active") {echo 'style="color: #fb8c00"'; }?>><?php echo ucfirst($value['status']); ?></div>
+								<div>Status</div>
 							</td>
-							<td class="text-nowrap text-center" width="12%">
-								<button type="button" class="btn btn-sm btn-icon btn-flat option">
-									<i class="icon fa-ellipsis-h" aria-hidden="true"></i>
+							<td class="text-center pt-20" width="12%">
+								<button type="button" class="btn btn-sm btn-icon btn-flat more">
+									<span class="sr-only"><?php echo $value['id'];?></span>
+									<i class="icon fa-ellipsis-h font-size-24" style="color: #fb8c00" aria-hidden="true"></i><br>More
 								</button>
-								<div>Option</div>
 							</td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
 				<!-- End Example Bordered Table -->
+				<?php } ?>
 			</div>
 
 		</div>

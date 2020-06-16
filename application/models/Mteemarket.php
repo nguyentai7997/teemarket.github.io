@@ -104,7 +104,12 @@ class Mteemarket extends CI_Model {
 	{
 		$query = $this->db->query("SELECT * FROM campaign")->result_array();
 		return $query;
+	}
 
+	function getDataCampaignById($id_campaign,$id_seller)
+	{
+		$query = $this->db->query("SELECT campaign.title,campaign.id,campaign.description,campaign.url,campaign.status,campaign.id_category,account.publicname FROM campaign,account WHERE campaign.id_seller = account.id AND campaign.id = '$id_campaign' AND account.id = '$id_seller'")->result_array();
+		return $query;
 	}
 
 	function getFirstImageLinkByIdCampaign($idCampaign)
@@ -159,7 +164,19 @@ class Mteemarket extends CI_Model {
 
 	function getAllCampaignsOfSeller($id)
 	{
-		$query = $this->db->query("SELECT * FROM campaign where id_seller ='$id'")->result_array();
+		$query = $this->db->query("SELECT campaign.id,campaign.title,campaign.price,campaign.url,campaign.status,account.publicname FROM campaign,account WHERE campaign.id_seller = account.id AND campaign.id_seller ='$id'")->result_array();
+		return $query;
+	}
+
+	function getAllOrdersOfCampaign($id)
+	{
+		$query = $this->db->query("SELECT COUNT(DISTINCT id_customer) FROM orders WHERE id_campaign = '$id'")->result_array();
+		return $query;
+	}
+
+	function getAllUnitsOfCampaign($id)
+	{
+		$query = $this->db->query("SELECT quantity FROM orders WHERE id_campaign = '$id'")->result_array();
 		return $query;
 	}
 
@@ -178,6 +195,18 @@ class Mteemarket extends CI_Model {
 	function insertPayment($id,$paypal,$payoneer)
 	{
 		$query = $this->db->query("INSERT INTO payment_method ( `id_seller`, `email_paypal`, `email_payoneer`) VALUES ('$id','$paypal','$payoneer')");
+		return $query;
+	}
+
+	function updateCampaign($id,$title,$description,$category)
+	{
+		$query = $this->db->query("UPDATE campaign SET title = '$title' , description = '$description' , id_category = '$category' WHERE id = '$id'");
+		return $query;
+	}
+
+	function endCampaign($id)
+	{
+		$query = $this->db->query("UPDATE campaign SET status = 'ended' WHERE id = '$id'");
 		return $query;
 	}
 

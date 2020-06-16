@@ -12,7 +12,7 @@ class Seller extends CI_Controller
 
 	public function index()
 	{
-		redirect('http://localhost:8012/teemarket/seller/campaigns');
+		redirect('http://localhost:8012/teemarket/seller/dashboard');
 	}
 
 	public function dashboard(){
@@ -20,15 +20,6 @@ class Seller extends CI_Controller
 			redirect('http://localhost:8012/teemarket/login');
 		} else {
 			$this->load->view('dashboard_view');
-		}
-	}
-
-	public function campaigns(){
-		if (empty($_SESSION['user'])) {
-			redirect('http://localhost:8012/teemarket/login');
-		} else {
-			$allCampaigns = $this->Mteemarket->getAllCampaignsOfSeller($_SESSION['user']['id']);
-			$this->load->view('campaigns_view',['campaigns' => $allCampaigns]);
 		}
 	}
 
@@ -46,8 +37,6 @@ class Seller extends CI_Controller
 				array_push($allData, $data2);
 			}
 		}
-
-
 
 		for ($i = 0; $i < count($allData); $i++){
 			if ($allData[$i] != array()){
@@ -270,11 +259,98 @@ class Seller extends CI_Controller
 		echo json_encode($allData);
 	}
 
-	public function campaign_details(){
+	public function campaigns(){
 		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
 		} else {
-			$this->load->view('campaign_details_view');
+			$allCampaigns = $this->Mteemarket->getAllCampaignsOfSeller($_SESSION['user']['id']);
+
+			$arrayOrdersOfCampaign = array();
+			for ($i = 0; $i <count($allCampaigns); $i++){
+				$ordersOfCampaign = $this->Mteemarket->getAllOrdersOfCampaign($allCampaigns[$i]['id']);
+				array_push($arrayOrdersOfCampaign,$ordersOfCampaign);
+			}
+
+			$arrayUnitsOfCampaign = array();
+			for ($i = 0; $i < count($allCampaigns); $i++){
+				$unitsOfCampaign = $this->Mteemarket->getAllUnitsOfCampaign($allCampaigns[$i]['id']);
+				array_push($arrayUnitsOfCampaign,$unitsOfCampaign);
+			}
+
+			$arrayUnits = array();
+			for ($i = 0; $i < count($arrayUnitsOfCampaign); $i++){
+				$units = 0;
+				for ($k = 0; $k < count($arrayUnitsOfCampaign[$i]); $k++){
+					$units += $arrayUnitsOfCampaign[$i][$k]['quantity'];
+				}
+				array_push($arrayUnits,$units);
+			}
+
+			$allData = array();
+			for ($i = 0; $i < count($allCampaigns); $i++){
+				$firstImageLink = $this->Mteemarket->getFirstImageLinkByIdCampaign($allCampaigns[$i]['id']);
+				$data = ['id' => $allCampaigns[$i]['id'], 'image_link' => $firstImageLink, 'orders' => $arrayOrdersOfCampaign[$i][0]['COUNT(DISTINCT id_customer)'], 'units' => $arrayUnits[$i],'price' => $allCampaigns[$i]['price'], 'url' => $allCampaigns[$i]['url'], 'title' => $allCampaigns[$i]['title'], 'publicname' => $allCampaigns[$i]['publicname'], 'status' => $allCampaigns[$i]['status']];
+				array_push($allData, $data);
+			}
+
+			$this->load->view('campaigns_view',['campaigns' => $allData]);
+		}
+	}
+
+	public function campaign_details($id_campaign){
+		if (empty($_SESSION['user'])) {
+			redirect('http://localhost:8012/teemarket/login');
+		} else {
+			$dataCampaign = $this->Mteemarket->getDataCampaignById($id_campaign,$_SESSION['user']['id']);
+
+			if ($dataCampaign) {
+				$dataCategory = $this->Mteemarket->getDataCategory();
+				$firstImageLink = $this->Mteemarket->getFirstImageLinkByIdCampaign($id_campaign);
+				$this->load->view('campaign_details_view',['category' => $dataCategory,'campaign' => $dataCampaign,'image_link' => $firstImageLink]);
+			} else {
+				redirect('http://localhost:8012/teemarket/error');
+			}
+		}
+	}
+
+	public function update_campaign(){
+		if (empty($_SESSION['user'])) {
+			redirect('http://localhost:8012/teemarket/login');
+		} else {
+			if ($this->input->post('id')){
+				$id = $this->input->post('id');
+				$title = $this->input->post('title');
+				$description = $this->input->post('description');
+				$category = $this->input->post('category');
+
+				$update = $this->Mteemarket->updateCampaign($id,$title,$description,$category);
+				if ($update){
+					echo 0;
+				} else {
+					echo "Update error";
+				}
+			} else{
+				redirect('http://localhost:8012/teemarket/error');
+			}
+		}
+	}
+
+	public function end_campaign(){
+		if (empty($_SESSION['user'])) {
+			redirect('http://localhost:8012/teemarket/login');
+		} else {
+			if ($this->input->post('id')){
+				$id = $this->input->post('id');
+
+				$end = $this->Mteemarket->endCampaign($id);
+				if ($end){
+					echo 0;
+				} else {
+					echo "End error";
+				}
+			} else{
+				redirect('http://localhost:8012/teemarket/error');
+			}
 		}
 	}
 

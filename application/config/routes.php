@@ -73,6 +73,9 @@ $route['insert_order'] = 'teemarket/insert_order';
 $route['seller'] = 'seller';
 $route['seller/dashboard'] = 'seller/dashboard';
 $route['seller/campaigns'] = 'seller/campaigns';
+$route['seller/campaign_details/(:any)'] = 'seller/campaign_details/$1';
+$route['seller/update_campaign'] = 'seller/update_campaign';
+$route['seller/end_campaign'] = 'seller/end_campaign';
 $route['seller/get_orders_today'] = 'seller/get_orders_today';
 $route['seller/get_orders_yesterday'] = 'seller/get_orders_yesterday';
 $route['seller/get_orders_7_days_left'] = 'seller/get_orders_7_days_left';
@@ -93,7 +96,6 @@ $route['seller/change_password'] = 'seller/change_password';
 $route['seller/payment'] = 'seller/payment';
 $route['seller/insert_payment'] = 'seller/insert_payment';
 $route['seller/payouts'] = 'seller/payouts';
-$route['seller/(:any)'] = 'seller/campaign_details/$1';
 
 $route['(:any)/(:any)'] = 'teemarket/view_product/$1/$2';
 $route['(:any)'] = 'teemarket/error';

@@ -132,27 +132,6 @@ class Teemarket extends CI_Controller
 		}
 	}
 
-//	public function get_product_category(){
-//		if ($this->input->post('id')){
-//			$idCategory = $this->input->post('id');
-//
-//			$productCategory = $this->Mteemarket->getProductByIdCategory($idCategory);
-//
-//			if ($productCategory){
-//				for ($i = 0; $i < count($productCategory); $i++){
-//					$productImage = $this->Mteemarket->getFirstImageLinkByIdCampaign($productCategory[$i]['id']);
-//					array_push($productCategory[$i],$productImage);
-//				}
-//				marketplace();
-//			} else {
-//				echo "chua co san pham";
-//			}
-//
-//		} else {
-//			redirect('http://localhost:8012/teemarket/error');
-//		}
-//	}
-
 	public function marketplace($category)
 	{
 		$dataCategory = $this->Mteemarket->getDataCategory();

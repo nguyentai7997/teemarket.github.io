@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
+<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets1/css/all.css?">-->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css?">
 
 	<!-- Plugins -->
@@ -53,7 +54,7 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition site-menubar-unfold">
+<body class="animsition">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -126,71 +127,85 @@
 			</div>
 			<div class="col-xl-2 col-md-3 col-sm-2"></div>
 		</div>
+
+		<?php if ($campaign[0]['status'] == 'ended') {?>
+			<div class="mb-10"><div class="alert_message text-center">!--- Editing is Disabled ---!</div></div>
+		<?php } ?>
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
 			<div class="col-md-12 col-lg-12">
 				<div class="panel-body container-fluid bg-white">
-
 					<!-- Example Basic Form Without Label -->
 					<div class="example-wrap">
 						<div class="row">
 							<div class="col-md-6 col-lg-6">
-								<h3 class="example-title">Echo Title Campaign</h3>
+								<div class="float-left">
+									<button type="button" class="btn btn-dark back">
+										<i class="fa fa-arrow-left"></i> Back
+									</button>
+								</div>
 							</div>
 							<div class="col-md-6 col-lg-6">
+								<?php if ($campaign[0]['status'] == 'active') {?>
 								<div class="float-right">
-									<button type="button" class="btn btn-dark back-step">
-										<i class="fa fa-arrow-left"></i> Back
+									<button type="button" class="btn btn-md end-campaign mr-20" style="background-color: #fb8c00; color: white">
+										<i class="icon fa-calendar-times-o"></i> End Campaign
 									</button>
 									<button type="button" class="btn btn-primary save">
 										<i class="icon fa-save"></i> Save
 									</button>
 								</div>
+								<?php } ?>
 							</div>
 						</div>
 						<hr>
 						<form>
+							<span class="sr-only id"><?php echo $campaign[0]['id']; ?></span>
 							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="image" style="width: 384px;margin: auto">
+										<img src="<?php echo $image_link; ?>" alt="" width="384px">
+									</div>
+
+								</div>
+
 								<div class="col-md-6 col-lg-6">
 									<div class="form-group required-field">
 										<label style="color: #424242">URL</label>
 										<div>
-											<a href="#" class="url" style="color: #fb8c00">Echo url</a>
+											<a href="<?= base_url() . $campaign[0]['publicname'] . '/' . $campaign[0]['url'] ?>" target="_blank" class="url" style="color: #fb8c00">
+												<?= base_url() . $campaign[0]['publicname'] . '/' . $campaign[0]['url'] ?>
+											</a>
 										</div>
 									</div><!-- End .form-group -->
 
 									<div class="form-group required-field">
 										<label style="color: #424242">Title</label>
-										<input type="text" class="form-control title" required maxlength="80">
-										<div class="text">Summarize your campaign in 80 characters or less</div>
+										<input type="text" class="form-control title" required maxlength="80" value="<?php echo $campaign[0]['title']; ?>">
 										<div class="error title-required">The title field is required.</div>
 									</div><!-- End .form-group -->
 
 									<div class="form-group required-field">
 										<label style="color: #424242">Description</label>
-										<textarea class="border description" rows="7" style="width: 100%" maxlength="300"></textarea>
-										<div class="text">Let your buyers know why they should buy your tee in 300 characters or less. You can also include info on the design or designer!</div>
+										<textarea class="border description" rows="7" style="width: 100%" maxlength="300"><?php echo $campaign[0]['description']; ?></textarea>
 										<div class="error description-required">The description field is required.</div>
 									</div><!-- End .form-group -->
-								</div>
-
-								<div class="col-md-6 col-lg-6">
-									<div class="form-group required-field mb-35">
-										<button type="button end-early" class="btn btn-md" style="background-color: #fb8c00; color: white">
-											<i class="icon fa-calendar-times-o"></i> End Early
-										</button>
-									</div>
 
 									<div class="form-group required-field">
 										<label style="color: #424242">Category Your Campaign</label>
 										<div class="select-custom">
 											<select class="form-control" title='Choose one of the following...' name="category">
 												<option value="0" selected>Please Choose...</option>
-<!--													--><?php //foreach ($category as $key => $value) { ?>
-<!--														<option value="--><?php //echo $value['id']; ?><!--">--><?php //echo strtoupper($value['category']); ?><!--</option>-->
-<!--													--><?php //} ?>
+													<?php foreach ($category as $key => $value) {
+														if ($campaign[0]['id_category'] == $value['id']) { ?>
+															<option value="<?php echo $value['id']; ?>" selected><?php echo strtoupper($value['category']); ?></option>
+														<?php } else { ?>
+															<option value="<?php echo $value['id']; ?>"><?php echo strtoupper($value['category']); ?></option>
+														<?php } ?>
+													<?php } ?>
 											</select>
 										</div><!-- End .select-custom -->
 									</div><!-- End .form-group -->
+
 								</div>
 							</div>
 						</form>
@@ -204,19 +219,20 @@
 </div>
 <!-- End Page -->
 
-<!-- Modal -->
-<div class="modal fade modal-success" id="exampleModalSuccess" aria-hidden="true"
-	 aria-labelledby="exampleModalSuccess" role="dialog" tabindex="-1">
+<!-- Modal invalid price -->
+<div class="modal fade modal-warning" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Succes</h4>
-			</div>
-			<div class="modal-body">
-				<p>You have successfully changed your password</p>
+			<div class="modal-body text-center">
+				<i class="icon fa-exclamation-circle" aria-hidden="true" style="font-size: 50px;color: #da625a"></i>
+				<h3>End <?php echo $campaign[0]['title']; ?> ?<br>
+					<strong style="color: #da625a">Ending campaign will permanently end the campaign.</strong>
+				</h3>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default end" data-dismiss="modal" style="width: 100%;background-color: #da625a;color: #fff">End</button>
+				<button type="button" class="btn btn-dark cancel" data-dismiss="modal" style="width: 100%">Cancel</button>
 			</div>
 		</div>
 	</div>
@@ -272,7 +288,7 @@
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-<script src="<?= base_url()?>assets1/js/account.js"></script>
+<script src="<?= base_url()?>assets1/js/campaign_details.js"></script>
 
 </body>
 

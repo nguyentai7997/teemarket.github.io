@@ -49,10 +49,6 @@ $('.customday').click(function(event) {
 });
 
 $( ".animsition").ready(function() {
-	$(".animsition").addClass("modal-open");
-	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
-	$(".modal-loading").addClass("show");
-	$(".modal-loading").css("display","block");
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_today',
 		type: 'get'
@@ -206,11 +202,6 @@ $( ".animsition").ready(function() {
 			// range2.label.rotation = 90;
 			// range2.label.horizontalCenter = "right";
 			// range2.label.verticalCenter = "bottom";
-
-			$(".modal-loading").removeClass("show");
-			$(".modal-loading").css("display","none");
-			$(".modal-backdrop").remove();
-			$(".animsition").removeClass("modal-open");
 		},error:function(){
 			console.log("Ajax call error.");
 		}

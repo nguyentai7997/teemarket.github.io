@@ -25,3 +25,10 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
 :-ms-input-placeholder {
 	text-transform: initial;
 }
+.alert_message{
+	border: 1px solid rgba(179, 41, 0, 0.2);
+	background-color: #fb8c0026;
+	color: #fb8c00;
+	border-radius: 0;
+	padding: 1rem;
+}

@@ -68,7 +68,7 @@ $('.signin').click(function(event) {
 			passwordSignIn	: passwordSignIn
 		},success:function(res) {
 			if(res == 0) {
-				window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
+				window.location.href = 'http://localhost:8012/teemarket/seller/dashboard';
 			} else {
 				toastr.error('Incorrect login information, please try again.');
 				toastr.error('Invalid credentials provided.');
@@ -337,7 +337,7 @@ $('.signup').click(function(event) {
 			password	: password
 		},success:function(res) {
 			if(res == 0) {
-				window.location.href = 'http://localhost:8012/teemarket/campaigns';
+				window.location.href = 'http://localhost:8012/teemarket/seller/dashboard';
 			} else {
 				console.log("Insert error.");
 			}
