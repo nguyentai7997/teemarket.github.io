@@ -1,8 +1,10 @@
 $(document).ready(function() {
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_payouts_available',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var allData =[];
 			for (i = 0; i < obj.length; i++){
@@ -90,8 +92,10 @@ $('.requested').click(function(event) {
 	$(".modal-loading").css("display","block");
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_payouts_requested',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var allData =[];
 			for (i = 0; i < obj.length; i++){
@@ -132,8 +136,10 @@ $('.requested').click(function(event) {
 $('.total-payout').click(function (event) {
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/check_payment_method',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			if (res == 0) { //Neu khong co phuong thuc thanh toan nao
 				$(".animsition").addClass("modal-open");
 				$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
@@ -172,8 +178,6 @@ $('.total-payout').click(function (event) {
 				$(".request").click(function () {
 					var request = $(".payouts-request").val();
 					var payment_mode = $('select[name=payment] option').filter(':selected').val();
-					console.log(request);
-					console.log(payment_mode);
 					if (payment_mode == 0){
 						$('.payment-required').css('display','block');
 					} else {
@@ -189,14 +193,10 @@ $('.total-payout').click(function (event) {
 							success:function(res){
 								console.log(res);
 								if (res == 1){
-									$(".animsition").addClass("modal-open");
-									$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 									$(".modal-loading").removeClass("show");
 									$(".modal-loading").css("display","none");
 									$(".modal-request").removeClass("show");
 									$(".modal-request").css("display","none");
-									$(".modal-backdrop").remove();
-									$(".animsition").removeClass("modal-open");
 									$(".request-success").addClass("show");
 									$(".request-success").css("display","block");
 									$(".close-modal").click(function () {

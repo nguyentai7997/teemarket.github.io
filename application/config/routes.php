@@ -80,6 +80,7 @@ $route['seller/get_orders_yesterday'] = 'seller/get_orders_yesterday';
 $route['seller/get_orders_7_days_left'] = 'seller/get_orders_7_days_left';
 $route['seller/get_orders_30_days_left'] = 'seller/get_orders_30_days_left';
 $route['seller/get_orders_all_time'] = 'seller/get_orders_all_time';
+$route['seller/get_orders_custom_day'] = 'seller/get_orders_custom_day';
 $route['seller/design'] = 'seller/design';
 $route['seller/get_design'] = 'seller/get_design';
 $route['seller/remove_design'] = 'seller/remove_design';

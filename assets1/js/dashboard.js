@@ -1,8 +1,10 @@
 $( ".animsition").ready(function() {
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_today',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
@@ -11,7 +13,7 @@ $( ".animsition").ready(function() {
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]);
+					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
 				} else {
 					units.push("0");
 					profits.push("0");
@@ -157,7 +159,6 @@ $( ".animsition").ready(function() {
 		}
 	});
 }); // end animision.ready()
-//Click time campaigns
 $('.today').click(function(event) {
 	$(".today").addClass("active");
 	$(".yesterday").removeClass("active");
@@ -172,8 +173,10 @@ $('.today').click(function(event) {
 	$(".modal-loading").css("display","block");
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_today',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
@@ -182,7 +185,7 @@ $('.today').click(function(event) {
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]);
+					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
 				} else {
 					units.push("0");
 					profits.push("0");
@@ -321,8 +324,10 @@ $('.yesterday').click(function(event) {
 	$(".modal-loading").css("display","block");
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_yesterday',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
@@ -331,7 +336,7 @@ $('.yesterday').click(function(event) {
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]);
+					profits.push(obj[i][obj[i].length-2]-7.50);
 				} else {
 					units.push("0");
 					profits.push("0");
@@ -468,14 +473,13 @@ $('.days7').click(function(event) {
 	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 	$(".modal-loading").addClass("show");
 	$(".modal-loading").css("display","block");
-	var arrayDays = new Array();
-	for (var i = 7; i > 0; i--){
-		arrayDays.push(moment(Date.today().add(-i).days()).format('YYYY, M, D'));
-	}
+
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_7_days_left',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
@@ -484,7 +488,7 @@ $('.days7').click(function(event) {
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]);
+					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
 				} else {
 					units.push("0");
 					profits.push("0");
@@ -508,6 +512,11 @@ $('.days7').click(function(event) {
 			$(".orders-units").html(totalOrders + '/' + totalUnits);
 
 			$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
+
+			var arrayDays = new Array();
+			for (var i = 7; i > 0; i--){
+				arrayDays.push(moment(Date.today().add(-i).days()).format('YYYY, M, D'));
+			}
 
 			var allData =[];
 			for (i = 0; i < obj.length-2; i++){
@@ -636,8 +645,10 @@ $('.days30').click(function(event) {
 
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_30_days_left',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
@@ -646,7 +657,7 @@ $('.days30').click(function(event) {
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]);
+					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
 				} else {
 					units.push("0");
 					profits.push("0");
@@ -783,8 +794,10 @@ $('.alltime').click(function(event) {
 	$(".modal-loading").css("display","block");
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_all_time',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var time = [];
 			var orders = [];
@@ -794,11 +807,12 @@ $('.alltime').click(function(event) {
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 2) {
 					units.push(obj[i][obj[i].length-4]);
-					profits.push(obj[i][obj[i].length-3]);
+					profits.push(obj[i][obj[i].length-3]-7.50*obj[i][obj[i].length-4]);
 					time.push(obj[i][obj[i].length-2]);
 				} else {
 					units.push("0");
 					profits.push("0");
+					time.push(obj[i][obj[i].length-2]);
 				}
 			}
 
@@ -924,14 +938,7 @@ $('.alltime').click(function(event) {
 		}
 	});
 });
-$('.customday').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").addClass("active");
-});
+
 
 
 

@@ -18,7 +18,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/daterangepicker.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -31,6 +30,7 @@
 
 	<!-- Page -->
 	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/dashboard/v1.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/daterangepicker.css?">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -178,8 +178,6 @@
 				<!-- End Widget Linearea Three -->
 			</div>
 
-			<input type="text" class="_customday">
-			
 			<div class="col-lg-12">
 				<div class="example-wrap bg-white pt-20 mt-50">
 					<div id="chartdiv"></div>
@@ -262,13 +260,173 @@
 <script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 <script>
-	$("._customday").daterangepicker({
-		timeZone: null,
+	$('.customday').daterangepicker({
 		maxDate: moment(),
-		// startDate: moment(),
-		// endDate: new Date(),
-	});
+		opens: 'left',
+	}, function(start, end, label) {
+		$(".today").removeClass("active");
+		$(".yesterday").removeClass("active");
+		$(".days7").removeClass("active");
+		$(".days30").removeClass("active");
+		$(".alltime").removeClass("active");
+		$(".customday").addClass("active");
 
+		var dateStart = moment(start).format("YYYY-MM-DD");
+		var dateEnd = moment(end).format("YYYY-MM-DD");
+
+		$(".animsition").addClass("modal-open");
+		$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+		$(".modal-loading").addClass("show");
+		$(".modal-loading").css("display","block");
+
+		$.ajax({
+			url: 'http://localhost:8012/teemarket/seller/get_orders_custom_day',
+			type: 'post',
+			data: {
+				dateStart : dateStart,
+				dateEnd : dateEnd,
+			},success:function(res) {
+				var obj = JSON.parse(res);
+				var time = [];
+				var orders = [];
+				var units = [];
+				var profits = [];
+				for (i=0; i < obj.length-2; i++){
+					orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
+					if (obj[i].length > 2) {
+						units.push(obj[i][obj[i].length-4]);
+						profits.push(obj[i][obj[i].length-3]-7.50*obj[i][obj[i].length-4]);
+						time.push(obj[i][obj[i].length-2]);
+					} else {
+						units.push("0");
+						profits.push("0");
+						time.push(obj[i][obj[i].length-2]);
+					}
+				}
+
+				var totalProfits = 0;
+				for (i = 0; i < obj.length-2; i++){
+					totalProfits -= -profits[i];
+				}
+				$(".profits").html('$'+totalProfits.toFixed(2));
+
+				var totalOrders = 0;
+				for (i = 0; i < obj.length-2; i++){
+					totalOrders -= -orders[i];
+				}
+				var totalUnits = 0;
+				for (i = 0; i < obj.length-2; i++){
+					totalUnits -= -units[i];
+				}
+				$(".orders-units").html(totalOrders + '/' + totalUnits);
+
+				$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
+
+				var arrayDays = new Array();
+				for (var i = 0; i < time.length; i++){
+					arrayDays.push(moment(time[i]).format('YYYY, M, D'));
+				}
+				arrayDays.push(moment(new Date()).format('YYYY, M, D'));//Push today to arrayDays
+
+				var allData =[];
+				for (i = 0; i < obj.length-2; i++){
+					var data = {
+						"time": new Date(arrayDays[i]),
+						"orders": orders[i],
+						"units": units[i],
+						"profits": profits[i]
+					};
+					allData.push(data);
+				}
+
+				// Themes begin
+				am4core.useTheme(am4themes_kelly);
+				am4core.useTheme(am4themes_animated);
+				// Themes end
+
+				var chart = am4core.create("chartdiv", am4charts.XYChart);
+				var title = chart.titles.create();
+				title.text = moment(arrayDays[0]).format('LL') + ' - ' + moment(arrayDays[obj.length-3]).format('LL');
+				title.fontSize = 20;
+				title.marginBottom = 20;
+				chart.data = allData;
+
+				// chart.dateFormatter.inputDateFormat = "";
+				var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+				dateAxis.renderer.minGridDistance = 60;
+				dateAxis.startLocation = 0.5;
+				dateAxis.endLocation = 0.5;
+				dateAxis.baseInterval = {
+					timeUnit: "day",
+					count: 1
+				}
+
+				var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+				valueAxis.tooltip.disabled = true;
+
+				var series = chart.series.push(new am4charts.LineSeries());
+				series.dataFields.dateX = "time";
+				series.name = "Orders";
+				series.dataFields.valueY = "orders";
+				series.tooltipHTML = "<span style='font-size:14px; color:#000000;'><b>Orders: {valueY.value}</b></span>";
+				series.tooltipText = "[#000]{valueY.value}[/]";
+				series.tooltip.background.fill = am4core.color("#FFF");
+				series.tooltip.getStrokeFromObject = true;
+				series.tooltip.background.strokeWidth = 3;
+				series.tooltip.getFillFromObject = false;
+				series.fillOpacity = 0.6;
+				series.strokeWidth = 2;
+				series.stacked = true;
+
+				var series2 = chart.series.push(new am4charts.LineSeries());
+				series2.name = "Units";
+				series2.dataFields.dateX = "time";
+				series2.dataFields.valueY = "units";
+				series2.tooltipHTML = "<span style='font-size:14px; color:#000000;'><b>Units: {valueY.value}</b></span>";
+				series2.tooltipText = "[#000]{valueY.value}[/]";
+				series2.tooltip.background.fill = am4core.color("#FFF");
+				series2.tooltip.getFillFromObject = false;
+				series2.tooltip.getStrokeFromObject = true;
+				series2.tooltip.background.strokeWidth = 3;
+				series2.sequencedInterpolation = true;
+				series2.fillOpacity = 0.6;
+				series2.stacked = true;
+				series2.strokeWidth = 2;
+
+				var series3 = chart.series.push(new am4charts.LineSeries());
+				series3.name = "Profits";
+				series3.dataFields.dateX = "time";
+				series3.dataFields.valueY = "profits";
+				series3.tooltipHTML = "<span style='font-size:14px; color:#000000;'><b>Profits: ${valueY.value}</b></span>";
+				series3.tooltipText = "[#000]{valueY.value}[/]";
+				series3.tooltip.background.fill = am4core.color("#FFF");
+				series3.tooltip.getFillFromObject = false;
+				series3.tooltip.getStrokeFromObject = true;
+				series3.tooltip.background.strokeWidth = 3;
+				series3.sequencedInterpolation = true;
+				series3.fillOpacity = 0.6;
+				series3.defaultState.transitionDuration = 1000;
+				series3.stacked = true;
+				series3.strokeWidth = 2;
+
+				chart.cursor = new am4charts.XYCursor();
+				chart.cursor.xAxis = dateAxis;
+				// chart.scrollbarX = new am4core.Scrollbar();
+
+				// Add a legend
+				chart.legend = new am4charts.Legend();
+				chart.legend.position = "bottom";
+
+				$(".modal-loading").removeClass("show");
+				$(".modal-loading").css("display","none");
+				$(".modal-backdrop").remove();
+				$(".animsition").removeClass("modal-open");
+			},error:function(){
+				console.log("Ajax call error.");
+			}
+		});
+	}
+	);
 </script>
 </body>
 
