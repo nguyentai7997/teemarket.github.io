@@ -220,7 +220,7 @@ class Seller extends CI_Controller
 
 		$allDays = array_unique($day);
 		array_push($allDays,$date);//Push today to allDays
-		$resultDays = array_values(array_unique($day));
+		$resultDays = array_values(array_unique($allDays));
 
 		$allData = array();
 		for ($i = 0; $i < count($resultDays); $i++){
@@ -623,11 +623,69 @@ class Seller extends CI_Controller
 		if (empty($_SESSION['user'])) {
 			redirect('http://localhost:8012/teemarket/login');
 		} else {
-			$orders = $this->Mteemarket->getOrdersByIdSeller($_SESSION['user']['id']);
-			$this->load->view('payouts_view',['orders' => $orders]);
+			$available = $this->Mteemarket->getPayoutsAvailableByIdSeller($_SESSION['user']['id']);
+			$payoutsAvailable = 0;
+			for ($i = 0; $i <count($available); $i++){
+				$payoutsAvailable += $available[$i]['quantity']*($available[$i]['price']-7.50);
+			}
+
+			$requested = $this->Mteemarket->getPayoutsRequestedByIdSeller($_SESSION['user']['id']);
+			$payoutsRequested = 0;
+			for ($i = 0; $i<count($requested); $i++){
+				$payoutsRequested += $requested[$i]['payout_requested'];
+			}
+
+			$paid = $this->Mteemarket->getTotalPaidByIdSeller($_SESSION['user']['id']);
+			$totalPaid = 0;
+			for ($i = 0; $i<count($paid); $i++){
+				$totalPaid += $paid[$i]['payout_requested'];
+			}
+
+			$this->load->view('payouts_view',['payoutsAvailable' => $payoutsAvailable, 'payoutsRequested' => $payoutsRequested, 'totalPaid' => $totalPaid]);
 		}
 	}
 
+	public function get_payouts_available(){
+		$campaignsPayouts = $this->Mteemarket->getCampaignsPayoutsByIdSeller($_SESSION['user']['id']);
+
+		echo json_encode($campaignsPayouts);
+	}
+
+	public function get_payouts_requested(){
+		$campaignsPayoutsRequested = $this->Mteemarket->getCampaignsPayoutsRequestedByIdSeller($_SESSION['user']['id']);
+
+		echo json_encode($campaignsPayoutsRequested);
+	}
+
+	public function check_payment_method(){
+		$payment = $this->Mteemarket->getPaymentByIdSeller($_SESSION['user']['id']);
+
+		if (!empty($payment[0]['paypal']) || !empty($payment[0]['payoneer'])){
+			echo json_encode($payment);
+		} else {
+			echo 0;
+		}
+
+	}
+
+	public function insert_request(){
+		if ($this->input->post('request')) {
+			$request = $this->input->post('request');
+			$payment_mode = $this->input->post('payment_mode');
+			$add = $this->Mteemarket->insertPayouts($_SESSION['user']['id'],$request,$payment_mode);
+			if ($add){
+				$ordersPending = $this->Mteemarket->getPayoutsAvailableByIdSeller($_SESSION['user']['id']);
+				for ($i = 0; $i < count($ordersPending); $i++){
+					$updateStatusOrders = $this->Mteemarket->updateStatusOrders($ordersPending[$i]['id']);
+				}
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
 }
 
 /* End of file home.php */

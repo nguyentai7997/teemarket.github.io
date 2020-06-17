@@ -66,7 +66,7 @@ class Mteemarket extends CI_Model {
 
 	function getProductByIdCategory($id)
 	{
-		$query = $this->db->query("SELECT campaign.id,campaign.price,campaign.url,campaign.title FROM campaign,category WHERE campaign.id_category = category.id AND category.id = '$id'")->result_array();
+		$query = $this->db->query("SELECT campaign.id,campaign.price,campaign.url,campaign.title FROM campaign,category WHERE campaign.id_category = category.id AND category.id = '$id' AND campaign.status = 'active'")->result_array();
 		return $query;
 	}
 
@@ -102,7 +102,7 @@ class Mteemarket extends CI_Model {
 
 	function getDataCampaign()
 	{
-		$query = $this->db->query("SELECT * FROM campaign")->result_array();
+		$query = $this->db->query("SELECT * FROM campaign WHERE status = 'active'")->result_array();
 		return $query;
 	}
 
@@ -188,13 +188,13 @@ class Mteemarket extends CI_Model {
 
 	function updatePayment($id,$paypal,$payoneer)
 	{
-		$query = $this->db->query("UPDATE payment_method SET email_paypal = '$paypal' , email_payoneer = '$payoneer'  WHERE id_seller = '$id'");
+		$query = $this->db->query("UPDATE payment_method SET paypal = '$paypal' , payoneer = '$payoneer'  WHERE id_seller = '$id'");
 		return $query;
 	}
 
 	function insertPayment($id,$paypal,$payoneer)
 	{
-		$query = $this->db->query("INSERT INTO payment_method ( `id_seller`, `email_paypal`, `email_payoneer`) VALUES ('$id','$paypal','$payoneer')");
+		$query = $this->db->query("INSERT INTO payment_method ( `id_seller`, `paypal`, `payoneer`) VALUES ('$id','$paypal','$payoneer')");
 		return $query;
 	}
 
@@ -275,6 +275,55 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("SELECT time FROM info_customer WHERE id = '$id'")->result_array();
 		return $query;
 	}
+
+	function getPayoutsAvailableByIdSeller($id)
+	{
+		$query = $this->db->query("SELECT orders.id,orders.quantity,campaign.price FROM orders,campaign,account WHERE orders.id_campaign = campaign.id AND campaign.id_seller = account.id AND account.id = '$id' AND orders.status = 'pending'")->result_array();
+		return $query;
+	}
+
+	function getPayoutsRequestedByIdSeller($id)
+	{
+		$query = $this->db->query("SELECT payout_requested FROM payout WHERE id_seller = '$id' AND payout.status = 'requested'")->result_array();
+		return $query;
+	}
+
+	function getTotalPaidByIdSeller($id)
+	{
+		$query = $this->db->query("SELECT payout_requested FROM payout WHERE id_seller = '$id' AND payout.status = 'paid'")->result_array();
+		return $query;
+	}
+
+	function getCampaignsPayoutsByIdSeller($id)
+	{
+		$query = $this->db->query("SELECT info_customer.time,campaign.title,orders.quantity,campaign.price FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND campaign.id_seller = '$id' AND orders.status = 'pending' ORDER BY orders.id ASC")->result_array();
+		return $query;
+	}
+
+	function getCampaignsPayoutsRequestedByIdSeller($id)
+	{
+		$query = $this->db->query("SELECT time,payout_requested,payment_mode,status FROM payout WHERE id_seller = '$id' ORDER BY time ASC")->result_array();
+		return $query;
+	}
+
+	function getPaymentByIdSeller($id)
+	{
+		$query = $this->db->query("SELECT paypal,payoneer FROM payment_method WHERE id_seller = '$id'")->result_array();
+		return $query;
+	}
+
+	function insertPayouts($id,$request,$payment_mode)
+	{
+		$query = $this->db->query("INSERT INTO payout ( `id_seller`, `payout_requested`, `payment_mode`,  `status`,  `time`) VALUES ('$id','$request','$payment_mode','requested',CURRENT_TIMESTAMP	)");
+		return $query;
+	}
+
+	function updateStatusOrders($id_orders)
+	{
+		$query = $this->db->query("UPDATE orders SET status = 'requested' WHERE id = '$id_orders'");
+		return $query;
+	}
+
 }
 
 /* End of file test.php */

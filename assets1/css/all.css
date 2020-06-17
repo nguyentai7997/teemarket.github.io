@@ -2,13 +2,6 @@
 .navbar-toggler{padding: 0}
 .nav-link:focus, .nav-link:hover{background-color:unset}
 .page-item{white-space: nowrap;}
-.sort_label{
-	position: absolute;
-	color: rgba(0,0,0,.87);
-	margin-left: 16px;
-}
-select.form-control{padding-top: 17px;}
-.form-control{height: 43px!important;}
 .pagination-gap .page-link{border-radius: 21px; background-color: white}
 .pagination-gap .page-item:first-child .page-link, .pagination-gap .page-item:last-child .page-link{border-radius: 21px;}
 .pagination-gap .page-link:focus, .pagination-gap .page-link:hover{
@@ -34,4 +27,5 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover{
 	width: 100%;
 	height: 500px;
 }
+#example thead tr th{color: rgb(14, 14, 14)}
 

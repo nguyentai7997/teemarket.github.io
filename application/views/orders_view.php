@@ -149,7 +149,7 @@
 						<td>$<?php echo number_format($value['quantity'] * $value['price'],2)?></td>
 						<td>$7.50</td>
 						<td>$<?php echo number_format($value['quantity'] * $value['price'] - 7.50,2)?></td>
-						<td><?php if ($value['status'] == 'pending') {echo "_";} ?></td>
+						<td><?php if ($value['status'] == 'pending'||$value['status'] == 'requested') {echo "_";} ?></td>
 					</tr>
 					<?php } ?>
 					</tbody>

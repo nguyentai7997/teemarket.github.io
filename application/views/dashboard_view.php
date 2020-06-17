@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/daterangepicker.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -122,7 +123,6 @@
 						<li class="page-item alltime"><a class="page-link">All time</a></li>
 						<li class="page-item customday"><a class="page-link">Custom</a></li>
 					</ul>
-
 				</div>
 				<!-- End Example Pagination With Gap -->
 			</div>
@@ -178,6 +178,8 @@
 				<!-- End Widget Linearea Three -->
 			</div>
 
+			<input type="text" class="_customday">
+			
 			<div class="col-lg-12">
 				<div class="example-wrap bg-white pt-20 mt-50">
 					<div id="chartdiv"></div>
@@ -251,13 +253,23 @@
 <script src="<?= base_url()?>assets1/js/dashboard.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
+<script src="<?= base_url()?>assets1/js/moment.min.js"></script>
+<script src="<?= base_url()?>assets1/js/daterangepicker.js"></script>
 
 <!-- Resources -->
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script>
+	$("._customday").daterangepicker({
+		timeZone: null,
+		maxDate: moment(),
+		// startDate: moment(),
+		// endDate: new Date(),
+	});
 
+</script>
 </body>
 
 </html>

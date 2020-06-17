@@ -1,53 +1,3 @@
-//Click time campaigns
-$('.today').click(function(event) {
-	$(".today").addClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.yesterday').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").addClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.days7').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").addClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.days30').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").addClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").removeClass("active");
-});
-$('.alltime').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").addClass("active");
-	$(".customday").removeClass("active");
-});
-$('.customday').click(function(event) {
-	$(".today").removeClass("active");
-	$(".yesterday").removeClass("active");
-	$(".days7").removeClass("active");
-	$(".days30").removeClass("active");
-	$(".alltime").removeClass("active");
-	$(".customday").addClass("active");
-});
-
 $( ".animsition").ready(function() {
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_orders_today',
@@ -207,7 +157,15 @@ $( ".animsition").ready(function() {
 		}
 	});
 }); // end animision.ready()
-$( ".today").click(function() {
+//Click time campaigns
+$('.today').click(function(event) {
+	$(".today").addClass("active");
+	$(".yesterday").removeClass("active");
+	$(".days7").removeClass("active");
+	$(".days30").removeClass("active");
+	$(".alltime").removeClass("active");
+	$(".customday").removeClass("active");
+
 	$(".animsition").addClass("modal-open");
 	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 	$(".modal-loading").addClass("show");
@@ -348,8 +306,15 @@ $( ".today").click(function() {
 			console.log("Ajax call error.");
 		}
 	});
-}); // end animision.ready()
-$(".yesterday").click(function () {
+});
+$('.yesterday').click(function(event) {
+	$(".today").removeClass("active");
+	$(".yesterday").addClass("active");
+	$(".days7").removeClass("active");
+	$(".days30").removeClass("active");
+	$(".alltime").removeClass("active");
+	$(".customday").removeClass("active");
+
 	$(".animsition").addClass("modal-open");
 	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 	$(".modal-loading").addClass("show");
@@ -490,9 +455,15 @@ $(".yesterday").click(function () {
 			console.log("Ajax call error.");
 		}
 	});
-
 });
-$(".days7").click(function () {
+$('.days7').click(function(event) {
+	$(".today").removeClass("active");
+	$(".yesterday").removeClass("active");
+	$(".days7").addClass("active");
+	$(".days30").removeClass("active");
+	$(".alltime").removeClass("active");
+	$(".customday").removeClass("active");
+
 	$(".animsition").addClass("modal-open");
 	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 	$(".modal-loading").addClass("show");
@@ -645,8 +616,15 @@ $(".days7").click(function () {
 			console.log("Ajax call error.");
 		}
 	});
-})
-$(".days30").click(function () {
+});
+$('.days30').click(function(event) {
+	$(".today").removeClass("active");
+	$(".yesterday").removeClass("active");
+	$(".days7").removeClass("active");
+	$(".days30").addClass("active");
+	$(".alltime").removeClass("active");
+	$(".customday").removeClass("active");
+
 	$(".animsition").addClass("modal-open");
 	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 	$(".modal-loading").addClass("show");
@@ -790,8 +768,15 @@ $(".days30").click(function () {
 			console.log("Ajax call error.");
 		}
 	});
-})
-$(".alltime").click(function () {
+});
+$('.alltime').click(function(event) {
+	$(".today").removeClass("active");
+	$(".yesterday").removeClass("active");
+	$(".days7").removeClass("active");
+	$(".days30").removeClass("active");
+	$(".alltime").addClass("active");
+	$(".customday").removeClass("active");
+
 	$(".animsition").addClass("modal-open");
 	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
 	$(".modal-loading").addClass("show");
@@ -938,7 +923,15 @@ $(".alltime").click(function () {
 			console.log("Ajax call error.");
 		}
 	});
-})
+});
+$('.customday').click(function(event) {
+	$(".today").removeClass("active");
+	$(".yesterday").removeClass("active");
+	$(".days7").removeClass("active");
+	$(".days30").removeClass("active");
+	$(".alltime").removeClass("active");
+	$(".customday").addClass("active");
+});
 
 
 

@@ -26,4 +26,13 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 	color: white;
 	text-decoration: none;
 }
-
+.ended{
+	cursor: not-allowed;
+	border: none;
+	background-color: #d4d4d4;
+}
+.ended:hover{
+	border: none;
+	background-color: #d4d4d4;
+	color: #0e0e0e;
+}

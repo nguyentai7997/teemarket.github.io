@@ -108,9 +108,15 @@
 											<input class="product-id" value="<?php echo $dataCamp[0]['id'];?>" style="display: none">
 										</div><!-- End .product-single-qty -->
 
-										<a class="paction add-cart" title="Add to Cart">
-											<span>Add to Cart</span>
-										</a>
+										<?php if ($dataCamp[0]['status'] == 'active') { ?>
+											<a class="paction add-cart" title="Add to Cart">
+												<span>Add to Cart</span>
+											</a>
+										<?php } else { ?>
+											<button class="paction add-cart ended" title="Add to Cart" disabled>
+												<span>ENDED</span>
+											</button>
+										<?php } ?>
 									</div><!-- End .product-action -->
 								</div><!-- End .product-single-details -->
 							</div><!-- End .col-lg-6 -->

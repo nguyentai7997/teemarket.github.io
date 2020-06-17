@@ -107,7 +107,6 @@
 	</div>
 </div>
 
-
 <!-- Page -->
 <div class="page" style="min-height: 600px">
 	<div class="page-content container-fluid">
@@ -154,7 +153,7 @@
 												</table>
 											</a>
 										</div>
-										<div class="panel-collapse collapse" id="exampleCollapse1" aria-labelledby="exampleHeading1"
+										<div class="panel-collapse collapse show" id="exampleCollapse1" aria-labelledby="exampleHeading1"
 											 role="tabpanel">
 											<div class="panel-body">
 												<form class="mt-25">
@@ -163,7 +162,8 @@
 															<span class="input-group-addon">
 															  <span class="icon md-email" aria-hidden="true"></span>
 															</span>
-															<input type="text" class="form-control paypal" placeholder="Email" value="<?php echo $payment[0]['email_paypal'];?>">
+															<input type="text" class="form-control paypal" placeholder="Email"
+																   value="<?php if (!empty($payment[0]['paypal'])){ echo $payment[0]['paypal']; }?>">
 														</div>
 														<div class="error paypal-invalid">The email field must be a valid email.</div>
 													</div>
@@ -200,7 +200,8 @@
 															<span class="input-group-addon">
 															  <span class="icon md-email" aria-hidden="true"></span>
 															</span>
-															<input type="text" class="form-control payoneer" placeholder="Email" value="<?php echo $payment[0]['email_payoneer'];?>">
+															<input type="text" class="form-control payoneer" placeholder="Email"
+																   value="<?php if (!empty($payment[0]['payoneer'])){ echo $payment[0]['payoneer']; }?>">
 														</div>
 														<div class="error payoneer-invalid">The email field must be a valid email.</div>
 													</div>

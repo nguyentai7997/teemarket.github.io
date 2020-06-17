@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/campaigns.css">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -159,7 +160,7 @@
 								<a href="<?= base_url()?><?php echo $value['publicname'] . '/' . $value['url']; ?>" target="_blank" style="text-decoration: none;color: #fb8c00;"><?php echo $value['title']; ?></a>
 							</td>
 							<td class="text-center pt-20" width="12%">
-								<div class="data_profit" style="color: #fb8c00">$0.00</div>
+								<div class="data_profit" style="color: #fb8c00">$<?php echo number_format($value['units']*($value['price']-7.50),2) ?></div>
 								<div>Profit</div>
 							</td>
 							<td class="text-center pt-20" width="12%">
@@ -244,14 +245,7 @@
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
 <script src="<?= base_url()?>assets1/js/campaigns.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
 
-<!-- Resources -->
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 </body>
 

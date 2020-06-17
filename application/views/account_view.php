@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css">
 
 	<!-- Plugins -->

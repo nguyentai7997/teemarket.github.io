@@ -129,23 +129,6 @@
 		</div>
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
 			<div class="col-xl-4 col-md-6">
-				<!-- Widget Linearea One-->
-				<div class="card card-shadow" id="widgetLineareaOne">
-					<div class="card-block bg-purple-500 p-20 pt-10">
-						<div class="clearfix text-white">
-							<div class="float-right">
-								<i class="icon ion-ios-radio-outline font-size-30"></i>
-							</div>
-							<div class="font-size-20 font-weight-600">Payouts Requested</div>
-							<div class="font-size-20">$0.00</div>
-						</div>
-
-					</div>
-				</div>
-				<!-- End Widget Linearea One -->
-			</div>
-
-			<div class="col-xl-4 col-md-6">
 				<!-- Widget Linearea Two-->
 				<div class="card card-shadow" id="widgetLineareaTwo">
 					<div class="card-block bg-cyan-500 p-20 pt-10">
@@ -154,11 +137,27 @@
 								<i class="icon fa-check-circle font-size-30"></i>
 							</div>
 							<div class="font-size-20 font-weight-600">Payouts Available</div>
-							<div class="font-size-20">$0.00</div>
+							<div class="font-size-20">$<?php echo number_format($payoutsAvailable,2); ?></div>
 						</div>
 					</div>
 				</div>
 				<!-- End Widget Linearea Two -->
+			</div>
+
+			<div class="col-xl-4 col-md-6">
+				<!-- Widget Linearea One-->
+				<div class="card card-shadow" id="widgetLineareaOne">
+					<div class="card-block bg-purple-500 p-20 pt-10">
+						<div class="clearfix text-white">
+							<div class="float-right">
+								<i class="icon ion-ios-radio-outline font-size-30"></i>
+							</div>
+							<div class="font-size-20 font-weight-600">Payouts Requested</div>
+							<div class="font-size-20">$<?php echo number_format($payoutsRequested,2); ?></div>
+						</div>
+					</div>
+				</div>
+				<!-- End Widget Linearea One -->
 			</div>
 
 			<div class="col-xl-4 col-md-6">
@@ -167,10 +166,10 @@
 					<div class="card-block bg-green-500 p-20 pt-10">
 						<div class="clearfix text-white">
 							<div class="float-right">
-								<i class="icon md-money-box font-size-30"></i>
+								<i class="icon fa-money font-size-30"></i>
 							</div>
 							<div class="font-size-20 font-weight-600">Total Paid</div>
-							<div class="font-size-20">$0.00</div>
+							<div class="font-size-20">$<?php echo number_format($totalPaid,2); ?></div>
 						</div>
 					</div>
 				</div>
@@ -183,55 +182,113 @@
 			<header class="panel-heading panel-title">
 				<div class="row">
 					<div class="col-md-4 col-lg-4">
-						<h3 class="example-title">Campaigns Payouts (6)</h3>
+						<h3 class="example-title">Campaigns Payouts (<span class="count"></span>)</h3>
 					</div>
 					<div class="col-xl-4 col-md-4 col-sm-4">
-						<div class="mt-10">
+						<div class="mt-15">
 							<ul class="pagination pagination-gap justify-content-center">
-								<li class="active page-item settings_account"><a class="page-link" href="#">Available</a></li>
-								<li class="page-item settings_payouts"><a class="page-link" href="#">Requested</a></li>
+								<li class="active page-item available" style="font-size: 14px"><a class="page-link">Available</a></li>
+								<li class="page-item requested" style="font-size: 14px"><a class="page-link">Requested</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-4 col-lg-4">
 						<div class="float-right mt-10">
-							<button type="button" class="btn btn-primary change-password">
-								<i class="icon fa-save"></i> Total Payout
+							<button type="button" class="btn btn-primary total-payout" <?php if ($payoutsAvailable == 0) {echo 'disabled style="cursor: not-allowed"';}?>>
+								<i class="icon fa-money"></i> Total Payout
 							</button>
 						</div>
 					</div>
 				</div>
 				<hr>
 			</header>
-			<div class="panel-body">
-				<table class="table table-hover dataTable table-striped w-full text-center" id="example">
-					<thead>
-					<tr>
-						<th style="color: #0e0e0e">Date</th>
-						<th style="color: #0e0e0e">Campaign</th>
-						<th style="color: #0e0e0e">Amount</th>
-						<th style="color: #0e0e0e">Status</th>
-						<th style="color: #0e0e0e">CSV</th>
-					</tr>
-					</thead>
-					<tbody>
-					<?php foreach ($orders as $key => $value) { ?>
-						<tr>
-							<td><?php echo ($value['time'])?></td>
-							<td><?php echo $value['title']?></td>
-							<td>$<?php echo number_format($value['quantity'] * $value['price'] - 7.50,2)?></td>
-							<td><?php echo $value['status']?></td>
-							<td>1 option</td>
-						</tr>
-					<?php } ?>
-					</tbody>
-				</table>
-			</div>
+			<div class="panel-body"></div>
 		</div>
 		<!-- End Panel Table Tools -->
 	</div>
 </div>
 <!-- End Page -->
+
+<!--Modal Loading-->
+<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
+	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
+		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
+		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal request -->
+<div class="modal fade modal-warning modal-request" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-center pt-10 pl-100 pr-100">
+				<h3><strong>Request Payout For $<input class="sr-only payouts-request" value="<?php echo $payoutsAvailable;?>"><?php echo number_format($payoutsAvailable,2); ?>?</strong></h3>
+				<div class="form-group required-field">
+					<div class="select-custom">
+						<select class="form-control" title='Choose one of the following...' name="payment">
+						</select>
+					</div><!-- End .select-custom -->
+					<div class="error payment-required text-left">The payment method field is required.</div>
+				</div><!-- End .form-group -->
+			</div>
+			<div class="modal-footer pl-100 pr-100 ">
+				<button type="button" class="btn btn-default request" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">Request Payout</button>
+				<button type="button" class="btn btn-dark cancel" data-dismiss="modal" style="width: 100%">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal request success -->
+<div class="modal fade modal-warning request-success" id="exampleModalWarning" aria-hidden="true" style="top: 25%;"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-center">
+				<i class="icon fa-check-circle-o" aria-hidden="true" style="font-size: 50px;color: #4caf50"></i>
+				<h3>Your request is under review.<br>
+					<strong>Please wait 3 to 5 days for us to process it.</strong>
+				</h3>
+			</div>
+			<div class="modal-footer pl-100 pr-100">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #4caf50;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal incomplete payment -->
+<div class="modal fade modal-warning modal-incomplete-payment" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-center">
+				<i class="icon fa-exclamation-circle" aria-hidden="true" style="font-size: 50px;color: #da625a"></i>
+				<h3>You have no payment methods yet.<br>
+					<strong style="color: #da625a">Please add a payment method to continue the request.</strong>
+				</h3>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default add" data-dismiss="modal" style="width: 100%;background-color: #da625a;color: #fff">Add</button>
+				<button type="button" class="btn btn-dark cancel" data-dismiss="modal" style="width: 100%">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!--Modal Loading-->
+<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
+	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
+		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
+		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
+	</div>
+</div>
+<!-- End Modal -->
 
 <?php include("seller_footer_view.php") ?>
 
@@ -298,12 +355,12 @@
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>global/js/Plugin/aspaginator.minfd53.js?v4.0.1"></script>
-
+<script src="<?= base_url()?>global/js/Plugin/datatables.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>assets1/examples/js/tables/datatable.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/all.js"></script>
-
+<script src="<?= base_url()?>assets1/js/payouts.js"></script>
 </body>
 
 </html>
