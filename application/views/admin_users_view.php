@@ -8,7 +8,7 @@
 	<meta name="description" content="bootstrap material admin template">
 	<meta name="author" content="">
 
-	<title>teemarket - Setup New Campaign</title>
+	<title>teemarket Admin | Users</title>
 
 	<link rel="apple-touch-icon" href="<?= base_url()?>assets1/images/apple-touch-icon.png">
 	<link rel="shortcut icon" href="<?= base_url()?>assets1/images/favicon-teemarket.ico">
@@ -17,7 +17,8 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/launch.css">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/admin.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/admin_campaigns.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -27,9 +28,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/slidepanel/slidePanel.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
-
-	<!-- Plugins For This Page -->
-	<link rel="stylesheet" href="<?= base_url()?>global/vendor/toastr/toastr.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -52,14 +50,14 @@
 		Breakpoints();
 	</script>
 </head>
-<body class="animsition dashboard">
+<body class="animsition">
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<?php include("seller_header_view.php") ?>
+<?php include("admin_header_view.php") ?>
 
-<div class="site-menubar site-menubar-light site-menubar-dark">
+<div class="site-menubar site-menubar-light">
 	<div class="site-menubar-body">
 		<div>
 			<div>
@@ -76,10 +74,16 @@
 							<span class="site-menu-title">CAMPAIGNS</span>
 						</a>
 					</li>
-					<li class="site-menu-item active">
-						<a class="create-campaign">
-							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
-							<span class="site-menu-title">CREATE</span>
+					<li class="site-menu-item">
+						<a class="mockups">
+							<i class="site-menu-icon md-palette" aria-hidden="true"></i>
+							<span class="site-menu-title">MOCKUPS</span>
+						</a>
+					</li>
+					<li class="site-menu-item">
+						<a class="categories">
+							<i class="site-menu-icon md-widgets" aria-hidden="true"></i>
+							<span class="site-menu-title">CATEGORIES</span>
 						</a>
 					</li>
 					<li class="site-menu-item">
@@ -94,10 +98,10 @@
 							<span class="site-menu-title">PAYOUTS</span>
 						</a>
 					</li>
-					<li class="site-menu-item">
-						<a class="settings">
-							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
-							<span class="site-menu-title">SETTINGS</span>
+					<li class="site-menu-item active">
+						<a class="users">
+							<i class="site-menu-icon fa-users" aria-hidden="true"></i>
+							<span class="site-menu-title">USERS</span>
 						</a>
 					</li>
 				</ul>
@@ -110,103 +114,98 @@
 <div class="page">
 	<div class="page-content container-fluid">
 		<div class="row" data-plugin="matchHeight" data-by-row="true">
+
 			<div class="col-lg-12">
-				<div class="panel-body container-fluid bg-white border">
-					<!-- Example Default -->
-					<div class="example-wrap">
-						<div class="example">
-							<div class="pearls row">
-								<div class="pearl done col-4">
-									<div class="pearl-icon"><i class="icon ion-ios-shirt" aria-hidden="true"></i></div>
-									<span class="pearl-title">Design</span>
-								</div>
-								<div class="pearl done col-4">
-									<div class="pearl-icon"><i class="icon fa-tags" aria-hidden="true"></i></div>
-									<span class="pearl-title">Pricing & Products</span>
-								</div>
-								<div class="pearl current col-4">
-									<div class="pearl-icon"><i class="icon fa-rocket" aria-hidden="true"></i></div>
-									<span class="pearl-title">Launch</span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="panel-body container-fluid bg-white">
-										<!-- Example Basic Form Without Label -->
-										<div class="example-wrap">
-											<div class="example">
-												<form action="#">
-													<div class="form-group required-field">
-														<label style="color: #424242">Title</label>
-														<input type="text" class="form-control title" required maxlength="80">
-														<div class="text">Summarize your campaign in 80 characters or less</div>
-														<div class="error title-required">The title field is required.</div>
-													</div><!-- End .form-group -->
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="sort_label">Sort Campaigns By</div>
+							<select class="form-control">
+								<option>Newest to Oldest</option>
+								<option>Oldest to Newest</option>
+								<option>Top Selling</option>
+								<option>Least Selling</option>
+								<option>Sort A to Z</option>
+								<option>Sort Z to A</option>
+							</select>
+						</div>
+					</div>
 
-													<div class="form-group required-field">
-														<label style="color: #424242">Description</label>
-														<textarea class="border description" rows="7" style="width: 100%" maxlength="300"></textarea>
-														<div class="text">Let your buyers know why they should buy your tee in 300 characters or less. You can also include info on the design or designer!</div>
-														<div class="error description-required">The description field is required.</div>
-													</div><!-- End .form-group -->
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="sort_label">Filter By Status</div>
+							<select class="form-control">
+								<option>All</option>
+								<option>Active</option>
+								<option>Starred</option>
+								<option>Ended</option>
+							</select>
+						</div>
+					</div>
 
-													<div class="form-group required-field">
-														<label style="color: #424242">URL</label>
-														<div class="input-group">
-															<span class="input-group-addon">http://localhost:8012/teemarket/<?php echo $_SESSION['user']['publicname']; ?>/</span>
-															<input type="text" class="form-control url" maxlength="100" style="text-transform: lowercase">
-														</div>
-														<div class="text">This is where you will send buyers to view your campaign.</div>
-														<div class="error url-invalid">Invalid characters in the URL. The length of the URL should be between 4-100 characters. Words may be separated by "-"</div>
-														<div class="error url-error">URL is already taken.</div>
-													</div>
-
-													<div class="form-group required-field">
-														<label style="color: #424242">Category Your Campaign</label>
-														<div class="select-custom">
-															<select class="form-control" title='Choose one of the following...' name="category">
-																<option value="0" selected>Please Choose...</option>
-																<?php foreach ($category as $key => $value) { ?>
-																<option value="<?php echo $value['id']; ?>"><?php echo strtoupper($value['category']); ?></option>
-																<?php } ?>
-															</select>
-														</div><!-- End .select-custom -->
-													</div><!-- End .form-group -->
-													<div class="buttonstep float-right mt-20">
-														<button type="button" class="btn btn-md back-step">
-															<i class="fa fa-arrow-left"></i> Back
-														</button>
-														<button type="button" class="btn btn-md next-step" style="background-color: #fb8c00; color: white">
-															Launch <i class="fa fa-arrow-right"></i>
-														</button>
-													</div>
-												</form>
-											</div>
-										</div>
-										<!-- End Example Basic Form Without Label -->
-									</div>
-								</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
+								<span class="input-group-btn">
+						  			<button type="submit" class="btn" style="background-color: #fff;border: 1px solid #e0e0e0;"><i class="icon fa-search" aria-hidden="true"></i></button>
+								</span>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- End Example Default -->
+
+<!--				--><?php //foreach ($campaigns as $key => $value) { ?>
+					<!-- Example Bordered Table -->
+					<div class="table-responsive">
+						<table class="table table-bordered bg-white">
+							<tbody>
+							<tr>
+								<td class="text-center pt-20" width="12%">
+									<div class="data_id" style="color: #fb8c00">DEMO</div>
+									<div>Campaign ID</div>
+								</td>
+								<td class="text-center pt-20" width="12%">
+									<div class="data_id" style="color: #fb8c00">DEMO</div>
+									<div>Campaign ID</div>
+								</td>
+								<td class="text-center pt-20" width="12%">
+									<div class="data_id" style="color: #fb8c00">DEMO</div>
+									<div>Campaign ID</div>
+								</td>
+								<td class="text-center pt-20" width="12%">
+									<div class="data_id" style="color: #fb8c00">DEMO</div>
+									<div>Campaign ID</div>
+								</td>
+								<td class="text-center pt-20" width="12%">
+									<div class="data_id" style="color: #fb8c00">DEMO</div>
+									<div>Campaign ID</div>
+								</td>
+								<td class="text-center pt-20" width="12%">
+									<div class="data_id" style="color: #fb8c00">DEMO</div>
+									<div>Campaign ID</div>
+								</td>
+
+								<td class="text-center pt-20" width="12%">
+									<button type="button" class="btn btn-sm btn-icon btn-flat more">
+										<span class="sr-only"></span>
+										<i class="icon fa-ellipsis-h font-size-24" style="color: #fb8c00" aria-hidden="true"></i><br>More
+									</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- End Example Bordered Table -->
+<!--				--><?php //} ?>
 			</div>
+
 		</div>
 	</div>
 </div>
 <!-- End Page -->
 
-<!--Modal Loading-->
-<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
-	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
-		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
-		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
-	</div>
-</div>
-<!-- End Modal -->
-
-<?php include("seller_footer_view.php") ?>
+<?php include("admin_footer_view.php") ?>
 
 <!-- Core  -->
 <script data-cfasync="false" src="<?= base_url()?>cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -226,10 +225,6 @@
 <script src="<?= base_url()?>global/vendor/intro-js/intro.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/screenfull/screenfull.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
-
-<!-- Plugins For This Page -->
-<script src="<?= base_url()?>global/vendor/jquery-placeholder/jquery.placeholder.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/vendor/toastr/toastr.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -257,15 +252,11 @@
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
 <script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/js/Plugin/jquery-placeholder.minfd53.js?v4.0.1"></script>
-<script src="<?= base_url()?>global/js/Plugin/input-group-file.minfd53.js?v4.0.1"></script>
-
-<script src="<?= base_url()?>global/js/Plugin/toastr.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
-<script src="<?= base_url()?>assets1/js/seller.js"></script>
-<script src="<?= base_url()?>assets1/js/launch.js"></script>
+<script src="<?= base_url()?>assets1/js/admin.js"></script>
 
 </body>
 
 </html>
+

@@ -4,9 +4,6 @@ $('._dashboard').click(function(event) {
 $('.campaigns').click(function(event) {
 	window.location.href = 'http://localhost:8012/teemarket/seller/campaigns';
 });
-$('.option').click(function(event) {
-	window.location.href = 'http://localhost:8012/teemarket/seller/campaign_details';
-});
 $('.create-campaign').click(function(event) {
 	window.location.href = 'http://localhost:8012/teemarket/seller/design';
 });

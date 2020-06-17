@@ -324,6 +324,29 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
+	function getDataSellerSignIn($email, $password)
+	{
+		$query = $this->db->query("SELECT * FROM account WHERE email = '$email' and password = '$password' and account_type = 'admin'")->result_array();
+		return $query;
+	}
+
+	function getAllCampaigns()
+	{
+		$query = $this->db->query("SELECT campaign.id,campaign.title,campaign.price,campaign.url,campaign.status,account.publicname FROM campaign,account WHERE campaign.id_seller = account.id")->result_array();
+		return $query;
+	}
+
+	function adminGetDataCampaignById($id_campaign)
+	{
+		$query = $this->db->query("SELECT campaign.design,campaign.title,campaign.id,campaign.description,campaign.url,campaign.status,campaign.id_category,account.publicname FROM campaign,account WHERE campaign.id_seller = account.id AND campaign.id = '$id_campaign'")->result_array();
+		return $query;
+	}
+
+	function getOrders()
+	{
+		$query = $this->db->query("SELECT info_customer.time,campaign.title,orders.id,info_customer.email,info_customer.country,orders.quantity,campaign.price,orders.status FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id")->result_array();
+		return $query;
+	}
 }
 
 /* End of file test.php */

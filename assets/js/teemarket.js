@@ -105,7 +105,7 @@ $("#publicname").change(function(event){
 		$('.pn-required').css('display','none');
 		if (regPN2.exec(publicname)){
 			$('.pn-invalid').css('display', 'none');
-			if (publicname == 'seller' || publicname == 'admin') {
+			if (publicname == 'seller' || publicname == 'admin' || publicname == 'login' || publicname == 'register' || publicname == 'logout' || publicname == 'marketplace'|| publicname == 'cart'|| publicname == 'checkout') {
 				$('.pn-error').css('display', 'block');
 				$('.public-name').text('public-name');
 				$('.public-name').css('color','unset');
@@ -265,7 +265,7 @@ $('.signup').click(function(event) {
 	}
 
 	if (regPN.exec(publicname)){
-		if (publicname == 'seller' || publicname == 'admin') {
+		if (publicname == 'seller' || publicname == 'admin' || publicname == 'login' || publicname == 'register' || publicname == 'logout' || publicname == 'marketplace'|| publicname == 'cart'|| publicname == 'checkout') {
 			toastr.error('Public name is already taken.');
 			return;
 		} else {

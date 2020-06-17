@@ -362,14 +362,6 @@ class Teemarket extends CI_Controller
 		}
 	}
 
-	public function logout()
-	{
-		// Xóa session name
-		unset($_SESSION['user']);
-		unset($_SESSION['campaign']);
-		redirect('http://localhost:8012/teemarket');
-	}
-
 }
 
 /* End of file home.php */

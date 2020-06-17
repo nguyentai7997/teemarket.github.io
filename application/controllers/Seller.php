@@ -772,6 +772,14 @@ class Seller extends CI_Controller
 			redirect('http://localhost:8012/teemarket/error');
 		}
 	}
+
+	public function logout()
+	{
+		// Xóa session name
+		unset($_SESSION['user']);
+		unset($_SESSION['campaign']);
+		redirect('http://localhost:8012/teemarket');
+	}
 }
 
 /* End of file home.php */

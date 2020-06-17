@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/seller.css">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css">
 
 	<!-- Plugins -->
@@ -63,52 +63,7 @@
 
 <?php include("seller_header_view.php") ?>
 
-<div class="site-menubar site-menubar-light site-menubar-dark">
-	<div class="site-menubar-body">
-		<div>
-			<div>
-				<ul class="site-menu" data-plugin="menu">
-					<li class="site-menu-item">
-						<a class="_dashboard">
-							<i class="site-menu-icon fa-dashboard" aria-hidden="true"></i>
-							<span class="site-menu-title">DASHBOARD</span>
-						</a>
-					</li>
-					<li class="site-menu-item">
-						<a class="campaigns">
-							<i class="site-menu-icon ion-ios-shirt" aria-hidden="true"></i>
-							<span class="site-menu-title">CAMPAIGNS</span>
-						</a>
-					</li>
-					<li class="site-menu-item">
-						<a class="create-campaign">
-							<i class="site-menu-icon fa-pencil-square" aria-hidden="true"></i>
-							<span class="site-menu-title">CREATE</span>
-						</a>
-					</li>
-					<li class="site-menu-item">
-						<a class="orders">
-							<i class="site-menu-icon fa-shopping-cart" aria-hidden="true"></i>
-							<span class="site-menu-title">ORDERS</span>
-						</a>
-					</li>
-					<li class="site-menu-item">
-						<a class="payouts">
-							<i class="site-menu-icon fa-money" aria-hidden="true"></i>
-							<span class="site-menu-title">PAYOUTS</span>
-						</a>
-					</li>
-					<li class="site-menu-item active">
-						<a class="settings">
-							<i class="site-menu-icon ion-md-settings" aria-hidden="true"></i>
-							<span class="site-menu-title">SETTINGS</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
+<?php include("seller_site_menubar_view.php") ?>
 
 
 <!-- Page -->
@@ -337,7 +292,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//geodata.solutions/includes/countrystatecity.js"></script>
 <!--nguyentai's js-->
-<script src="<?= base_url()?>assets1/js/all.js"></script>
+<script src="<?= base_url()?>assets1/js/seller.js"></script>
 <script src="<?= base_url()?>assets1/js/account.js"></script>
 
 </body>

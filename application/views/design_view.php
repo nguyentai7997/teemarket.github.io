@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/all.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/seller.css?">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/design.css?">
 
 	<!-- Plugins -->
@@ -328,7 +328,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!--nguyentai's js-->
-<script src="<?= base_url()?>assets1/js/all.js"></script>
+<script src="<?= base_url()?>assets1/js/seller.js"></script>
 <script src="<?= base_url()?>assets1/js/design.js"></script>
 
 </body>

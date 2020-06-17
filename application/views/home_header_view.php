@@ -6,13 +6,16 @@
 					<a href="#">Links</a>
 					<div class="header-menu">
 						<ul>
-							<?php if (empty($_SESSION['user'])){?>
+							<?php if (empty($_SESSION['user']) && empty($_SESSION['admin'])) {?>
 							<li><a href="<?= base_url()?>register">SIGN UP</a></li>
 							<li><a href="<?= base_url()?>login">SIGN IN</a></li>
-							<?php }else{ ?>
+							<?php } else if (isset($_SESSION['user'])) { ?>
 							<li><a href="<?= base_url()?>seller/dashboard">DASHBOARD</a></li>
-							<li><a href="<?= base_url()?>logout">SIGN OUT</a></li>
-							<?php }?>
+							<li><a href="<?= base_url()?>seller/logout">SIGN OUT</a></li>
+							<?php } else if (isset($_SESSION['admin'])) {?>
+							<li><a href="<?= base_url()?>admin/dashboard">DASHBOARD</a></li>
+							<li><a href="<?= base_url()?>admin/logout">SIGN OUT</a></li>
+							<?php } ?>
 						</ul>
 					</div><!-- End .header-menu -->
 				</div><!-- End .header-dropown -->
