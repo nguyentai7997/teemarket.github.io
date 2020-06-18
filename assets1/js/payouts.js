@@ -191,7 +191,6 @@ $('.total-payout').click(function (event) {
 								payment_mode : payment_mode,
 							},
 							success:function(res){
-								console.log(res);
 								if (res == 1){
 									$(".modal-loading").removeClass("show");
 									$(".modal-loading").css("display","none");

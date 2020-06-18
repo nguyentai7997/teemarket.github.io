@@ -249,6 +249,7 @@
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/seller.js"></script>
 <script src="<?= base_url()?>assets1/js/dashboard.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
 <script src="<?= base_url()?>assets1/js/moment.min.js"></script>

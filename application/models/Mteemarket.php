@@ -338,13 +338,79 @@ class Mteemarket extends CI_Model {
 
 	function adminGetDataCampaignById($id_campaign)
 	{
-		$query = $this->db->query("SELECT campaign.design,campaign.title,campaign.id,campaign.description,campaign.url,campaign.status,campaign.id_category,account.publicname FROM campaign,account WHERE campaign.id_seller = account.id AND campaign.id = '$id_campaign'")->result_array();
+		$query = $this->db->query("SELECT campaign.design,campaign.title,campaign.price,campaign.id,campaign.description,campaign.url,campaign.status,campaign.id_category,account.publicname FROM campaign,account WHERE campaign.id_seller = account.id AND campaign.id = '$id_campaign'")->result_array();
 		return $query;
 	}
 
 	function getOrders()
 	{
-		$query = $this->db->query("SELECT info_customer.time,campaign.title,orders.id,info_customer.email,info_customer.country,orders.quantity,campaign.price,orders.status FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id")->result_array();
+		$query = $this->db->query("SELECT orders.id,info_customer.time,orders.id_campaign,info_customer.email,info_customer.country,orders.quantity,orders.status FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id")->result_array();
+		return $query;
+	}
+
+	function updateOrder($order_id,$status)
+	{
+		$query = $this->db->query("UPDATE orders SET status = '$status' WHERE id = '$order_id'");
+		return $query;
+	}
+
+	function getMockups()
+	{
+		$query = $this->db->query("SELECT * FROM color")->result_array();
+		return $query;
+	}
+
+	function insertMockup($color_name,$color_code_rgb,$mockup)
+	{
+		$query = $this->db->query("INSERT INTO color ( `color`, `color_code`, `mockup`) VALUES ('$color_name','$color_code_rgb','$mockup')");
+		return $query;
+	}
+
+	function updateMockup($color_id,$color_name,$color_code)
+	{
+		$query = $this->db->query("UPDATE color SET color = '$color_name' , color_code = '$color_code' WHERE id = '$color_id'");
+		return $query;
+	}
+
+	function checkOrdersByIdColor($id)
+	{
+		$query = $this->db->query("SELECT id_color FROM orders WHERE id_color = '$id'")->result_array();
+		return $query;
+	}
+
+	function deleteCampaignColor($id)
+	{
+		$query = $this->db->query("DELETE FROM campaign_colors WHERE id_color = '$id'");
+		return $query;
+	}
+
+	function deleteMockup($id)
+	{
+		$query = $this->db->query("DELETE FROM color WHERE id = '$id'");
+		return $query;
+	}
+
+	function insertCategory($category_name)
+	{
+		$query = $this->db->query("INSERT INTO category ( `category`) VALUES ('$category_name')");
+		return $query;
+	}
+
+	function updateCategory($category_id,$category_name)
+	{
+		$query = $this->db->query("UPDATE category SET category = '$category_name' WHERE id = '$category_id'");
+		return $query;
+	}
+
+	function updateCampaignCategory($id)
+	{
+		$query = $this->db->query("UPDATE campaign SET id_category = '1' WHERE id_category = '$id'");
+		return $query;
+	}
+
+	function deleteCategory($id)
+	{
+		$query = $this->db->query("DELETE FROM category WHERE id = '$id'");
 		return $query;
 	}
 }

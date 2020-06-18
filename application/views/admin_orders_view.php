@@ -130,7 +130,7 @@
 			<header class="panel-heading panel-title">
 				<div class="row">
 					<div class="col-md-6 col-lg-6">
-						<h3 class="example-title">All (<?php echo count($orders) ?>)</h3>
+						<h3 class="example-title">All (<?php echo count($orders)?>)</h3>
 					</div>
 				</div>
 				<hr>
@@ -139,34 +139,40 @@
 				<table class="table table-hover dataTable table-striped w-full text-center" id="example">
 					<thead>
 					<tr>
-						<th style="color: #0e0e0e">Date</th>
-						<th style="color: #0e0e0e">Campaign Name</th>
-						<th width="93px" style="color: #0e0e0e">Order Number</th>
-						<th style="color: #0e0e0e">Email</th>
-						<th style="color: #0e0e0e">Country</th>
-						<th style="color: #0e0e0e">Items</th>
-						<th style="color: #0e0e0e">Subtotal</th>
-						<th width="76px" style="color: #0e0e0e">Base Cost</th>
-						<th style="color: #0e0e0e">Profit</th>
-						<th style="color: #0e0e0e">Flags</th>
+						<th>Order ID</th>
+						<th>Time</th>
+						<th>Campaign ID</th>
+						<th>Email</th>
+						<th>Country</th>
+						<th>Items</th>
+						<th>Base Cost</th>
+						<th>Profit</th>
+						<th>Flags</th>
+						<th>Edit</th>
 					</tr>
-					</thead>
 					<tbody>
 					<?php foreach ($orders as $key => $value) { ?>
 						<tr>
+							<td><?php echo $value['id']?></td>
 							<td><?php echo $value['time']?></td>
-							<td style="color: #fb8c00"><?php echo $value['title']?></td>
-							<td style="color: #fb8c00"><?php echo $value['id']?></td>
+							<td><?php echo $value['id_campaign']?></td>
 							<td><?php echo $value['email']?></td>
 							<td><?php echo $value['country']?></td>
 							<td><?php echo $value['quantity']?></td>
-							<td>$<?php echo number_format($value['quantity'] * $value['price'],2)?></td>
 							<td>$7.50</td>
-							<td>$<?php echo number_format($value['quantity'] * $value['price'] - 7.50,2)?></td>
-							<td><?php if ($value['status'] == 'pending'||$value['status'] == 'requested') {echo "_";} ?></td>
+							<td>$<?php echo number_format($value['quantity'] * 7.50,2)?></td>
+							<td style="<?php if ($value['status']=='requested'){echo 'color: #64DD17';} else if($value['status']=='cancelled'){echo 'color: #f44336';}?>">
+								<?php echo strtoupper($value['status'])?>
+							</td>
+							<td>
+								<i class="fa fa-pencil-square edit-order" style="color: #3f51b5;cursor: pointer" aria-hidden="true">
+									<input type="text" value="<?php echo $value['id'].'-'.$value['status']?>" class="sr-only">
+								</i>
+							</td>
 						</tr>
 					<?php } ?>
 					</tbody>
+					</thead>
 				</table>
 			</div>
 		</div>
@@ -174,6 +180,45 @@
 	</div>
 </div>
 <!-- End Page -->
+
+<!-- Modal edit -->
+<div class="modal fade modal-warning modal-edit" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-center pt-10 pl-100 pr-100">
+				<h3><strong>Edit Order ID = <span class="order-id"></span></strong></h3>
+				<div class="form-group required-field">
+					<div class="select-custom">
+						<select class="form-control" title='Choose one of the following...' name="status"></select>
+					</div><!-- End .select-custom -->
+				</div><!-- End .form-group -->
+			</div>
+			<div class="modal-footer pl-100 pr-100 ">
+				<button type="button" class="btn btn-default edit" data-dismiss="modal" style="width: 100%;background-color: #fb8c00;color: #fff">Edit</button>
+				<button type="button" class="btn btn-dark cancel-edit" data-dismiss="modal" style="width: 100%">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal request success -->
+<div class="modal fade modal-warning edit-success" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-center">
+				<i class="icon fa-check-circle-o" aria-hidden="true" style="font-size: 50px;color: #4caf50"></i>
+				<h3><strong>Update Success!</strong></h3>
+			</div>
+			<div class="modal-footer pl-100 pr-100">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #4caf50;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
 
 <?php include("admin_footer_view.php") ?>
 
@@ -244,6 +289,7 @@
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/admin.js"></script>
+
 <script>
 	$(document).ready(function() {
 		$('#example').DataTable( {

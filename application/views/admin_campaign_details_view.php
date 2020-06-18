@@ -150,8 +150,8 @@
 							<span class="sr-only id"><?php echo $campaign[0]['id']; ?></span>
 							<div class="row">
 								<div class="col-md-6 col-lg-6">
-									<div class="image" style="width: 462px;margin: auto">
-										<img src="<?php echo $image_link; ?>" alt="" width="462px">
+									<div class="image" style="width: 534px;margin: auto">
+										<img src="<?php echo $image_link; ?>" alt="" width="534px">
 									</div>
 
 								</div>
@@ -178,6 +178,11 @@
 									<div class="form-group required-field">
 										<label style="color: #424242">Title</label>
 										<input type="text" class="form-control title" required maxlength="80" disabled value="<?php echo $campaign[0]['title']; ?>">
+									</div><!-- End .form-group -->
+
+									<div class="form-group required-field">
+										<label style="color: #424242">Price</label>
+										<input type="text" class="form-control title" required maxlength="80" disabled value="<?php echo '$'.$campaign[0]['price']; ?>">
 									</div><!-- End .form-group -->
 
 									<div class="form-group required-field">

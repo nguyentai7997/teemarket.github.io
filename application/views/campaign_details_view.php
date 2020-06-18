@@ -218,7 +218,7 @@
 </div>
 <!-- End Page -->
 
-<!-- Modal invalid price -->
+<!-- Modal end campaign -->
 <div class="modal fade modal-warning" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
 	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
 	<div class="modal-dialog">

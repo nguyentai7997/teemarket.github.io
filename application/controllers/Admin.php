@@ -111,11 +111,164 @@ class Admin extends CI_Controller
 	}
 
 	public function mockups(){
+		if (empty($_SESSION['admin'])) {
+			redirect('http://localhost:8012/teemarket/admin/login');
+		} else {
+			$mockups = $this->Mteemarket->getMockups();
+			$this->load->view('admin_mockups_view',['mockups' => $mockups]);
+		}
+	}
 
+	public function create_mockup(){
+		if ($this->input->post('color_name')) {
+			$color_name = $this->input->post('color_name');
+			$color_code = $this->input->post('color_code');
+			$src_image = $this->input->post('src_image');
+
+			//Convert color_code Hex to rgb
+			function hex2rgb( $colour ) {
+				if ( $colour[0] == '#' ) {
+					$colour = substr( $colour, 1 );
+				}
+				if ( strlen( $colour ) == 6 ) {
+					list( $r, $g, $b ) = array( $colour[0] . $colour[1], $colour[2] . $colour[3], $colour[4] . $colour[5] );
+				} elseif ( strlen( $colour ) == 3 ) {
+					list( $r, $g, $b ) = array( $colour[0] . $colour[0], $colour[1] . $colour[1], $colour[2] . $colour[2] );
+				} else {
+					return false;
+				}
+				$r = hexdec( $r );
+				$g = hexdec( $g );
+				$b = hexdec( $b );
+
+				return 'rgb('.$r.', '.$g.', '.$b.')';
+			}
+
+			$color_code_rgb = hex2rgb($color_code);
+
+			//lay duoi mockup bo di .png hoac .jpg
+			$array_str = explode("/",$src_image);
+			$fisrt_str = substr($array_str[6],0);
+			$second_str = substr($array_str[7],0);
+			$mockup = $fisrt_str . '/' . $second_str;
+
+			$insert = $this->Mteemarket->insertMockup($color_name,$color_code_rgb,$mockup);
+			if ($insert){
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function update_mockup(){
+		if ($this->input->post('color_id')) {
+			$color_id = $this->input->post('color_id');
+			$color_name = $this->input->post('color_name');
+			$color_code = $this->input->post('color_code');
+
+			//Convert color_code Hex to rgb
+			function hex2rgb( $colour ) {
+				if ( $colour[0] == '#' ) {
+					$colour = substr( $colour, 1 );
+				}
+				if ( strlen( $colour ) == 6 ) {
+					list( $r, $g, $b ) = array( $colour[0] . $colour[1], $colour[2] . $colour[3], $colour[4] . $colour[5] );
+				} elseif ( strlen( $colour ) == 3 ) {
+					list( $r, $g, $b ) = array( $colour[0] . $colour[0], $colour[1] . $colour[1], $colour[2] . $colour[2] );
+				} else {
+					return false;
+				}
+				$r = hexdec( $r );
+				$g = hexdec( $g );
+				$b = hexdec( $b );
+
+				return 'rgb('.$r.', '.$g.', '.$b.')';
+			}
+
+			$color_code_rgb = hex2rgb($color_code);
+
+			$update = $this->Mteemarket->updateMockup($color_id,$color_name,$color_code_rgb);
+			if ($update){
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function delete_mockup(){
+		if ($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$checkOrdersByIdColor = $this->Mteemarket->checkOrdersByIdColor($id);
+			if ($checkOrdersByIdColor){
+				echo 1;
+			} else {
+				$deleteCampaignColor = $this->Mteemarket->deleteCampaignColor($id);
+				$delete = $this->Mteemarket->deleteMockup($id);
+				echo 0;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
 	}
 
 	public function categories(){
+		if (empty($_SESSION['admin'])) {
+			redirect('http://localhost:8012/teemarket/admin/login');
+		} else {
+			$categories = $this->Mteemarket->getDataCategory();
+			$this->load->view('admin_categories_view',['categories' => $categories]);
+		}
 
+	}
+
+	public function create_category(){
+		if ($this->input->post('category_name')) {
+			$category_name = $this->input->post('category_name');
+
+			$insert = $this->Mteemarket->insertCategory($category_name);
+			if ($insert){
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function update_category(){
+		if ($this->input->post('category_id')) {
+			$category_id = $this->input->post('category_id');
+			$category_name = $this->input->post('category_name');
+
+			$update = $this->Mteemarket->updateCategory($category_id,$category_name);
+			if ($update){
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function delete_category(){
+		if ($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$updateCampaignCategory = $this->Mteemarket->updateCampaignCategory($id);
+			if ($updateCampaignCategory) {
+				$delete = $this->Mteemarket->deleteCategory($id);
+				echo 1;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
 	}
 
 	public function orders(){
@@ -124,6 +277,21 @@ class Admin extends CI_Controller
 		} else {
 			$orders = $this->Mteemarket->getOrders();
 			$this->load->view('admin_orders_view',['orders' => $orders]);
+		}
+	}
+
+	public function update_order(){
+		if ($this->input->post('order_id')) {
+			$order_id = $this->input->post('order_id');
+			$status = $this->input->post('status');
+			$update = $this->Mteemarket->updateOrder($order_id,$status);
+			if ($update){
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
 		}
 	}
 
