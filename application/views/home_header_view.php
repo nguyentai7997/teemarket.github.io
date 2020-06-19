@@ -30,9 +30,9 @@
 				<div class="header-search">
 					<a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
 					<div class="header-search-wrapper">
-						<form action="#" method="get">
+						<form>
 							<input type="search" class="form-control" name="q" id="q" placeholder="Search..." required>
-							<button class="btn" type="submit"><i class="icon-search"></i></button>
+							<button class="btn search" type="button"><i class="icon-search"></i></button>
 						</form>
 					</div><!-- End .header-search-wrapper -->
 				</div><!-- End .header-search -->

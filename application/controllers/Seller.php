@@ -768,7 +768,9 @@ class Seller extends CI_Controller
 		if ($this->input->post('request')) {
 			$request = $this->input->post('request');
 			$payment_mode = $this->input->post('payment_mode');
-			$add = $this->Mteemarket->insertPayouts($_SESSION['user']['id'],$request,$payment_mode);
+			$request_time = $this->input->post('request_time');
+
+			$add = $this->Mteemarket->insertPayouts($_SESSION['user']['id'],$request,$payment_mode,$request_time);
 			if ($add){
 				$ordersPending = $this->Mteemarket->getPayoutsAvailableByIdSeller($_SESSION['user']['id']);
 				for ($i = 0; $i < count($ordersPending); $i++){

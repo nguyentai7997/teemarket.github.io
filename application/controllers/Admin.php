@@ -24,6 +24,321 @@ class Admin extends CI_Controller
 		}
 	}
 
+	public function get_orders_today(){
+		if ($this->input->post('code')) {
+			date_default_timezone_set("Asia/Ho_Chi_Minh");
+			$date = date("Y-m-d");
+			$allData = array();
+
+			for ($i = 0; $i < 24; $i++) {
+				if ($i < 10) {
+					$data1 = $this->Mteemarket->adminGetDataByTime($date . ' 0' . $i);
+					array_push($allData, $data1);
+				} else {
+					$data2 = $this->Mteemarket->adminGetDataByTime($date . ' ' . $i);
+					array_push($allData, $data2);
+				}
+			}
+
+			for ($i = 0; $i < count($allData); $i++) {
+				if ($allData[$i] != array()) {
+					$unit = 0;
+					$profit = 0;
+					for ($k = 0; $k < count($allData[$i]); $k++) {
+						$unit += $allData[$i][$k]["quantity"];
+						$profit += ($allData[$i][$k]["quantity"] * $allData[$i][$k]["price"]);
+					}
+					array_push($allData[$i], $unit);
+					array_push($allData[$i], $profit);
+				}
+			}
+
+			for ($i = 0; $i < 24; $i++) {
+				if ($i < 10) {
+					$orders1 = $this->Mteemarket->adminGetOrdersByTime($date . ' 0' . $i);
+					array_push($allData[$i], $orders1[0]);
+				} else {
+					$orders2 = $this->Mteemarket->adminGetOrdersByTime($date . ' ' . $i);
+					array_push($allData[$i], $orders2[0]);
+				}
+			}
+
+			$campaignActive = count($this->Mteemarket->adminGetCampaignActive());
+			$campaignEnded = count($this->Mteemarket->adminGetCampaignEnded());
+			array_push($allData, $campaignActive);
+			array_push($allData, $campaignEnded);
+
+			echo json_encode($allData);
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function get_orders_yesterday(){
+		if ($this->input->post('code')) {
+			date_default_timezone_set("Asia/Ho_Chi_Minh");
+			$date = date("Y-m-d");
+			$yesterday = date("Y-m-d", strtotime('-1 days', strtotime($date)));
+			$allData = array();
+
+			for ($i = 0; $i < 24; $i++) {
+				if ($i < 10) {
+					$data1 = $this->Mteemarket->adminGetDataByTime($yesterday . ' 0' . $i);
+					array_push($allData, $data1);
+				} else {
+					$data2 = $this->Mteemarket->adminGetDataByTime($yesterday . ' ' . $i);
+					array_push($allData, $data2);
+				}
+			}
+
+			for ($i = 0; $i < count($allData); $i++) {
+				if ($allData[$i] != array()) {
+					$unit = 0;
+					$profit = 0;
+					for ($k = 0; $k < count($allData[$i]); $k++) {
+						$unit += $allData[$i][$k]["quantity"];
+						$profit += ($allData[$i][$k]["quantity"] * $allData[$i][$k]["price"]);
+					}
+					array_push($allData[$i], $unit);
+					array_push($allData[$i], $profit);
+				}
+			}
+
+			for ($i = 0; $i < 24; $i++) {
+				if ($i < 10) {
+					$orders1 = $this->Mteemarket->adminGetOrdersByTime($yesterday . ' 0' . $i);
+					array_push($allData[$i], $orders1[0]);
+				} else {
+					$orders2 = $this->Mteemarket->adminGetOrdersByTime($yesterday . ' ' . $i);
+					array_push($allData[$i], $orders2[0]);
+				}
+			}
+
+			$campaignActive = count($this->Mteemarket->adminGetCampaignActive());
+			$campaignEnded = count($this->Mteemarket->adminGetCampaignEnded());
+			array_push($allData, $campaignActive);
+			array_push($allData, $campaignEnded);
+
+			echo json_encode($allData);
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function get_orders_7_days_left(){
+		if ($this->input->post('code')) {
+			date_default_timezone_set("Asia/Ho_Chi_Minh");
+			$date = date("Y-m-d");
+			$dayLeft = date("Y-m-d", strtotime('-7 days', strtotime($date)));
+
+			$allDays = array();
+			for ($i = 0; $i < 7; $i++) {
+				$day = date("Y-m-d", strtotime('+' . $i . 'days', strtotime($dayLeft)));
+				array_push($allDays, $day);
+			}
+
+			$allData = array();
+			for ($i = 0; $i < count($allDays); $i++) {
+				$data = $this->Mteemarket->adminGetDataByTime($allDays[$i]);
+				array_push($allData, $data);
+			}
+
+			for ($i = 0; $i < count($allData); $i++) {
+				if ($allData[$i] != array()) {
+					$unit = 0;
+					$profit = 0;
+					for ($k = 0; $k < count($allData[$i]); $k++) {
+						$unit += $allData[$i][$k]["quantity"];
+						$profit += ($allData[$i][$k]["quantity"] * $allData[$i][$k]["price"]);
+					}
+					array_push($allData[$i], $unit);
+					array_push($allData[$i], $profit);
+				}
+			}
+
+			for ($i = 0; $i < count($allDays); $i++) {
+				$orders = $this->Mteemarket->adminGetOrdersByTime($allDays[$i]);
+				array_push($allData[$i], $orders[0]);
+			}
+
+			$campaignActive = count($this->Mteemarket->adminGetCampaignActive());
+			$campaignEnded = count($this->Mteemarket->adminGetCampaignEnded());
+			array_push($allData, $campaignActive);
+			array_push($allData, $campaignEnded);
+
+			echo json_encode($allData);
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function get_orders_30_days_left(){
+		if ($this->input->post('code')) {
+			date_default_timezone_set("Asia/Ho_Chi_Minh");
+			$date = date("Y-m-d");
+			$dayLeft = date("Y-m-d", strtotime('-30 days', strtotime($date)));
+
+			$allDays = array();
+			for ($i = 0; $i < 30; $i++) {
+				$day = date("Y-m-d", strtotime('+' . $i . 'days', strtotime($dayLeft)));
+				array_push($allDays, $day);
+			}
+
+			$allData = array();
+			for ($i = 0; $i < count($allDays); $i++) {
+				$data = $this->Mteemarket->adminGetDataByTime($allDays[$i]);
+				array_push($allData, $data);
+			}
+
+			for ($i = 0; $i < count($allData); $i++) {
+				if ($allData[$i] != array()) {
+					$unit = 0;
+					$profit = 0;
+					for ($k = 0; $k < count($allData[$i]); $k++) {
+						$unit += $allData[$i][$k]["quantity"];
+						$profit += ($allData[$i][$k]["quantity"] * $allData[$i][$k]["price"]);
+					}
+					array_push($allData[$i], $unit);
+					array_push($allData[$i], $profit);
+				}
+			}
+
+			for ($i = 0; $i < count($allDays); $i++) {
+				$orders = $this->Mteemarket->adminGetOrdersByTime($allDays[$i]);
+				array_push($allData[$i], $orders[0]);
+			}
+
+			$campaignActive = count($this->Mteemarket->adminGetCampaignActive());
+			$campaignEnded = count($this->Mteemarket->adminGetCampaignEnded());
+			array_push($allData, $campaignActive);
+			array_push($allData, $campaignEnded);
+
+			echo json_encode($allData);
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function get_orders_all_time(){
+		if ($this->input->post('code')) {
+			date_default_timezone_set("Asia/Ho_Chi_Minh");
+			$date = date("Y-m-d");
+
+			$allIdCustomer = $this->Mteemarket->adminGetAllIdCustomer();
+			$allTime = [];
+			for ($i = 0; $i < count($allIdCustomer); $i++) {
+				$time = $this->Mteemarket->getAllDay($allIdCustomer[$i]['id']);
+				array_push($allTime, $time);
+			}
+
+			//Format date lay duoc
+			for ($i = 0; $i < count($allTime); $i++) {
+				$day[$i] = date("Y-m-d", strtotime($allTime[$i][0]['time']));
+			}
+
+			$allDays = array_unique($day);
+			array_push($allDays, $date);//Push today to allDays
+			$resultDays = array_values(array_unique($allDays));
+
+			$allData = array();
+			for ($i = 0; $i < count($resultDays); $i++) {
+				$data = $this->Mteemarket->adminGetDataByTime($resultDays[$i]);
+				array_push($allData, $data);
+			}
+
+			for ($i = 0; $i < count($allData); $i++) {
+				if ($allData[$i] != array()) {
+					$unit = 0;
+					$profit = 0;
+					for ($k = 0; $k < count($allData[$i]); $k++) {
+						$unit += $allData[$i][$k]["quantity"];
+						$profit += ($allData[$i][$k]["quantity"] * $allData[$i][$k]["price"]);
+					}
+					array_push($allData[$i], $unit);
+					array_push($allData[$i], $profit);
+				}
+			}
+
+			for ($i = 0; $i < count($resultDays); $i++) {
+				array_push($allData[$i], $resultDays[$i]);
+			}
+
+			for ($i = 0; $i < count($resultDays); $i++) {
+				$orders = $this->Mteemarket->adminGetOrdersByTime($resultDays[$i]);
+				array_push($allData[$i], $orders[0]);
+			}
+
+			$campaignActive = count($this->Mteemarket->adminGetCampaignActive());
+			$campaignEnded = count($this->Mteemarket->adminGetCampaignEnded());
+			array_push($allData, $campaignActive);
+			array_push($allData, $campaignEnded);
+
+
+			echo json_encode($allData);
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function get_orders_custom_day(){
+		if ($this->input->post('dateStart') || $this->input->post('dateEnd')){
+			$dateStart = $this->input->post('dateStart');
+			$dateEnd = $this->input->post('dateEnd');
+			$arrayDay = array();
+			array_push($arrayDay,$dateStart);
+			array_push($arrayDay,$dateEnd);
+
+			$date1=date_create($arrayDay[0]);
+			$date2=date_create($arrayDay[1]);
+			$diff=date_diff($date1,$date2);
+			$range =  $diff->format("%a");
+
+			$allDays = array();
+			for ($i = 0; $i <= $range; $i++) {
+				$day = date("Y-m-d", strtotime('+' . $i . 'days', strtotime($dateStart)));
+				array_push($allDays, $day);
+			}
+
+			$allData = array();
+			for ($i = 0; $i < count($allDays); $i++) {
+				$data = $this->Mteemarket->adminGetDataByTime($allDays[$i]);
+				array_push($allData, $data);
+			}
+
+			for ($i = 0; $i < count($allData); $i++) {
+				if ($allData[$i] != array()) {
+					$unit = 0;
+					$profit = 0;
+					for ($k = 0; $k < count($allData[$i]); $k++) {
+						$unit += $allData[$i][$k]["quantity"];
+						$profit += ($allData[$i][$k]["quantity"] * $allData[$i][$k]["price"]);
+					}
+					array_push($allData[$i], $unit);
+					array_push($allData[$i], $profit);
+				}
+			}
+
+			for ($i = 0; $i < count($allDays); $i++) {
+				array_push($allData[$i], $allDays[$i]);
+			}
+
+			for ($i = 0; $i < count($allDays); $i++) {
+				$orders = $this->Mteemarket->adminGetOrdersByTime($allDays[$i]);
+				array_push($allData[$i], $orders[0]);
+			}
+
+			$campaignActive = count($this->Mteemarket->adminGetCampaignActive());
+			$campaignEnded = count($this->Mteemarket->adminGetCampaignEnded());
+			array_push($allData, $campaignActive);
+			array_push($allData, $campaignEnded);
+
+			echo json_encode($allData);
+		} else{
+			redirect('http://localhost:8012/teemarket/error');
+		}
+
+	}
+
 	public function login()
 	{
 		$this->load->view('admin_login_view');
@@ -314,15 +629,11 @@ class Admin extends CI_Controller
 			redirect('http://localhost:8012/teemarket/admin/login');
 		} else {
 			$dataRequested = $this->Mteemarket->getDateRequestedOfUser($id_user);
-			if ($dataRequested) {
-				for ($i = 0; $i < count($dataRequested); $i++){
-					$payment_method = $this->Mteemarket->getPaymentMethodByIdPayout($id_user,$dataRequested[$i]['payment_mode']);
-					array_push($dataRequested[$i],$payment_method);
-				}
-				$this->load->view('admin_user_details_view',['dataRequested' => $dataRequested]);
-			} else {
-				redirect('http://localhost:8012/teemarket/error');
+			for ($i = 0; $i < count($dataRequested); $i++){
+				$payment_method = $this->Mteemarket->getPaymentMethodByIdPayout($id_user,$dataRequested[$i]['payment_mode']);
+				array_push($dataRequested[$i],$payment_method);
 			}
+			$this->load->view('admin_user_details_view',['dataRequested' => $dataRequested,'id_user'=>$id_user]);
 		}
 	}
 
@@ -330,20 +641,16 @@ class Admin extends CI_Controller
 		if ($this->input->post('id_user')) {
 			$id_user = $this->input->post('id_user');
 			$dataRequested = $this->Mteemarket->getDateRequestedOfUser($id_user);
-			if ($dataRequested) {
-				for ($i = 0; $i < count($dataRequested); $i++){
-					$payment_method = $this->Mteemarket->getPaymentMethodByIdPayout($id_user,$dataRequested[$i]['payment_mode']);
-					if ($dataRequested[$i]['payment_mode'] == 'paypal'){
-						array_push($dataRequested[$i],$payment_method[0]['paypal']);
-					} else {
-						array_push($dataRequested[$i],$payment_method[0]['payoneer']);
-					}
+			for ($i = 0; $i < count($dataRequested); $i++){
+				$payment_method = $this->Mteemarket->getPaymentMethodByIdPayout($id_user,$dataRequested[$i]['payment_mode']);
+				if ($dataRequested[$i]['payment_mode'] == 'paypal'){
+					array_push($dataRequested[$i],$payment_method[0]['paypal']);
+				} else {
+					array_push($dataRequested[$i],$payment_method[0]['payoneer']);
 				}
-
-				echo json_encode($dataRequested);
-			} else {
-				redirect('http://localhost:8012/teemarket/error');
 			}
+
+			echo json_encode($dataRequested);
 		} else {
 			redirect('http://localhost:8012/teemarket/error');
 		}
@@ -355,6 +662,22 @@ class Admin extends CI_Controller
 			$ordersOfSeller = $this->Mteemarket->getOrdersByIdSeller($id_user);
 
 			echo json_encode($ordersOfSeller);
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function pay(){
+		if ($this->input->post('id')) {
+			$id = $this->input->post('id');
+			$pay_time = $this->input->post('pay_time');
+
+			$update = $this->Mteemarket->updatePayout($id,$pay_time);
+			if ($update){
+				echo 1;
+			} else {
+				echo 0;
+			}
 		} else {
 			redirect('http://localhost:8012/teemarket/error');
 		}

@@ -180,6 +180,8 @@ $('.total-payout').click(function (event) {
 				$(".request").click(function () {
 					var request = $(".payouts-request").val();
 					var payment_mode = $('select[name=payment] option').filter(':selected').val();
+					var request_time = moment(new Date()).format('YYYY-MM-D HH:mm:ss');
+
 					if (payment_mode == 0){
 						$('.payment-required').css('display','block');
 					} else {
@@ -191,6 +193,7 @@ $('.total-payout').click(function (event) {
 							data: {
 								request : request,
 								payment_mode : payment_mode,
+								request_time : request_time,
 							},
 							success:function(res){
 								if (res == 1){

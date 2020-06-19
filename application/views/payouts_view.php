@@ -209,15 +209,6 @@
 </div>
 <!-- End Page -->
 
-<!--Modal Loading-->
-<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
-	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
-		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
-		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
-	</div>
-</div>
-<!-- End Modal -->
-
 <!-- Modal request -->
 <div class="modal fade modal-warning modal-request" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
 	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
@@ -357,6 +348,8 @@
 <script src="<?= base_url()?>global/js/Plugin/aspaginator.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/datatables.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>assets1/examples/js/tables/datatable.minfd53.js?v4.0.1"></script>
+
+<script src="<?= base_url()?>assets1/js/moment.min.js"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/seller.js"></script>

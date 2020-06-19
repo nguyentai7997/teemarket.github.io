@@ -1,22 +1,25 @@
 $( ".animsition").ready(function() {
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/get_orders_today',
+		url: 'http://localhost:8012/teemarket/admin/get_orders_today',
 		type: 'post',
 		data: {
-			code : 'nguyentai17',
+			code : 'nguyentai17admin',
 		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
 			var profits = [];
+			var amount = [];
 			for (i=0; i < obj.length-2; i++){
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
+					profits.push(7.50*obj[i][obj[i].length-3]);
+					amount.push(obj[i][obj[i].length-2]);
 				} else {
 					units.push("0");
 					profits.push("0");
+					amount.push("0");
 				}
 			}
 
@@ -30,10 +33,18 @@ $( ".animsition").ready(function() {
 			for (i = 0; i < obj.length-2; i++){
 				totalOrders -= -orders[i];
 			}
+
 			var totalUnits = 0;
 			for (i = 0; i < obj.length-2; i++){
 				totalUnits -= -units[i];
 			}
+
+			var totalAmount = 0;
+			for (i = 0; i < obj.length-2; i++){
+				totalAmount -= -amount[i];
+			}
+			$(".total-amount").html('$'+totalAmount.toFixed(2));
+
 			$(".orders-units").html(totalOrders + '/' + totalUnits);
 
 			$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
@@ -52,7 +63,7 @@ $( ".animsition").ready(function() {
 			}
 
 			// Themes begin
-			am4core.useTheme(am4themes_kelly);
+			am4core.useTheme(am4themes_frozen);
 			am4core.useTheme(am4themes_animated);
 			// Themes end
 
@@ -128,32 +139,6 @@ $( ".animsition").ready(function() {
 			// Add a legend
 			chart.legend = new am4charts.Legend();
 			chart.legend.position = "bottom";
-
-			// axis ranges
-			// var range = dateAxis.axisRanges.create();
-			// range.date = new Date(2001, 0, 1);
-			// range.endDate = new Date(2003, 0, 1);
-			// range.axisFill.fill = chart.colors.getIndex(7);
-			// range.axisFill.fillOpacity = 0.2;
-			//
-			// range.label.text = "Fines for speeding increased";
-			// range.label.inside = true;
-			// range.label.rotation = 90;
-			// range.label.horizontalCenter = "right";
-			// range.label.verticalCenter = "bottom";
-			//
-			// var range2 = dateAxis.axisRanges.create();
-			// range2.date = new Date(2007, 0, 1);
-			// range2.grid.stroke = chart.colors.getIndex(7);
-			// range2.grid.strokeOpacity = 0.6;
-			// range2.grid.strokeDasharray = "5,2";
-			//
-			//
-			// range2.label.text = "Motorcycle fee introduced";
-			// range2.label.inside = true;
-			// range2.label.rotation = 90;
-			// range2.label.horizontalCenter = "right";
-			// range2.label.verticalCenter = "bottom";
 		},error:function(){
 			console.log("Ajax call error.");
 		}
@@ -172,23 +157,26 @@ $('.today').click(function(event) {
 	$(".modal-loading").addClass("show");
 	$(".modal-loading").css("display","block");
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/get_orders_today',
+		url: 'http://localhost:8012/teemarket/admin/get_orders_today',
 		type: 'post',
 		data: {
-			code : 'nguyentai17',
+			code : 'nguyentai17admin',
 		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
 			var profits = [];
+			var amount = [];
 			for (i=0; i < obj.length-2; i++){
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
+					profits.push(7.50*obj[i][obj[i].length-3]);
+					amount.push(obj[i][obj[i].length-2]);
 				} else {
 					units.push("0");
 					profits.push("0");
+					amount.push("0");
 				}
 			}
 
@@ -202,10 +190,18 @@ $('.today').click(function(event) {
 			for (i = 0; i < obj.length-2; i++){
 				totalOrders -= -orders[i];
 			}
+
 			var totalUnits = 0;
 			for (i = 0; i < obj.length-2; i++){
 				totalUnits -= -units[i];
 			}
+
+			var totalAmount = 0;
+			for (i = 0; i < obj.length-2; i++){
+				totalAmount -= -amount[i];
+			}
+			$(".total-amount").html('$'+totalAmount.toFixed(2));
+
 			$(".orders-units").html(totalOrders + '/' + totalUnits);
 
 			$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
@@ -224,7 +220,7 @@ $('.today').click(function(event) {
 			}
 
 			// Themes begin
-			am4core.useTheme(am4themes_kelly);
+			am4core.useTheme(am4themes_frozen);
 			am4core.useTheme(am4themes_animated);
 			// Themes end
 
@@ -323,23 +319,26 @@ $('.yesterday').click(function(event) {
 	$(".modal-loading").addClass("show");
 	$(".modal-loading").css("display","block");
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/get_orders_yesterday',
+		url: 'http://localhost:8012/teemarket/admin/get_orders_yesterday',
 		type: 'post',
 		data: {
-			code : 'nguyentai17',
+			code : 'nguyentai17admin',
 		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
 			var profits = [];
+			var amount = [];
 			for (i=0; i < obj.length-2; i++){
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
+					profits.push(7.50*obj[i][obj[i].length-3]);
+					amount.push(obj[i][obj[i].length-2]);
 				} else {
 					units.push("0");
 					profits.push("0");
+					amount.push("0");
 				}
 			}
 
@@ -353,10 +352,18 @@ $('.yesterday').click(function(event) {
 			for (i = 0; i < obj.length-2; i++){
 				totalOrders -= -orders[i];
 			}
+
 			var totalUnits = 0;
 			for (i = 0; i < obj.length-2; i++){
 				totalUnits -= -units[i];
 			}
+
+			var totalAmount = 0;
+			for (i = 0; i < obj.length-2; i++){
+				totalAmount -= -amount[i];
+			}
+			$(".total-amount").html('$'+totalAmount.toFixed(2));
+
 			$(".orders-units").html(totalOrders + '/' + totalUnits);
 
 			$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
@@ -375,7 +382,7 @@ $('.yesterday').click(function(event) {
 			}
 
 			// Themes begin
-			am4core.useTheme(am4themes_kelly);
+			am4core.useTheme(am4themes_frozen);
 			am4core.useTheme(am4themes_animated);
 			// Themes end
 
@@ -475,23 +482,27 @@ $('.days7').click(function(event) {
 	$(".modal-loading").css("display","block");
 
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/get_orders_7_days_left',
+		url: 'http://localhost:8012/teemarket/admin/get_orders_7_days_left',
 		type: 'post',
 		data: {
-			code : 'nguyentai17',
+			code : 'nguyentai17admin',
 		},success:function(res) {
 			var obj = JSON.parse(res);
+			console.log(obj);
 			var orders = [];
 			var units = [];
 			var profits = [];
+			var amount = [];
 			for (i=0; i < obj.length-2; i++){
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
+					profits.push(7.50*obj[i][obj[i].length-3]);
+					amount.push(obj[i][obj[i].length-2]);
 				} else {
 					units.push("0");
 					profits.push("0");
+					amount.push("0");
 				}
 			}
 
@@ -509,6 +520,13 @@ $('.days7').click(function(event) {
 			for (i = 0; i < obj.length-2; i++){
 				totalUnits -= -units[i];
 			}
+
+			var totalAmount = 0;
+			for (i = 0; i < obj.length-2; i++){
+				totalAmount -= -amount[i];
+			}
+			$(".total-amount").html('$'+totalAmount.toFixed(2));
+
 			$(".orders-units").html(totalOrders + '/' + totalUnits);
 
 			$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
@@ -540,7 +558,7 @@ $('.days7').click(function(event) {
 			}
 
 			// Themes begin
-			am4core.useTheme(am4themes_kelly);
+			am4core.useTheme(am4themes_frozen);
 			am4core.useTheme(am4themes_animated);
 			// Themes end
 
@@ -644,23 +662,26 @@ $('.days30').click(function(event) {
 	}
 
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/get_orders_30_days_left',
+		url: 'http://localhost:8012/teemarket/admin/get_orders_30_days_left',
 		type: 'post',
 		data: {
-			code : 'nguyentai17',
+			code : 'nguyentai17admin',
 		},success:function(res) {
 			var obj = JSON.parse(res);
 			var orders = [];
 			var units = [];
 			var profits = [];
+			var amount = [];
 			for (i=0; i < obj.length-2; i++){
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 1) {
 					units.push(obj[i][obj[i].length-3]);
-					profits.push(obj[i][obj[i].length-2]-7.50*obj[i][obj[i].length-3]);
+					profits.push(7.50*obj[i][obj[i].length-3]);
+					amount.push(obj[i][obj[i].length-2]);
 				} else {
 					units.push("0");
 					profits.push("0");
+					amount.push("0");
 				}
 			}
 
@@ -674,10 +695,18 @@ $('.days30').click(function(event) {
 			for (i = 0; i < obj.length-2; i++){
 				totalOrders -= -orders[i];
 			}
+
 			var totalUnits = 0;
 			for (i = 0; i < obj.length-2; i++){
 				totalUnits -= -units[i];
 			}
+
+			var totalAmount = 0;
+			for (i = 0; i < obj.length-2; i++){
+				totalAmount -= -amount[i];
+			}
+			$(".total-amount").html('$'+totalAmount.toFixed(2));
+
 			$(".orders-units").html(totalOrders + '/' + totalUnits);
 
 			$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
@@ -694,7 +723,7 @@ $('.days30').click(function(event) {
 			}
 
 			// Themes begin
-			am4core.useTheme(am4themes_kelly);
+			am4core.useTheme(am4themes_frozen);
 			am4core.useTheme(am4themes_animated);
 			// Themes end
 
@@ -793,25 +822,28 @@ $('.alltime').click(function(event) {
 	$(".modal-loading").addClass("show");
 	$(".modal-loading").css("display","block");
 	$.ajax({
-		url: 'http://localhost:8012/teemarket/seller/get_orders_all_time',
+		url: 'http://localhost:8012/teemarket/admin/get_orders_all_time',
 		type: 'post',
 		data: {
-			code : 'nguyentai17',
+			code : 'nguyentai17admin',
 		},success:function(res) {
 			var obj = JSON.parse(res);
 			var time = [];
 			var orders = [];
 			var units = [];
 			var profits = [];
+			var amount = [];
 			for (i=0; i < obj.length-2; i++){
 				orders.push(obj[i][obj[i].length-1]['COUNT(DISTINCT info_customer.id)']);
 				if (obj[i].length > 2) {
 					units.push(obj[i][obj[i].length-4]);
-					profits.push(obj[i][obj[i].length-3]-7.50*obj[i][obj[i].length-4]);
+					profits.push(7.50*obj[i][obj[i].length-4]);
+					amount.push(obj[i][obj[i].length-3]);
 					time.push(obj[i][obj[i].length-2]);
 				} else {
 					units.push("0");
 					profits.push("0");
+					amount.push("0");
 					time.push(obj[i][obj[i].length-2]);
 				}
 			}
@@ -826,10 +858,18 @@ $('.alltime').click(function(event) {
 			for (i = 0; i < obj.length-2; i++){
 				totalOrders -= -orders[i];
 			}
+
 			var totalUnits = 0;
 			for (i = 0; i < obj.length-2; i++){
 				totalUnits -= -units[i];
 			}
+
+			var totalAmount = 0;
+			for (i = 0; i < obj.length-2; i++){
+				totalAmount -= -amount[i];
+			}
+			$(".total-amount").html('$'+totalAmount.toFixed(2));
+
 			$(".orders-units").html(totalOrders + '/' + totalUnits);
 
 			$(".active-ended").html(obj[obj.length-2] + '/' + obj[obj.length-1]);
@@ -852,7 +892,7 @@ $('.alltime').click(function(event) {
 			}
 
 			// Themes begin
-			am4core.useTheme(am4themes_kelly);
+			am4core.useTheme(am4themes_frozen);
 			am4core.useTheme(am4themes_animated);
 			// Themes end
 

@@ -117,7 +117,7 @@
 					<div class="col-md-4">
 						<div class="cat-box">
 							<figure>
-								<a href="#">
+								<a href="marketplace">
 									<img src="<?= base_url()?>assets/images/banners/independence-day.jpg" alt="banner">
 								</a>
 							</figure>

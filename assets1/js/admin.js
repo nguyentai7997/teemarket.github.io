@@ -114,70 +114,71 @@ $(".more").click(function (event) {
 })
 
 //Page Orders
-$(".edit-order").click(function (event) {
-	var data = $(this).children().val();
-	var order_id = data.substr(0, data.indexOf('-'));
-	var temp_status = data.substr(data.indexOf("-") + 1);
-	$(".order-id").html(order_id);
-
-	$(".animsition").addClass("modal-open");
-	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
-	$(".modal-edit").addClass("show");
-	$(".modal-edit").css("display","block");
-
-	$(".cancel-edit").click(function () {
-		$(".modal-edit").removeClass("show");
-		$(".modal-edit").css("display","none");
-		$(".modal-backdrop").remove();
-		$(".animsition").removeClass("modal-open");
-	})
-
-	if (temp_status == 'pending'){
-		$(".form-control").append('<option value="pending" selected>PENDING</option>');
-		$(".form-control").append('<option value="requested">REQUESTED</option>');
-		$(".form-control").append('<option value="cancelled">CANCELLED</option>');
-	} else if (temp_status == 'requested'){
-		$(".form-control").append('<option value="pending">PENDING</option>');
-		$(".form-control").append('<option value="requested" selected>REQUESTED</option>');
-		$(".form-control").append('<option value="cancelled">CANCELLED</option>');
-	} else if (temp_status == 'cancelled'){
-		$(".form-control").append('<option value="pending">PENDING</option>');
-		$(".form-control").append('<option value="requested">REQUESTED</option>');
-		$(".form-control").append('<option value="cancelled" selected>CANCELLED</option>');
-	}
-
-	$('.edit').click(function (event) {
-		var status = $('select[name=status] option').filter(':selected').val();
-		$.ajax({
-			url: 'http://localhost:8012/teemarket/admin/update_order',
-			type: 'post',
-			data: {
-				order_id : order_id,
-				status : status,
-			},
-			success:function(res){
-				if (res == 1){
-					$(".modal-edit").removeClass("show");
-					$(".modal-edit").css("display","none");
-					$(".edit-success").addClass("show");
-					$(".edit-success").css("display","block");
-					$(".close-modal").click(function () {
-						$(".edit-success").removeClass("show");
-						$(".edit-success").css("display","none");
-						$(".modal-backdrop").remove();
-						$(".animsition").removeClass("modal-open");
-						window.location.href = 'http://localhost:8012/teemarket/admin/orders';
-					})
-				} else {
-					console.log("Update fail");
-				}
-			},
-			error:function(res){
-				console.log("Ajax call error.");
-			}
-		});
-	})
-})
+// $(".edit-order").click(function (event) {
+// 	var data = $(this).children().val();
+// 	var order_id = data.substr(0, data.indexOf('-'));
+// 	var temp_status = data.substr(data.indexOf("-") + 1);
+// 	$(".order-id").html(order_id);
+//
+// 	$(".animsition").addClass("modal-open");
+// 	$(".animsition").append("<div class=\"modal-backdrop fade show\"></div>");
+// 	$(".modal-edit").addClass("show");
+// 	$(".modal-edit").css("display","block");
+//
+// 	$(".cancel-edit").click(function () {
+// 		$(".modal-edit").removeClass("show");
+// 		$(".modal-edit").css("display","none");
+// 		$(".modal-backdrop").remove();
+// 		$(".animsition").removeClass("modal-open");
+// 		$("option").remove();
+// 	})
+//
+// 	if (temp_status == 'pending'){
+// 		$(".form-control").append('<option value="pending" selected>PENDING</option>');
+// 		$(".form-control").append('<option value="requested">REQUESTED</option>');
+// 		$(".form-control").append('<option value="cancelled">CANCELLED</option>');
+// 	} else if (temp_status == 'requested'){
+// 		$(".form-control").append('<option value="pending">PENDING</option>');
+// 		$(".form-control").append('<option value="requested" selected>REQUESTED</option>');
+// 		$(".form-control").append('<option value="cancelled">CANCELLED</option>');
+// 	} else if (temp_status == 'cancelled'){
+// 		$(".form-control").append('<option value="pending">PENDING</option>');
+// 		$(".form-control").append('<option value="requested">REQUESTED</option>');
+// 		$(".form-control").append('<option value="cancelled" selected>CANCELLED</option>');
+// 	}
+//
+// 	$('.edit').click(function (event) {
+// 		var status = $('select[name=status] option').filter(':selected').val();
+// 		$.ajax({
+// 			url: 'http://localhost:8012/teemarket/admin/update_order',
+// 			type: 'post',
+// 			data: {
+// 				order_id : order_id,
+// 				status : status,
+// 			},
+// 			success:function(res){
+// 				if (res == 1){
+// 					$(".modal-edit").removeClass("show");
+// 					$(".modal-edit").css("display","none");
+// 					$(".edit-success").addClass("show");
+// 					$(".edit-success").css("display","block");
+// 					$(".close-modal").click(function () {
+// 						$(".edit-success").removeClass("show");
+// 						$(".edit-success").css("display","none");
+// 						$(".modal-backdrop").remove();
+// 						$(".animsition").removeClass("modal-open");
+// 						window.location.href = 'http://localhost:8012/teemarket/admin/orders';
+// 					})
+// 				} else {
+// 					console.log("Update fail");
+// 				}
+// 			},
+// 			error:function(res){
+// 				console.log("Ajax call error.");
+// 			}
+// 		});
+// 	})
+// })
 
 //Page Mockups
 $(".create-mockup").click(function (event) {
@@ -440,6 +441,7 @@ $('.edit-mockup').click(function () {
 
 $(".delete-mockup").click(function (event) {
 	var id = $(this).children().val();
+	console.log($(this).children());
 	$(".mockup-id").html(id);
 
 	$(".animsition").addClass("modal-open");

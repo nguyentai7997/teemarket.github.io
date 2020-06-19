@@ -124,8 +124,8 @@
 			<header class="panel-heading panel-title">
 				<div class="row">
 					<div class="col-md-4 col-lg-4">
-						<h3 class="example-title">Seller <?php echo $dataRequested[0]['id_seller']; ?> (<span class="count"><?php echo count($dataRequested)?></span>)</h3>
-						<input class="sr-only id" value="<?php echo $dataRequested[0]['id_seller'];?>">
+						<h3 class="example-title">Seller <?php echo $id_user; ?> (<span class="count"><?php echo count($dataRequested)?></span>)</h3>
+						<input class="sr-only id" value="<?php echo $id_user;?>">
 					</div>
 					<div class="col-md-4 col-lg-4">
 						<div class="mt-15">
@@ -155,33 +155,80 @@
 						<th style="color: #0e0e0e">Payment Mode</th>
 						<th style="color: #0e0e0e">Payment Method</th>
 						<th style="color: #0e0e0e">Status</th>
-						<th style="color: #0e0e0e">Time Update</th>
-						<th style="color: #0e0e0e">Edit</th>
+						<th style="color: #0e0e0e">Pay time</th>
+						<th style="color: #0e0e0e">Pay</th>
 					</tr>
 					</thead>
 					<tbody>
-					<?php foreach ($dataRequested as $key => $value) { ?>
-						<tr>
-							<td><?php echo $value['id'] ?></td>
-							<td><?php echo $value['time'] ?></td>
-							<td>$<?php echo $value['payout_requested'] ?></td>
-							<td><?php echo $value['payment_mode'] ?></td>
-							<td><?php echo $value[0][0]['payoneer'] ?></td>
-							<td><?php echo strtoupper($value['status']) ?></td>
-							<td>2020-20</td>
-							<td>
-								<i class="icon fa-pencil-square font-size-20 edit-payout" style="color: #3f51b5;cursor: pointer" aria-hidden="true"><input type="text" value="<?php echo $value['id']?>" class="sr-only"></i>
-							</td>
-						</tr>
-					<?php } ?>
+					<?php if (!empty($dataRequested)) {
+						foreach ($dataRequested as $key => $value) { ?>
+							<tr>
+								<td><?php echo $value['id'] ?></td>
+								<td><?php echo $value['time'] ?></td>
+								<td>$<?php echo $value['payout_requested'] ?></td>
+								<td><?php echo $value['payment_mode'] ?></td>
+								<td><?php echo $value[0][0]['payoneer'] ?></td>
+								<td><?php echo strtoupper($value['status']) ?></td>
+								<td><?php echo $value['pay_time'] ?></td>
+								<td>
+									<i class="icon fa-money font-size-20 pay" style="color: #3f51b5;cursor: pointer" aria-hidden="true"><input type="text" class="sr-only" value="<?php echo $value['id'].'/'.$value['payout_requested'].'/'.$value['id_seller']; ?>"></i>
+								</td>
+							</tr>
+						<?php }
+					}?>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<!-- End Panel Table Tools -->
 	</div>
-	<!-- End Page -->
 </div>
+<!-- End Page -->
+
+<!-- Modal pay -->
+<div class="modal fade modal-warning modal-pay" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-center">
+				<i class="icon fa-question-circle-o" aria-hidden="true" style="font-size: 50px;color: #00bcd4"></i>
+				<h3>Pay For $<span class="amount"></span> ?</h3>
+			</div>
+			<div class="modal-footer pr-100 pl-100">
+				<button type="button" class="btn btn-default yes" data-dismiss="modal" style="width: 100%;background-color: #00bcd4;color: #fff">Pay</button>
+				<button type="button" class="btn btn-dark cancel" data-dismiss="modal" style="width: 100%">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal pay success -->
+<div class="modal fade modal-warning pay-success" id="exampleModalWarning" aria-hidden="true" style="top: 25%"
+	 aria-labelledby="exampleModalWarning" role="dialog" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-center">
+				<i class="icon fa-check-circle-o" aria-hidden="true" style="font-size: 50px;color: #4caf50"></i>
+				<h3><strong>Pay Success!</strong></h3>
+			</div>
+			<div class="modal-footer pl-100 pr-100">
+				<button type="button" class="btn btn-default close-modal" data-dismiss="modal" style="width: 100%;background-color: #4caf50;color: #fff">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+
+<!--Modal Loading-->
+<div class="modal fade modal-loading" aria-hidden="true" role="dialog" tabindex="-1">
+	<div class="modal-box" style="position:fixed;top: 50%;left: 50%;z-index: 1700">
+		<div class="loader loader-circle" style="border-left: .125em solid #fff;margin: unset;"></div>
+		<div class="text-loading" style="color: #fff;float: right;position: relative;top: 9px;left: 10px;">LOADING...</div>
+	</div>
+</div>
+<!-- End Modal -->
+
 <?php include("admin_footer_view.php") ?>
 
 <!-- Core  -->
@@ -250,12 +297,11 @@
 
 <script src="<?= base_url()?>assets1/examples/js/tables/datatable.minfd53.js?v4.0.1"></script>
 
+<script src="<?= base_url()?>assets1/js/moment.min.js"></script>
+
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/admin.js"></script>
 <script src="<?= base_url()?>assets1/js/admin_users_details.js"></script>
-<script>
-
-</script>
 
 </body>
 

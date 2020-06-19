@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/seller.css?">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/campaigns.css">
+<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets1/css/campaigns.css">-->
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -28,6 +28,19 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/slidepanel/slidePanel.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
+
+	<!-- Plugins For This Page -->
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.minfd53.css?v4.0.1">
+
+	<!-- Page -->
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/tables/datatable.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -107,89 +120,50 @@
 <!-- Page -->
 <div class="page">
 	<div class="page-content container-fluid">
-		<div class="row" data-plugin="matchHeight" data-by-row="true">
-
-			<div class="col-lg-12">
+		<!-- Panel Table Tools -->
+		<div class="panel">
+			<header class="panel-heading panel-title">
 				<div class="row">
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="sort_label">Sort Campaigns By</div>
-							<select class="form-control">
-								<option>Newest to Oldest</option>
-								<option>Oldest to Newest</option>
-								<option>Top Selling</option>
-								<option>Least Selling</option>
-								<option>Sort A to Z</option>
-								<option>Sort Z to A</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="sort_label">Filter By Status</div>
-							<select class="form-control">
-								<option>All</option>
-								<option>Active</option>
-								<option>Starred</option>
-								<option>Ended</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
-								<span class="input-group-btn">
-						  			<button type="submit" class="btn" style="background-color: #fff;border: 1px solid #e0e0e0;"><i class="icon fa-search" aria-hidden="true"></i></button>
-								</span>
-							</div>
-						</div>
+					<div class="col-md-6 col-lg-6">
+						<h3 class="example-title">All (<?php echo count($campaigns) ?>)</h3>
 					</div>
 				</div>
-
-				<?php foreach ($campaigns as $key => $value) { ?>
-				<!-- Example Bordered Table -->
-				<div class="table-responsive">
-					<table class="table table-bordered bg-white">
-						<tbody>
+				<hr>
+			</header>
+			<div class="panel-body">
+				<table class="table table-hover dataTable table-striped w-full text-center" id="example">
+					<thead>
+					<tr>
+						<th style="color: #0e0e0e">Campaign ID</th>
+						<th style="color: #0e0e0e">Campaign Name</th>
+						<th width="93px" style="color: #0e0e0e">Profit</th>
+						<th style="color: #0e0e0e">Orders</th>
+						<th style="color: #0e0e0e">Units</th>
+						<th style="color: #0e0e0e">Status</th>
+						<th style="color: #0e0e0e">View</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($campaigns as $key => $value) { ?>
 						<tr>
-							<td>
-								<img src="<?php echo $value['image_link']; ?>" height="70px" alt="">
-								<a href="<?= base_url()?><?php echo $value['publicname'] . '/' . $value['url']; ?>" target="_blank" style="text-decoration: none;color: #fb8c00;"><?php echo $value['title']; ?></a>
-							</td>
-							<td class="text-center pt-20" width="12%">
-								<div class="data_profit" style="color: #fb8c00">$<?php echo number_format($value['units']*($value['price']-7.50),2) ?></div>
-								<div>Profit</div>
-							</td>
-							<td class="text-center pt-20" width="12%">
-								<div class="data_orders" style="color: #fb8c00;"><?php echo ucfirst($value['orders']); ?></div>
-								<div>Orders</div>
-							</td>
-							<td class="text-center pt-20" width="12%">
-								<div class="data_units" style="color: #fb8c00"><?php echo ucfirst($value['units']); ?></div>
-								<div>Units</div>
-							</td>
-							<td class="text-center pt-20" width="12%">
-								<div class="data_time" <?php if ($value['status'] == "active") {echo 'style="color: #fb8c00"'; }?>><?php echo ucfirst($value['status']); ?></div>
-								<div>Status</div>
-							</td>
-							<td class="text-center pt-20" width="12%">
-								<button type="button" class="btn btn-sm btn-icon btn-flat more">
-									<span class="sr-only"><?php echo $value['id'];?></span>
-									<i class="icon fa-ellipsis-h font-size-24" style="color: #fb8c00" aria-hidden="true"></i><br>More
-								</button>
+							<td style="padding-top: 30px"><?php echo $value['id'] ?></td>
+							<td style="text-align: left"><img src="<?php echo $value['image_link']; ?>" height="70px" alt=""><?php echo $value['title'] ?></td>
+							<td style="padding-top: 30px">$<?php echo number_format($value['units']*($value['price']-7.50),2) ?></td>
+							<td style="padding-top: 30px"><?php echo $value['orders'] ?></td>
+							<td style="padding-top: 30px"><?php echo $value['units']?></td>
+							<td style="padding-top: 30px; <?php if($value['status']=='ended'){echo 'color:#f44336';}else {echo 'color:#4caf50';}?>"><?php echo strtoupper($value['status'])?></td>
+							<td style="padding-top: 30px">
+								<i class="icon fa-eye font-size-20 more" style="color: #3f51b5;cursor: pointer" aria-hidden="true">
+									<input type="text" value="<?php echo $value['id']?>" class="sr-only">
+								</i>
 							</td>
 						</tr>
-						</tbody>
-					</table>
-				</div>
-				<!-- End Example Bordered Table -->
-				<?php } ?>
+					<?php } ?>
+					</tbody>
+				</table>
 			</div>
-
 		</div>
+		<!-- End Panel Table Tools -->
 	</div>
 </div>
 <!-- End Page -->
@@ -214,6 +188,24 @@
 <script src="<?= base_url()?>global/vendor/intro-js/intro.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/screenfull/screenfull.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
+
+<!-- Plugins For This Page -->
+<script src="<?= base_url()?>global/vendor/datatables.net/jquery.dataTablesfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-bs4/dataTables.bootstrap4fd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-fixedheader/dataTables.fixedHeader.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-fixedcolumns/dataTables.fixedColumns.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-rowgroup/dataTables.rowGroup.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-scroller/dataTables.scroller.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-responsive/dataTables.responsive.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>/global/vendor/datatables.net-responsive-bs4/responsive.bootstrap4.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/dataTables.buttons.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.html5.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.flash.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.print.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.colVis.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/asrange/jquery-asRange.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/bootbox/bootbox.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -240,12 +232,23 @@
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
-<script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/js/Plugin/datatables.minfd53.js?v4.0.1"></script>
+
+<script src="<?= base_url()?>assets1/examples/js/tables/datatable.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/seller.js"></script>
 <script src="<?= base_url()?>assets1/js/campaigns.js"></script>
-
+<script>
+	$(document).ready(function() {
+		$('#example').DataTable( {
+			dom: 'Bfrtip',
+			buttons: [
+				'csvHtml5',
+			]
+		} );
+	} );
+</script>
 
 </body>
 

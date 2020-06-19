@@ -168,7 +168,11 @@
 								<i class="icon fa-eye font-size-20 view-user" style="color: white;cursor: pointer" aria-hidden="true">
 									<input type="text" value="<?php echo $value['id']?>" class="sr-only">
 								</i>
-								<?php } else {} ?>
+								<?php } else { ?>
+								<i class="icon fa-eye font-size-20 view-user" style="color: #3f51b5;cursor: pointer" aria-hidden="true">
+									<input type="text" value="<?php echo $value['id']?>" class="sr-only">
+								</i>
+								<?php } ?>
 							</td>
 						</tr>
 					<?php } ?>
@@ -178,8 +182,9 @@
 		</div>
 		<!-- End Panel Table Tools -->
 	</div>
-	<!-- End Page -->
 </div>
+<!-- End Page -->
+
 <?php include("admin_footer_view.php") ?>
 
 <!-- Core  -->

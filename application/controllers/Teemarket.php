@@ -180,6 +180,10 @@ class Teemarket extends CI_Controller
 		}
 	}
 
+	public function search(){
+		
+	}
+
 	public function view_product($publicname,$url)
 	{
 		if ($this->Mteemarket->getDataByPublicnameAndUrl($publicname, $url)){

@@ -1,3 +1,11 @@
+//Search
+$(".search").click(function () {
+	console.log("search de");
+	$str = $('#q').val().toLowerCase();
+
+	window.location.href = 'http://localhost:8012/teemarket/marketplace/search?'+$str;
+})
+
 //Check Email Sign In
 $("#emailSignIn").change(function(event){
 	var emailSignIn  = $('#emailSignIn').val();

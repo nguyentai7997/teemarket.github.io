@@ -20,4 +20,8 @@ $('.settings').click(function(event) {
 $('.logout').click(function(event) {
 	window.location.href = 'http://localhost:8012/teemarket/seller/logout';
 });
+$(".more").click(function (event) {
+	var id = $(this).children().val();
+	window.location.href = 'http://localhost:8012/teemarket/seller/campaign_details/'+id;
+})
 

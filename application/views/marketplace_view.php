@@ -35,7 +35,7 @@
 
 	<!-- Custom CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/teemarket.css">
-	<link rel="stylesheet" href="<?= base_url()?>assets/vendor/fontawesome-free/css/all.min.css">
+<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets/vendor/fontawesome-free/css/all.min.css">-->
 
 </head>
 <body>
@@ -64,24 +64,31 @@
 					</nav>
 
 					<div class="row row-sm">
-						<?php if (empty($allData)){echo "0 co";} else { foreach ($allData as $key => $value) { ?>
-						<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
-							<div class="product-default inner-quickview inner-icon">
-									<figure>
-										<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
-											<img id="image" src="<?php echo $value['image_link'];?>">
-										</a>
-									</figure>
-									<div class="product-details text-center">
-										<h2 class="product-title">
-											<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>"><?php echo $value['title']?></a>
-										</h2>
-										<div class="price-box">
-											<span class="product-price" style="color: #fb8c00;font-weight: 400">$<?php echo number_format($value['price'],2);?></span>
-										</div><!-- End .price-box -->
-									</div><!-- End .product-details -->
+						<?php if (empty($allData)) { ?>
+							<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
+								<div class="product-default inner-quickview inner-icon">
+									<h3>No Results...</h3>
 								</div>
-						</div><!-- End .col-xl-3 -->
+							</div><!-- End .col-xl-3 -->
+						<?php } else {
+							foreach ($allData as $key => $value) { ?>
+								<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
+									<div class="product-default inner-quickview inner-icon">
+											<figure>
+												<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
+													<img id="image" src="<?php echo $value['image_link'];?>">
+												</a>
+											</figure>
+											<div class="product-details text-center">
+												<h2 class="product-title">
+													<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>"><?php echo $value['title']?></a>
+												</h2>
+												<div class="price-box">
+													<span class="product-price" style="color: #fb8c00;font-weight: 400">$<?php echo number_format($value['price'],2);?></span>
+												</div><!-- End .price-box -->
+											</div><!-- End .product-details -->
+										</div>
+								</div><!-- End .col-xl-3 -->
 						<?php }
 						} ?>
 					</div>

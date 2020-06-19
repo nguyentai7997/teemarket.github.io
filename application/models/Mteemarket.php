@@ -234,9 +234,21 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
+	function adminGetCampaignActive()
+	{
+		$query = $this->db->query("SELECT campaign.id FROM campaign,account WHERE account.id = campaign.id_seller AND status = 'active'")->result_array();
+		return $query;
+	}
+
 	function getCampaignEnded($id_seller)
 	{
 		$query = $this->db->query("SELECT campaign.id FROM campaign,account WHERE account.id = campaign.id_seller AND campaign.id_seller = '$id_seller' AND status = 'ended'")->result_array();
+		return $query;
+	}
+
+	function adminGetCampaignEnded()
+	{
+		$query = $this->db->query("SELECT campaign.id FROM campaign,account WHERE account.id = campaign.id_seller AND status = 'ended'")->result_array();
 		return $query;
 	}
 
@@ -246,9 +258,21 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
+	function adminGetDataByTime($time)
+	{
+		$query = $this->db->query("SELECT campaign.price,orders.quantity FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND info_customer.time LIKE '%$time%'")->result_array();
+		return $query;
+	}
+
 	function getOrdersByTime($time,$id)
 	{
 		$query = $this->db->query("SELECT COUNT(DISTINCT info_customer.id) FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND campaign.id_seller = '$id' AND info_customer.time LIKE '%$time%'")->result_array();
+		return $query;
+	}
+
+	function adminGetOrdersByTime($time)
+	{
+		$query = $this->db->query("SELECT COUNT(DISTINCT info_customer.id) FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND info_customer.time LIKE '%$time%'")->result_array();
 		return $query;
 	}
 
@@ -267,6 +291,12 @@ class Mteemarket extends CI_Model {
 	function getAllIdCustomer($id)
 	{
 		$query = $this->db->query("SELECT DISTINCT info_customer.id FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id AND campaign.id_seller = '$id' ORDER BY info_customer.id ASC")->result_array();
+		return $query;
+	}
+
+	function adminGetAllIdCustomer()
+	{
+		$query = $this->db->query("SELECT DISTINCT info_customer.id FROM info_customer,orders,campaign WHERE info_customer.id = orders.id_customer AND orders.id_campaign = campaign.id ORDER BY info_customer.id ASC")->result_array();
 		return $query;
 	}
 
@@ -312,9 +342,9 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
-	function insertPayouts($id,$request,$payment_mode)
+	function insertPayouts($id,$request,$payment_mode,$request_time)
 	{
-		$query = $this->db->query("INSERT INTO payout ( `id_seller`, `payout_requested`, `payment_mode`,  `status`,  `time`) VALUES ('$id','$request','$payment_mode','requested',CURRENT_TIMESTAMP	)");
+		$query = $this->db->query("INSERT INTO payout ( `id_seller`, `payout_requested`, `payment_mode`,  `status`,  `time`) VALUES ('$id','$request','$payment_mode','requested','$request_time')");
 		return $query;
 	}
 
@@ -435,6 +465,12 @@ class Mteemarket extends CI_Model {
 	function getPaymentMethodByIdPayout($id_user,$payment_mode)
 	{
 		$query = $this->db->query("SELECT $payment_mode FROM payment_method WHERE id_seller = '$id_user'")->result_array();
+		return $query;
+	}
+
+	function updatePayout($id,$pay_time)
+	{
+		$query = $this->db->query("UPDATE payout SET status = 'paid',pay_time = '$pay_time' WHERE id = '$id'");
 		return $query;
 	}
 }
