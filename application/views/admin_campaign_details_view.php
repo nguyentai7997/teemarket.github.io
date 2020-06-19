@@ -93,12 +93,6 @@
 						</a>
 					</li>
 					<li class="site-menu-item">
-						<a class="payouts">
-							<i class="site-menu-icon fa-money" aria-hidden="true"></i>
-							<span class="site-menu-title">PAYOUTS</span>
-						</a>
-					</li>
-					<li class="site-menu-item">
 						<a class="users">
 							<i class="site-menu-icon fa-users" aria-hidden="true"></i>
 							<span class="site-menu-title">USERS</span>

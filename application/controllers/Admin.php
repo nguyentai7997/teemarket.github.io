@@ -295,20 +295,68 @@ class Admin extends CI_Controller
 		}
 	}
 
-	public function payouts(){
-		if (empty($_SESSION['admin'])) {
-			redirect('http://localhost:8012/teemarket/admin/login');
-		} else {
-			$this->load->view('admin_payouts_view');
-		}
-	}
-
 	public function users(){
 		if (empty($_SESSION['admin'])) {
 			redirect('http://localhost:8012/teemarket/admin/login');
 		} else {
-			$orders = $this->Mteemarket->getOrders();
-			$this->load->view('admin_user_view');
+			$users = $this->Mteemarket->getUsers();
+
+			for ($i = 0; $i < count($users); $i++){
+				$checkRequestOfUser = $this->Mteemarket->checkRequestOfUser($users[$i]['id']);
+				array_push($users[$i],$checkRequestOfUser);
+			}
+			$this->load->view('admin_users_view',['users'=>$users]);
+		}
+	}
+
+	public function user_details($id_user){
+		if (empty($_SESSION['admin'])) {
+			redirect('http://localhost:8012/teemarket/admin/login');
+		} else {
+			$dataRequested = $this->Mteemarket->getDateRequestedOfUser($id_user);
+			if ($dataRequested) {
+				for ($i = 0; $i < count($dataRequested); $i++){
+					$payment_method = $this->Mteemarket->getPaymentMethodByIdPayout($id_user,$dataRequested[$i]['payment_mode']);
+					array_push($dataRequested[$i],$payment_method);
+				}
+				$this->load->view('admin_user_details_view',['dataRequested' => $dataRequested]);
+			} else {
+				redirect('http://localhost:8012/teemarket/error');
+			}
+		}
+	}
+
+	public function get_requestes_of_seller(){
+		if ($this->input->post('id_user')) {
+			$id_user = $this->input->post('id_user');
+			$dataRequested = $this->Mteemarket->getDateRequestedOfUser($id_user);
+			if ($dataRequested) {
+				for ($i = 0; $i < count($dataRequested); $i++){
+					$payment_method = $this->Mteemarket->getPaymentMethodByIdPayout($id_user,$dataRequested[$i]['payment_mode']);
+					if ($dataRequested[$i]['payment_mode'] == 'paypal'){
+						array_push($dataRequested[$i],$payment_method[0]['paypal']);
+					} else {
+						array_push($dataRequested[$i],$payment_method[0]['payoneer']);
+					}
+				}
+
+				echo json_encode($dataRequested);
+			} else {
+				redirect('http://localhost:8012/teemarket/error');
+			}
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
+	public function get_orders_of_seller(){
+		if ($this->input->post('id_user')) {
+			$id_user = $this->input->post('id_user');
+			$ordersOfSeller = $this->Mteemarket->getOrdersByIdSeller($id_user);
+
+			echo json_encode($ordersOfSeller);
+		} else {
+			redirect('http://localhost:8012/teemarket/error');
 		}
 	}
 

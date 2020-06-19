@@ -118,8 +118,10 @@ $route['admin/update_category'] = 'admin/update_category';
 $route['admin/delete_category'] = 'admin/delete_category';
 $route['admin/orders'] = 'admin/orders';
 $route['admin/update_order'] = 'admin/update_order';
-$route['admin/payouts'] = 'admin/payouts';
 $route['admin/users'] = 'admin/users';
+$route['admin/user_details/(:any)'] = 'admin/user_details/$1';
+$route['admin/get_requestes_of_seller'] = 'admin/get_requestes_of_seller';
+$route['admin/get_orders_of_seller'] = 'admin/get_orders_of_seller';
 $route['admin/logout'] = 'admin/logout';
 
 $route['(:any)/(:any)'] = 'teemarket/view_product/$1/$2';

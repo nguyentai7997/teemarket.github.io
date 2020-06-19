@@ -18,7 +18,6 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/admin.css?">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/admin_campaigns.css?">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -28,6 +27,19 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/slidepanel/slidePanel.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/flag-icon-css/flag-icon.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/waves/waves.minfd53.css?v4.0.1">
+
+	<!-- Plugins For This Page -->
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.minfd53.css?v4.0.1">
+	<link rel="stylesheet" href="<?= base_url()?>global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.minfd53.css?v4.0.1">
+
+	<!-- Page -->
+	<link rel="stylesheet" href="<?= base_url()?>assets1/examples/css/tables/datatable.minfd53.css?v4.0.1">
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="<?= base_url()?>global/fonts/material-design/material-design.minfd53.css?v4.0.1">
@@ -92,12 +104,6 @@
 							<span class="site-menu-title">ORDERS</span>
 						</a>
 					</li>
-					<li class="site-menu-item">
-						<a class="payouts">
-							<i class="site-menu-icon fa-money" aria-hidden="true"></i>
-							<span class="site-menu-title">PAYOUTS</span>
-						</a>
-					</li>
 					<li class="site-menu-item active">
 						<a class="users">
 							<i class="site-menu-icon fa-users" aria-hidden="true"></i>
@@ -113,98 +119,67 @@
 <!-- Page -->
 <div class="page">
 	<div class="page-content container-fluid">
-		<div class="row" data-plugin="matchHeight" data-by-row="true">
-
-			<div class="col-lg-12">
+		<!-- Panel Table Tools -->
+		<div class="panel">
+			<header class="panel-heading panel-title">
 				<div class="row">
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="sort_label">Sort Campaigns By</div>
-							<select class="form-control">
-								<option>Newest to Oldest</option>
-								<option>Oldest to Newest</option>
-								<option>Top Selling</option>
-								<option>Least Selling</option>
-								<option>Sort A to Z</option>
-								<option>Sort Z to A</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="sort_label">Filter By Status</div>
-							<select class="form-control">
-								<option>All</option>
-								<option>Active</option>
-								<option>Starred</option>
-								<option>Ended</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" class="form-control" name="" placeholder="Search campaigns by title">
-								<span class="input-group-btn">
-						  			<button type="submit" class="btn" style="background-color: #fff;border: 1px solid #e0e0e0;"><i class="icon fa-search" aria-hidden="true"></i></button>
-								</span>
-							</div>
-						</div>
+					<div class="col-md-6 col-lg-6">
+						<h3 class="example-title">All (<?php echo count($users) ?>)</h3>
 					</div>
 				</div>
-
-<!--				--><?php //foreach ($campaigns as $key => $value) { ?>
-					<!-- Example Bordered Table -->
-					<div class="table-responsive">
-						<table class="table table-bordered bg-white">
-							<tbody>
-							<tr>
-								<td class="text-center pt-20" width="12%">
-									<div class="data_id" style="color: #fb8c00">DEMO</div>
-									<div>Campaign ID</div>
-								</td>
-								<td class="text-center pt-20" width="12%">
-									<div class="data_id" style="color: #fb8c00">DEMO</div>
-									<div>Campaign ID</div>
-								</td>
-								<td class="text-center pt-20" width="12%">
-									<div class="data_id" style="color: #fb8c00">DEMO</div>
-									<div>Campaign ID</div>
-								</td>
-								<td class="text-center pt-20" width="12%">
-									<div class="data_id" style="color: #fb8c00">DEMO</div>
-									<div>Campaign ID</div>
-								</td>
-								<td class="text-center pt-20" width="12%">
-									<div class="data_id" style="color: #fb8c00">DEMO</div>
-									<div>Campaign ID</div>
-								</td>
-								<td class="text-center pt-20" width="12%">
-									<div class="data_id" style="color: #fb8c00">DEMO</div>
-									<div>Campaign ID</div>
-								</td>
-
-								<td class="text-center pt-20" width="12%">
-									<button type="button" class="btn btn-sm btn-icon btn-flat more">
-										<span class="sr-only"></span>
-										<i class="icon fa-ellipsis-h font-size-24" style="color: #fb8c00" aria-hidden="true"></i><br>More
-									</button>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- End Example Bordered Table -->
-<!--				--><?php //} ?>
+				<hr>
+			</header>
+			<div class="panel-body">
+				<table class="table table-hover dataTable table-striped w-full text-center" id="example">
+					<thead>
+					<tr>
+						<th style="color: #0e0e0e">ID</th>
+						<th style="color: #0e0e0e">FName</th>
+						<th style="color: #0e0e0e">PName</th>
+						<th style="color: #0e0e0e">Email</th>
+						<th style="color: #0e0e0e">Address</th>
+						<th style="color: #0e0e0e">City</th>
+						<th style="color: #0e0e0e">State</th>
+						<th style="color: #0e0e0e">Zip</th>
+						<th style="color: #0e0e0e">Country</th>
+						<th style="color: #0e0e0e">Phone</th>
+						<th style="color: #0e0e0e">Request?</th>
+						<th style="color: #0e0e0e">View</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php foreach ($users as $key => $value) { ?>
+						<tr>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['id'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['fullname'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['publicname'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['email'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['address'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['city'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['state'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['zip'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['country'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>"><?php echo $value['phone'] ?></td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>">
+								<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'YES';} else {echo 'NO';} ?>
+							</td>
+							<td style="<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){echo 'background-color:#4caf50;color:white';} ?>">
+								<?php if ($value[0][0]['COUNT(DISTINCT id_seller)'] != 0){?>
+								<i class="icon fa-eye font-size-20 view-user" style="color: white;cursor: pointer" aria-hidden="true">
+									<input type="text" value="<?php echo $value['id']?>" class="sr-only">
+								</i>
+								<?php } else {} ?>
+							</td>
+						</tr>
+					<?php } ?>
+					</tbody>
+				</table>
 			</div>
-
 		</div>
+		<!-- End Panel Table Tools -->
 	</div>
+	<!-- End Page -->
 </div>
-<!-- End Page -->
-
 <?php include("admin_footer_view.php") ?>
 
 <!-- Core  -->
@@ -225,6 +200,24 @@
 <script src="<?= base_url()?>global/vendor/intro-js/intro.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/screenfull/screenfull.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/vendor/slidepanel/jquery-slidePanel.minfd53.js?v4.0.1"></script>
+
+<!-- Plugins For This Page -->
+<script src="<?= base_url()?>global/vendor/datatables.net/jquery.dataTablesfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-bs4/dataTables.bootstrap4fd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-fixedheader/dataTables.fixedHeader.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-fixedcolumns/dataTables.fixedColumns.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-rowgroup/dataTables.rowGroup.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-scroller/dataTables.scroller.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-responsive/dataTables.responsive.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>/global/vendor/datatables.net-responsive-bs4/responsive.bootstrap4.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/dataTables.buttons.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.html5.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.flash.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.print.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons/buttons.colVis.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/asrange/jquery-asRange.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/vendor/bootbox/bootbox.minfd53.js?v4.0.1"></script>
 
 <!-- Scripts -->
 <script src="<?= base_url()?>global/js/State.minfd53.js?v4.0.1"></script>
@@ -251,10 +244,22 @@
 <script src="<?= base_url()?>global/js/Plugin/slidepanel.minfd53.js?v4.0.1"></script>
 <script src="<?= base_url()?>global/js/Plugin/switchery.minfd53.js?v4.0.1"></script>
 
-<script src="<?= base_url()?>assets1/examples/js/pages/faq.minfd53.js?v4.0.1"></script>
+<script src="<?= base_url()?>global/js/Plugin/datatables.minfd53.js?v4.0.1"></script>
+
+<script src="<?= base_url()?>assets1/examples/js/tables/datatable.minfd53.js?v4.0.1"></script>
 
 <!--nguyentai's js-->
 <script src="<?= base_url()?>assets1/js/admin.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#example').DataTable( {
+			dom: 'Bfrtip',
+			buttons: [
+				'csvHtml5',
+			]
+		} );
+	} );
+</script>
 
 </body>
 

@@ -135,7 +135,7 @@
 					<thead>
 					<tr>
 						<th style="color: #0e0e0e">Date</th>
-						<th style="color: #0e0e0e">Campaign Name</th>
+						<th style="color: #0e0e0e">CName</th>
 						<th width="93px" style="color: #0e0e0e">Order Number</th>
 						<th style="color: #0e0e0e">Email</th>
 						<th style="color: #0e0e0e">Country</th>
@@ -158,7 +158,10 @@
 						<td>$<?php echo number_format($value['quantity'] * $value['price'],2)?></td>
 						<td>$7.50</td>
 						<td>$<?php echo number_format($value['quantity'] * $value['price'] - 7.50,2)?></td>
-						<td><?php if ($value['status'] == 'pending'||$value['status'] == 'requested') {echo "_";} ?></td>
+						<td style="<?php if ($value['status'] == 'cancelled'){echo 'color:#f44336';} ?>">
+							<?php if ($value['status'] == 'pending'||$value['status'] == 'requested') {echo "_";}
+							if ($value['status'] == 'cancelled'){echo 'cancelled';}?>
+						</td>
 					</tr>
 					<?php } ?>
 					</tbody>

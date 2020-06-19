@@ -413,6 +413,30 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("DELETE FROM category WHERE id = '$id'");
 		return $query;
 	}
+
+	function getUsers()
+	{
+		$query = $this->db->query("SELECT * FROM account WHERE account_type = 'seller'")->result_array();
+		return $query;
+	}
+
+	function checkRequestOfUser($id_seller)
+	{
+		$query = $this->db->query("SELECT COUNT(DISTINCT id_seller) FROM payout WHERE id_seller = '$id_seller' AND status = 'requested'")->result_array();
+		return $query;
+	}
+
+	function getDateRequestedOfUser($id_user)
+	{
+		$query = $this->db->query("SELECT * FROM payout WHERE id_seller = '$id_user'")->result_array();
+		return $query;
+	}
+
+	function getPaymentMethodByIdPayout($id_user,$payment_mode)
+	{
+		$query = $this->db->query("SELECT $payment_mode FROM payment_method WHERE id_seller = '$id_user'")->result_array();
+		return $query;
+	}
 }
 
 /* End of file test.php */

@@ -45,8 +45,10 @@ $('.available').click(function(event) {
 	$(".modal-loading").css("display","block");
 	$.ajax({
 		url: 'http://localhost:8012/teemarket/seller/get_payouts_available',
-		type: 'get'
-		,success:function(res) {
+		type: 'post',
+		data: {
+			code : 'nguyentai17',
+		},success:function(res) {
 			var obj = JSON.parse(res);
 			var allData =[];
 			for (i = 0; i < obj.length; i++){

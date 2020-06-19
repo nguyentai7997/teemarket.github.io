@@ -677,3 +677,10 @@ $(".delete-category").click(function (event) {
 	})
 })
 
+//Page Users
+$(".view-user").click(function (event) {
+	var id = $(this).children().val();
+	window.location.href = 'http://localhost:8012/teemarket/admin/user_details/'+id;
+})
+
+
