@@ -181,7 +181,7 @@
 												if($_SESSION['campaign']['color'][0] == $value['color_code']) {echo 'active';}
 											} else {
 												if($value['color_code'] == "rgb(252, 252, 252)") {echo 'active';}
-											} ?>"  style="background-color: <?php echo $value['color_code'] ?>;"></span>
+											} ?>" onclick="activeColor(this)" onmouseover="hoverColor(this)" onmouseout="mouseOutColor(this)" style="background-color: <?php echo $value['color_code'] ?>;"></span>
 											<?php } ?>
 										</div>
 										<div class="product-prices text-center">

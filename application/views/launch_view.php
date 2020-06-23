@@ -177,7 +177,7 @@
 															<i class="fa fa-arrow-left"></i> Back
 														</button>
 														<button type="button" class="btn btn-md next-step" style="background-color: #fb8c00; color: white">
-															Launch <i class="fa fa-arrow-right"></i>
+															Launch <i class="fa fa-rocket"></i>
 														</button>
 													</div>
 												</form>

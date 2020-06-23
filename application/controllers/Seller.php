@@ -445,6 +445,17 @@ class Seller extends CI_Controller
 		}
 	}
 
+	public function get_color_code()
+	{
+		if ($this->input->post('myColor')){
+			$myColor = $this->input->post('myColor');
+			$rgb = $this->Mteemarket->getRgbByColorName($myColor);
+			echo json_encode($rgb);
+		} else{
+			redirect('http://localhost:8012/teemarket/error');
+		}
+	}
+
 	public function get_design(){
 		if ($this->input->post('src_image')){
 			$src_image = $this->input->post('src_image');

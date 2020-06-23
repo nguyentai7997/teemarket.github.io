@@ -86,6 +86,7 @@ $route['seller/get_orders_all_time'] = 'seller/get_orders_all_time';
 $route['seller/get_orders_custom_day'] = 'seller/get_orders_custom_day';
 $route['seller/design'] = 'seller/design';
 $route['seller/get_all_color'] = 'seller/get_all_color';
+$route['seller/get_color_code'] = 'seller/get_color_code';
 $route['seller/get_design'] = 'seller/get_design';
 $route['seller/remove_design'] = 'seller/remove_design';
 $route['seller/product'] = 'seller/product';

@@ -58,6 +58,12 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
+	function getRgbByColorName($myColor)
+	{
+		$query = $this->db->query("SELECT color_code FROM color WHERE color = '$myColor'")->result_array();
+		return $query;
+	}
+
 	function getDataCategory()
 	{
 		$query = $this->db->query("SELECT * FROM category")->result_array();
@@ -111,11 +117,6 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("SELECT * FROM campaign WHERE status = 'active'")->result_array();
 		return $query;
 	}
-
-//	function getDataCampaignWithLimit($limit){
-//		$query = $this->db->query("SELECT * FROM campaign WHERE status = 'active' LIMIT $limit")->result_array();
-//		return $query;
-//	}
 
 	public function getDataCampByOffset($offset,$limit)
 	{

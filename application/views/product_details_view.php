@@ -80,7 +80,7 @@
 											<label>Colors:</label>
 											<ul class="config-swatch-list">
 												<?php for ($i = 0; $i < count($campaign_color); $i++) { ?>
-													<li class="bg-colors <?php if ($i == 0){echo "active ";} echo $campaign_color[$i]['color'];?>">
+													<li class="bg-colors <?php if ($i == 0){echo "active ";} echo $campaign_color[$i]['color'];?>" onclick="activeColor(this)">
 														<a style="background-color: <?php echo $campaign_color[$i]['color_code']; ?>"></a>
 													</li>
 												<?php } ?>

@@ -66,6 +66,12 @@
 			<div>
 				<ul class="site-menu" data-plugin="menu">
 					<li class="site-menu-item">
+						<a class="_dashboard">
+							<i class="site-menu-icon fa-dashboard" aria-hidden="true"></i>
+							<span class="site-menu-title">DASHBOARD</span>
+						</a>
+					</li>
+					<li class="site-menu-item">
 						<a class="campaigns">
 							<i class="site-menu-icon ion-ios-shirt" aria-hidden="true"></i>
 							<span class="site-menu-title">CAMPAIGNS</span>
@@ -155,10 +161,10 @@
 															<div class="col-12">
 																<div class="list-colors product-color-list" id="product-color-list">
 																	<?php foreach ($colors as $key => $value) { ?>
-																		<span class="bg-colors <?php echo $value['color'] ?> <?php if($_SESSION['campaign']['color'][0] == $value['color_code']) {echo 'active selected-color ';}
+																		<span class="bg-colors <?php echo $value['color'] ?> <?php if($_SESSION['campaign']['color'][0] == $value['color_code']) {echo 'active selected-color';}
 																		if (isset($_SESSION['campaign']['resultColors'])){for ( $i = 0; $i < count($_SESSION['campaign']['resultColors']); $i++) {
 																			if($_SESSION['campaign']['resultColors'][$i] == $value['color_code'] && $_SESSION['campaign']['resultColors'][$i] != $_SESSION['campaign']['color'][0]){echo 'active';}
-																		}}?>" style="background-color: <?php echo $value['color_code'] ?>;"></span>
+																		}}?>" onclick="toggleColor(this)" onmouseover="hoverColor(this)" onmouseout="mouseOutColor(this)" style="background-color: <?php echo $value['color_code'] ?>;"></span>
 																	<?php } ?>
 																</div>
 															</div>
