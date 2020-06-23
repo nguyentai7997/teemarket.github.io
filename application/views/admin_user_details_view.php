@@ -171,7 +171,9 @@
 								<td><?php echo strtoupper($value['status']) ?></td>
 								<td><?php echo $value['pay_time'] ?></td>
 								<td>
+									<?php if ($value['status'] == 'requested') { ?>
 									<i class="icon fa-money font-size-20 pay" style="color: #3f51b5;cursor: pointer" aria-hidden="true"><input type="text" class="sr-only" value="<?php echo $value['id'].'/'.$value['payout_requested'].'/'.$value['id_seller']; ?>"></i>
+									<?php }?>
 								</td>
 							</tr>
 						<?php }

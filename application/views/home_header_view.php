@@ -51,7 +51,7 @@
 						<div class="header-menu">
 							<ul>
 								<?php foreach ($category as $key => $value) { ?>
-									<li><a href="<?= base_url()?>marketplace/<?php echo $value['category'] ?>"><?php echo $value['category'] ?></a></li>
+									<li><a href="<?= base_url()?>marketplace/category/<?php echo $value['category'] ?>"><?php echo $value['category'] ?></a></li>
 								<?php } ?>
 							</ul>
 						</div><!-- End .header-menu -->

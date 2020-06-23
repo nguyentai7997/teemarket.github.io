@@ -101,12 +101,13 @@ $('.next-step').click(function (event) {
 							url : url,
 							category : category,
 						},
-						success:function(res){
+						success:function(kq){
+							var obj = JSON.parse(kq);
 							$(".modal-loading").removeClass("show");
 							$(".modal-loading").css("display","none");
 							$(".modal-backdrop").remove();
 							$(".animsition").removeClass("modal-open");
-							// window.location.href = 'http://localhost:8012/teemarket/seller/campaigns_details/id=123';
+							window.location.href = 'http://localhost:8012/teemarket/seller/campaign_details/'+obj;
 						},
 						error:function(res){
 							console.log("Ajax call error 1.");

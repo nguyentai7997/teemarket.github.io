@@ -1,10 +1,154 @@
+function getPage(page) {
+	$('html, body').animate({scrollTop: 0}, 1000);
+	var obj = document.getElementsByClassName('page-item');
+	for (i = 0; i<obj.length; i++){
+		obj[i].classList.remove('active');
+	}
+	page.classList.add('active');
+	var str = page.innerHTML;
+	var matches = str.match(/(\d+)/);
+	var pageNumber = matches[0];
+	$.ajax({
+		url: 'http://localhost:8012/teemarket/pagination_marketplace',
+		type: 'post',
+		data: {
+			pageNumber: pageNumber
+		}, success: function (res) {
+			var obj = JSON.parse(res);
+			var html = "";
+			$('.product').empty();
+			for (var i = 0; i < obj.length; i++) {
+				html += '<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">'
+				html += '<div class="product-default inner-quickview inner-icon">'
+				html += '<figure>'
+				html += '<a href="<?= base_url() ?>' + obj[i]['publicname'] + '/' + obj[i]['url'] + '">'
+				html += '<img id="image" src="' + obj[i]['image_link'] + '">'
+				html += '</a>'
+				html += '</figure>'
+				html += '<div class="product-details text-center">'
+				html += '<h2 class="product-title">'
+				html += '<a href="<?= base_url() ?>' + obj[i]['publicname'] + '/' + obj[i]['url'] + '">' + obj[i]['title'] + '</a>'
+				html += '</h2>'
+				html += '<div class="price-box">'
+				html += '<span class="product-price" style="color: #fb8c00;font-weight: 400">$' + obj[i]['price'] + '</span>'
+				html += '</div>'
+				html += '</div>'
+				html += '</div>'
+				html += '</div>'
+			}
+			$('.product').append(html);
+		}, error: function (res) {
+		}
+	})
+}
+
+//Choose category
+$('.category').click(function (event) {
+	var category = $(this).val();
+	console.log(category);
+	window.location.href = 'http://localhost:8012/teemarket/marketplace/category/'+category;
+})
+function getPageCategory(page) {
+	$('html, body').animate({scrollTop: 0}, 1000);
+	var obj = document.getElementsByClassName('page-item');
+	for (i = 0; i<obj.length; i++){
+		obj[i].classList.remove('active');
+	}
+	page.classList.add('active');
+	var str = page.innerHTML;
+	var matches = str.match(/(\d+)/);
+	var pageNumber = matches[0];
+	var category = $('.selected').val();
+	$.ajax({
+		url: 'http://localhost:8012/teemarket/pagination_category',
+		type: 'post',
+		data: {
+			category : category,
+			pageNumber: pageNumber
+		}, success: function (res) {
+			var obj = JSON.parse(res);
+			var html = "";
+			$('.product').empty();
+			for (var i = 0; i < obj.length; i++) {
+				html += '<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">'
+				html += '<div class="product-default inner-quickview inner-icon">'
+				html += '<figure>'
+				html += '<a href="<?= base_url() ?>' + obj[i]['publicname'] + '/' + obj[i]['url'] + '">'
+				html += '<img id="image" src="' + obj[i]['image_link'] + '">'
+				html += '</a>'
+				html += '</figure>'
+				html += '<div class="product-details text-center">'
+				html += '<h2 class="product-title">'
+				html += '<a href="<?= base_url() ?>' + obj[i]['publicname'] + '/' + obj[i]['url'] + '">' + obj[i]['title'] + '</a>'
+				html += '</h2>'
+				html += '<div class="price-box">'
+				html += '<span class="product-price" style="color: #fb8c00;font-weight: 400">$' + obj[i]['price'] + '</span>'
+				html += '</div>'
+				html += '</div>'
+				html += '</div>'
+				html += '</div>'
+			}
+			$('.product').append(html);
+		}, error: function (res) {
+		}
+	})
+}
+
 //Search
 $(".search").click(function () {
-	console.log("search de");
-	$str = $('#q').val().toLowerCase();
-
-	window.location.href = 'http://localhost:8012/teemarket/marketplace/search?'+$str;
+	var request = $('#q').val();
+	var regExp = /\S/;
+	if (!regExp.exec(request)) {//TH Email chi toan khoang trang
+		return;
+	} else {
+		window.location.href = 'http://localhost:8012/teemarket/marketplace/search/'+request;
+	}
 })
+function getPageSearch(page) {
+	$('html, body').animate({scrollTop: 0}, 1000);
+	var obj = document.getElementsByClassName('page-item');
+	for (i = 0; i<obj.length; i++){
+		obj[i].classList.remove('active');
+	}
+	page.classList.add('active');
+	var str = page.innerHTML;
+	var matches = str.match(/(\d+)/);
+	var pageNumber = matches[0];
+	var request = $('#q').val();
+	$.ajax({
+		url: 'http://localhost:8012/teemarket/pagination_search',
+		type: 'post',
+		data: {
+			request : request,
+			pageNumber: pageNumber
+		}, success: function (res) {
+			var obj = JSON.parse(res);
+			var html = "";
+			$('.product').empty();
+			for (var i = 0; i < obj.length; i++) {
+				html += '<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">'
+				html += '<div class="product-default inner-quickview inner-icon">'
+				html += '<figure>'
+				html += '<a href="<?= base_url() ?>' + obj[i]['publicname'] + '/' + obj[i]['url'] + '">'
+				html += '<img id="image" src="' + obj[i]['image_link'] + '">'
+				html += '</a>'
+				html += '</figure>'
+				html += '<div class="product-details text-center">'
+				html += '<h2 class="product-title">'
+				html += '<a href="<?= base_url() ?>' + obj[i]['publicname'] + '/' + obj[i]['url'] + '">' + obj[i]['title'] + '</a>'
+				html += '</h2>'
+				html += '<div class="price-box">'
+				html += '<span class="product-price" style="color: #fb8c00;font-weight: 400">$' + obj[i]['price'] + '</span>'
+				html += '</div>'
+				html += '</div>'
+				html += '</div>'
+				html += '</div>'
+			}
+			$('.product').append(html);
+		}, error: function (res) {
+		}
+	})
+}
 
 //Check Email Sign In
 $("#emailSignIn").change(function(event){
@@ -588,13 +732,6 @@ $('.complete-order').click(function (event) {
 	});
 })
 
-//Choose category
-$('.category').click(function (event) {
-	var category = $(this).val();
-	console.log(category);
-	window.location.href = 'http://localhost:8012/teemarket/marketplace/'+category;
-})
-
 //Choose Size
 $('.size-s').click(function(event) {
 	$(".size-s").addClass("active");
@@ -1015,3 +1152,4 @@ $('.black').click(function(event) {
 	$("#electric-green").removeClass("active");
 	$("#black").addClass("active");
 });
+

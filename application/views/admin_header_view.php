@@ -255,6 +255,12 @@
 						</div>
 					</div>
 				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link seller" data-toggle="dropdown" title="Notifications"
+					   aria-expanded="false" data-animation="scale-up" role="button">
+						<i class="icon fa-exchange" aria-hidden="true"></i>
+					</a>
+				</li>
 			</ul>
 			<!-- End Navbar Toolbar Right -->
 		</div>

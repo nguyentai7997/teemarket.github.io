@@ -30,7 +30,13 @@ class Mteemarket extends CI_Model {
 
 	function getDataSignIn($email, $password)
 	{
-		$query = $this->db->query("SELECT * FROM account WHERE email = '$email' and password = '$password' and account_type = 'seller'")->result_array();
+		$query = $this->db->query("SELECT * FROM account WHERE email = '$email' and password = '$password'")->result_array();
+		return $query;
+	}
+
+	function search($request)
+	{
+		$query = $this->db->query("SELECT * FROM campaign WHERE status = 'active' AND title LIKE '%$request%'")->result_array();
 		return $query;
 	}
 
@@ -64,7 +70,7 @@ class Mteemarket extends CI_Model {
 		return $query;
 	}
 
-	function getProductByIdCategory($id)
+	function getCampByIdCategory($id)
 	{
 		$query = $this->db->query("SELECT campaign.id,campaign.price,campaign.url,campaign.title FROM campaign,category WHERE campaign.id_category = category.id AND category.id = '$id' AND campaign.status = 'active'")->result_array();
 		return $query;
@@ -103,6 +109,29 @@ class Mteemarket extends CI_Model {
 	function getDataCampaign()
 	{
 		$query = $this->db->query("SELECT * FROM campaign WHERE status = 'active'")->result_array();
+		return $query;
+	}
+
+//	function getDataCampaignWithLimit($limit){
+//		$query = $this->db->query("SELECT * FROM campaign WHERE status = 'active' LIMIT $limit")->result_array();
+//		return $query;
+//	}
+
+	public function getDataCampByOffset($offset,$limit)
+	{
+		$query=$this->db->query("SELECT campaign.id,campaign.title,campaign.price,campaign.url,account.publicname FROM campaign,account WHERE campaign.id_seller = account.id AND status = 'active' LIMIT $offset, $limit")->result_array();
+		return $query;
+	}
+
+	public function getDataCampCategoryByOffset($offset,$limit,$idCategory)
+	{
+		$query=$this->db->query("SELECT campaign.id,campaign.title,campaign.price,campaign.url,account.publicname FROM campaign,account,category WHERE account.id = campaign.id_seller AND campaign.id_category = category.id AND status = 'active' AND campaign.id_category = '$idCategory' LIMIT $offset, $limit")->result_array();
+		return $query;
+	}
+
+	public function getDataSearchByOffset($offset,$limit,$request)
+	{
+		$query=$this->db->query("SELECT campaign.id,campaign.title,campaign.price,campaign.url,account.publicname FROM campaign,account,category WHERE account.id = campaign.id_seller AND campaign.id_category = category.id AND status = 'active' AND campaign.title LIKE '%$request%' LIMIT $offset, $limit")->result_array();
 		return $query;
 	}
 
@@ -473,6 +502,7 @@ class Mteemarket extends CI_Model {
 		$query = $this->db->query("UPDATE payout SET status = 'paid',pay_time = '$pay_time' WHERE id = '$id'");
 		return $query;
 	}
+
 }
 
 /* End of file test.php */

@@ -134,6 +134,7 @@
 					<thead>
 					<tr>
 						<th style="color: #0e0e0e">Campaign ID</th>
+						<th style="color: #0e0e0e">Seller</th>
 						<th style="color: #0e0e0e">Campaign Name</th>
 						<th width="93px" style="color: #0e0e0e">Profit</th>
 						<th style="color: #0e0e0e">Orders</th>
@@ -146,6 +147,7 @@
 					<?php foreach ($campaigns as $key => $value) { ?>
 						<tr>
 							<td style="padding-top: 30px"><?php echo $value['id'] ?></td>
+							<td style="padding-top: 30px"><?php echo $value['publicname'] ?></td>
 							<td style="text-align: left"><img src="<?php echo $value['image_link']; ?>" height="70px" alt=""><?php echo $value['title'] ?></td>
 							<td style="padding-top: 30px">$<?php echo number_format($value['units']*($value['price']-7.50),2) ?></td>
 							<td style="padding-top: 30px"><?php echo $value['orders'] ?></td>

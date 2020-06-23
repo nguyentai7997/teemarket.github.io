@@ -579,8 +579,7 @@ class Seller extends CI_Controller
 						$addCampColors = $this->Mteemarket->insertCampColors($idCamp[0]['id'],$arrayIdColor[$i][0]['id'],$secure_url[$i]);
 					}
 					unset($_SESSION['campaign']);
-					$status = 0;
-					echo $status;
+					echo json_encode($idCamp[0]['id']);
 				} else {
 					$status = 1;
 					echo $status;
@@ -790,6 +789,7 @@ class Seller extends CI_Controller
 		// Xóa session name
 		unset($_SESSION['user']);
 		unset($_SESSION['campaign']);
+		unset($_SESSION['admin']);
 		redirect('http://localhost:8012/teemarket');
 	}
 }

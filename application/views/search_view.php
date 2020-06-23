@@ -39,7 +39,76 @@
 </head>
 <body>
 <div class="page-wrapper">
-	<?php include("home_header_view.php") ?>
+	<header class="header">
+		<div class="header-top">
+			<div class="container">
+				<div class="header-right">
+					<div class="header-dropdown dropdown-expanded">
+						<a href="#">Links</a>
+						<div class="header-menu">
+							<ul>
+								<?php if (empty($_SESSION['user']) && empty($_SESSION['admin'])) {?>
+									<li><a href="<?= base_url()?>register">SIGN UP</a></li>
+									<li><a href="<?= base_url()?>login">SIGN IN</a></li>
+								<?php } else if (isset($_SESSION['user'])) { ?>
+									<li><a href="<?= base_url()?>seller/dashboard">DASHBOARD</a></li>
+									<li><a href="<?= base_url()?>seller/logout">SIGN OUT</a></li>
+								<?php } else if (isset($_SESSION['admin'])) {?>
+									<li><a href="<?= base_url()?>admin/dashboard">DASHBOARD</a></li>
+									<li><a href="<?= base_url()?>admin/logout">SIGN OUT</a></li>
+								<?php } ?>
+							</ul>
+						</div><!-- End .header-menu -->
+					</div><!-- End .header-dropown -->
+				</div><!-- End .header-right -->
+			</div><!-- End .container -->
+		</div><!-- End .header-top -->
+
+		<div class="header-middle sticky-header" style="border-bottom: 1px solid #eee;">
+			<div class="container">
+				<div class="header-left">
+
+					<div class="header-search">
+						<a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+						<div class="header-search-wrapper">
+							<form>
+								<input type="search" class="form-control" name="q" id="q" placeholder="Search..." required value="<?php echo $request; ?>">
+								<button class="btn search" type="button"><i class="icon-search"></i></button>
+							</form>
+						</div><!-- End .header-search-wrapper -->
+					</div><!-- End .header-search -->
+				</div><!-- End .header-left -->
+
+				<div class="header-center">
+					<a href="<?= base_url()?>" class="logo">
+						<img src="<?= base_url()?>assets/images/teemarket.png" alt="Porto Logo">
+					</a>
+				</div><!-- End .headeer-center -->
+
+				<div class="header-right">
+					<div class="header-dropdowns" style="padding-right: 10px">
+						<div class="header-dropdown">
+							<a>SHOP BY</a>
+							<div class="header-menu">
+								<ul>
+									<?php foreach ($category as $key => $value) { ?>
+										<li><a href="<?= base_url()?>marketplace/category/<?php echo $value['category'] ?>"><?php echo $value['category'] ?></a></li>
+									<?php } ?>
+								</ul>
+							</div><!-- End .header-menu -->
+						</div><!-- End .header-dropown -->
+					</div><!-- End .header-dropdowns -->
+					<div class="dropdown cart-dropdown">
+						<a href="<?= base_url() ?>cart" class="dropdown-toggle">
+							<span class="cart-count"><?php if(isset($_SESSION['product'])){echo count($_SESSION['product']);} else {echo "0";} ?></span>
+						</a>
+					</div>
+					<!-- End .dropdown -->
+				</div><!-- End .header-right -->
+			</div><!-- End .container -->
+		</div><!-- End .header-middle -->
+	</header><!-- End .header -->
+<!--	<input class="search-input sr-only" value="--><?php //echo $request; ?><!--">-->
 
 	<main class="main">
 		<div class="mt-6"></div><!-- margin -->
@@ -47,49 +116,58 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<?php if (isset($allData)) { ?>
-						<nav class="toolbox">
-							<div class="toolbox-left">
-								<div class="toolbox-item toolbox-sort">
-									<label>Sort By:</label>
-									<div class="select-custom">
-										<select name="orderby" class="form-control">
-											<option value="lowest" selected="selected">Lowest Price First</option>
-											<option value="highest">Highest Price First</option>
-										</select>
-									</div><!-- End .select-custom -->
+					<nav class="toolbox">
+						<div class="toolbox-left">
+							<div class="toolbox-item toolbox-sort">
+								<label>Sort By:</label>
 
-								</div><!-- End .toolbox-item -->
-							</div><!-- End .toolbox-left -->
-						</nav>
+								<div class="select-custom">
+									<select name="orderby" class="form-control">
+										<option value="lowest" selected="selected">Lowest Price First</option>
+										<option value="highest">Highest Price First</option>
+									</select>
+								</div><!-- End .select-custom -->
+
+							</div><!-- End .toolbox-item -->
+						</div><!-- End .toolbox-left -->
+					</nav>
 					<?php } ?>
 
 					<div class="row row-sm product">
-						<?php foreach ($allData as $key => $value) { ?>
-						<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
-							<div class="product-default inner-quickview inner-icon">
-								<figure>
-									<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
-										<img id="image" src="<?php echo $value['image_link'];?>">
-									</a>
-								</figure>
-								<div class="product-details text-center">
-									<h2 class="product-title">
-										<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>"><?php echo $value['title']?></a>
-									</h2>
-									<div class="price-box">
-										<span class="product-price" style="color: #fb8c00;font-weight: 400">$<?php echo number_format($value['price'],2);?></span>
-									</div><!-- End .price-box -->
-								</div><!-- End .product-details -->
-							</div>
-						</div><!-- End .col-xl-3 -->
-						<?php } ?>
+						<?php if (empty($allData)) { ?>
+							<div class="col-12 col-md-12" style="padding-right: 13px;padding-left: 13px;">
+								<div class="product-default inner-quickview inner-icon text-center" style="margin-top: 70px">
+									<h1>No Results...</h1>
+								</div>
+							</div><!-- End .col-xl-12 -->
+						<?php } else {
+							foreach ($allData as $key => $value) { ?>
+								<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
+									<div class="product-default inner-quickview inner-icon">
+										<figure>
+											<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
+												<img id="image" src="<?php echo $value['image_link'];?>">
+											</a>
+										</figure>
+										<div class="product-details text-center">
+											<h2 class="product-title">
+												<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>"><?php echo $value['title']?></a>
+											</h2>
+											<div class="price-box">
+												<span class="product-price" style="color: #fb8c00;font-weight: 400">$<?php echo number_format($value['price'],2);?></span>
+											</div><!-- End .price-box -->
+										</div><!-- End .product-details -->
+									</div>
+								</div><!-- End .col-xl-3 -->
+							<?php }
+						} ?>
 					</div>
 
 					<?php if (isset($allData)) { ?>
 						<nav class="toolbox toolbox-pagination">
 							<ul class="pagination">
 								<?php for( $i=0 ; $i<$countPage; $i++ ){ ?>
-									<li class="page-item <?php if ($i == 0){echo 'active';}?>" onclick="getPage(this)"><a class="page-link"><?php echo $i+1; ?></a></li>
+									<li class="page-item <?php if ($i == 0){echo 'active';}?>" onclick="getPageSearch(this)"><a class="page-link"><?php echo $i+1; ?></a></li>
 								<?php } ?>
 							</ul>
 						</nav>
@@ -106,8 +184,8 @@
 							<div class="collapse show" id="widget-body-1">
 								<div class="widget-body">
 									<?php foreach ($category as $key => $value) { ?>
-										<input type="radio" id="<?php  echo $value['id'] ?>" class="category" name="category" value="<?php  echo $value['category']  ?>">
-										<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
+									<input type="radio" id="<?php  echo $value['id'] ?>" class="category" name="category" value="<?php  echo $value['category']  ?>">
+									<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
 									<?php } ?>
 								</div><!-- End .widget-body -->
 							</div><!-- End .collapse -->
@@ -251,6 +329,7 @@
 <!-- Main JS File -->
 <script src="<?= base_url()?>assets/js/main.min.js"></script>
 <script src="<?= base_url()?>assets/js/teemarket.js"></script>
+
 </body>
 
 </html>

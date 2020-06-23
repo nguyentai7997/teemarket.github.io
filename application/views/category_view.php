@@ -35,6 +35,7 @@
 
 	<!-- Custom CSS File -->
 	<link rel="stylesheet" href="<?= base_url()?>assets/css/teemarket.css">
+	<!--	<link rel="stylesheet" href="--><?//= base_url()?><!--assets/vendor/fontawesome-free/css/all.min.css">-->
 
 </head>
 <body>
@@ -51,6 +52,7 @@
 							<div class="toolbox-left">
 								<div class="toolbox-item toolbox-sort">
 									<label>Sort By:</label>
+
 									<div class="select-custom">
 										<select name="orderby" class="form-control">
 											<option value="lowest" selected="selected">Lowest Price First</option>
@@ -64,32 +66,41 @@
 					<?php } ?>
 
 					<div class="row row-sm product">
-						<?php foreach ($allData as $key => $value) { ?>
-						<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
-							<div class="product-default inner-quickview inner-icon">
-								<figure>
-									<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
-										<img id="image" src="<?php echo $value['image_link'];?>">
-									</a>
-								</figure>
-								<div class="product-details text-center">
-									<h2 class="product-title">
-										<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>"><?php echo $value['title']?></a>
-									</h2>
-									<div class="price-box">
-										<span class="product-price" style="color: #fb8c00;font-weight: 400">$<?php echo number_format($value['price'],2);?></span>
-									</div><!-- End .price-box -->
-								</div><!-- End .product-details -->
-							</div>
-						</div><!-- End .col-xl-3 -->
-						<?php } ?>
+						<?php if (empty($allData)) { ?>
+							<div class="col-12 col-md-12" style="padding-right: 13px;padding-left: 13px;">
+								<div class="product-default inner-quickview inner-icon text-center" style="margin-top: 70px">
+									<h1>No Results...</h1>
+								</div>
+							</div><!-- End .col-xl-3 -->
+						<?php } else {
+							foreach ($allData as $key => $value) { ?>
+								<div class="col-6 col-md-4" style="padding-right: 13px;padding-left: 13px;">
+									<div class="product-default inner-quickview inner-icon">
+										<figure>
+											<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>">
+												<img id="image" src="<?php echo $value['image_link'];?>">
+											</a>
+										</figure>
+										<div class="product-details text-center">
+											<h2 class="product-title">
+												<a href="<?php echo base_url().$value['publicname'].'/'.$value['url']?>"><?php echo $value['title']?></a>
+											</h2>
+											<div class="price-box">
+												<span class="product-price" style="color: #fb8c00;font-weight: 400">$<?php echo number_format($value['price'],2);?></span>
+											</div><!-- End .price-box -->
+										</div><!-- End .product-details -->
+									</div>
+								</div><!-- End .col-xl-3 -->
+							<?php }
+						} ?>
 					</div>
 
 					<?php if (isset($allData)) { ?>
 						<nav class="toolbox toolbox-pagination">
+
 							<ul class="pagination">
 								<?php for( $i=0 ; $i<$countPage; $i++ ){ ?>
-									<li class="page-item <?php if ($i == 0){echo 'active';}?>" onclick="getPage(this)"><a class="page-link"><?php echo $i+1; ?></a></li>
+									<li class="page-item <?php if ($i == 0){echo 'active';}?>" onclick="getPageCategory(this)"><a class="page-link"><?php echo $i+1; ?></a></li>
 								<?php } ?>
 							</ul>
 						</nav>
@@ -105,10 +116,19 @@
 
 							<div class="collapse show" id="widget-body-1">
 								<div class="widget-body">
-									<?php foreach ($category as $key => $value) { ?>
-										<input type="radio" id="<?php  echo $value['id'] ?>" class="category" name="category" value="<?php  echo $value['category']  ?>">
-										<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
-									<?php } ?>
+									<?php
+									if (empty($allData)) {
+										foreach ($category as $key => $value) { ?>
+											<input type="radio" class="category" <?php if ($name_category == $value['category']){echo "checked";}?> name="category" value="<?php  echo $value['category']  ?>">
+											<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
+											<?php
+										}
+									} else {
+										foreach ($category as $key => $value) { ?>
+											<input type="radio" <?php if ($allData[0]['category'] == $value['category']){echo 'checked';}?> id="<?php  echo $value['id'] ?>" class="category <?php if ($allData[0]['category'] == $value['category']){echo 'selected';}?>" name="category" value="<?php  echo $value['category']  ?>">
+											<label for="<?php  echo $value['category']  ?>"><?php  echo ucfirst($value['category'])?></label><br>
+										<?php }
+									} ?>
 								</div><!-- End .widget-body -->
 							</div><!-- End .collapse -->
 						</div><!-- End .widget -->

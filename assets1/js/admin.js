@@ -79,6 +79,9 @@ $('.signin').click(function(event) {
 	})
 });
 
+$('.seller').click(function(event) {
+	window.location.href = 'http://localhost:8012/teemarket/seller/dashboard';
+});
 $('._dashboard').click(function(event) {
 	window.location.href = 'http://localhost:8012/teemarket/admin/dashboard';
 });

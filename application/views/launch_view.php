@@ -165,7 +165,7 @@
 														<label style="color: #424242">Category Your Campaign</label>
 														<div class="select-custom">
 															<select class="form-control" title='Choose one of the following...' name="category">
-																<option value="0" selected>Please Choose...</option>
+																<option value="1" selected>Please Choose...</option>
 																<?php foreach ($category as $key => $value) { ?>
 																<option value="<?php echo $value['id']; ?>"><?php echo strtoupper($value['category']); ?></option>
 																<?php } ?>

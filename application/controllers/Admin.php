@@ -362,6 +362,7 @@ class Admin extends CI_Controller
 					'email' => $data[0]['email'],
 				);
 				$this->session->set_userdata('admin', $admin_info);
+				$this->session->set_userdata('user', $admin_info);
 			} else {
 				$status = 1;
 				echo $status;
@@ -389,7 +390,7 @@ class Admin extends CI_Controller
 				array_push($arrayUnitsOfCampaign,$unitsOfCampaign);
 			}
 
-			$arrayUnits = array();
+			$arrayUnits = array();//Tinh units cua campaign
 			for ($i = 0; $i < count($arrayUnitsOfCampaign); $i++){
 				$units = 0;
 				for ($k = 0; $k < count($arrayUnitsOfCampaign[$i]); $k++){
@@ -686,6 +687,7 @@ class Admin extends CI_Controller
 	public function logout()
 	{
 		unset($_SESSION['admin']);
+		unset($_SESSION['user']);
 		redirect('http://localhost:8012/teemarket');
 	}
 }

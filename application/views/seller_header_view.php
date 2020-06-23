@@ -58,6 +58,14 @@
 						<a class="dropdown-item logout" role="menuitem"><i class="icon fa-power-off" aria-hidden="true"></i> Logout</a>
 					</div>
 				</li>
+				<?php if (isset($_SESSION['admin'])) { ?>
+				<li class="nav-item dropdown">
+					<a class="nav-link admin" data-toggle="dropdown" title="Notifications"
+					   aria-expanded="false" data-animation="scale-up" role="button">
+						<i class="icon fa-exchange" aria-hidden="true"></i>
+					</a>
+				</li>
+				<?php } ?>
 			</ul>
 			<!-- End Navbar Toolbar Right -->
 		</div>

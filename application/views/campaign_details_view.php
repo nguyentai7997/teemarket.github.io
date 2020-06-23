@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>global/css/bootstrap-extend.minfd53.css?v4.0.1">
 	<link rel="stylesheet" href="<?= base_url()?>assets1/css/site.minfd53.css?v4.0.1">
-	<link rel="stylesheet" href="<?= base_url()?>assets1/css/account.css?">
+	<link rel="stylesheet" href="<?= base_url()?>assets1/css/seller.css">
 
 	<!-- Plugins -->
 	<link rel="stylesheet" href="<?= base_url()?>global/vendor/animsition/animsition.minfd53.css?v4.0.1">
@@ -193,7 +193,7 @@
 										<label style="color: #424242">Category Your Campaign</label>
 										<div class="select-custom">
 											<select class="form-control" title='Choose one of the following...' name="category">
-												<option value="0" selected>Please Choose...</option>
+												<option value="1" selected>Please Choose...</option>
 													<?php foreach ($category as $key => $value) {
 														if ($campaign[0]['id_category'] == $value['id']) { ?>
 															<option value="<?php echo $value['id']; ?>" selected><?php echo strtoupper($value['category']); ?></option>
