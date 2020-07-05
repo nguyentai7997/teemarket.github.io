@@ -63,7 +63,7 @@
 				<?php if (empty($_SESSION['product'])){ ?>
 					<div class="text-center" style="width: 100%">
 						<h1>MY SHOPPING CART IS EMPTY !</h1>'
-						<a href="<?= base_url() ?>" class="btn btn-outline-secondary">Continue Shopping</a>
+						<a href="<?= base_url() ?>marketplace" class="btn btn-outline-secondary">Continue Shopping</a>
 					</div><!-- End .float-left -->
 				<?php } else{?>
 				<div class="col-lg-12">
